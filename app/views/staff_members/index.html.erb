@@ -1,0 +1,23 @@
+<h1>Staff Members</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @staff_members.each do |staff_member| %>
+      <tr>
+        <td><%= link_to 'Show', staff_member %></td>
+        <td><%= link_to 'Edit', edit_staff_member_path(staff_member) %></td>
+        <td><%= link_to 'Destroy', staff_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Staff Member', new_staff_member_path %>

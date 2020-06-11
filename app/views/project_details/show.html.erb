@@ -1,0 +1,9 @@
+<%= render "project_details/show_shared", project_detail: @project_detail %>
+
+<p>
+  <strong>Project:</strong>
+  <%= project_detail.project_id %>
+</p>
+
+<%= link_to 'Edit', edit_project_detail_path(@project_detail) %> |
+<%= link_to 'Back', project_details_path %>

@@ -1,0 +1,25 @@
+<div class="content">
+  <h1>Evaluaciones de Jueces</h1>
+
+  <table class="table table-borderless">
+    <thead class="thead-light">
+      <tr>
+        <th>Juez</th>
+        <th>Proyecto</th>
+        <th>Calificación</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @judge_evaluations.each do |judge_evaluation| %>
+        <tr>
+          <td><%= judge_evaluation.judge_id %></td>
+          <td><%= judge_evaluation.project_id %></td>
+          <td><%= judge_evaluation.score %></td>
+          <td><%= link_to 'Eliminar', judge_evaluation, method: :delete, data: { confirm: '¿Estas seguro que deseas eliminar?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,9 @@
+<%= render "social_impacts/show_shared", social_impact: @social_impact %>
+
+<p>
+  <strong>Project:</strong>
+  <%= @social_impact.project_id %>
+</p>
+
+<%= link_to 'Edit', edit_social_impact_path(@social_impact) %> |
+<%= link_to 'Back', social_impacts_path %>

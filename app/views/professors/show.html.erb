@@ -1,0 +1,15 @@
+<div class="card mx-auto" style="width: 68rem;">
+  <h5 class="card-header">
+  <%= @professor.user.full_name %>
+  </h5>
+
+  <div class="card-body">
+    <p>
+      <strong>Departamento:</strong>
+      <%= @professor.department %>
+    </p>
+
+    <%= link_to 'Editar', edit_professor_path(@professor) ,:class => "btn btn-light" %> |
+    <%= link_to 'Regresar', professors_path ,:class => "btn btn-light" %>
+  </div>
+</div>

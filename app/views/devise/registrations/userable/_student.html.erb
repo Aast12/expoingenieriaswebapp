@@ -1,0 +1,9 @@
+<div class="field">
+  <%= label_tag :major, "Major" %>
+  <%= select_tag :major, options_for_select(major_options()), class: 'form-control' %>
+</div>
+
+<div class="field">
+  <%= label_tag :student_code, "Student Code" %><br />
+  <%= text_field_tag :student_code, "", class: 'form-control' %>
+</div>

@@ -1,0 +1,31 @@
+<h1>Time Limits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Phase name</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Edition</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @time_limits.each do |time_limit| %>
+      <tr>
+        <td><%= time_limit.phase_name %></td>
+        <td><%= time_limit.start_date %></td>
+        <td><%= time_limit.end_date %></td>
+        <td><%= time_limit.edition_id %></td>
+        <td><%= link_to 'Show', time_limit %></td>
+        <td><%= link_to 'Edit', edit_time_limit_path(time_limit) %></td>
+        <td><%= link_to 'Destroy', time_limit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Time Limit', new_time_limit_path %>

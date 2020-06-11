@@ -1,0 +1,24 @@
+<%= form_with(model: time_limit, local: true) do |form| %>
+  <% if time_limit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(time_limit.errors.count, "error") %> prohibited this time_limit from being saved:</h2>
+
+      <ul>
+        <% time_limit.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= render "time_limits/form_shared", form: form %>
+
+  <div class="field">
+    <%= form.label :edition_id %>
+    <%= form.text_field :edition_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

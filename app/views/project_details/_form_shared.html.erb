@@ -1,0 +1,50 @@
+<div class="form-group row text-left">
+  <div class="col-sm-6">
+    <%= form.label :name, "Nombre", :class => "form-label" %>
+    <%= form.text_field :name, :class => "form-control" %>
+  </div>
+  <div class="col-sm-6">
+    <%= form.label :video_url, "Liga del video", :class => "form-label" %>
+    <%= form.text_field :video_url, :class => "form-control" %>
+  </div>
+</div>
+
+<div class="form-group row text-left">
+  <div class="col-sm-6">
+    <%= form.label :category, "Categoría", :class => "form-label" %>
+        <%= form.select :category, project_detail_category_options(), {}, :class => "form-control" %>
+  </div>
+  <div class="col-sm-6">
+    <%= form.label :area, "Área temática", :class => "form-label" %>
+    <%= form.select :area, project_detail_area_options(), {}, :class => "form-control" %>
+  </div>
+</div>
+
+<div class="form-group row text-left">
+  <div class="col-sm-6">
+    <%= form.label :type_of, "Tipo de proyecto", :class => "form-label" %>
+    <%= form.select :type_of, project_detail_type_of_options(), {}, :class => "form-control" %>
+  </div>
+  <div class="col-sm-6">
+    <%= form.label :client_type, "Tipo de cliente", :class => "form-label" %>
+    <%= form.select :client_type, project_detail_client_type_options(), {}, :class => "form-control" %>
+  </div>
+</div>
+
+<div class="form-group row text-left">
+  <div class="col-sm-6">
+    <%= form.label :semestre_i, "Semestre i", :class => "form-label" %>
+    <%= form.select :semestre_i, boolean_options(), {}, :class => "form-control" %>
+  </div>
+  <div class="col-sm-6">
+    <%= form.label :social_impact, "Impacto social", :class => "form-label" %>
+    <%= form.select :social_impact, boolean_options(), {}, { :class => "form-control",
+                                                             :id => "social-impact-project-detail",
+                                                             :onchange => "manageSocialImpactForm()" } %>
+  </div>
+</div>
+
+<div class="form-group col-sm-13 text-left">
+  <%= form.label :description, "Descripción", :class => "form-label" %>
+  <%= form.text_area :description, :class => "form-control" %>
+</div>

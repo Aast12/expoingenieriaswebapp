@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+<div class="content">
+  <h1>Seleccionar Proyecto</h1>
+  <hr>
+  <%= form_tag select_projects_path, :method => 'post' do%>
+
+  <div class="form-group row text-middle">
+    <div class="col-sm-2">
+      <th>#</th>
+    </div>
+    <div class="col-sm-2">
+      <th>ID</th>
+    </div>
+    <div class="col-sm-3">
+      <th>Nombre</th>
+    </div>
+    <div class="col-sm-3">
+      <th>Profesor a Cargo</th>
+    </div>
+    <div class="col-sm-1">
+      <th>Calificación</th>
+    </div>
+    <div class="col-sm-1">
+      <th>Aceptar</th>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="form-group row text-middle">
+    <% counter = 0 %>
+    <% @projects.each do |project| %>
+      <% counter = counter + 1%>
+      <div class="col-sm-2">
+        <th><%= counter %></th>
+      </div>
+      <div class="col-sm-2">
+        <th><%= project.id %></th>
+      </div>
+      <div class="col-sm-3">
+        <th><%= project_name(project) %></th>
+      </div>
+      <div class="col-sm-3">
+        <th><%= project_professor(project) %></th>
+      </div>
+      <div class="col-sm-1">
+        <th><%= project.committee_evaluation.score %></th>
+      </div>
+      <div class="col-sm-1">
+        <th><%= check_box_tag 'selected_projects[]', "#{project.id}" %></th>
+      </div>
+      <br/>
+      <br/>
+    <% end %>
+  </div>
+  <%= submit_tag "Guardar", class: 'btn btn-light' %>
+</div>
+<br>
+
+<% end %>

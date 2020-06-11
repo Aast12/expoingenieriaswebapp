@@ -1,0 +1,17 @@
+<p>
+  <strong>Judge:</strong>
+  <%= @judge_evaluation.judge_id %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @judge_evaluation.project_id %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @judge_evaluation.score %>
+</p>
+
+<%= link_to 'Edit', edit_judge_evaluation_path(@judge_evaluation) %> |
+<%= link_to 'Back', judge_evaluations_path %>

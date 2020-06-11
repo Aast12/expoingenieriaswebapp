@@ -1,0 +1,77 @@
+<%= form_with(model: [@project, committee_evaluation], url: project_committee_evaluation_path, local: true) do |form| %>
+  <% if committee_evaluation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(committee_evaluation.errors.count, "error") %> prohibited this committee_evaluation from being saved:</h2>
+
+      <ul>
+        <% committee_evaluation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="evaluation row" style="display:flex">
+    <div clas="col-sm-2">
+      <%= render 'committee_evaluations/project_info', project: @project %>
+    </div>
+    <div clas="col-sm-2" style="margin-left: 80px">
+      <div class="form-group row">
+        <%= form.label :description, "Descripción", :class => "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= form.number_field :description, :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= form.label :problem, "Problema", :class => "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= form.number_field :problem, :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= form.label :methodology, "Metodología", :class => "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= form.number_field :methodology, :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= form.label :feasibility, "Factibilidad", :class => "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= form.number_field :feasibility, :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= form.label :results, "Resultados", :class => "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= form.number_field :results, :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= form.label :impact, "Impacto", :class => "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= form.number_field :impact, :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= form.label :score, "Calificación", :class => "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= form.number_field :score, :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= form.hidden_field :project_id, :class => "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit :Guardar, class: 'btn btn-light' %>
+  </div>
+<% end %>

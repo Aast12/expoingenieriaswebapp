@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: 1
+  problem: 1
+  methodology: 1
+  feasibility: 1
+  results: 1
+  impact: 1
+  score: 1
+  project: one
+
+two:
+  description: 1
+  problem: 1
+  methodology: 1
+  feasibility: 1
+  results: 1
+  impact: 1
+  score: 1
+  project: two

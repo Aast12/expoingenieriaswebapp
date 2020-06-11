@@ -1,0 +1,32 @@
+<%= form_with(model: project_event_detail, local: true) do |form| %>
+  <% if project_event_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project_event_detail.errors.count, "error") %> prohibited this project_event_detail from being saved:</h2>
+
+      <ul>
+        <% project_event_detail.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :stand %>
+    <%= form.number_field :stand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :final_score %>
+    <%= form.number_field :final_score %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.text_field :project_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

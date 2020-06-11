@@ -1,0 +1,9 @@
+<div class="text-left">
+  <h3>Detalles del proyecto</h3>
+  <%= render "project_details/show_shared", project_detail: @project.project_detail %>
+
+  <% if @project.abstract.present? %>
+    <h3>Abstract</h3>
+    <%= render "abstracts/show_shared", abstract: @project.abstract %>
+  <% end %>
+</div>

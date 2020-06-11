@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="form-group col-sm-10 text-left">
+    <%= form.label :problem, "Problema", :class => "form-label" %>
+    <%= form.text_area :problem, :class => "form-control", :id => "problem-text", :onchange => "manageWordCount('problem-text', 'problem-word-count')" %>
+  </div>
+  <div class="col-sm-2">
+    <%= text_field_tag :problem_word_count, "", class: 'form-control', :id => "problem-word-count" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-sm-10 text-left">
+    <%= form.label :methodology, "Metodología", :class => "form-label" %>
+    <%= form.text_area :methodology, :class => "form-control", :id => "methodology-text", :onchange => "manageWordCount('methodology-text', 'methodology-word-count')" %>
+  </div>
+  <div class="col-sm-2">
+    <%= text_field_tag :methodology_word_count, "", class: 'form-control', :id => "methodology-word-count" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-sm-10 text-left">
+    <%= form.label :feasibility, "Factibilidad", :class => "form-label" %>
+    <%= form.text_area :feasibility, :class => "form-control", :id => "feasibility-text", :onchange => "manageWordCount('feasibility-text', 'feasibility-word-count')" %>
+  </div>
+  <div class="col-sm-2">
+    <%= text_field_tag :feasibility_word_count, "", class: 'form-control', :id => "feasibility-word-count" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-sm-10 text-left">
+    <%= form.label :results, "Resultados", :class => "form-label" %>
+    <%= form.text_area :results, :class => "form-control", :id => "results-text", :onchange => "manageWordCount('results-text', 'results-word-count')" %>
+  </div>
+  <div class="col-sm-2">
+    <%= text_field_tag :results_word_count, "", class: 'form-control', :id => "results-word-count" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group col-sm-10 text-left">
+    <%= form.label :impact, "Impacto", :class => "form-label" %>
+    <%= form.text_area :impact, :class => "form-control", :id => "impact-text", :onchange => "manageWordCount('impact-text', 'impact-word-count')" %>
+  </div>
+  <div class="col-sm-2">
+    <%= text_field_tag :impact_word_count, "", class: 'form-control', :id => "impact-word-count" %>
+  </div>
+</div>

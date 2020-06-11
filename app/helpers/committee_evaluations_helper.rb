@@ -1,0 +1,2 @@
+module CommitteeEvaluationsHelper
+end

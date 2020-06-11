@@ -1,0 +1,32 @@
+<p>
+  <strong>First name:</strong>
+  <%= @collaborator.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @collaborator.last_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @collaborator.email %>
+</p>
+
+<p>
+  <strong>Major:</strong>
+  <%= @collaborator.major %>
+</p>
+
+<p>
+  <strong>Student code:</strong>
+  <%= @collaborator.student_code %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @collaborator.project_id %>
+</p>
+
+<%= link_to 'Edit', edit_collaborator_path(@collaborator) %> |
+<%= link_to 'Back', collaborators_path %>

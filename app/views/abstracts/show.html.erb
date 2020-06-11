@@ -1,0 +1,9 @@
+<%= render "abstracts/show_shared", abstract: @abstract %>
+
+<p>
+  <strong>Project:</strong>
+  <%= @abstract.project_id %>
+</p>
+
+<%= link_to 'Edit', edit_abstract_path(@abstract) %> |
+<%= link_to 'Back', abstracts_path %>

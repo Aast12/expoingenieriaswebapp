@@ -1,0 +1,57 @@
+<%= form_with(model: judge, local: true) do |form| %>
+  <% if judge.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(judge.errors.count, "error") %> prohibited this judge from being saved:</h2>
+
+      <ul>
+        <% judge.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="mx-auto" style="width: 30%; overflow: hidden;">
+  <br />
+
+  <div class="col-sm-15">
+    <%= form.label :contact_name , "Nombre contacto", :class => "form-label"%>
+    <%= form.text_field :contact_name , :class => "form-control"%>
+  </div>
+
+  <br />
+
+  <div class="col-sm-15">
+    <%= form.label :contact_email , "Correo electrónico contacto", :class => "form-label"%>
+    <%= form.text_field :contact_email , :class => "form-control"%>
+  </div>
+
+  <br />
+
+  <div class="col-sm-15">
+    <%= form.label :company , "Compañía", :class => "form-label"%>
+    <%= form.text_field :company, :class => "form-control" %>
+  </div>
+
+  <br />
+
+  <div class="col-sm-15">
+    <%= form.label :department, "Departamento", :class => "form-label" %>
+    <%= form.text_field :department, :class => "form-control" %>
+  </div>
+
+  <br />
+
+  <div class="col-sm-15">
+    <%= form.label :has_tablet , "Tiene tablet", :class => "form-label"%>
+    <%= form.check_box :has_tablet %>
+  </div>
+
+  <br />
+
+  <div class="col-sm-12">
+    <%= form.submit "Guardar" ,:class => "btn btn-light" %>
+  </div>
+  <br />
+</div>
+<% end %>

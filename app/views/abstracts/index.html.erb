@@ -1,0 +1,35 @@
+<h1>Abstracts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Problem</th>
+      <th>Methodology</th>
+      <th>Feasibility</th>
+      <th>Results</th>
+      <th>Impact</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @abstracts.each do |abstract| %>
+      <tr>
+        <td><%= abstract.problem %></td>
+        <td><%= abstract.methodology %></td>
+        <td><%= abstract.feasibility %></td>
+        <td><%= abstract.results %></td>
+        <td><%= abstract.impact %></td>
+        <td><%= abstract.project_id %></td>
+        <td><%= link_to 'Show', abstract %></td>
+        <td><%= link_to 'Edit', edit_abstract_path(abstract) %></td>
+        <td><%= link_to 'Destroy', abstract, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Abstract', new_abstract_path %>

@@ -1,0 +1,17 @@
+<p>
+  <strong>Stand:</strong>
+  <%= @project_event_detail.stand %>
+</p>
+
+<p>
+  <strong>Final score:</strong>
+  <%= @project_event_detail.final_score %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @project_event_detail.project_id %>
+</p>
+
+<%= link_to 'Edit', edit_project_event_detail_path(@project_event_detail) %> |
+<%= link_to 'Back', project_event_details_path %>

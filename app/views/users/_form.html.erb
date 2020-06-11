@@ -1,0 +1,67 @@
+<div class="card mx-auto" style="width: 68rem;">
+
+  <%= form_with(model: user, local: true) do |form| %>
+    <% if user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+          <% user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <h5 class="card-header">
+    <strong>Mi Cuenta</strong>
+    </h5>
+
+    <div>
+      <%= form.label :first_name, "Nombre(s)", :class => "col-sm-3 col-form-label" %>
+      <div class="col-sm-9">
+        <%= form.text_field :first_name, :class => "form-control" %>
+      </div>
+
+      <%= form.label :last_name, "Apellido", :class => "col-sm-3 col-form-label" %>
+      <div class="col-sm-9">
+        <%= form.text_field :last_name, :class => "form-control" %>
+      </div>
+
+      <%= form.label :institution_id, "Institucion", :class => "col-sm-3 col-form-label" %>
+      <div class="col-sm-9">
+      <%= form.select :institution_id, institution_options(), {}, :class => "form-control"  %>
+      </div>
+
+      <% if user.judge? %>
+        <%= form.label :company, "Compañia", :class => "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+        <%= form.text_field :company, :class => "form-control"  %>
+        </div>
+      <% elsif user.professor? %>
+        <%= form.label :department, "Departamento", :class => "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= form.text_field :department, :class => "form-control"  %>
+        </div>
+      <% elsif user.student? %>
+        <%= form.label :major, "Carrera", :class => "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= form.text_field :major, :class => "form-control"  %>
+        </div>
+        <%= form.label :student_code, "Matrícula", :class => "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= form.text_field :student_code, :class => "form-control"  %>
+        </div>
+      <% end %>
+    </div>
+
+    <br />
+
+    <div class="col-sm-9">
+      <%= form.submit "Actualizar" ,:class => "btn btn-light" %>
+    </div>
+    
+    <br />
+
+  <% end %>
+</div>

@@ -1,0 +1,29 @@
+<h1>Project Event Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stand</th>
+      <th>Final score</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_event_details.each do |project_event_detail| %>
+      <tr>
+        <td><%= project_event_detail.stand %></td>
+        <td><%= project_event_detail.final_score %></td>
+        <td><%= project_event_detail.project_id %></td>
+        <td><%= link_to 'Show', project_event_detail %></td>
+        <td><%= link_to 'Edit', edit_project_event_detail_path(project_event_detail) %></td>
+        <td><%= link_to 'Destroy', project_event_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project Event Detail', new_project_event_detail_path %>

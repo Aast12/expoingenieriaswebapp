@@ -1,0 +1,42 @@
+<p>
+  <strong>Description:</strong>
+  <%= @committee_evaluation.description %>
+</p>
+
+<p>
+  <strong>Problem:</strong>
+  <%= @committee_evaluation.problem %>
+</p>
+
+<p>
+  <strong>Methodology:</strong>
+  <%= @committee_evaluation.methodology %>
+</p>
+
+<p>
+  <strong>Feasibility:</strong>
+  <%= @committee_evaluation.feasibility %>
+</p>
+
+<p>
+  <strong>Results:</strong>
+  <%= @committee_evaluation.results %>
+</p>
+
+<p>
+  <strong>Impact:</strong>
+  <%= @committee_evaluation.impact %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @committee_evaluation.score %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @committee_evaluation.project_id %>
+</p>
+
+<%= link_to 'Edit', edit_project_committee_evaluation_path(@project) %> |
+<%= link_to 'Regresar', projects_path, :class => "btn btn-light" %>

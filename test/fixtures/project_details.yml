@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  video_url: MyText
+  semestre_i: false
+  social_impact: false
+  client_type: MyString
+  project: one
+
+two:
+  name: MyString
+  description: MyText
+  video_url: MyText
+  semestre_i: false
+  social_impact: false
+  client_type: MyString
+  project: two

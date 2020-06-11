@@ -1,0 +1,44 @@
+<p>
+  <strong>Nombre:</strong>
+  <%= project_detail.name %>
+</p>
+
+<p>
+  <strong>Liga del video:</strong>
+  <%= project_detail.video_url %>
+</p>
+
+<p>
+  <strong>Categoría:</strong>
+  <%= display_project_detail_category(project_detail) %>
+</p>
+
+<p>
+  <strong>Área temática:</strong>
+  <%= display_project_detail_area(project_detail) %>
+</p>
+
+<p>
+  <strong>Tipo de proyecto:</strong>
+  <%= display_project_detail_type_of(project_detail) %>
+</p>
+
+<p>
+  <strong>Tipo de cliente:</strong>
+  <%= display_project_detail_client_type(project_detail) %>
+</p>
+
+<p>
+  <strong>Semestre i:</strong>
+  <%= display_boolean_value(project_detail.semestre_i) %>
+</p>
+
+<p>
+  <strong>Impacto social:</strong>
+  <%= display_boolean_value(project_detail.social_impact) %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= project_detail.description %>
+</p>

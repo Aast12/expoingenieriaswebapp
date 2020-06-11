@@ -1,0 +1,39 @@
+<h1>Committee Evaluations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Problem</th>
+      <th>Methodology</th>
+      <th>Feasibility</th>
+      <th>Results</th>
+      <th>Impact</th>
+      <th>Score</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @committee_evaluations.each do |committee_evaluation| %>
+      <tr>
+        <td><%= committee_evaluation.description %></td>
+        <td><%= committee_evaluation.problem %></td>
+        <td><%= committee_evaluation.methodology %></td>
+        <td><%= committee_evaluation.feasibility %></td>
+        <td><%= committee_evaluation.results %></td>
+        <td><%= committee_evaluation.impact %></td>
+        <td><%= committee_evaluation.score %></td>
+        <td><%= committee_evaluation.project_id %></td>
+        <td><%= link_to 'Show', committee_evaluation %></td>
+        <td><%= link_to 'Edit', edit_committee_evaluation_path(committee_evaluation) %></td>
+        <td><%= link_to 'Destroy', committee_evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Committee Evaluation', new_committee_evaluation_path %>

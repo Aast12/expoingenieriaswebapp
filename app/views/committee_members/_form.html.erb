@@ -1,0 +1,17 @@
+<%= form_with(model: committee_member, local: true) do |form| %>
+  <% if committee_member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(committee_member.errors.count, "error") %> prohibited this committee_member from being saved:</h2>
+
+      <ul>
+        <% committee_member.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

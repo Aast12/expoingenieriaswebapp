@@ -1,0 +1,54 @@
+<div class="card">
+  <h5 class="card-header">
+    <%= project_name(project) %>
+  </h5>
+  <div class="card-body">
+    <div class="card-info row">
+      <div class="col-md-4">
+        <strong>Categoría:</strong>
+        <%= display_project_detail_category(project.project_detail) %>
+      </div>
+      <% if project.committee_evaluation.present? %>
+        <div class="col-md-3">
+          <strong>Calificación:</strong>
+          <%= display_project_score(project) %>
+        </div>
+      <% end %>
+      <% if project.project_event_detail.present? %>
+        <div class="col-md-3">
+          <strong>Fecha:</strong>
+        </div>
+        <div class="col-md-3">
+          <strong>Stand:</strong>
+          <%= display_project_stand(project) %>
+        </div>
+      <% end %>
+    </div>
+    <h6 class="card-title">
+      <strong><%= display_project_status(project) %></strong>
+    </h6>
+    <p class="card-text">
+      <%= project_description(project) %>
+    </p>
+    <hr class="my-4">
+    <p class="card-text">
+      <strong>Profesor:</strong>
+      <%= display_project_professor_info(project) %>
+    </p>
+    <p class="card-text">
+      <strong>Estudiante:</strong>
+      <%= display_project_student_info(project) %>
+    </p>
+
+    <td><%= link_to 'Editar', edit_project_path(project), :class => "btn btn-light" %></td>
+    <td><%= link_to 'Ver', project_path(project), :class => "btn btn-light" %></td>
+
+    <% if current_user.administrator? || current_user.committee_member? %>
+      <% if project.committee_evaluation.present? %>
+        <td><%= link_to 'Editar calificación', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
+      <% else %>
+        <td><%= link_to 'Calificar', new_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
+      <% end %>
+    <% end %>
+  </div>
+</div><br />

@@ -1,0 +1,51 @@
+<%= form_with(model: project, local: true) do |form| %>
+  <% if project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+        <% project.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h1>Detalles del proyecto</h1>
+  <%= form.fields_for :project_detail do |project_detail| %>
+    <%= render "project_details/form_shared", form: project_detail %>
+  <% end %>
+
+  <div id='social-impact-form'>
+    <h1>Impacto Social</h1>
+    <%= form.fields_for :social_impact do |social_impact| %>
+      <%= render "social_impacts/form_shared", form: social_impact %>
+    <% end %>
+  </div>
+
+  <h1>Abstract</h1>
+  <%= form.fields_for :abstract do |abstract| %>
+    <%= render "abstracts/form_shared", form: abstract %>
+  <% end %>
+
+  <% if !current_user.student? %>
+    <h1>Datos del estudiante responsable</h1>
+    <div class="form-group col-sm-13 text-left">
+      <%= form.label :student_id, "Nombre", :class => "form-label" %>
+      <%= form.select :student_id, student_options(), { :include_blank => true }, :class => "form-control" %>
+    </div>
+  <% end %>
+
+  <% if !current_user.professor? %>
+    <h1>Datos del profesor coordinador</h1>
+    <div class="form-group col-sm-13 text-left">
+      <%= form.label :professor_id, "Nombre", :class => "form-label" %>
+      <%= form.select :professor_id, professor_options(), { :include_blank => true }, :class => "form-control" %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= link_to 'Cancelar', projects_path, class: 'btn btn-light' %>
+    <%= form.submit :Guardar, class: 'btn btn-primary' %>
+  </div>
+<% end %>

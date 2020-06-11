@@ -1,0 +1,25 @@
+<div class="card mx-auto" style="width: 68rem;">
+
+  <h5 class="card-header">
+  <%= @edition.name %>
+  </h5>
+  <div class="card-body">
+    <p>
+      <strong>Fecha de inicio:</strong>
+      <%= @edition.start_date %>
+    </p>
+
+    <p>
+      <strong>Fecha de termino:</strong>
+      <%= @edition.end_date  %>
+    </p>
+    <div>
+      <%= link_to 'Edit', edit_edition_path(@edition) ,:class => "btn btn-light col-sm-3; "  %> 
+    <%= link_to 'Back', editions_path ,:class => "btn btn-light col-sm-3;" %>
+    </div>
+  </div>
+
+ 
+
+
+</div>

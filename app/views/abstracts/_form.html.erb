@@ -1,0 +1,24 @@
+<%= form_with(model: abstract, local: true) do |form| %>
+  <% if abstract.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(abstract.errors.count, "error") %> prohibited this abstract from being saved:</h2>
+
+      <ul>
+        <% abstract.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= render "abstract/form_shared", form: form %>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.text_field :project_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

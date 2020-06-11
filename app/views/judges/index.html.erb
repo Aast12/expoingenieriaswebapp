@@ -1,0 +1,33 @@
+<div class="content">
+  <h1>Jueces</h1>
+  <table class="table table-borderless">
+    <thead class="thead-light">
+      <tr>
+        <th>Nombre</th>
+        <th>Correo Electronico</th>
+        <th>Compañia</th>
+        <th>Departamento</th>
+        <th>Nombre contacto</th>
+        <th>Correo Electrónico contacto</th>
+        <th>Tiene Tableta</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @judges.each do |judge| %>
+        <tr>
+          <td><%= judge.user.full_name %></td>
+          <td><%= judge.user.email %></td>
+          <td><%= judge.company %></td>
+          <td><%= judge.department %></td>
+          <td><%= judge.contact_name %></td>
+          <td><%= judge.contact_email %></td>
+          <td><%= display_boolean_value(judge.has_tablet)%></td>
+          <td><%= link_to 'Editar', edit_judge_path(judge) ,:class => "btn btn-light"%></td>
+          <td><%= link_to 'Eliminar', judge, method: :delete, data: { confirm: 'Estas seguro que deseas eliminar?' } ,:class => "btn btn-light"%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

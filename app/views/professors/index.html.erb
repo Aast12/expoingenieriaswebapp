@@ -1,0 +1,27 @@
+<div class="content">
+  <h1>Profesores</h1>
+  <table class="table table-borderless">
+    <thead class="thead-light">
+      <tr>
+        <th>Nombre</th>
+        <th>Correo Electrónico</th>
+        <th>Departmento</th>
+
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @professors.each do |professor| %>
+        <tr>
+        <td><%= professor.user.full_name %></td>
+        <td><%= professor.user.email %></td>
+        <td><%= professor.department %></td>
+        <td><%= link_to 'Editar', edit_professor_path(professor) ,:class => "btn btn-light"%></td>
+        <td><%= link_to 'Eliminar', professor, method: :delete, data: { confirm: '¿Estas seguro?' } ,:class => "btn btn-light"%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>

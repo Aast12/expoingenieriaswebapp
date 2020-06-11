@@ -1,0 +1,24 @@
+<%= form_with(model: project_detail, local: true) do |form| %>
+  <% if project_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project_detail.errors.count, "error") %> prohibited this project_detail from being saved:</h2>
+
+      <ul>
+        <% project_detail.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= render "project_details/form_shared", form: form %>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.text_field :project_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

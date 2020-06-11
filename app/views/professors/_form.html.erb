@@ -1,0 +1,26 @@
+<%= form_with(model: professor, local: true) do |form| %>
+  <% if professor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(professor.errors.count, "error") %> prohibited this professor from being saved:</h2>
+
+      <ul>
+        <% professor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mx-auto" style="width: 30%; overflow: hidden;">
+    <br />
+    <div class="col-sm-15">
+      <%= form.label :department, "Departmanto", :class => "form-label" %>
+      <%= form.text_field :department, :class => "form-control" %>
+    </div>
+
+    <br />
+    <div class="actions">
+      <%= form.submit "Guardar", :class => "btn btn-light" %>
+    </div>
+  </div>
+<% end %>

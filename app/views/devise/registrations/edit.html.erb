@@ -1,0 +1,57 @@
+<div class="card mx-auto" style="width: 68rem;">
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <h5 class="card-header">
+    <strong>Editar Cuenta</strong>
+  </h5>
+
+  <div class="card-body">
+    <div class="card-info row">
+      <div class="col-md-3">
+      <strong>Correo Electrónico:</strong>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" , :class => "form-control" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="col-md-3">
+        <strong>Contraseña:</strong>
+        <%= f.password_field :password, autocomplete: "new-password", :class => "form-control" %>
+      </div>
+
+      <div class="col-md-3">
+      <strong>Confirmar contraseña:</strong>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" , :class => "form-control"  %>
+      </div>
+
+      <div class="col-md-3">
+      <strong>Contraseña actual:</strong>
+        <%= f.password_field :current_password, autocomplete: "current-password" , :class => "form-control"  %>
+      </div>        
+
+      <div class="col-md-3">
+        <br />
+        <%= f.submit "Actualizar" ,:class => "btn btn-light" %>
+      
+      </div>
+      <% end %>
+      </div>
+      <br />
+
+      <h5 class="card-header">
+        <strong>Cancelar Cuenta</strong>
+      </h5>
+
+      <div>
+        <br />
+        <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Estas seguro?" }, method: :delete ,:class => "btn btn-light"%>
+        <br />
+        <%= link_to "Regresar", :back ,:class => "btn btn-light" %> 
+      </div>
+    </div>
+  </div>
+</div>

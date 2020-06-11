@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  problem: MyText
+  methodology: MyText
+  feasibility: MyText
+  results: MyText
+  impact: MyText
+  project: one
+
+two:
+  problem: MyText
+  methodology: MyText
+  feasibility: MyText
+  results: MyText
+  impact: MyText
+  project: two
