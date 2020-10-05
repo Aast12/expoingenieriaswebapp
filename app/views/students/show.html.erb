@@ -1,14 +1,14 @@
 <div class="card mx-auto" style="width: 68rem;">
   <div class="card-body">
   <p>
-    <strong>Major:</strong>
+    <strong>Carrera:</strong>
     <%= @student.major %>
   </p>
-  </div>
   <p>
-    <strong>Student code:</strong>
+    <strong>Matricula:</strong>
     <%= @student.student_code %>
   </p>
+  </div>
+  <%= link_to 'Editar', edit_student_path(@student), :class => "btn btn-light"%>
+  <%= link_to 'Regresar', students_path, :class => "btn btn-light"%>
 </div>
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
