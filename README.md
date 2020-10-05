@@ -9,12 +9,12 @@ Página web para administrar el registro y evento de Conexión Tec.
 | ------------------------- | ----------------- | ------------------ |
 | Juan M. Hinojosa Olivares | juhinojo@itesm.mx | Profesor de planta |
 
-### Equipo de desarrollo
+### Equipo de desarrollo Agosto-Diciembre 2020
 | Nombre                         | Correo electrónico          | Rol         |
 | ------------------------------ | --------------------------- | ----------- |
-| Carlos Fernando Garza Martínez | carlosfgarza@gmail.com      | Development |
-| Ana Jimena Lomelí Cantú        | jimena.lomeli1@gmail.com    | Development |
-| Renata Saldívar González       | renata.saldivar97@gmail.com | Development |
+| Esteban Torres Alarcon         | A01193925@itesm.mx          | Development |
+| Santiago Castaño Moreno        | A01193760@itesm.mx          | Development |
+| Alejandro Longoria Esparza     | A00817379@itesm.mx          | Development |
 
 ### Setup
 Instala las siguientes herramientas de desarrollo:
