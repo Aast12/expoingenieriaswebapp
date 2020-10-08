@@ -7,9 +7,9 @@ Página web para administrar el registro y evento de Conexión Tec.
 ### Información del cliente
 | Nombre                    | Correo electrónico| Rol                |
 | ------------------------- | ----------------- | ------------------ |
-| Juan M. Hinojosa Olivares | juhinojo@itesm.mx | Profesor de planta |
+| Daniel Guajardo Flores | danielgdo@tec.mx | Profesor Investigador |
 
-### Equipo de desarrollo Agosto-Diciembre 2020
+### Equipo de desarrollo: Avocadoware, para Agosto-Diciembre 2020
 | Nombre                         | Correo electrónico          | Rol         |
 | ------------------------------ | --------------------------- | ----------- |
 | Esteban Torres Alarcon         | A01193925@itesm.mx          | Development |
@@ -24,13 +24,20 @@ Instala las siguientes herramientas de desarrollo:
 - [Git](https://git-scm.com/downloads)
 - [Ruby on Rails](https://guides.rubyonrails.org/v6.0/getting_started.html)
 
+#### Versionamiento del proyecto
+- Ruby 2.6.3; [instalando versiones específicas de Ruby](https://rvm.io/rvm/install)
+- Rails 6.0.2
+- Sqlite 1.4
+
+
+
 ### Corre la aplicación en Ruby on Rails
 1. Abre tu terminal
 2. Clona el proyecto utilizando cualquiera de los siguientes comandos:
 
 SSH:
 ```bash
-$ git clone git@github.com:carliousgarza/ConexionTec.git
+$ git clone git@github.com:ProyectoIntegrador2018/conexion_tec_2.git
 ```
   
 o HTTPS:
@@ -39,7 +46,7 @@ $ git clone https://github.com/carliousgarza/ConexionTec.git
 ```
 3. Entra al directorio de la aplicación:
 ```bash
-$ cd ConexionTec
+$ cd conexion_tec_2
 ```
 4. Corre los siguientes comandos:
 ```bash
