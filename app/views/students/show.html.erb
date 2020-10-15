@@ -1,12 +1,14 @@
-<p>
-  <strong>Major:</strong>
-  <%= @student.major %>
-</p>
-
-<p>
-  <strong>Student code:</strong>
-  <%= @student.student_code %>
-</p>
-
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<div class="card mx-auto" style="width: 68rem;">
+  <div class="card-body">
+  <p>
+    <strong>Carrera:</strong>
+    <%= @student.major %>
+  </p>
+  <p>
+    <strong>Matricula:</strong>
+    <%= @student.student_code %>
+  </p>
+  </div>
+  <%= link_to 'Editar', edit_student_path(@student), :class => "btn btn-light"%>
+  <%= link_to 'Regresar', students_path, :class => "btn btn-light"%>
+</div>

@@ -32,6 +32,10 @@
       <% if current_user.committee_member? || current_user.administrator?  %>
           <a class="nav-item nav-link" href="/select_projects">Seleccionar Proyectos</a>
       <% end %>
+      
+      <% if current_user.committee_member? || current_user.administrator?  %>
+          <a class="nav-item nav-link" href="/students">Alumnos</a>
+      <% end %>
 
       <div class="navbar-current-user" style="position:absolute; right:0px;">
         <strong>
