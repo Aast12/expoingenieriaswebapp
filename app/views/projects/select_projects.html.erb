@@ -1,60 +1,32 @@
-<p id="notice"><%= notice %></p>
 <div class="content">
-  <h1>Seleccionar Proyecto</h1>
-  <hr>
-  <%= form_tag select_projects_path, :method => 'post' do%>
-
-  <div class="form-group row text-middle">
-    <div class="col-sm-2">
-      <th>#</th>
-    </div>
-    <div class="col-sm-2">
-      <th>ID</th>
-    </div>
-    <div class="col-sm-3">
-      <th>Nombre</th>
-    </div>
-    <div class="col-sm-3">
-      <th>Profesor a Cargo</th>
-    </div>
-    <div class="col-sm-1">
-      <th>Calificación</th>
-    </div>
-    <div class="col-sm-1">
-      <th>Aceptar</th>
-    </div>
-  </div>
-
-  <hr>
-
-  <div class="form-group row text-middle">
-    <% counter = 0 %>
-    <% @projects.each do |project| %>
-      <% counter = counter + 1%>
-      <div class="col-sm-2">
-        <th><%= counter %></th>
-      </div>
-      <div class="col-sm-2">
-        <th><%= project.id %></th>
-      </div>
-      <div class="col-sm-3">
-        <th><%= project_name(project) %></th>
-      </div>
-      <div class="col-sm-3">
-        <th><%= project_professor(project) %></th>
-      </div>
-      <div class="col-sm-1">
-        <th><%= project.committee_evaluation.score %></th>
-      </div>
-      <div class="col-sm-1">
-        <th><%= check_box_tag 'selected_projects[]', "#{project.id}" %></th>
-      </div>
-      <br/>
-      <br/>
-    <% end %>
-  </div>
-  <%= submit_tag "Guardar", class: 'btn btn-light' %>
+  <h1>Seleccionar Proyectos</h1><br />
+  <%= form_tag update_selected_projects_path, :method => 'post' do %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th> 
+          <th>Nombre</th>
+          <th>Profesor a Cargo</th>
+          <th>Calificación</th>
+          <th>Aceptar</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @projects.each_with_index do |project, index| %>
+          <tr>
+            <td><%= index+1 %></td>
+            <td><%= project_name(project) %></td>
+            <td><%= project_professor(project) %></td>
+            <td><%= project_score(project) %></td>
+            <td><%= check_box_tag 'selected_projects[]', "#{project.id}" %></td>
+            <% if current_user.committee_member? || current_user.administrator? || current_user.professor? %>
+              <td><%= link_to 'Ver', project %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= submit_tag "Guardar", class: 'btn btn-light' %>
+  <% end %>
 </div>
-<br>
-
-<% end %>

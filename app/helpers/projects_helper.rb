@@ -83,6 +83,7 @@ module ProjectsHelper
     return "#{project_professor} • #{project_professor_email}"
   end
 
+
   def display_project_score(project)
     project_score = project_score(project)
     project_score.present? ? project_score : "Pendiente"
