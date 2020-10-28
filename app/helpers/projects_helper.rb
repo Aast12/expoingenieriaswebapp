@@ -7,7 +7,8 @@ module ProjectsHelper
 
   # Escala de calificación de calidad 
   def project_status_options_for_professor(project_id)
-    [['Registrado', "#{project_id}:registered"], ['5', "#{project_id}:5"], ['4', "#{project_id}:4"]], ['0', "#{project_id}:0"], ['1', "#{project_id}:1"]], ['2', "#{project_id}:2"], ['3', "#{project_id}:3"]]
+    [['0', "#{project_id}:registered"], ['1', "#{project_id}:disapproved"], ['2', "#{project_id}:disapproved"], ['3', "#{project_id}:disapproved"], ['4', "#{project_id}:approved"],
+    ['5', "#{project_id}:approved"]]
   end
 
   def project_status_options_for_admin(project_id)
