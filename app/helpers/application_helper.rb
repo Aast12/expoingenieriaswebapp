@@ -14,7 +14,9 @@ module ApplicationHelper
   def get_current_edition_id
     current_date = Date.today
     Edition.all.each do |edition|
+      puts edition.inspect
       if edition.start_date <= current_date && edition.end_date >= current_date
+          puts "EDITION ID: " + "#{edition.id}"
           return edition.id
       end
     end
