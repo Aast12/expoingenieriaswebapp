@@ -60,9 +60,15 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   text-align: left;
 }
+.proyect-card-header {
+  margin: 0px !important;
+}
+.project-card-body {
+  padding: 8px 24px;
+}
 .card-info {
   font-size: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 .container {
   margin-top: 80px;
