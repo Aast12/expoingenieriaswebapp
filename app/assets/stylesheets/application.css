@@ -74,8 +74,8 @@
   background: #FFFFFF;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   font-size: 15px;
-  margin: 80px auto;
-  padding: 20px 15px;
+  margin: 24px 48px;
+  padding: 24px 24px;
   position: relative;
   text-align: center;
   width: 90%;
@@ -95,7 +95,8 @@
 }
 .evaluation {
   margin-top: 40px;
-  padding-left: 260px;
+  justify-content: space-evenly;
+  padding: 0px 48px 0px 48px;
 }
 .login-sec {
   margin-top: 20px;

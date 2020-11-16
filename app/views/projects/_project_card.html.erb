@@ -1,7 +1,7 @@
 <div class="card">
-  <h5 class="card-header">
-    <%= project_name(project) %>
-  </h5>
+  <div class="card-header">
+    <strong><%= project_name(project) %></strong>
+  </div>
   <div class="card-body">
     <div class="card-info row">
       <div class="col-md-4">
@@ -30,7 +30,6 @@
     <p class="card-text">
       <%= project_description(project) %>
     </p>
-    <hr class="my-4">
     <p class="card-text">
       <strong>Profesor:</strong>
       <%= display_project_professor_info(project) %>
@@ -39,11 +38,14 @@
       <strong>Estudiante:</strong>
       <%= display_project_student_info(project) %>
     </p>
-
-    <td><%= link_to 'Editar', edit_project_path(project), :class => "btn btn-light" %></td>
+    <hr class="my-4">
+    
+    <% if current_user.administrator? || (current_user.student? && project.status != "accepted") %>
+      <td><%= link_to 'Editar', edit_project_path(project), :class => "btn btn-light" %></td>
+    <% end %>
     <td><%= link_to 'Ver', project_path(project), :class => "btn btn-light" %></td>
 
-    <% if current_user.administrator? || current_user.committee_member? %>
+    <% if current_user.administrator? || current_user.committee_member? || current_user.professor? %>
       <% if project.committee_evaluation.present? %>
         <td><%= link_to 'Editar calificación', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
       <% else %>

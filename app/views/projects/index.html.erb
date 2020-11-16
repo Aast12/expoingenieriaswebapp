@@ -1,14 +1,9 @@
 <div class="content">
-  <h1>Proyectos</h1>
+  <h3>Proyectos</h3>
   <br />
   <div class="row">
-    <div class="col-md-3">
-      <div class="list-group">
-        <a class="list-group-item list-group-item-action active" id="list-project-name" data-toggle="list" href="#list-project-name" role="tab" aria-controls="name">Nombre</a>
-        <a class="list-group-item list-group-item-action" id="list-project-sore" data-toggle="list" href="#list-project-score" role="tab" aria-controls="score">Calificación</a>
-      </div>
-    </div>
-    <div class="col-md-8">
+    
+    <div class="col-md-12">
       <% @projects.each do |project| %>
         <%= render "projects/project_card", project: project %>
       <% end %>
