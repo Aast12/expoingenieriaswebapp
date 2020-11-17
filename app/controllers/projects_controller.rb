@@ -16,6 +16,29 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def filter
+    if current_user.professor?
+      professor_id = current_user.userable.id
+      results = Project.all.where(professor_id: professor_id)
+    elsif current_user.student?
+      student_id = current_user.userable.id
+      results = Project.all.where(student_id: student_id)
+    else
+      results = Project.all
+    end
+    puts "HOLA FILTRO! -------------"
+    puts params[:filter]
+    if params[:filter].present?
+      if params[:filter] == 'no_filter' 
+        @projects = results
+      else 
+        @projects = results.where(status: params[:filter])
+      end
+    else 
+      @projects = results
+    end
+  end
+
   # GET /projects/1
   # GET /projects/1.json
   def show
@@ -156,4 +179,5 @@ class ProjectsController < ApplicationController
       params << :_destroy
       return params
     end
+
 end

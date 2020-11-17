@@ -104,6 +104,9 @@
   justify-content: space-evenly;
   padding: 0px 48px 0px 48px;
 }
+.filters-container {
+  margin-bottom: 8px;
+}
 .login-sec {
   margin-top: 20px;
 }

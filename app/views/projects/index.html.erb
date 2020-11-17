@@ -1,15 +1,32 @@
 <div class="content">
   <h3>Proyectos</h3>
-  <br />
   <div class="row">
-    
-    <div class="col-md-12">
-      <% @projects.each do |project| %>
-        <%= render "projects/project_card", project: project %>
+    <div class="col-sm-12 filters-container">
+      <%= form_tag(filter_path, method: "get", remote: true) do %>
+      <div class="input-group">
+        <div class="col-sm-3" id="status-filter">
+          <% status_options = project_status_options() %>
+          <% select_options = status_options.prepend(['No Filter', 'no_filter']) %>
+          <%= select_tag "filter", options_for_select(select_options), class: 'custom-select', onchange: 'clickSubmit()' %>
+        </div>
+        <div class="col-sm-2">
+          <%= submit_tag "Filter", class: 'btn btn-dark', id:'filter-submit' %>
+        </div>
+      </div>
       <% end %>
+    </div>
+    <div class="col-md-12" id="filtered-projects-container">
+      <% render 'projects/filtered-projects' %>
     </div>
   </div>
   <div class="content-actions">
     <%= link_to 'Nuevo proyecto', new_project_path, :class => "btn btn-light" %>
   </div>
 </div>
+
+<script>
+  window.document.onload = clickSubmit();
+  function clickSubmit() {
+    document.getElementById("filter-submit").click();
+  }
+</script>
