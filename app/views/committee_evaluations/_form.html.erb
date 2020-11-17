@@ -68,6 +68,20 @@
       <div class="field">
         <%= form.hidden_field :project_id, :class => "form-control" %>
       </div>
+      <div class="form-group row">
+      <% if @project.status == "registered" || @project.status == "disapproved"  || @project.status == "approved" %>
+        <% if @project.status != "registered" && @project.status != "disapproved" %>
+          <h5>¿Desea aprobar el proyecto?
+          <%= check_box_tag :prueba, 0, true %>
+          </h5>
+         <% else %>
+            <h5>¿Desea aprobar el proyecto?
+            <%= check_box_tag :prueba, 1, false %>
+            </h5>
+         <% end %>
+      <% end %>
+        </h5>
+      </div>
     </div>
   </div>
 
