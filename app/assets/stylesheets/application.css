@@ -107,6 +107,9 @@
 .filters-container {
   margin-bottom: 8px;
 }
+.filters {
+  justify-content: center;
+}
 .login-sec {
   margin-top: 20px;
 }

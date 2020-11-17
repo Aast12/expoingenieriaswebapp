@@ -3,15 +3,24 @@
   <div class="row">
     <div class="col-sm-12 filters-container">
       <%= form_tag(filter_path, method: "get", remote: true) do %>
-      <div class="input-group">
+      <div class="input-group filters">
         <div class="col-sm-3" id="status-filter">
           <% status_options = project_status_options() %>
-          <% select_options = status_options.prepend(['No Filter', 'no_filter']) %>
-          <%= select_tag "filter", options_for_select(select_options), class: 'custom-select', onchange: 'clickSubmit()' %>
+          <% select_options = status_options.prepend(['Status', 'no_filter']) %>
+          <%= select_tag "status", options_for_select(select_options), class: 'custom-select', onchange: 'clickSubmit()' %>
         </div>
-        <div class="col-sm-2">
-          <%= submit_tag "Filter", class: 'btn btn-dark', id:'filter-submit' %>
+        <div class="col-sm-3" id="category-filter">
+          <% cateogry_options = project_detail_category_options() %>
+          <% select_options = cateogry_options.prepend(['Categoria', 'no_filter']) %>
+          <%= select_tag "category", options_for_select(select_options), class: 'custom-select', onchange: 'clickSubmit()' %>
         </div>
+        <div class="col-sm-3" id="area-filter">
+          <% area_options = project_detail_area_options() %>
+          <% select_options = area_options.prepend(['Area', 'no_filter']) %>
+          <%= select_tag "area", options_for_select(select_options), class: 'custom-select', onchange: 'clickSubmit()' %>
+        </div>
+          <%= submit_tag "Filter", style: "display: none",class: 'btn btn-dark', id:'filter-submit' %>
+
       </div>
       <% end %>
     </div>

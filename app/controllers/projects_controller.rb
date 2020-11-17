@@ -17,25 +17,59 @@ class ProjectsController < ApplicationController
   end
 
   def filter
+    
     if current_user.professor?
       professor_id = current_user.userable.id
-      results = Project.all.where(professor_id: professor_id)
+      results = Project.where(professor_id: professor_id)
+      puts results.inspect
     elsif current_user.student?
       student_id = current_user.userable.id
       results = Project.all.where(student_id: student_id)
     else
       results = Project.all
     end
-    puts "HOLA FILTRO! -------------"
-    puts params[:filter]
-    if params[:filter].present?
-      if params[:filter] == 'no_filter' 
-        @projects = results
+    if params[:status].present?
+      if params[:status] == 'no_filter' 
+        results2 = results
       else 
-        @projects = results.where(status: params[:filter])
+        results2 = results.where(status: params[:status])
       end
     else 
-      @projects = results
+      results2 = results
+    end
+    if params[:category].present?
+      if params[:category] == 'no_filter' 
+        results3 = results2
+      else
+        results3 = []
+        results2.each do |project|
+          if project.project_category == params[:category]
+            results3.append(project)
+          end
+        end
+      end
+    else 
+      results3 = results2
+    end
+    puts "Results3 -------"
+    puts results3
+    if params[:area].present?
+      puts "params area- ------------"
+      puts params[:area]
+      if params[:area] == 'no_filter' 
+        @projects = results3
+      else
+        @projects = []
+        results3.each do |project|
+          if project.project_area == params[:area]
+            @projects.append(project)
+          end
+        end
+        puts "projects to display after area filter ---------"
+        puts @projects.inspect
+      end
+    else 
+      @projects = results3
     end
   end
 
