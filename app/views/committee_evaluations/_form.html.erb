@@ -12,62 +12,80 @@
   <% end %>
 
   <div class="evaluation row" style="display:flex">
-    <div clas="col-sm-2">
+    <div class="col-sm-8">
       <%= render 'committee_evaluations/project_info', project: @project %>
     </div>
-    <div clas="col-sm-2" style="margin-left: 80px">
+    <div class="col-sm-4">
       <div class="form-group row">
-        <%= form.label :description, "Descripción", :class => "col-sm-3 col-form-label" %>
-        <div class="col-sm-9">
-          <%= form.number_field :description, :class => "form-control" %>
+        <%= form.label :description, "Descripción", :class => "col-sm-6 col-form-label" %>
+        <div class="col-sm-6">
+          <%= form.number_field :description, min:0, max: 5, :class => "form-control" %>
         </div>
       </div>
 
       <div class="form-group row">
-        <%= form.label :problem, "Problema", :class => "col-sm-3 col-form-label" %>
-        <div class="col-sm-9">
-          <%= form.number_field :problem, :class => "form-control" %>
+        <%= form.label :problem, "Problema", :class => "col-sm-6 col-form-label" %>
+        <div class="col-sm-6">
+          <%= form.number_field :problem,  min:0, max: 5, :class => "form-control" %>
         </div>
       </div>
 
       <div class="form-group row">
-        <%= form.label :methodology, "Metodología", :class => "col-sm-3 col-form-label" %>
-        <div class="col-sm-9">
-          <%= form.number_field :methodology, :class => "form-control" %>
+        <%= form.label :methodology, "Metodología", :class => "col-sm-6 col-form-label" %>
+        <div class="col-sm-6">
+          <%= form.number_field :methodology,  min:0, max: 5, :class => "form-control" %>
         </div>
       </div>
 
       <div class="form-group row">
-        <%= form.label :feasibility, "Factibilidad", :class => "col-sm-3 col-form-label" %>
-        <div class="col-sm-9">
-          <%= form.number_field :feasibility, :class => "form-control" %>
+        <%= form.label :feasibility, "Factibilidad", :class => "col-sm-6 col-form-label" %>
+        <div class="col-sm-6">
+          <%= form.number_field :feasibility, min:0, max: 5, :class => "form-control" %>
         </div>
       </div>
 
       <div class="form-group row">
-        <%= form.label :results, "Resultados", :class => "col-sm-3 col-form-label" %>
-        <div class="col-sm-9">
-          <%= form.number_field :results, :class => "form-control" %>
+        <%= form.label :results, "Resultados", :class => "col-sm-6 col-form-label" %>
+        <div class="col-sm-6">
+          <%= form.number_field :results, min:0, max: 5, :class => "form-control" %>
         </div>
       </div>
 
       <div class="form-group row">
-        <%= form.label :impact, "Impacto", :class => "col-sm-3 col-form-label" %>
-        <div class="col-sm-9">
-          <%= form.number_field :impact, :class => "form-control" %>
+        <%= form.label :impact, "Impacto", :class => "col-sm-6 col-form-label" %>
+        <div class="col-sm-6">
+          <%= form.number_field :impact, min:0, max: 5, :class => "form-control" %>
         </div>
       </div>
 
       <div class="form-group row">
-        <%= form.label :score, "Calificación", :class => "col-sm-3 col-form-label" %>
-        <div class="col-sm-9">
-          <%= form.number_field :score, :class => "form-control" %>
+        <%= form.label :score, "Calificación", :class => "col-sm-6 col-form-label" %>
+        <div class="col-sm-6">
+          <%= form.number_field :score, min:0, max: 5, :class => "form-control" %>
         </div>
       </div>
 
       <div class="field">
         <%= form.hidden_field :project_id, :class => "form-control" %>
       </div>
+      <div class="form-group row">
+      <% if current_user.professor? && (@project.status == "registered" || @project.status == "disapproved"  || @project.status == "approved")%>
+        <% if @project.status != "registered" && @project.status != "disapproved" %>
+          <h5>¿Desea aprobar el proyecto?
+          <%= check_box_tag :prueba, 0, true %>
+          </h5>
+         <% else %>
+            <h5>¿Desea aprobar el proyecto?
+            <%= check_box_tag :prueba, 1, false %>
+            </h5>
+         <% end %>
+      <% end %>
+      </div>
+      <% if (current_user.committee_member? || current_user.administrator?)%>
+          <% if @project.status == "approved" && @project.status != "accepted" %>
+              <td><%= select_tag 'project_statuses[]', options_for_select(project_status_options_for_committee_member(@project.id)) %></td>
+        <% end %>
+      <% end %>
     </div>
   </div>
 

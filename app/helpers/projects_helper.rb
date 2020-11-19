@@ -22,6 +22,10 @@ module ProjectsHelper
     [['Aceptado', 'accepted'], ['Faltó', "#{project_id}:missed"]]
   end
 
+  def project_status_options_for_committee_member(project_id)
+    [[''], ['Aceptar', "#{project_id}:accepted"], ['Rechazar', "#{project_id}:rejected"]]
+  end
+
 
   def project_area(project)
     project_detail = project.project_detail
@@ -56,8 +60,11 @@ module ProjectsHelper
   end
 
   def project_stand(project)
-    project_event_details = project.project_event_detail
-    project_event_details.stand
+    if project.project_event_detail
+      project_event_details.stand
+    else 
+      nil
+    end
   end
 
   def project_student(project)
@@ -80,18 +87,18 @@ module ProjectsHelper
   def display_project_professor_info(project)
     project_professor = project_professor(project)
     project_professor_email = project_professor_email(project)
-    return "#{project_professor} • #{project_professor_email}"
+    return "#{project_professor} - #{project_professor_email}"
   end
 
 
   def display_project_score(project)
     project_score = project_score(project)
-    project_score.present? ? project_score : "Pendiente"
+    project_score.present? ? project_score : "N/A"
   end
 
   def display_project_stand(project)
     project_stand = project_stand(project)
-    project_stand.present? ? project_stand : "Pendiente"
+    project_stand.present? ? project_stand : "N/A"
   end
 
   def display_project_status(project)
@@ -102,6 +109,6 @@ module ProjectsHelper
   def display_project_student_info(project)
     project_student = project_student(project)
     project_student_email = project_student_email(project)
-    return "#{project_student} • #{project_student_email}"
+    return "#{project_student} - #{project_student_email}"
   end
 end

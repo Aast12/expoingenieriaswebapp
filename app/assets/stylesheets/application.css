@@ -60,9 +60,15 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   text-align: left;
 }
+.proyect-card-header {
+  margin: 0px !important;
+}
+.project-card-body {
+  padding: 8px 24px;
+}
 .card-info {
   font-size: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 .container {
   margin-top: 80px;
@@ -74,8 +80,8 @@
   background: #FFFFFF;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   font-size: 15px;
-  margin: 80px auto;
-  padding: 20px 15px;
+  margin: 24px 48px;
+  padding: 24px 24px;
   position: relative;
   text-align: center;
   width: 90%;
@@ -95,7 +101,14 @@
 }
 .evaluation {
   margin-top: 40px;
-  padding-left: 260px;
+  justify-content: space-evenly;
+  padding: 0px 48px 0px 48px;
+}
+.filters-container {
+  margin-bottom: 8px;
+}
+.filters {
+  justify-content: center;
 }
 .login-sec {
   margin-top: 20px;

@@ -1,20 +1,41 @@
 <div class="content">
-  <h1>Proyectos</h1>
-  <br />
+  <h3>Proyectos</h3>
   <div class="row">
-    <div class="col-md-3">
-      <div class="list-group">
-        <a class="list-group-item list-group-item-action active" id="list-project-name" data-toggle="list" href="#list-project-name" role="tab" aria-controls="name">Nombre</a>
-        <a class="list-group-item list-group-item-action" id="list-project-sore" data-toggle="list" href="#list-project-score" role="tab" aria-controls="score">Calificación</a>
+    <div class="col-sm-12 filters-container">
+      <%= form_tag(filter_path, method: "get", remote: true) do %>
+      <div class="input-group filters">
+        <div class="col-sm-3" id="status-filter">
+          <% status_options = project_status_options() %>
+          <% select_options = status_options.prepend(['Status', 'no_filter']) %>
+          <%= select_tag "status", options_for_select(select_options), class: 'custom-select', onchange: 'clickSubmit()' %>
+        </div>
+        <div class="col-sm-3" id="category-filter">
+          <% cateogry_options = project_detail_category_options() %>
+          <% select_options = cateogry_options.prepend(['Categoria', 'no_filter']) %>
+          <%= select_tag "category", options_for_select(select_options), class: 'custom-select', onchange: 'clickSubmit()' %>
+        </div>
+        <div class="col-sm-3" id="area-filter">
+          <% area_options = project_detail_area_options() %>
+          <% select_options = area_options.prepend(['Area', 'no_filter']) %>
+          <%= select_tag "area", options_for_select(select_options), class: 'custom-select', onchange: 'clickSubmit()' %>
+        </div>
+          <%= submit_tag "Filter", style: "display: none",class: 'btn btn-dark', id:'filter-submit' %>
+
       </div>
-    </div>
-    <div class="col-md-8">
-      <% @projects.each do |project| %>
-        <%= render "projects/project_card", project: project %>
       <% end %>
+    </div>
+    <div class="col-md-12" id="filtered-projects-container">
+      <% render 'projects/filtered-projects' %>
     </div>
   </div>
   <div class="content-actions">
     <%= link_to 'Nuevo proyecto', new_project_path, :class => "btn btn-light" %>
   </div>
 </div>
+
+<script>
+  window.document.onload = clickSubmit();
+  function clickSubmit() {
+    document.getElementById("filter-submit").click();
+  }
+</script>

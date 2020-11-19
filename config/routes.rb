@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   # Change status
   get "project_status" => "projects#project_status", :as => "project_status"
   post 'update_project_status' => 'projects#update_project_status', :as => "update_project_status"
-
+  get "filter", to: 'projects#filter'
   #select_projects
   get "select_projects" => "projects#select_projects", :as => "select_projects"
   post 'select_projects' => 'projects#update_selected_projects', :as => "update_selected_projects"

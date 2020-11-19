@@ -1,49 +1,58 @@
 <div class="card">
-  <h5 class="card-header">
-    <%= project_name(project) %>
-  </h5>
-  <div class="card-body">
-    <div class="card-info row">
-      <div class="col-md-4">
-        <strong>Categoría:</strong>
-        <%= display_project_detail_category(project.project_detail) %>
-      </div>
+  <div class="proyect-card-header card-header row ">
+    <div class="col-sm-4">
+      <strong><%= project_name(project) %></strong>
+    </div>
+    <div class="col-sm-4" style="text-align:center">
+      Status: <strong> <%= display_project_status(project) %></strong>
+    </div>
+    <div class="col-sm-4" style="text-align:right">
+      Pre-Cal:<strong> 
       <% if project.committee_evaluation.present? %>
-        <div class="col-md-3">
-          <strong>Calificación:</strong>
-          <%= display_project_score(project) %>
-        </div>
+      <%= display_project_score(project) %>
+      <% else %>
+      No calificado 
       <% end %>
-      <% if project.project_event_detail.present? %>
-        <div class="col-md-3">
-          <strong>Fecha:</strong>
+      </strong> 
+    </div>
+  </div>
+  <div class="project-card-body">
+    <div class="card-info project-description">
+      <%= project_description(project) %> 
+    </div>
+    <div class="card-info row">
+      <div class="col-sm-6">
+        <div class="card-text">
+          <strong>Categoría:</strong>
+          <%= display_project_detail_category(project.project_detail) %>
         </div>
-        <div class="col-md-3">
+        <div class="card-text">
+          <strong>Area:</strong>
+          <%= display_project_detail_area(project.project_detail) %>
+        </div>
+        <div class="card-text">
           <strong>Stand:</strong>
           <%= display_project_stand(project) %>
         </div>
-      <% end %>
+      </div>
+      <div class="col-sm-6">
+        <div class="card-text">
+          <strong>Profesor:</strong>
+          <%= display_project_professor_info(project) %>
+        </div>
+        <div class="card-text">
+          <strong>Estudiante:</strong>
+          <%= display_project_student_info(project) %>
+        </div>
+      </div>
     </div>
-    <h6 class="card-title">
-      <strong><%= display_project_status(project) %></strong>
-    </h6>
-    <p class="card-text">
-      <%= project_description(project) %>
-    </p>
-    <hr class="my-4">
-    <p class="card-text">
-      <strong>Profesor:</strong>
-      <%= display_project_professor_info(project) %>
-    </p>
-    <p class="card-text">
-      <strong>Estudiante:</strong>
-      <%= display_project_student_info(project) %>
-    </p>
-
-    <td><%= link_to 'Editar', edit_project_path(project), :class => "btn btn-light" %></td>
+    <hr>
+    <% if current_user.administrator? || (current_user.student? && project.status != "accepted") %>
+      <td><%= link_to 'Editar', edit_project_path(project), :class => "btn btn-light" %></td>
+    <% end %>
     <td><%= link_to 'Ver', project_path(project), :class => "btn btn-light" %></td>
 
-    <% if current_user.administrator? || current_user.committee_member? %>
+    <% if current_user.administrator? || current_user.committee_member? || current_user.professor? %>
       <% if project.committee_evaluation.present? %>
         <td><%= link_to 'Editar calificación', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
       <% else %>

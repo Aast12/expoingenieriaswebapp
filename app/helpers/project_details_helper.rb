@@ -1,10 +1,16 @@
 module ProjectDetailsHelper
   def project_detail_category_options()
-    [["Desarrollo Tecnológico", "technological_development"]]
+    [
+      ["Desarrollo Tecnológico", "technological_development"],
+      ["Desarrollo De Prototipo Fisico", "prototype_development"]
+    ]
   end
-
+       
   def project_detail_area_options()
-    [["Biotecnología y alimentos", "biotechnology_and_food"]]
+    [
+      ["Biotecnología y alimentos", "biotechnology_and_food"],
+      ["Computación y Software", "computer_science"]
+    ]
   end
 
   def project_detail_type_of_options()
