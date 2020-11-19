@@ -22,6 +22,10 @@ module ProjectsHelper
     [['Aceptado', 'accepted'], ['Faltó', "#{project_id}:missed"]]
   end
 
+  def project_status_options_for_committee_member(project_id)
+    [[''], ['Aceptar', "#{project_id}:accepted"], ['Rechazar', "#{project_id}:rejected"]]
+  end
+
 
   def project_area(project)
     project_detail = project.project_detail
