@@ -100,6 +100,6 @@ class CommitteeEvaluationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def committee_evaluation_params
-      params.require(:committee_evaluation).permit(:description, :problem, :methodology, :feasibility, :results, :impact, :score, :project_id, :prueba, :checkAccepted)
+      params.require(:committee_evaluation).permit(:description, :problem, :methodology, :feasibility, :results, :impact, :ortography, :score, :project_id, :prueba, :checkAccepted)
     end
 end
