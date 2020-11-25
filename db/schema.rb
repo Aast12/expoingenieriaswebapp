@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_23_235458) do
+ActiveRecord::Schema.define(version: 2020_11_25_050325) do
 
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_05_23_235458) do
     t.integer "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "ortography"
     t.index ["project_id"], name: "index_committee_evaluations_on_project_id"
   end
 
