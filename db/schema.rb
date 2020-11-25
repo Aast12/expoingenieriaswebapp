@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_23_235458) do
+ActiveRecord::Schema.define(version: 2020_11_19_233703) do
 
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
@@ -60,6 +60,19 @@ ActiveRecord::Schema.define(version: 2020_05_23_235458) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "editions", force: :cascade do |t|
     t.string "name"
     t.date "start_date"
@@ -102,6 +115,18 @@ ActiveRecord::Schema.define(version: 2020_05_23_235458) do
 
   create_table "professors", force: :cascade do |t|
     t.string "department"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "project_areas", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "project_categories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

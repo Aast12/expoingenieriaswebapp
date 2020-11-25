@@ -1,16 +1,20 @@
 module ProjectDetailsHelper
   def project_detail_category_options()
-    [
-      ["Desarrollo Tecnológico", "technological_development"],
-      ["Desarrollo De Prototipo Fisico", "prototype_development"]
-    ]
+    categories = ProjectCategory.all
+    categories_map = []
+    categories.each do |category|
+      categories_map.append([category.name, category.name])
+    end
+    categories_map
   end
        
   def project_detail_area_options()
-    [
-      ["Biotecnología y alimentos", "biotechnology_and_food"],
-      ["Computación y Software", "computer_science"]
-    ]
+    areas = ProjectArea.all
+    areas_map = []
+    areas.each do |area|
+      areas_map.append([area.name, area.name])
+    end
+    areas_map
   end
 
   def project_detail_type_of_options()
@@ -23,7 +27,6 @@ module ProjectDetailsHelper
 
   def display_project_detail_category(project_detail)
     category = project_detail.category
-    project_detail_category_options().find { |key, value| value == category }.first
   end
 
   def display_project_detail_area(project_detail)

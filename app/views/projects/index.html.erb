@@ -4,21 +4,20 @@
     <div class="col-sm-12 filters-container">
       <%= form_tag(filter_path, method: "get", remote: true) do %>
       <div class="input-group filters">
+        <div class="col-sm-3">
+          <% filter_types = filter_by_options() %>
+          <% select_options = filter_types.prepend(['Filtrar por', 'no_filter']) %>
+          <%= select_tag "filter_by", options_for_select(select_options), id: "filter-by", class: 'custom-select', onchange: 'changeFilterOptions()' %>
+        </div>
+        <div class="col-sm-3">
+          <%= select_tag "filter_option", options_for_select([['', 'no_filter']]), id: "filter-options",class: 'custom-select', onchange: 'clickSubmit()' %>
+        </div>
         <div class="col-sm-3" id="status-filter">
           <% status_options = project_status_options() %>
           <% select_options = status_options.prepend(['Status', 'no_filter']) %>
           <%= select_tag "status", options_for_select(select_options), class: 'custom-select', onchange: 'clickSubmit()' %>
         </div>
-        <div class="col-sm-3" id="category-filter">
-          <% cateogry_options = project_detail_category_options() %>
-          <% select_options = cateogry_options.prepend(['Categoria', 'no_filter']) %>
-          <%= select_tag "category", options_for_select(select_options), class: 'custom-select', onchange: 'clickSubmit()' %>
-        </div>
-        <div class="col-sm-3" id="area-filter">
-          <% area_options = project_detail_area_options() %>
-          <% select_options = area_options.prepend(['Area', 'no_filter']) %>
-          <%= select_tag "area", options_for_select(select_options), class: 'custom-select', onchange: 'clickSubmit()' %>
-        </div>
+        <option>
           <%= submit_tag "Filter", style: "display: none",class: 'btn btn-dark', id:'filter-submit' %>
 
       </div>
@@ -37,5 +36,32 @@
   window.document.onload = clickSubmit();
   function clickSubmit() {
     document.getElementById("filter-submit").click();
+  }
+  function changeFilterOptions() {
+    const filter_type = document.getElementById("filter-by").value;
+    const filter = document.getElementById("filter-options");
+    if (filter_type === "7") {
+      filter.innerHTML += `<option value="yes">Si</option><option value="no">No</option>`
+      return;
+    } 
+    
+    console.log(document.getElementById("filter-by").value);
+    fetch(`http://localhost:3000/filter_types/${filter_type}`).then((response) => {
+      const res = response.json();
+      return res;
+    }).then((data) => {
+      filter.innerHTML = '';
+      filter.innerHTML +=`<option value="no-filter"></option>`
+      data.forEach(option => {
+        if (filter_type === "3") {
+          filter.innerHTML += `<option value="${option.email}">${option.first_name} ${option.last_name} ${option.email}</option>`
+        } else {
+          filter.innerHTML += `<option>${option.name}</option>`
+        }
+        
+      })
+    }).catch(e => {
+      console.log(e);
+    });
   }
 </script>

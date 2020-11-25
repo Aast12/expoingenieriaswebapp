@@ -13,16 +13,50 @@ end_date = Date.new(2020, 12, 31)
 Edition.create(name: name, start_date: start_date, end_date: end_date)
 
 # Institution
-name = "Tecnológico de Monterrey Campus Monterrey"
-city = "Monterrey"
-Institution.create(name: name, city: city)
+Institution.create(name: "Tecnológico de Monterrey Campus Monterrey", city: "Monterrey")
+Institution.create(name: "Tecnológico de Monterrey Campus Saltillo", city: "Monterrey")
+Institution.create(name: "Tecnológico de Monterrey Campus Laguna", city: "Monterrey")
+Institution.create(name: "Tecnológico de Monterrey Campus Tampico", city: "Centro-Sur")
+Institution.create(name: "Prepa Tec Monterrey", city: "Monterrey")
 
-# Professor
-department = "Ingeniería y Ciencias"
-Professor.create(department: department)
+# Departments
+Department.create(name: "Bioingeniería")
+Department.create(name: "Ciencias")
+Department.create(name: "Computación")
+Department.create(name: "Industrial")
+Department.create(name: "Mecánica y Materiales Avanzados")
+Department.create(name: "Mecatronica y Electrónica")
+Department.create(name: "Tecnologías Sostenibles y Civil")
+Department.create(name: "Otro")
+
+# Areas
+ProjectArea.create(name: "Agriobiotecnología")
+ProjectArea.create(name: "Automatización de Proceso")
+ProjectArea.create(name: "Bionegocios")
+ProjectArea.create(name: "Diseño Industrial")
+ProjectArea.create(name: "Electronica-Hardware")
+ProjectArea.create(name: "Ingenieria Civil")
+ProjectArea.create(name: "Ingenieria de Alimentos")
+ProjectArea.create(name: "Ingenieria Industrial")
+ProjectArea.create(name: "Ingenieria Mecanica")
+ProjectArea.create(name: "Ingenieria Quimica")
+ProjectArea.create(name: "Modelo Arquitectonico")
+ProjectArea.create(name: "Modelo de Negocio")
+ProjectArea.create(name: "Nanotecnología")
+ProjectArea.create(name: "Proceso de Producción")
+ProjectArea.create(name: "Quimica-Bioquimica")
+ProjectArea.create(name: "Sistemas Embebidos")
+ProjectArea.create(name: "Software")
+
 
 # Admin
 Administrator.create()
+
+#Base Categories:
+ProjectCategory.create(name: "Desarrollo de Prototipo Físico")
+ProjectCategory.create(name: "Desarrollo de Prototipo de Software")
+ProjectCategory.create(name: "Investigacion y Desarrollo de Propuestas de Mejora")
+ProjectCategory.create(name: "Productos o Servicios para Emprendimiento de Base Tecnológica")
 
 # User
 email = "luis@tec.mx"

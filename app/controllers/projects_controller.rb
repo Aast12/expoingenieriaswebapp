@@ -16,11 +16,43 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def filter
+  def filter_types
+    filter_type = params[:id]
+    case filter_type
+    when "no_filter"
+      return
+    when "0"
+      return
+    when "1"
+      categories = ProjectCategory.all
+      render json: categories, only: [:name]
+    when "2"
+      areas = ProjectArea.all
+      render json: areas, only: [:name]
+    when "3"
+      professors = User.all.where(userable_type: "Professor");
+      render json: professors, only: [:first_name, :last_name, :email]
+    when "4"
+      departments = Department.all
+      render json: departments, only: [:name]
+      return
+    else
+      return
+    end
     
+    #@areas = ProjectAreas.all
+    #@profesors = User.all.where(userable_type: "Professor") REVISAR para nombre y correo juntos
+    #@departments = Departments.all
+    #@materias = Courses.all;
+    #@institutions = Institution.all
+    
+  end
+
+  def filter
     if current_user.professor?
       professor_id = current_user.userable.id
       results = Project.where(professor_id: professor_id)
+      puts "RESULTS -----------------------!!!!!!!"
       puts results.inspect
     elsif current_user.student?
       student_id = current_user.userable.id
@@ -28,48 +60,79 @@ class ProjectsController < ApplicationController
     else
       results = Project.all
     end
+    puts "STATUS ---"
+    puts params[:status]
     if params[:status].present?
       if params[:status] == 'no_filter' 
         results2 = results
       else 
         results2 = results.where(status: params[:status])
       end
-    else 
+    else
       results2 = results
     end
-    if params[:category].present?
-      if params[:category] == 'no_filter' 
-        results3 = results2
-      else
-        results3 = []
-        results2.each do |project|
-          if project.project_category == params[:category]
-            results3.append(project)
-          end
+    puts "RESULTS 2-----------------------!!!!!!!"
+    puts results2.inspect
+    filter_by = params[:filter_by]
+    puts "Filter By ----------!!!"
+    puts filter_by
+    case filter_by
+    when "no_filter"
+      @projects = results2
+    #when "0"
+      #nombre
+    when "1"
+      results3 = []
+      results2.each do |project|
+        if project.project_category == params[:filter_option]
+          results3.append(project)
         end
       end
-    else 
-      results3 = results2
-    end
-    puts "Results3 -------"
-    puts results3
-    if params[:area].present?
-      puts "params area- ------------"
-      puts params[:area]
-      if params[:area] == 'no_filter' 
-        @projects = results3
-      else
-        @projects = []
-        results3.each do |project|
-          if project.project_area == params[:area]
-            @projects.append(project)
-          end
-        end
-        puts "projects to display after area filter ---------"
-        puts @projects.inspect
-      end
-    else 
       @projects = results3
+      
+    when "2"
+      results3 = []
+      results2.each do |project|
+        if project.project_area == params[:filter_option]
+          results3.append(project)
+        end
+      end
+      @projects = results3
+    when "3"
+      results3 = []
+      results2.each do |project|
+        professor = Professor.find(project.professor_id).user.email
+        if professor == params[:filter_option]
+          results3.append(project)
+        end
+      end
+      @projects = results3
+    #when "4"
+      #departments
+    #when "5"
+      #Materia
+    #when "6"
+      #departments
+    when "7"
+      results3 = []
+      results2.each do |project|
+        yesNo = "no"
+        puts "servicio-------------"
+        puts project.servicio
+        puts project.servicio == true
+        if project.servicio == true
+          yesNo = "yes"
+        end
+        puts yesNo
+        puts params[:filter_option]
+        if yesNo == params[:filter_option]
+          results3.append(project)
+        end
+      end
+      @projects = results3
+    else
+      @projects = []
+      return
     end
   end
 

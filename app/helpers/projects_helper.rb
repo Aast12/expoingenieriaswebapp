@@ -4,6 +4,18 @@ module ProjectsHelper
      ['Evaluado', 'evaluated'], ['Aceptado', 'accepted'], ['Rechazado', 'rejected'],
      ['Declinado', 'declined'], ['Faltó', 'missed']]
   end
+  def filter_by_options()
+    [
+      ['Nombre', '0'],
+      ['Categoria', '1'],
+      ['Area Temática', '2'],
+      ['Profesor', '3'],
+      ['Departamento', '4'],
+      ['Materia Relacionada', '5'],
+      ['Campus', '6'],
+      ['Sevicio Social', '7'],
+    ]
+  end
 
   # Escala de calificación de calidad 
   def project_status_options_for_professor(project_id)
