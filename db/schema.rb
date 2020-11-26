@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_11_19_233703) do
-=======
 ActiveRecord::Schema.define(version: 2020_11_25_050325) do
->>>>>>> CommGrades
 
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
