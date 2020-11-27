@@ -41,6 +41,8 @@
     const filter_type = document.getElementById("filter-by").value;
     const filter = document.getElementById("filter-options");
     if (filter_type === "7") {
+      filter.innerHTML = '';
+      filter.innerHTML +=`<option value="no-filter"></option>`
       filter.innerHTML += `<option value="yes">Si</option><option value="no">No</option>`
       return;
     } 
