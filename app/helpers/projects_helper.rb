@@ -35,7 +35,7 @@ module ProjectsHelper
   end
 
   def project_status_options_for_committee_member(project_id)
-    [[''], ['Aceptar', "#{project_id}:accepted"], ['Rechazar', "#{project_id}:rejected"]]
+    [[''], ['Evaluado', "#{project_id}:evaluated"], ['Rechazar', "#{project_id}:rejected"]]
   end
 
 
@@ -68,7 +68,28 @@ module ProjectsHelper
 
   def project_score(project)
     committee_evaluation = project.committee_evaluation
-    committee_evaluation.score
+    if committee_evaluation.problem == nil
+      committee_evaluation.problem = 0
+    end
+    if committee_evaluation.methodology == nil
+      committee_evaluation.methodology = 0
+    end
+    if committee_evaluation.feasibility == nil
+      committee_evaluation.feasibility = 0
+    end
+    if committee_evaluation.results == nil
+      committee_evaluation.results = 0
+    end
+    if committee_evaluation.impact == nil
+      committee_evaluation.impact = 0
+    end
+    if committee_evaluation.ortography == nil
+      committee_evaluation.ortography = 0
+    end
+    if committee_evaluation.description == nil
+      committee_evaluation.description = 0
+    end
+    committee_evaluation.score + committee_evaluation.problem + committee_evaluation.methodology + committee_evaluation.feasibility + committee_evaluation.results + committee_evaluation.impact + committee_evaluation.ortography + committee_evaluation.description
   end
 
   def project_stand(project)
