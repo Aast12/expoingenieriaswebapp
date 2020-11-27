@@ -35,7 +35,11 @@ class ProjectsController < ApplicationController
     when "4"
       departments = Department.all
       render json: departments, only: [:name]
+    when "5"
       return
+    when "6"
+      institutions = Institution.all
+      render json: institutions, only: [:name, :id]
     else
       return
     end
@@ -79,8 +83,8 @@ class ProjectsController < ApplicationController
     case filter_by
     when "no_filter"
       @projects = results2
-    #when "0"
-      #nombre
+    when "0"
+      @projects = results2
     when "1"
       results3 = []
       results2.each do |project|
@@ -111,20 +115,24 @@ class ProjectsController < ApplicationController
       #departments
     #when "5"
       #Materia
-    #when "6"
-      #departments
+    when "6"
+      #Institution
+      results3 = []
+      results2.each do |project|
+        institution = project.student.user.institution_id
+        if institution.to_s == params[:filter_option]
+          results3.append(project)
+        end
+      end
+      @projects = results3
+      puts @projects.inspect
     when "7"
       results3 = []
       results2.each do |project|
         yesNo = "no"
-        puts "servicio-------------"
-        puts project.servicio
-        puts project.servicio == true
         if project.servicio == true
           yesNo = "yes"
         end
-        puts yesNo
-        puts params[:filter_option]
         if yesNo == params[:filter_option]
           results3.append(project)
         end

@@ -9,16 +9,18 @@
           <% select_options = filter_types.prepend(['Filtrar por', 'no_filter']) %>
           <%= select_tag "filter_by", options_for_select(select_options), id: "filter-by", class: 'custom-select', onchange: 'changeFilterOptions()' %>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3" id="filter-option-div">
           <%= select_tag "filter_option", options_for_select([['', 'no_filter']]), id: "filter-options",class: 'custom-select', onchange: 'clickSubmit()' %>
+        </div>
+        <div class="col-sm-3" id="search-bar-div" style="display: none">
+          <%=  text_field_tag "search_bar", "", placeholder: "Nombre...",id: "search-bar", class: "custom-select", style:"background: unset",onchange: 'refilter()' %>
         </div>
         <div class="col-sm-3" id="status-filter">
           <% status_options = project_status_options() %>
           <% select_options = status_options.prepend(['Status', 'no_filter']) %>
           <%= select_tag "status", options_for_select(select_options), class: 'custom-select', onchange: 'clickSubmit()' %>
         </div>
-        <option>
-          <%= submit_tag "Filter", style: "display: none",class: 'btn btn-dark', id:'filter-submit' %>
+        <%= submit_tag "Filter", style: "display: none",class: 'btn btn-dark', id:'filter-submit' %>
 
       </div>
       <% end %>
@@ -39,6 +41,12 @@
   }
   function changeFilterOptions() {
     const filter_type = document.getElementById("filter-by").value;
+    if (filter_type == '0') {
+      getSearchBar();
+      return;
+    } else {
+      getSelectOption();
+    }
     const filter = document.getElementById("filter-options");
     if (filter_type === "7") {
       filter.innerHTML = '';
@@ -57,6 +65,8 @@
       data.forEach(option => {
         if (filter_type === "3") {
           filter.innerHTML += `<option value="${option.email}">${option.first_name} ${option.last_name} ${option.email}</option>`
+        } else if (filter_type === "6") {
+          filter.innerHTML += `<option value="${option.id}">${option.name}</option>`
         } else {
           filter.innerHTML += `<option>${option.name}</option>`
         }
@@ -65,5 +75,32 @@
     }).catch(e => {
       console.log(e);
     });
+  }
+  function refilter() {
+    const filter = document.getElementById("search-bar").value.toUpperCase();
+    const projects = document.getElementsByClassName("projects card");
+    Array.from(projects).forEach(project => {
+      const nameDiv = project.getElementsByClassName("col-sm-4 project-name")[0];
+      const name = nameDiv.innerText.toUpperCase();
+      console.log(name);
+      if (name.indexOf(filter) > -1) {
+        project.style.display = "";
+      } else {
+        project.style.display = "none";
+      }
+    })
+    console.log(projects)
+  }
+  function getSearchBar() {
+    const optionsFilter = document.getElementById("filter-option-div");
+    const searchBar = document.getElementById("search-bar-div");
+    optionsFilter.style.display = "none";
+    searchBar.style.display = "";
+  }
+  function getSelectOption() {
+    const optionsFilter = document.getElementById("filter-option-div");
+    const searchBar = document.getElementById("search-bar-div");
+    searchBar.style.display = "none";
+    optionsFilter.style.display = "";
   }
 </script>
