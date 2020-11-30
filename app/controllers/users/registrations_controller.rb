@@ -74,7 +74,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       student.save
       return student
     when "Professor"
-      department = params[:professor_department]
+      department = params[:department]
       professor = Professor.new(department: department)
       professor.save
       return professor

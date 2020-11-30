@@ -1,4 +1,4 @@
 <div class="field">
   <%= label_tag :professor_department, "Department" %><br />
-  <%= text_field_tag :professor_department, "", class: 'form-control' %>
+  <%= select_tag 'department', options_for_select(departments_options()), class: 'custom-select' %>
 </div>

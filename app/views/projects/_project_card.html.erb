@@ -1,6 +1,6 @@
-<div class="card">
+<div class="projects card">
   <div class="proyect-card-header card-header row ">
-    <div class="col-sm-4">
+    <div class="col-sm-4 project-name">
       <strong><%= project_name(project) %></strong>
     </div>
     <div class="col-sm-4" style="text-align:center">
@@ -18,17 +18,18 @@
   </div>
   <div class="project-card-body">
     <div class="card-info project-description">
+      <strong>Descripción:</strong>
       <%= project_description(project) %> 
     </div>
     <div class="card-info row">
       <div class="col-sm-6">
         <div class="card-text">
           <strong>Categoría:</strong>
-          <%= display_project_detail_category(project.project_detail) %>
+          <%= project.project_detail.category %>
         </div>
         <div class="card-text">
           <strong>Area:</strong>
-          <%= display_project_detail_area(project.project_detail) %>
+          <%= project.project_detail.area %>
         </div>
         <div class="card-text">
           <strong>Stand:</strong>
@@ -60,4 +61,4 @@
       <% end %>
     <% end %>
   </div>
-</div><br />
+</div>

@@ -4,7 +4,7 @@ class Project < ApplicationRecord
 
   belongs_to :student
   belongs_to :professor
-  belongs_to :institution
+  belongs_to :institution, required: false
   belongs_to :edition
   has_one :project_event_detail
   has_one :committee_evaluation
@@ -29,5 +29,8 @@ class Project < ApplicationRecord
   end
   def project_area
     self.project_detail.area
+  end
+  def servicio
+    self.project_detail.social_impact
   end
 end

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :courses
+  resources :departments
+  resources :project_areas
+  resources :project_categories
   # Root
   root 'projects#index'
 
@@ -35,6 +39,7 @@ Rails.application.routes.draw do
   get "project_status" => "projects#project_status", :as => "project_status"
   post 'update_project_status' => 'projects#update_project_status', :as => "update_project_status"
   get "filter", to: 'projects#filter'
+  get 'filter_types/:id', :to => 'projects#filter_types'
   #select_projects
   get "select_projects" => "projects#select_projects", :as => "select_projects"
   post 'select_projects' => 'projects#update_selected_projects', :as => "update_selected_projects"

@@ -1,0 +1,2 @@
+class ProjectArea < ApplicationRecord
+end
