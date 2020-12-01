@@ -12,7 +12,7 @@ Asegurate de estar como colaborador en la aplicación de heroku
 1. Abre tu terminal
 2. Entra al directorio de la aplicación
 ```bash
-$ cd ConexionTec
+$ cd conexion_tec_2
 ```
 3. Corre el siguiente comando:
 ```bash
@@ -20,9 +20,9 @@ $ git pull origin master
 ```
 4. Corre el siguiente comando:
 ```bash
-$ heroku git:remote -a conex-tec
+$ heroku git:remote -a conextec2021
 $ git push heroku master
 ```
 5. Al terminar el deploy se puede accesar la app en el siguiente URL
 
-http://conex-tec.herokuapp.com
+https://conextec2021.herokuapp.com/
