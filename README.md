@@ -9,12 +9,22 @@ Página web para administrar el registro y evento de Conexión Tec.
 | ------------------------- | ----------------- | ------------------ |
 | Daniel Guajardo Flores | danielgdo@tec.mx | Profesor Investigador |
 
-### Equipo de desarrollo: Avocadoware, para Agosto-Diciembre 2020
+### Equipos de desarrollo: 
+Avocadoware, para Agosto-Diciembre 2020
 | Nombre                         | Correo electrónico          | Rol         |
 | ------------------------------ | --------------------------- | ----------- |
 | Esteban Torres Alarcon         | A01193925@itesm.mx          | Development |
 | Santiago Castaño Moreno        | A01193760@itesm.mx          | Development |
 | Alejandro Longoria Esparza     | A00817379@itesm.mx          | Development |
+
+Dos punto Seis, para Febrero-Junio 2021
+| Nombre                            | Correo electrónico          | Rol                      |
+| ----------------------------------| --------------------------- | ------------------------ |
+| José Alberto Marcial Sánchez      | A01701803@itesm.mx          | Adm. del Proyecto        |
+| Ana Paola Treviño Mánica          | A01176521@itesm.mx          | Product Owner Proxy      |
+| Alicia Guadalupe Cisneros Morales | A01281991@itesm.mx          | Adm. de la Configuración |
+| Eduardo Aguilar Leal              | A01193626@itesm.mx          | SCRUM Master y Líder     |
+
 
 ### Setup
 Instala las siguientes herramientas de desarrollo:
