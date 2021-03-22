@@ -33,8 +33,10 @@ Rails.application.routes.draw do
   resources :time_limits
   resources :projects do
     resource :committee_evaluation
+    resource :virtual_sample
   end
 
+  get 'virtual_samples', action: :index, controller: 'virtual_samples'
   # Change status
   get "project_status" => "projects#project_status", :as => "project_status"
   post 'update_project_status' => 'projects#update_project_status', :as => "update_project_status"

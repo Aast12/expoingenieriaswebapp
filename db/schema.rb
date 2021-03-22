@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_25_050325) do
+ActiveRecord::Schema.define(version: 2021_03_18_222810) do
 
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
@@ -231,6 +231,14 @@ ActiveRecord::Schema.define(version: 2020_11_25_050325) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "virtual_samples", force: :cascade do |t|
+    t.text "video_link"
+    t.integer "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_virtual_samples_on_project_id"
+  end
+
   add_foreign_key "abstracts", "projects"
   add_foreign_key "collaborators", "projects"
   add_foreign_key "committee_evaluations", "projects"
@@ -245,4 +253,5 @@ ActiveRecord::Schema.define(version: 2020_11_25_050325) do
   add_foreign_key "questions", "editions"
   add_foreign_key "social_impacts", "projects"
   add_foreign_key "time_limits", "editions"
+  add_foreign_key "virtual_samples", "projects"
 end

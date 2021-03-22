@@ -8,6 +8,7 @@ class Project < ApplicationRecord
   belongs_to :edition
   has_one :project_event_detail
   has_one :committee_evaluation
+  has_one :virtual_sample
   has_many :judge_evaluations
 
   has_one :abstract, dependent: :destroy
