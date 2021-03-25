@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Virtual Samples</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Video Link</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @virtual_samples.each do |virtual_sample| %>
+      <tr>
+        <td><%= virtual_sample.video_link %></td>
+        <td><%= virtual_sample.project_id %></td>
+        <td><%= link_to 'Show', project_virtual_sample_path(virtual_sample.project_id), :class => "btn btn-light" %></td>
+        <td><%= link_to 'Edit', edit_project_virtual_sample_path(virtual_sample.project_id), :class => "btn btn-light" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
