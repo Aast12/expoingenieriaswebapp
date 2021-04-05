@@ -26,6 +26,7 @@ class VirtualSamplesController < ApplicationController
   # POST /virtual_samples.json
   def create
     @virtual_sample = @project.build_virtual_sample(virtual_sample_params)
+    @virtual_sample.images.attach(params[:virtual_sample][:images])
     respond_to do |format|
       if @virtual_sample.save
         format.html { redirect_to project_virtual_sample_path, notice: 'Virtual sample was successfully created.' }
@@ -69,7 +70,7 @@ class VirtualSamplesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def virtual_sample_params
-      params.require(:virtual_sample).permit(:project_id, :video_link, :icon_image)
+      params.require(:virtual_sample).permit(:project_id, :video_link, :icon_image, :about_file)
     end
 
     def get_project
