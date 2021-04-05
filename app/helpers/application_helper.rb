@@ -20,6 +20,7 @@ module ApplicationHelper
           return edition.id
       end
     end
+    return Edition.last.id
   end
 
   def get_current_edition_projects
@@ -35,5 +36,17 @@ module ApplicationHelper
       end
     end
     return array
+  end
+
+  def get_current_phase_id
+    current_date = Date.today
+    current_edition = Edition.find(get_current_edition_id())
+    current_edition.time_limits.each do |phase|
+      if phase.start_date <= current_date && phase.end_date >= current_date
+        puts "Phase ID: " + "#{phase.phase_name}, #{phase.start_date}"
+        return phase.id
+      end
+    end
+    return nil 
   end
 end
