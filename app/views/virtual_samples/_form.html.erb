@@ -12,12 +12,21 @@
   <% end %>
 
   <div class="col-sm-4">
-      <div class="form-group row">
-        <%= form.label :video_link, "Link", :class => "col-sm-6 col-form-label" %>
-        <div class="col-sm-6">
-          <%= form.text_field :video_link, min:0, max: 2, :class => "form-control" %>
-        </div>
+    <div class="form-group row">
+      <%= form.label :icon_image, "Imagen de icono", :class => "col-sm-6 col-form-label" %>
+      <div class="col-sm-6">
+        <%= form.file_field :icon_image %>
       </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="form-group row">
+      <%= form.label :video_link, "Link", :class => "col-sm-6 col-form-label" %>
+      <div class="col-sm-6">
+        <%= form.text_field :video_link, min:0, max: 2, :class => "form-control" %>
+      </div>
+    </div>
   </div>
 
   <div class="actions">

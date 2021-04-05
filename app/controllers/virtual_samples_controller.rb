@@ -69,7 +69,7 @@ class VirtualSamplesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def virtual_sample_params
-      params.require(:virtual_sample).permit(:project_id, :video_link)
+      params.require(:virtual_sample).permit(:project_id, :video_link, :icon_image)
     end
 
     def get_project
