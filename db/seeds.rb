@@ -48,33 +48,50 @@ ProjectArea.create(name: "Quimica-Bioquimica")
 ProjectArea.create(name: "Sistemas Embebidos")
 ProjectArea.create(name: "Software")
 
-
-# Admin
-Administrator.create()
-
 #Base Categories:
 ProjectCategory.create(name: "Desarrollo de Prototipo Físico")
 ProjectCategory.create(name: "Desarrollo de Prototipo de Software")
 ProjectCategory.create(name: "Investigacion y Desarrollo de Propuestas de Mejora")
 ProjectCategory.create(name: "Productos o Servicios para Emprendimiento de Base Tecnológica")
 
-# User
-email = "luis@tec.mx"
-password = "123123"
-first_name = "Luis"
-last_name = "Gonzalez"
-userable_id = 1
-userable_type = "Professor"
-edition_id = 1
-institution_id = 1
-User.create(email: email, password: password, first_name: first_name, last_name: last_name, userable_id: userable_id, userable_type: userable_type, edition_id: edition_id, institution_id: institution_id)
+# Users
+userable = Administrator.create()
+User.create(
+    email: "juan@tec.mx",
+    password: "123123",
+    first_name: "Juan",
+    last_name: "Hinojosa",
+    userable_id: userable.id,
+    userable_type: "Administrator",
+    edition_id: 1,
+    institution_id: 1
+)
 
-email = "juan@tec.mx"
-password = "123123"
-first_name = "Juan"
-last_name = "Hinojosa"
-userable_id = 1
-userable_type = "Administrator"
-edition_id = 1
-institution_id = 1
-User.create(email: email, password: password, first_name: first_name, last_name: last_name, userable_id: userable_id, userable_type: userable_type, edition_id: edition_id, institution_id: institution_id)
+userable = Professor.create(
+    department: "ITC"
+)
+User.create(
+    email: "luis@tec.mx", 
+    password: "123123",
+    first_name: "Luis",
+    last_name: "Gonzalez",
+    userable_id: userable.id,
+    userable_type: "Professor",
+    edition_id: 1,
+    institution_id: 1,
+)
+
+userable = Student.create(
+    major: "ITC",
+    student_code: "A01234567"
+)
+User.create(
+    email: "pepe@tec.mx", 
+    password: "123123",
+    first_name: "Pepe",
+    last_name: "Garza",
+    userable_id: userable.id,
+    userable_type: "Student",
+    edition_id: 1,
+    institution_id: 1,
+)

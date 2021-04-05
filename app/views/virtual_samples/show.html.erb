@@ -7,7 +7,7 @@
   </div>
 
   <div class='sample-description row'>
-    <div class='col-3'> <%= image_tag('babyyoda.png', width: '100%') %> </div>
+    <div class='col-3'> <%= image_tag(@virtual_sample.icon_image, width: '100%') %> </div>
     <div class='col-9'>
       <div class='sample-buttons'>
         <span> <%= @project.project_detail.category %> </span>
@@ -20,8 +20,8 @@
 
   <div class='sample-description row'>
     <div class='col-4'> <%= video_tag('', controls: true, class: 'media') %> </div>
-    <div class='col-3'> <%= image_tag('babyyoda.png', class: 'media') %> </div>
-    <div class='col-3'> <%= image_tag('babyyoda.png', class: 'media') %> </div>
+    <div class='col-3'> <%= image_tag(@virtual_sample.images.first, width: '100%') %> </div>
+    <div class='col-3'> <%= image_tag(@virtual_sample.images.last, width: '100%') %> </div>
     <div class='col-2'> <button class='btn bottom-right'> Comentar </button> </div>
   </div>
 </div>
