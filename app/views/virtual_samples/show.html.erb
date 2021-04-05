@@ -1,4 +1,27 @@
-<p id="notice"><%= notice %></p>
+<p id='notice'><%= notice %></p>
 
-<%= link_to 'Edit', edit_project_virtual_sample_path(@project), :class => "btn btn-light" %>
-<%= link_to 'Back', virtual_samples_path, :class => "btn btn-light" %>
+<div class='content'>
+  <div class='sample-header'>
+    <h3><%= @project.project_detail.name %></h3>
+    <%= link_to 'Back', virtual_samples_path, :class => 'btn btn-light float-left' %>
+  </div>
+
+  <div class='sample-description row'>
+    <div class='col-3'> <%= image_tag('babyyoda.png', width: '100%') %> </div>
+    <div class='col-9'>
+      <div class='sample-buttons'>
+        <span> <%= @project.project_detail.category %> </span>
+        <span> <%= @project.project_detail.type_of %> </span>
+        <button class="btn float-right"> Ver archivo técnico </button>
+      </div>
+      <div class= "description" style="height: 180px;"> <p> <%= @project.project_detail.description %> </p> </div>
+    </div>
+  </div>
+
+  <div class='sample-description row'>
+    <div class='col-4'> <%= video_tag('', controls: true, class: 'media') %> </div>
+    <div class='col-3'> <%= image_tag('babyyoda.png', class: 'media') %> </div>
+    <div class='col-3'> <%= image_tag('babyyoda.png', class: 'media') %> </div>
+    <div class='col-2'> <button class='btn bottom-right'> Comentar </button> </div>
+  </div>
+</div>
