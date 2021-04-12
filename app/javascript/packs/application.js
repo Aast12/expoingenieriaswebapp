@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("packs/registration")
 require("packs/project")
+require("packs/filter_options")
 
 import "bootstrap";
 import "../stylesheets/application"

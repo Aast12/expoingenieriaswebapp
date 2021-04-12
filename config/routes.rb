@@ -4,12 +4,12 @@ Rails.application.routes.draw do
   resources :project_areas
   resources :project_categories
   # Root
-  root 'projects#index'
+  root "projects#index"
 
   # Devise
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    registrations: "users/registrations",
+    sessions: "users/sessions"
   }
 
   # Resources
@@ -36,13 +36,17 @@ Rails.application.routes.draw do
     resource :virtual_sample
   end
 
-  get 'virtual_samples', action: :index, controller: 'virtual_samples'
+  get "virtual_samples", action: :index, controller: "virtual_samples"
+
   # Change status
-  get "project_status" => "projects#project_status", :as => "project_status"
-  post 'update_project_status' => 'projects#update_project_status', :as => "update_project_status"
-  get "filter", to: 'projects#filter'
-  get 'filter_types/:id', :to => 'projects#filter_types'
-  #select_projects
-  get "select_projects" => "projects#select_projects", :as => "select_projects"
-  post 'select_projects' => 'projects#update_selected_projects', :as => "update_selected_projects"
+  get "project_status", to: "projects#project_status", as: "project_status"
+  post "update_project_status", to: "projects#update_project_status", as: "update_project_status"
+
+  # Filters
+  get "filter_projects", to: "projects#filter_projects", as: "filter_projects"
+  get "filter_options", to: "filter#filter_options", as: "filter_options"
+
+  # Select projects
+  get "select_projects", to: "projects#select_projects", as: "select_projects"
+  post "select_projects", to: "projects#update_selected_projects", as: "update_selected_projects"
 end

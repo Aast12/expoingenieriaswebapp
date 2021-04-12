@@ -1,5 +1,3 @@
-<div class="col-md-12" id="filtered-projects-container">
-        <% @projects.each do |project| %>
-            <%= render "projects/project_card", project: project %>
-        <% end %>
-</div>
+<% @projects.each do |project| %>
+  <%= render "projects/project_card", project: project %>
+<% end %>
