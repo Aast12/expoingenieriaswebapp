@@ -1,0 +1,3 @@
+<% @virtual_samples.each do |virtual_sample| %>
+    <%= render "virtual_samples/virtual_sample_card", virtual_sample: virtual_sample, project: virtual_sample.project %>
+<% end %>

@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
   # Filters
   get "filter_projects", to: "projects#filter_projects", as: "filter_projects"
+  get "filter_virtual_samples", to: "virtual_samples#filter_virtual_samples", as: "filter_virtual_samples"
   get "filter_options", to: "filter#filter_options", as: "filter_options"
 
   # Select projects
