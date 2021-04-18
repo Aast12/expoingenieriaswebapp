@@ -174,6 +174,6 @@ class ProjectsController < ApplicationController
     end
 
     def filterable_params
-      params.permit(:name, :category, :area, :professor, :institution, :social_service, :status)
+      params.permit(:name, :category, :area, :professor, :institution, :department, :social_service, :status)
     end
 end

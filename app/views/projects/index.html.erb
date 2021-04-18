@@ -4,11 +4,12 @@
     <div class="col-sm-12 filters-container">
       <%= form_tag filter_projects_path, method: :get, class: 'row', remote: true do %>
         <div class="col-sm-3">
-          <% filter_types = virtual_sample_filter_options().prepend(['Filtrar por', 'no_filter']) %>
+          <% filter_types = project_filter_options().prepend(['Filtrar por', 'no_filter']) %>
           <%= select_tag :filter_type, options_for_select(filter_types), id: "filter-by", class: 'custom-select', onchange: 'filterOptions()' %>
         </div>
         <div class="col-sm-3">
-          <%= select_tag :filter_value, [], id: "filter-value", class: 'custom-select' %>
+          <%= select_tag :filter_value, [], id: "filter-select", class: 'custom-select' %>
+          <%= text_field_tag :filter_value, '', id: "filter-search", class: 'form-control', style: 'display: none;' %>
         </div>
         <div class="col-sm-3">
           <%= select_tag :status, options_for_select(project_status_options()), id: "filter-status", class: 'custom-select' %>

@@ -7,7 +7,8 @@
         <%= select_tag :filter_type, options_for_select(filter_types), id: "filter-by", class: 'custom-select', onchange: 'filterOptions()' %>
       </div>
       <div class="col-5">
-        <%= select_tag :filter_value, [], id: "filter-value", class: 'custom-select' %>
+        <%= select_tag :filter_value, [], id: "filter-select", class: 'custom-select' %>
+        <%= text_field_tag :filter_value, '', id: "filter-search", class: 'form-control', style: 'display: none;' %>
       </div>
       <div class="col-2 my-auto">
         <%= submit_tag "Filter", name: nil, class: "btn btn-light" %>

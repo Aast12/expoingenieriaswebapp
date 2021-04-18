@@ -85,6 +85,6 @@ class VirtualSamplesController < ApplicationController
     end
 
     def filterable_params
-      params.permit(:name, :category, :area, :professor, :institution, :social_service)
+      params.permit(:name, :category, :area, :professor, :institution, :department, :social_service)
     end
 end

@@ -5,6 +5,7 @@ class FilterOptions
       'area' => area_options(),
       'professor' => professor_options(),
       'institution' => institution_options(),
+      'department' => department_options(),
       'social_service' => [['Si', true], ['No', false]],
       'status' => status_options()
     }
@@ -29,6 +30,10 @@ class FilterOptions
 
   def institution_options
     Institution.all.collect { |institution| [ institution.name, institution.id ] }
+  end
+
+  def department_options
+    Department.all.collect { |department| [ department.name, department.id ] }
   end
 
   def status_options
