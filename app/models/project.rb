@@ -1,6 +1,17 @@
 class Project < ApplicationRecord
+  include Filterable
+
   enum status: [:registered, :approved, :disapproved, :evaluated, :accepted, :rejected, :declined, :missed]
   after_initialize :set_default_status, :if => :new_record?
+
+  scope :filter_by_name, -> (name) { joins(:project_detail).where("project_details.name LIKE ?", "%#{name}%") }
+  scope :filter_by_category, -> (category) { includes(:project_detail).where(project_details: { category: category }) }
+  scope :filter_by_area, -> (area) { includes(:project_detail).where(project_details: { area: area }) }
+  scope :filter_by_professor, -> (id) { where(professor_id: id) }
+  scope :filter_by_department, -> (id) { where(department_id: id) }
+  scope :filter_by_institution, -> (id) { where(institution_id: id) }
+  scope :filter_by_social_service, -> (bool) { includes(:project_detail).where(project_details: { social_impact: bool }) }
+  scope :filter_by_status, -> (status) { where(status: status) }
 
   belongs_to :student
   belongs_to :professor

@@ -1,26 +1,21 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Virtual Samples</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Video Link</th>
-      <th>Project</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @virtual_samples.each do |virtual_sample| %>
-      <tr>
-        <td><%= virtual_sample.video_link %></td>
-        <td><%= virtual_sample.project_id %></td>
-        <td><%= link_to 'Show', project_virtual_sample_path(virtual_sample.project_id), :class => "btn btn-light" %></td>
-        <td><%= link_to 'Edit', edit_project_virtual_sample_path(virtual_sample.project_id), :class => "btn btn-light" %></td>
-      </tr>
+<div class="content">
+  <h3>Catálogo de Muestras Virtuales</h3>
+  <div>
+    <%= form_tag filter_virtual_samples_path, method: :get, id: "virtual_sample_search", class: 'row', remote: true do %>
+      <div class="col-5">
+        <% filter_types = virtual_sample_filter_options().prepend(['Filtrar por', 'no_filter']) %>
+        <%= select_tag :filter_type, options_for_select(filter_types), id: "filter-by", class: 'custom-select', onchange: 'filterOptions()' %>
+      </div>
+      <div class="col-5">
+        <%= select_tag :filter_value, [], id: "filter-select", class: 'custom-select' %>
+        <%= text_field_tag :filter_value, '', id: "filter-search", class: 'form-control', style: 'display: none;' %>
+      </div>
+      <div class="col-2 my-auto">
+        <%= submit_tag "Filter", name: nil, class: "btn btn-light" %>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
+  </div>
+  <div class="row" id="filtered-virtual-samples-container">
+    <%= render 'virtual_samples/filtered-virtual_samples' %>
+  </div>
+</div>

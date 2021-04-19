@@ -1,0 +1,16 @@
+<div class="col-4">
+  <div class="card">
+    <div class="project-card-header card-header">
+      <div class="project-name text-center">
+        <h5><%= project_name(project) %></h5>
+      </div>
+    </div>
+    <div class="project-card-body">
+      <div class="card-info sample-description">
+        <div class="description" style="height: 180px;"><%= project_description(project) %> </div>
+      </div>
+      <hr>
+      <div class="text-center"><%= link_to 'Más Información', project_virtual_sample_path(virtual_sample), :class => "btn btn-light" %></div>
+    </div>
+  </div>
+</div>

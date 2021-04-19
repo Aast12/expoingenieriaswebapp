@@ -1,11 +1,18 @@
 class VirtualSamplesController < ApplicationController
-  before_action :get_project, except: :index #[:show, :edit, :update, :destroy, :new, :create]
+  before_action :get_project, except: [:index, :filter_virtual_samples] #[:show, :edit, :update, :destroy, :new, :create]
   before_action :set_virtual_sample, only: [:show, :edit, :update, :destroy]
 
   # GET /virtual_samples
   # GET /virtual_samples.json
   def index
     @virtual_samples = VirtualSample.all
+  end
+
+  def filter_virtual_samples
+    @virtual_samples = VirtualSample.filter(filterable_params)
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /virtual_samples/1
@@ -77,4 +84,7 @@ class VirtualSamplesController < ApplicationController
       @project = Project.find(params[:project_id])
     end
 
+    def filterable_params
+      params.permit(:name, :category, :area, :professor, :institution, :department, :social_service)
+    end
 end
