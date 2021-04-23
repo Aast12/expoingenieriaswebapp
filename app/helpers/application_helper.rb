@@ -41,9 +41,9 @@ module ApplicationHelper
   def get_current_phase_id
     current_date = Date.today
     current_edition = Edition.find(get_current_edition_id())
-    current_edition.time_limits.each do |phase|
+    current_edition.phases.each do |phase|
       if phase.start_date <= current_date && phase.end_date >= current_date
-        puts "Phase ID: " + "#{phase.phase_name}, #{phase.start_date}"
+        puts "phase ID: " + "#{phase.id}"
         return phase.id
       end
     end
