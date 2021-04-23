@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_052452) do
   end
 
   create_table "phases", force: :cascade do |t|
-    t.text "phase_name"
+    t.text "name"
     t.date "start_date"
     t.date "end_date"
     t.integer "edition_id", null: false
@@ -232,7 +232,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_052452) do
   end
 
   create_table "time_limits", force: :cascade do |t|
-    t.text "time_limit_name"
+    t.text "name"
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
