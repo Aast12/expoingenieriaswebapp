@@ -10,8 +10,6 @@ require("channels")
 require("packs/registration")
 require("packs/project")
 require("packs/filter_options")
-require("jquery")
-require("@nathanvda/cocoon")
 
 import "bootstrap";
 import "../stylesheets/application"

@@ -16,7 +16,7 @@ class TimeLimitsTest < ApplicationSystemTestCase
 
     fill_in "Edition", with: @time_limit.edition_id
     fill_in "End date", with: @time_limit.end_date
-    fill_in "Phase name", with: @time_limit.name
+    fill_in "Phase name", with: @time_limit.phase_name
     fill_in "Start date", with: @time_limit.start_date
     click_on "Create Time limit"
 
@@ -30,7 +30,7 @@ class TimeLimitsTest < ApplicationSystemTestCase
 
     fill_in "Edition", with: @time_limit.edition_id
     fill_in "End date", with: @time_limit.end_date
-    fill_in "Phase name", with: @time_limit.name
+    fill_in "Phase name", with: @time_limit.phase_name
     fill_in "Start date", with: @time_limit.start_date
     click_on "Update Time limit"
 

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :phases
   resources :courses
   resources :departments
   resources :project_areas

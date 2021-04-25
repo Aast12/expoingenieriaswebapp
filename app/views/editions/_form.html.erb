@@ -13,62 +13,34 @@
 
  <br />
 
-<div class="new-edition">
-  <div class="edition">
-    <div class="edition-field">
-      <%= form.label :name ,"Nombre de la edición", :class => "form-label" %>
-      <%= form.text_field :name, :class =>"form-control" %>
-    </div>
-    <div class="edition-field">
-      <%= form.label :start_date , "Fecha de inicio", :class => "form-label" %>
-      <br/>
-      <%= form.date_select :start_date %>
-    </div>
-    <div class="edition-field">
-      <%= form.label :end_date , "Fecha de termino", :class => "form-label"  %>
-      <br/>
-      <%= form.date_select :end_date %>
-    </div>
+<div style="width: 100%; overflow: hidden; align-items: center; display: flex;">
+  <div style="width: 600px; float: left; margin-left: 100px">
+      <div class="col-sm-9">
+        <%= form.label :name ,"Nombre de la edición", :class => "form-label" %>
+        <%= form.text_field :name, :class => "form-control" %>
+      </div>
+      <br />
+      <div class="col-sm-9">
+        <%= form.label :start_date , "Fecha de inicio", :class => "form-label" %>
+        <%= form.date_select :start_date %>
+      </div>
+      <br />
+      <div class="col-sm-9">
+        <%= form.label :end_date , "Fecha de termino", :class => "form-label"  %>
+        <%= form.date_select :end_date %>
+      </div>
   </div>
   <hr>
-
-  <h3> Fases del evento</h3>
-
-  <%= form.fields_for :phases do |phase| %>
-    <div class="phase">
-
-      <div class="field">
-        <%= phase.text_field :name, :class => "phase-title", readonly: true %>
-      </div>
-    
-      <div class="phase-field">
-        <div class="field">
-          <%= phase.label :start_date , "Fecha de inicio", :class => "form-label" %>
-          <%= phase.date_select :start_date,:class => 'datepicker' %>
-        </div>
-      </div>
-    
-      <div class="phase-field">
-        <div class="field">
-          <%= phase.label :end_date, "Fecha de termino", :class => "form-label" %>
-          <%= phase.date_select :end_date, :class => 'datepicker'%>
-        </div>
-      </div>
-
-      <%= phase.fields_for :time_limits do |time_limit_form| %>
-        <%= render "time_limits/form_shared", time_limit_form: time_limit_form %>
-      <% end %>
-      
-      <div class='links'>
-        <%= link_to_add_association "Agregar subfase", phase, :time_limits, partial: 'time_limits/form_shared', form_name: 'time_limit_form'%>
-      </div>
-
-    </div>
-   
-  <% end %>
+  <div style="width: 600px;">
+    <%= form.fields_for :time_limits do |time_limit| %>
+      <%= render "time_limits/form_shared", form: time_limit %>
+    <% end %>
+  </div>
 </div>
+<br />
 
-<div class="save-button">
-  <%= form.submit "Guardar edición" ,:class => "btn btn-light" %>
+<div class="col-sm-12">
+  <%= form.submit "Crear edición" ,:class => "btn btn-light" %>
 </div>
+<br />
 <% end %>

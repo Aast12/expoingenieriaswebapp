@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_052452) do
+ActiveRecord::Schema.define(version: 2021_04_05_080952) do
 
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
@@ -135,14 +135,6 @@ ActiveRecord::Schema.define(version: 2021_04_19_052452) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "phases", force: :cascade do |t|
-    t.text "name"
-    t.date "start_date"
-    t.date "end_date"
-    t.integer "edition_id", null: false
-    t.index ["edition_id"], name: "index_phases_on_edition_id"
-  end
-
   create_table "professors", force: :cascade do |t|
     t.string "department"
     t.datetime "created_at", precision: 6, null: false
@@ -232,13 +224,13 @@ ActiveRecord::Schema.define(version: 2021_04_19_052452) do
   end
 
   create_table "time_limits", force: :cascade do |t|
-    t.text "name"
+    t.text "phase_name"
     t.date "start_date"
     t.date "end_date"
+    t.integer "edition_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "phase_id"
-    t.index ["phase_id"], name: "index_time_limits_on_phase_id"
+    t.index ["edition_id"], name: "index_time_limits_on_edition_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -274,7 +266,6 @@ ActiveRecord::Schema.define(version: 2021_04_19_052452) do
   add_foreign_key "committee_evaluations", "projects"
   add_foreign_key "judge_evaluations", "judges"
   add_foreign_key "judge_evaluations", "projects"
-  add_foreign_key "phases", "editions"
   add_foreign_key "project_details", "projects"
   add_foreign_key "project_event_details", "projects"
   add_foreign_key "projects", "editions"
@@ -283,6 +274,6 @@ ActiveRecord::Schema.define(version: 2021_04_19_052452) do
   add_foreign_key "projects", "students"
   add_foreign_key "questions", "editions"
   add_foreign_key "social_impacts", "projects"
-  add_foreign_key "time_limits", "phases"
+  add_foreign_key "time_limits", "editions"
   add_foreign_key "virtual_samples", "projects"
 end
