@@ -15,11 +15,10 @@ class EditionsController < ApplicationController
   # GET /editions/new
   def new
     @edition = Edition.new
-    @edition.time_limits.build(phase_name: "Inicio")
-    @edition.time_limits.build(phase_name: "Planeación")
-    @edition.time_limits.build(phase_name: "Evento")
-    @edition.time_limits.build(phase_name: "Cierre")
-    @edition.time_limits.build(phase_name: "Post Evento")
+    @edition.phases.build(name: "Inicio")
+    @edition.phases.build(name: "Planeación")
+    @edition.phases.build(name: "Evento")
+    @edition.phases.build(name: "Cierre")
   end
 
   # GET /editions/1/edit
@@ -32,7 +31,8 @@ class EditionsController < ApplicationController
     @edition = Edition.new(edition_params)
 
     respond_to do |format|
-      if @edition.save
+      
+      if @edition.save!
         format.html { redirect_to @edition, notice: 'Edition was successfully created.' }
         format.json { render :show, status: :created, location: @edition }
       else
@@ -74,11 +74,11 @@ class EditionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def edition_params
-      params.require(:edition).permit(:name, :start_date, :end_date, time_limits_attributes: time_limits_attributes)
+      params.require(:edition).permit(:name, :start_date, :end_date, phases_attributes: phase_params)
     end
 
-    def time_limits_attributes
-      params = time_limit_keys()
+    def phase_params
+      params = phase_keys()
       params << :id
       params << :_destroy
       return params
