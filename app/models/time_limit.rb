@@ -1,3 +1,3 @@
 class TimeLimit < ApplicationRecord
-  belongs_to :edition
+  belongs_to :phase
 end
