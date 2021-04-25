@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyText
+  phase_name: MyText
   start_date: 2020-05-21
   end_date: 2020-05-21
   edition: one
 
 two:
-  name: MyText
+  phase_name: MyText
   start_date: 2020-05-21
   end_date: 2020-05-21
   edition: two

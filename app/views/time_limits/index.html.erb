@@ -12,15 +12,15 @@
   </thead>
 
   <tbody>
-    <% @phase.each do |phase| %>
+    <% @time_limits.each do |time_limit| %>
       <tr>
-        <td><%= phase.name %></td>
-        <td><%= phase.start_date %></td>
-        <td><%= phase.end_date %></td>
-        <td><%= phase.edition_id %></td>
-        <td><%= link_to 'Show', phase %></td>
-        <td><%= link_to 'Edit', edit_phase_path(phase) %></td>
-        <td><%= link_to 'Destroy', phase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= time_limit.phase_name %></td>
+        <td><%= time_limit.start_date %></td>
+        <td><%= time_limit.end_date %></td>
+        <td><%= time_limit.edition_id %></td>
+        <td><%= link_to 'Show', time_limit %></td>
+        <td><%= link_to 'Edit', edit_time_limit_path(time_limit) %></td>
+        <td><%= link_to 'Destroy', time_limit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Time Limit', new_phase_path %>
+<%= link_to 'New Time Limit', new_time_limit_path %>
