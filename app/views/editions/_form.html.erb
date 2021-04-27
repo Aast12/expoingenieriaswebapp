@@ -36,33 +36,9 @@
 
   <%= form.fields_for :phases do |phase| %>
     <div class="phase">
-
-      <div class="field">
-        <%= phase.text_field :name, :class => "phase-title", readonly: true %>
-      </div>
-    
-      <div class="phase-field">
-        <div class="field">
-          <%= phase.label :start_date , "Fecha de inicio", :class => "form-label" %>
-          <%= phase.date_select :start_date,:class => 'datepicker' %>
-        </div>
-      </div>
-    
-      <div class="phase-field">
-        <div class="field">
-          <%= phase.label :end_date, "Fecha de termino", :class => "form-label" %>
-          <%= phase.date_select :end_date, :class => 'datepicker'%>
-        </div>
-      </div>
-
       <%= phase.fields_for :time_limits do |time_limit_form| %>
         <%= render "time_limits/form_shared", time_limit_form: time_limit_form %>
       <% end %>
-      
-      <div class='links'>
-        <%= link_to_add_association "Agregar subfase", phase, :time_limits, partial: 'time_limits/form_shared', form_name: 'time_limit_form'%>
-      </div>
-
     </div>
    
   <% end %>

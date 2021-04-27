@@ -5,8 +5,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 
   .time-limit-field{
     margin: 5px;
+    width: 30%;
   }
 }
