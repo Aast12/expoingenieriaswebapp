@@ -22,6 +22,38 @@
     <div class='col-4'> <%= video_tag('', controls: true, class: 'media') %> </div>
     <div class='col-3'> <%= image_tag(@virtual_sample.images.first, width: '100%') %> </div>
     <div class='col-3'> <%= image_tag(@virtual_sample.images.last, width: '100%') %> </div>
-    <div class='col-2'> <button class='btn bottom-right'> Comentar </button> </div>
+  </div>
+
+  # TODO remover esta "form" local y utilizar la propia del directorio "comments"
+  <div class='sample-description row'>
+    <div class='col'>
+    <%= form_with(model: [@virtual_sample, @comments], url: project_virtual_sample_comments_path, local: true) do |form| %>
+        <div class="form-group">
+          <%= form.text_field :body, class: 'form-control' %>
+          <%= form.button :Comentar, class: 'btn' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  # TODO remover esta lista de comentarios local y utlizarar el propio "index" del directorio "comments"
+  <div class="sample-description row">
+    <div class="col  align-self-center">
+      <div class="page-header">
+        <h2><small class="float-right"><%= @comments.count %> commentarios</small> Commentarios </h2>
+      </div>
+
+      <div class="comments-list">
+        <% @comments.each do |comment| %>
+          <div class="media">
+               <div class="media-body">
+                 <h4 class="media-heading user_name"><%= comment.user.first_name %> <%= comment.user.last_name %></h4>
+                 <%= comment.body %>
+               </div>
+               <p class="float-right"><small><%= comment.created_at.strftime("%d/%m/%Y") %></small></p>
+             </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

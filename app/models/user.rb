@@ -7,6 +7,7 @@ class User < ApplicationRecord
   belongs_to :userable, polymorphic: true
   belongs_to :institution
   belongs_to :edition
+  has_many :comments
 
   def full_name
     self.first_name + " " + self.last_name

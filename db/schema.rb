@@ -63,12 +63,13 @@ ActiveRecord::Schema.define(version: 2021_04_27_022704) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "commenter"
     t.text "body"
-    t.integer "project_id", null: false
+    t.integer "virtual_sample_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_comments_on_project_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["virtual_sample_id"], name: "index_comments_on_virtual_sample_id"
   end
 
   create_table "committee_evaluations", force: :cascade do |t|
@@ -280,7 +281,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_022704) do
   add_foreign_key "abstracts", "projects"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "collaborators", "projects"
-  add_foreign_key "comments", "projects"
+  add_foreign_key "comments", "users"
+  add_foreign_key "comments", "virtual_samples"
   add_foreign_key "committee_evaluations", "projects"
   add_foreign_key "judge_evaluations", "judges"
   add_foreign_key "judge_evaluations", "projects"

@@ -1,4 +1,4 @@
-<%= form_with(model: comment, local: true) do |form| %>
+<%= form_with(model: [@virtual_sample, comment], local: true) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -10,8 +10,18 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="form-group row text-left">
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="col-6">
+      <%= form.label :body, "Comentario", :class => "col-sm-6 col-form-label" %>
+      <%= form.text_field :body, min:0, max: 2, :class => "form-control" %>
+    </div>
+    
+  </div>
+
+  <div class="actions row text-center">
+    <%= form.submit :Guardar, class: 'btn btn-light' %>
+    <%= link_to 'Cancelar', projects_path, class: 'btn btn-light' %>
   </div>
 <% end %>

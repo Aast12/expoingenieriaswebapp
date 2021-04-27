@@ -34,7 +34,9 @@ Rails.application.routes.draw do
   resources :time_limits
   resources :projects do
     resource :committee_evaluation
-    resource :virtual_sample
+    resource :virtual_sample do
+      resource :comments, only: [:create, :index, :destroy]
+    end
   end
 
   get "virtual_samples", action: :index, controller: "virtual_samples"
