@@ -1,3 +1,9 @@
-<% @virtual_samples.each do |virtual_sample| %>
+<div class="row">
+  <% @virtual_samples.each do |virtual_sample| %>
     <%= render "virtual_samples/virtual_sample_card", virtual_sample: virtual_sample, project: virtual_sample.project %>
-<% end %>
+  <% end %>
+</div>
+
+<div class="row d-flex justify-content-center" style="padding-top: 0;">
+  <%= paginate @virtual_samples, remote: true, class: "pagination" %>
+</div>

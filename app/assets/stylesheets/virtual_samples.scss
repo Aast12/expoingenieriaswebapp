@@ -56,3 +56,10 @@
   bottom: 0;
   right: 0;
 }
+
+.page-item.active {
+  .page-link {
+    background-color: rgba(4, 49, 133, 0.8) !important;
+    border-color: rgba(4, 49, 133, 0.8) !important;
+  }
+}
