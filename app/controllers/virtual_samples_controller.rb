@@ -1,6 +1,7 @@
 class VirtualSamplesController < ApplicationController
   before_action :get_project, except: [:index, :filter_virtual_samples] #[:show, :edit, :update, :destroy, :new, :create]
   before_action :set_virtual_sample, only: [:show, :edit, :update, :destroy]
+  before_action :get_comments, only: [:show]
 
   # GET /virtual_samples
   # GET /virtual_samples.json
@@ -86,5 +87,9 @@ class VirtualSamplesController < ApplicationController
 
     def filterable_params
       params.permit(:name, :category, :area, :professor, :institution, :department, :social_service)
+    end
+
+    def get_comments
+      @comments = @virtual_sample.comments
     end
 end

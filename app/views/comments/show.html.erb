@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<div class="media">
+    <div class="media-body">
+        <h4 class="media-heading user_name"><%= comment.user.first_name %> <%= comment.user.last_name %></h4>
+        <%= comment.body %>
+    </div>
+    <p class="float-right"><small><%= comment.created_at.strftime("%d/%m/%Y") %></small></p>
+</div>
