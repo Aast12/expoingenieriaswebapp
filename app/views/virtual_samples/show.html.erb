@@ -17,7 +17,10 @@
   </div>
 
   <div class='sample-description row'>
-    <div class='col-4'> <%= video_tag('', controls: true, class: 'media') %> </div>
+
+    <div class='col-4'>
+      <%= video_tag url_for(@virtual_sample.video_file), controls: true, class: 'media' %>
+    </div>
     <div class='col-3'> <%= image_tag(@virtual_sample.images.first, width: '100%') rescue show_image %> </div>
     <div class='col-3'> <%= image_tag(@virtual_sample.images.last, width: '100%') rescue show_image %> </div>
   </div>
