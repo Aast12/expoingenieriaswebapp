@@ -1,5 +1,3 @@
-<p id='notice'><%= notice %></p>
-
 <div class='content'>
   <div class='sample-header'>
     <h3><%= @project.project_detail.name %></h3>
@@ -7,7 +5,7 @@
   </div>
 
   <div class='sample-description row'>
-    <div class='col-3'> <%= image_tag(@virtual_sample.icon_image, width: '100%') %> </div>
+    <div class='col-3'> <%= image_tag(@virtual_sample.icon_image, width: '100%') rescue show_image %> </div>
     <div class='col-9'>
       <div class='sample-buttons'>
         <span> <%= @project.project_detail.category %> </span>
@@ -20,8 +18,8 @@
 
   <div class='sample-description row'>
     <div class='col-4'> <%= video_tag('', controls: true, class: 'media') %> </div>
-    <div class='col-3'> <%= image_tag(@virtual_sample.images.first, width: '100%') %> </div>
-    <div class='col-3'> <%= image_tag(@virtual_sample.images.last, width: '100%') %> </div>
+    <div class='col-3'> <%= image_tag(@virtual_sample.images.first, width: '100%') rescue show_image %> </div>
+    <div class='col-3'> <%= image_tag(@virtual_sample.images.last, width: '100%') rescue show_image %> </div>
   </div>
 
   # TODO remover esta "form" local y utilizar la propia del directorio "comments"

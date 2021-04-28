@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_27_022704) do
+ActiveRecord::Schema.define(version: 2021_04_27_190338) do
 
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
@@ -147,8 +147,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_022704) do
 
   create_table "phases", force: :cascade do |t|
     t.text "name"
-    t.date "start_date"
-    t.date "end_date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.integer "edition_id", null: false
     t.index ["edition_id"], name: "index_phases_on_edition_id"
   end
@@ -243,8 +243,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_022704) do
 
   create_table "time_limits", force: :cascade do |t|
     t.text "name"
-    t.date "start_date"
-    t.date "end_date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "phase_id"

@@ -57,6 +57,12 @@
   right: 0;
 }
 
+.page-item.active {
+  .page-link {
+    background-color: rgba(4, 49, 133, 0.8) !important;
+    border-color: rgba(4, 49, 133, 0.8) !important;
+  }
+
 /* Comment Section */
 
 small {
@@ -65,10 +71,12 @@ small {
   color: #777;
   font-size: 65%;
 }
+
 .user_name{
   font-size:14px;
   font-weight: bold;
 }
+
 .comments-list .media{
   margin-top: 15px;
   border-bottom: 1px dotted #ccc;

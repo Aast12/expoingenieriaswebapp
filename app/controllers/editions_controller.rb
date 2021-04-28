@@ -15,10 +15,10 @@ class EditionsController < ApplicationController
   # GET /editions/new
   def new
     @edition = Edition.new
-    @edition.phases.build(name: "Inicio")
-    @edition.phases.build(name: "Planeación")
-    @edition.phases.build(name: "Evento")
-    @edition.phases.build(name: "Cierre")
+    time_limits_names.each do |name|
+      @edition.phases.build().time_limits.build(name: name)
+    end
+
   end
 
   # GET /editions/1/edit
@@ -82,5 +82,10 @@ class EditionsController < ApplicationController
       params << :id
       params << :_destroy
       return params
+    end
+
+    def time_limits_names
+      ['Registro', 'Edición de datos', 'Retroalimentación', 'Aprobación de proyectos', 'Evaluación de proyectos',
+      'Creación de Muestra virtual', 'Aprobación de Muestra Virtual', 'Evento']
     end
 end

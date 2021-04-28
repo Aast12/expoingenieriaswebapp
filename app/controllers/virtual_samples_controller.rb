@@ -6,11 +6,11 @@ class VirtualSamplesController < ApplicationController
   # GET /virtual_samples
   # GET /virtual_samples.json
   def index
-    @virtual_samples = VirtualSample.all
+    @virtual_samples = VirtualSample.page(params[:page]).per(9)
   end
 
   def filter_virtual_samples
-    @virtual_samples = VirtualSample.filter(filterable_params)
+    @virtual_samples = VirtualSample.filter(filterable_params).page(params[:page]).per(9)
     respond_to do |format|
       format.js
     end
