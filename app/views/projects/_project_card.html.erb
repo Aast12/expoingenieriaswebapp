@@ -60,7 +60,7 @@
         <td><%= link_to 'Calificar', new_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
       <% end %>
     <% end %>
-    <% if (current_user.administrator? || (current_user.student? && project.status == "accepted" && project.student_id == current_user.userable.id )) && get_current_phase_id_num() == 3  %>
+    <% if (current_user.administrator? || (current_user.student? && project.status == "accepted" && project.student_id == current_user.userable.id )) %>
       <% if project.virtual_sample.present? %>
         <td><%= link_to 'Editar Muestra Virtual', edit_project_virtual_sample_path(project), :class => "btn btn-light" %></td>
       <% else %>
