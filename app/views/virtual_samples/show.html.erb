@@ -18,14 +18,16 @@
 
   <div class='sample-description row'>
 
-    <div class='col-4'>
-      <%= video_tag url_for(@virtual_sample.video_file), controls: true, class: 'media' %>
-    </div>
+    <% if @virtual_sample.video_file.attached? %>
+      <div class='col-4'>
+        <%= video_tag url_for(@virtual_sample.video_file), controls: true, class: 'media' %>
+      </div>
+    <% end %>
     <div class='col-3'> <%= image_tag(@virtual_sample.images.first, width: '100%') rescue show_image %> </div>
     <div class='col-3'> <%= image_tag(@virtual_sample.images.last, width: '100%') rescue show_image %> </div>
   </div>
 
-  # TODO remover esta "form" local y utilizar la propia del directorio "comments"
+  <!-- TODO remover esta "form" local y utilizar la propia del directorio "comments" -->
   <div class='sample-description row'>
     <div class='col'>
     <%= form_with(model: [@virtual_sample, @comments], url: project_virtual_sample_comments_path, local: true) do |form| %>
@@ -37,7 +39,7 @@
     </div>
   </div>
   
-  # TODO remover esta lista de comentarios local y utlizarar el propio "index" del directorio "comments"
+  <!-- TODO remover esta lista de comentarios local y utlizarar el propio "index" del directorio "comments" -->
   <div class="sample-description row">
     <div class="col  align-self-center">
       <div class="page-header">
