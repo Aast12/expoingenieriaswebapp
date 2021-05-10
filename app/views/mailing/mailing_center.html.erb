@@ -1,0 +1,43 @@
+<div class="content">
+  <h3>Centro de Comunicación</h3>
+  <div class="form-container">
+    <%= form_tag send_email_path do %>
+      <div class="form-row form-group">
+        <%= label_tag :to, "Para proyectos:", class: "col-form-label col-3 text-left" %>
+        <div class="col-6">
+          <%= select_tag :to, options_for_select(project_status_options()), class: 'custom-select' %>
+        </div>
+      </div>
+
+      <div class="form-row form-group">
+        <%= label_tag :receiver, "Destinatarios:", class: "col-form-label col-3 text-left" %>
+        <div class="col-6">
+          <%= select_tag :receiver, options_for_select([['Alumno', 's'], ['Alumno y Profesor', 'all']]), class: 'custom-select' %>
+        </div>
+      </div>
+
+      <div class="form-row form-group">
+        <%= label_tag :subject, "Subject:", class: "col-form-label col-2 text-left" %>
+        <div class="col-7">
+          <%= text_field_tag :subject, '', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group margin-top form-row">
+        <%= text_area_tag :text, '', class: 'form-control col-9', rows: '10' %>
+        <div class="col-2 mx-auto">
+          <h5>Nomenclatura Usada</h5>
+          <ul class="text-left">
+          <% nomenclature().each do |item| %>
+            <li><%= item %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+
+      <div class="my-auto">
+        <%= submit_tag "Mandar mail", name: 'Mail', class: "btn btn-light" %>
+      </div>
+    <% end %>
+  </div>
+</div>
