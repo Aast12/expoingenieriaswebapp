@@ -1,10 +1,4 @@
 module ProjectsHelper
-  def project_status_options()
-    [['Registrado', 'registered'], ['Aprobado', 'approved'], ['No aprobado', 'disapproved'],
-     ['Evaluado', 'evaluated'], ['Aceptado', 'accepted'], ['Rechazado', 'rejected'],
-     ['Declinado', 'declined'], ['Faltó', 'missed']]
-  end
-
   def project_filter_options
     [
       ['Nombre', :name],

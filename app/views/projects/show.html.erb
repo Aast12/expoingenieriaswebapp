@@ -26,6 +26,7 @@
   </div><br />
   <% if current_user.committee_member? || current_user.administrator? %>
     <%= link_to 'Estatus', project_status_path, :class => "btn btn-light" %>
+    <%= link_to 'Mandar correo', mailing_center_path(id: @project.id), :class => "btn btn-light" %>
   <% else %>
     <%= link_to 'Proyectos', projects_path, :class => "btn btn-light" %>
   <% end %>

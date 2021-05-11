@@ -1,11 +1,16 @@
 class MailingController < ApplicationController
   def mailing_center
+    @project = Project.find(params[:id]) if (params[:id])
   end
 
   def send_email
-    projects = Project.filter_by_status(mailer_params[:to])
-    projects.each do |project|
-      AdminMailer.with(get_values(project)).custom_email.deliver
+    if (mailer_params[:to_indv])
+      AdminMailer.with(mailer_params).custom_email.deliver
+    else
+      projects = params[:to] ? Project.filter_by_status(params[:to]) : Project.where(id: params[:id])
+      projects.each do |project|
+        AdminMailer.with(get_values(project)).custom_email.deliver
+      end
     end
    
     respond_to do |format|
@@ -16,31 +21,22 @@ class MailingController < ApplicationController
   private
     # Only allow a list of trusted parameters through.
     def mailer_params
-      params.permit(:to, :receiver, :subject, :text)
+      params.permit(:subject, :text, :to_indv)
     end
 
     def get_values(project)
       vals = {
         recipients: get_emails(project),
-        names: get_names(project),
         text: get_text(project),
         subject: mailer_params[:subject]
       }
     end
 
     def get_emails(project)
-      if (mailer_params[:receiver] == 'all')
+      if (params[:receiver] == 'all')
         [project.student.user.email, project.professor.user.email]
       else
         [project.student.user.email]
-      end
-    end
-
-    def get_names(project)
-      if (mailer_params[:receiver] == 'all')
-        [project.student.user.full_name]
-      else
-        [project.student.user.full_name, project.professor.user.full_name]
       end
     end
 
