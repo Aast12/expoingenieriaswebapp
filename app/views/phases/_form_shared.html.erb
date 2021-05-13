@@ -1,14 +1,19 @@
-
+<div class="phases-field">
   <div class="field">
-    <%= phase.text_field :name, :class => "form-control", readonly: true %>
+    <%= phase_form.text_field :name, :class => "phase-title", readonly: true %>
   </div>
-
+</div>
+<div class="phases-field">
   <div class="field">
-    <%= phase.label :start_date , "Fecha de inicio", :class => "form-label" %>
-    <%= phase.date_select :start_date, :class => "form-control" %>
+    <%= phase_form.label :start_date , "Fecha de inicio", :class => "form-label" %>
+    </br>
+    <%= phase_form.datetime_select :start_date, :class => "form-control", :order => [:day, :month, :year], :default => { :hour => 23, :minute => 59 } %>
   </div>
-
+</div>
+<div class="phases-field">
   <div class="field">
-    <%= phase.label :end_date, "Fecha de termino", :class => "form-label" %>
-    <%= phase.date_select :end_date, :class => "form-control" %>
+      <%= phase_form.label :end_date, "Fecha de termino", :class => "form-label" %>
+      </br>
+      <%= phase_form.datetime_select :end_date, :class => "form-control", :order => [:day, :month, :year], :default => { :hour => 23, :minute => 59 } %>
   </div>
+</div>

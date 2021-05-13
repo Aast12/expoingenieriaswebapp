@@ -33,14 +33,10 @@
   <hr>
 
   <h3> Fases del evento</h3>
-
-  <%= form.fields_for :phases do |phase| %>
+  <%= form.fields_for :phases do |phase_form| %>
     <div class="phase">
-      <%= phase.fields_for :time_limits do |time_limit_form| %>
-        <%= render "time_limits/form_shared", time_limit_form: time_limit_form %>
-      <% end %>
+        <%= render "phases/form_shared", phase_form: phase_form %>  
     </div>
-   
   <% end %>
 </div>
 

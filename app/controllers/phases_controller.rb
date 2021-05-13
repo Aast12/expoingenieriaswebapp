@@ -15,12 +15,10 @@ class PhasesController < ApplicationController
   # GET /phases/new
   def new
     @phase = Phase.new
-    @phase.time_limits.build
   end
 
   # GET /phases/1/edit
   def edit
-    @phase.time_limits.build
   end
 
   # POST /phases

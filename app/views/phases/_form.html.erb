@@ -1,7 +1,7 @@
 <%= form_with(model: phase, local: true) do |form| %>
-  <% if time_limit.errors.any? %>
+  <% if phase.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(phase.errors.count, "error") %> prohibited this time_limit from being saved:</h2>
+      <h2><%= pluralize(phase.errors.count, "error") %> prohibited this phase from being saved:</h2>
 
       <ul>
         <% phase.errors.full_messages.each do |message| %>
@@ -33,32 +33,7 @@
 
   <div>
 
-  <%= form.fields_for :time_limits do |time_limit_form| %>
-    <div class="nested-fields">
-      <div class="field">
-        <%= time_limit_form.select :name, time_limits_names(), {}, :class => "form-control" %>
-      </div>
-    
-      <br />
-    
-      <div class=" field">
-        <%= time_limit_form.label :start_date , "Fecha de inicio", :class => "form-label" %>
-        <%= time_limit_form.date_select :start_date, :class => "form-control" %>
-      </div>
-    
-      <br />
-    
-      <div class="field">
-        <%= time_limit_form.label :end_date, "Fecha de termino", :class => "form-label" %>
-        <%= time_limit_form.date_select :end_date, :class => "form-control" %>
-        </div>
-      <%= link_to_remove_association "Eliminar subfase", time_limit_form %>
-  
-    <div>
 
-  <% end %>
-
-  <%= link_to_add_association "Add time limit", form, :time_limits, render_options: {locals: { form: form }}, partial: 'time_limits/form_shared'%>
 
   </div>
 

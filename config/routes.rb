@@ -31,7 +31,6 @@ Rails.application.routes.draw do
   resources :judges
   resources :professors
   resources :students
-  resources :time_limits
   resources :projects do
     resource :committee_evaluation
     resource :virtual_sample do

@@ -15,13 +15,8 @@ class ApplicationController < ActionController::Base
   end
 
   def phase_keys()
-    [:name, :start_date, :end_date, :edition_id, time_limits_attributes: time_limit_keys]
+    [:name, :start_date, :end_date, :edition_id]
   end
-
-  def time_limit_keys()
-    [:name, :start_date, :end_date, :phase_id, :id, :_destroy]
-  end
-
 
   def user_keys()
     return [:status, :first_name, :last_name, :userable_id, :userable_type, :edition_id, :institution_id]
