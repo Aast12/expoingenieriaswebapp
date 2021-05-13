@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_27_190338) do
+ActiveRecord::Schema.define(version: 2021_05_13_191901) do
 
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
@@ -241,16 +241,6 @@ ActiveRecord::Schema.define(version: 2021_04_27_190338) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "time_limits", force: :cascade do |t|
-    t.text "name"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "phase_id"
-    t.index ["phase_id"], name: "index_time_limits_on_phase_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -295,6 +285,5 @@ ActiveRecord::Schema.define(version: 2021_04_27_190338) do
   add_foreign_key "projects", "students"
   add_foreign_key "questions", "editions"
   add_foreign_key "social_impacts", "projects"
-  add_foreign_key "time_limits", "phases"
   add_foreign_key "virtual_samples", "projects"
 end

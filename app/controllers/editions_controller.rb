@@ -15,8 +15,8 @@ class EditionsController < ApplicationController
   # GET /editions/new
   def new
     @edition = Edition.new
-    time_limits_names.each do |name|
-      @edition.phases.build().time_limits.build(name: name)
+    phases_names.each do |name|
+      @edition.phases.build(name:name)
     end
 
   end
@@ -29,7 +29,6 @@ class EditionsController < ApplicationController
   # POST /editions.json
   def create
     @edition = Edition.new(edition_params)
-
     respond_to do |format|
       
       if @edition.save!
@@ -84,8 +83,8 @@ class EditionsController < ApplicationController
       return params
     end
 
-    def time_limits_names
-      ['Registro', 'Edición de datos', 'Retroalimentación', 'Aprobación de proyectos', 'Evaluación de proyectos',
-      'Creación de Muestra virtual', 'Aprobación de Muestra Virtual', 'Evento']
+    def phases_names
+      ['Registro', 'Edición de datos / Retroalimentación', 'Aprobación de proyectos', 'Evaluación de proyectos',
+      'Selección de proeyctos', 'Crear / Editar muestra', 'Asignación de proyectos a evaluadores', 'Evaluación  de proyectos']
     end
 end

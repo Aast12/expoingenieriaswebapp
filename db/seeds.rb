@@ -13,12 +13,15 @@ end_date_edition = Date.new(2021, 12, 31)
 Edition.create(name: name, start_date: start_date_edition, end_date: end_date_edition)
 
 # Phase
-Phase.create(name:"Inicio", start_date: Date.new(2021, 2, 1), end_date: Date.new(2021, 3, 1), edition_id: 1)
-Phase.create(name:"Planeacion", start_date: Date.new(2021, 3, 2), end_date: Date.new(2021, 4, 1), edition_id: 1)
-Phase.create(name:"Evento", start_date: Date.new(2021, 4, 2), end_date: Date.new(2021, 5, 1), edition_id: 1)
-Phase.create(name:"Cierre", start_date: Date.new(2021, 5, 2), end_date: Date.new(2021, 6, 1), edition_id: 1)
+Phase.create(name:"Registro", start_date: Date.new(2021, 2, 1), end_date: Date.new(2021, 3, 1), edition_id: 1)
+Phase.create(name:"Edición de datos / Retroalimentación", start_date: Date.new(2021, 3, 2), end_date: Date.new(2021, 4, 1), edition_id: 1)
+Phase.create(name:"Aprobación de proyectos", start_date: Date.new(2021, 4, 2), end_date: Date.new(2021, 5, 1), edition_id: 1)
+Phase.create(name:"Evaluación de proyectos", start_date: Date.new(2021, 5, 2), end_date: Date.new(2021, 6, 1), edition_id: 1)
+Phase.create(name:"Selección de proyectos", start_date: Date.new(2021, 5, 2), end_date: Date.new(2021, 6, 1), edition_id: 1)
+Phase.create(name:"Crear / Editar muestra", start_date: Date.new(2021, 5, 2), end_date: Date.new(2021, 6, 1), edition_id: 1)
+Phase.create(name:"Asignación de proyectos a evaluadores", start_date: Date.new(2021, 5, 2), end_date: Date.new(2021, 6, 1), edition_id: 1)
+Phase.create(name:"Evaluación  de proyectos", start_date: Date.new(2021, 5, 2), end_date: Date.new(2021, 6, 1), edition_id: 1)
 # Timelimit
-TimeLimit.create(name: "Registo", start_date: Date.new(2021, 2, 1), end_date: Date.new(2021, 3, 1), phase_id: 1)
 
 # Institution
 Institution.create(name: "Tecnológico de Monterrey Campus Monterrey", city: "Monterrey")
