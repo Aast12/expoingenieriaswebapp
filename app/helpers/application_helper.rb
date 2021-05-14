@@ -48,4 +48,14 @@ module ApplicationHelper
     return array
   end
 
+  def get_current_phase_name
+    current_date = Date.today
+    edition = Edition.find(get_current_edition_id())
+    edition.phases.each do |phase|
+      if phase.start_date <= current_date && phase.end_date >= current_date
+        return phase.name
+    end
+    end
+
+  end
 end
