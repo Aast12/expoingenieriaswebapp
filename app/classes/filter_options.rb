@@ -17,11 +17,11 @@ class FilterOptions
 
   private
   def category_options
-    ProjectCategory.all.collect { |category| [ category.name, category.id ] }
+    ProjectCategory.all.collect { |category| [ category.name, category.name ] }
   end
 
   def area_options
-    ProjectArea.all.collect { |area| [ area.name, area.id ] }
+    ProjectArea.all.collect { |area| [ area.name, area.name ] }
   end
 
   def professor_options
