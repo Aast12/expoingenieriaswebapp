@@ -13,18 +13,21 @@
       <tbody>
         <% @projects.each do |project| %>
           <tr>
-            <td><%= project_name(project) %></td>
-            <td><%= display_project_area(project) %></td>
+            <td class="align-middle"><%= project_name(project) %></td>
+            <td class="align-middle"><%= display_project_area(project) %></td>
+
             <% if current_user.professor? %>
-              <td><%= select_tag 'project_statuses[]', options_for_select(project_status_options_for_professor(project.id)) %></td>
+              <% status_options = options_for_select(project_status_options_for_professor(project.id), "#{project.id}:#{project.status}") %>
             <% elsif current_user.operative? %>
-              <td><%= select_tag 'project_statuses[]', options_for_select(project_status_options_for_operative(project.id)) %></td>
+              <% status_options = options_for_select(project_status_options_for_operative(project.id), "#{project.id}:#{project.status}") %>
             <% else %>
-              <td><%= select_tag 'project_statuses[]', options_for_select(project_status_options_for_admin(project.id)) %></td>
+              <% status_options = options_for_select(project_status_options_for_admin(project.id), "#{project.id}:#{project.status}") %>
             <% end %>
+
+            <td><%= select_tag 'project_statuses[]', status_options, class: 'form-control' %></td>
             
             <% if current_user.committee_member? || current_user.administrator? || current_user.professor? %>
-              <td><%= link_to 'Ver', project %></td>
+              <td><%= link_to 'Ver', project, class: 'btn btn-light' %></td>
             <% end %>
 
           </tr>
