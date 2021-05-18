@@ -1,0 +1,9 @@
+<div class="content">
+<h4> Estatus de muestra </h4>
+  <%= form_tag update_project_status_path, :method => 'post' do %>
+    <% if (current_user.committee_member? || current_user.administrator?)%>
+      <%= select_tag 'project_statuses[]', options_for_select(project_status_options_for_committee_member(@project.id), "#{project.id}:#{project.status}") ,:class => 'btn float-inherit'%>
+    <% end %> 
+  <%= submit_tag "Guardar", class: 'btn btn-light' %>
+  <% end %>
+</div>
