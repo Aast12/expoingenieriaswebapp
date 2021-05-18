@@ -145,4 +145,5 @@ module ProjectsHelper
     project_student_email = project_student_email(project)
     return "#{project_student} - #{project_student_email}"
   end
+ 
 end
