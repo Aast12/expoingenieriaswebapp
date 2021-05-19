@@ -16,61 +16,68 @@
       <%= render 'committee_evaluations/project_info', project: @project %>
     </div>
     <div class="col-sm-4">
-      <div class="form-group row">
-        <%= form.label :description, "Descripción", :class => "col-sm-6 col-form-label" %>
-        <div class="col-sm-6">
-          <%= form.number_field :description, min:0, max: 2, :class => "form-control" %>
-        </div>
-      </div>
+    <% if (current_user.committee_member? || current_user.administrator?)%>
+          <% if @project.status == "approved" && @project.status != "accepted" %>
+          <div class="form-group row">
+            <%= form.label :description, "Descripción", :class => "col-sm-6 col-form-label" %>
+            <div class="col-sm-6">
+              <%= form.number_field :description, min:0, max: 2, :class => "form-control" %>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <%= form.label :problem, "Problema", :class => "col-sm-6 col-form-label" %>
-        <div class="col-sm-6">
-          <%= form.number_field :problem,  min:0, max: 2, :class => "form-control" %>
-        </div>
-      </div>
+          <div class="form-group row">
+            <%= form.label :problem, "Problema", :class => "col-sm-6 col-form-label" %>
+            <div class="col-sm-6">
+              <%= form.number_field :problem,  min:0, max: 2, :class => "form-control" %>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <%= form.label :methodology, "Metodología", :class => "col-sm-6 col-form-label" %>
-        <div class="col-sm-6">
-          <%= form.number_field :methodology,  min:0, max: 2, :class => "form-control" %>
-        </div>
-      </div>
+          <div class="form-group row">
+            <%= form.label :methodology, "Metodología", :class => "col-sm-6 col-form-label" %>
+            <div class="col-sm-6">
+              <%= form.number_field :methodology,  min:0, max: 2, :class => "form-control" %>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <%= form.label :feasibility, "Factibilidad", :class => "col-sm-6 col-form-label" %>
-        <div class="col-sm-6">
-          <%= form.number_field :feasibility, min:0, max: 2, :class => "form-control" %>
-        </div>
-      </div>
+          <div class="form-group row">
+            <%= form.label :feasibility, "Factibilidad", :class => "col-sm-6 col-form-label" %>
+            <div class="col-sm-6">
+              <%= form.number_field :feasibility, min:0, max: 2, :class => "form-control" %>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <%= form.label :results, "Resultados", :class => "col-sm-6 col-form-label" %>
-        <div class="col-sm-6">
-          <%= form.number_field :results, min:0, max: 2, :class => "form-control" %>
-        </div>
-      </div>
+          <div class="form-group row">
+            <%= form.label :results, "Resultados", :class => "col-sm-6 col-form-label" %>
+            <div class="col-sm-6">
+              <%= form.number_field :results, min:0, max: 2, :class => "form-control" %>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <%= form.label :impact, "Impacto", :class => "col-sm-6 col-form-label" %>
-        <div class="col-sm-6">
-          <%= form.number_field :impact, min:0, max: 2, :class => "form-control" %>
-        </div>
-      </div>
+          <div class="form-group row">
+            <%= form.label :impact, "Impacto", :class => "col-sm-6 col-form-label" %>
+            <div class="col-sm-6">
+              <%= form.number_field :impact, min:0, max: 2, :class => "form-control" %>
+            </div>
+          </div>
 
-      <div class="form-group row">
-        <%= form.label :score, "Ortografía", :class => "col-sm-6 col-form-label" %>
-        <div class="col-sm-6">
-          <%= form.number_field :ortography, min:0, max: 2, :class => "form-control" %>
+          <div class="form-group row">
+            <%= form.label :score, "Ortografía", :class => "col-sm-6 col-form-label" %>
+            <div class="col-sm-6">
+              <%= form.number_field :ortography, min:0, max: 2, :class => "form-control" %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      
+      <% if current_user.professor? && (@project.status == "registered" || @project.status == "disapproved"  || @project.status == "approved")%>
+        <div class="form-group row">
+          <%= form.label :score, "Calificación", :class => "col-sm-6 col-form-label" %>
+          <div class="col-sm-6">
+            <%= form.number_field :score, min:0, max: 5, :class => "form-control" %>
+          </div>
         </div>
-      </div>
+      <% end %>
 
-      <div class="form-group row">
-        <%= form.label :score, "Calificación", :class => "col-sm-6 col-form-label" %>
-        <div class="col-sm-6">
-          <%= form.number_field :score, min:0, max: 5, :class => "form-control" %>
-        </div>
-      </div>
 
       <div class="field">
         <%= form.hidden_field :project_id, :class => "form-control" %>
