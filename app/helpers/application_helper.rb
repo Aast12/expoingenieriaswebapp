@@ -37,15 +37,25 @@ module ApplicationHelper
     array = []
     current_edition_id = get_current_edition_id()
 
-    committee_evaluations = CommitteeEvaluation.order('score DESC')
+    committee_evaluations = CommitteeEvaluation.order('score + description + problem + methodology + feasibility + results + score + impact DESC')
 
     committee_evaluations.each do |committee_evaluation|
       project = committee_evaluation.project
-      if (project.approved? || project.evaluated?) && project.edition_id == current_edition_id
+      if project.evaluated? && project.edition_id == current_edition_id
         array.push(project)
       end
     end
     return array
   end
 
+  def get_current_phase_name
+    current_date = Date.today
+    edition = current_user.edition
+    edition.phases.each do |phase|
+      if phase.start_date <= current_date && phase.end_date >= current_date
+        return phase.name
+      end
+    end
+
+  end
 end

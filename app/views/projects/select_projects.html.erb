@@ -1,32 +1,35 @@
 <div class="content">
   <h1>Seleccionar Proyectos</h1><br />
   <%= form_tag update_selected_projects_path, :method => 'post' do %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>#</th> 
-          <th>Nombre</th>
-          <th>Profesor a Cargo</th>
-          <th>Calificación</th>
-          <th>Aceptar</th>
-          <th colspan="1"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @projects.each_with_index do |project, index| %>
+    <% if get_current_phase_name() == "Selección de proyectos"%>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= index+1 %></td>
-            <td><%= project_name(project) %></td>
-            <td><%= project_professor(project) %></td>
-            <td><%= project_score(project) %></td>
-            <td><%= check_box_tag 'selected_projects[]', "#{project.id}" %></td>
-            <% if current_user.committee_member? || current_user.administrator? || current_user.professor? %>
-              <td><%= link_to 'Ver', project %></td>
-            <% end %>
+            <th>#</th> 
+            <th>Nombre</th>
+            <th>Profesor a Cargo</th>
+            <th>Calificación</th>
+            <th>Aceptar</th>
+            <th colspan="1"></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= submit_tag "Guardar", class: 'btn btn-light' %>
+        </thead>
+        <tbody>
+          <% @projects.each_with_index do |project, index| %>
+            <tr>
+              <td><%= index+1 %></td>
+              <td><%= project_name(project) %></td>
+              <td><%= project_professor(project) %></td>
+              <td><%= project_score(project) %></td>
+              <td><%= check_box_tag 'selected_projects[]', "#{project.id}" %></td>
+              <td><%= link_to 'Ver', project %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+        <%= submit_tag "Guardar", class: 'btn btn-light' %>
+    <% else %>
+      <h4> La selección de proyectos no se encuentra activada </br> Etapa actual: <%="#{get_current_phase_name()}"%></h4>
+    <% end %>
+
   <% end %>
 </div>

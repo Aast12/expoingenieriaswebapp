@@ -43,7 +43,7 @@
   <div class="sample-description row">
     <div class="col  align-self-center">
       <div class="page-header">
-        <h2><small class="float-right"><%= @comments.count %> commentarios</small> Commentarios </h2>
+        <h2><small class="float-right"><%= @comments.count %> comentarios</small> Comentarios </h2>
       </div>
 
       <div class="comments-list">
@@ -59,4 +59,7 @@
       </div>
     </div>
   </div>
+  
+  <%= render 'update_status', project: @project %>
+
 </div>

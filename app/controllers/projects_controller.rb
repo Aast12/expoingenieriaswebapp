@@ -112,6 +112,10 @@ class ProjectsController < ApplicationController
         project.update_attribute(:status, 5)
       end
     end
+    respond_to do |format|
+      format.html { redirect_to select_projects_path, notice: 'Status was successfully updated.' }
+      format.json { head :no_content }
+    end
   end
 
   def project_status
