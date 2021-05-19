@@ -17,7 +17,7 @@
     </div>
     <div class="col-sm-4">
     <% if (current_user.committee_member? || current_user.administrator?)%>
-          <% if @project.status == "approved" && @project.status != "accepted" %>
+          <% if (@project.status == "approved" || @project.status == "evaluated") && @project.status != "accepted" %>
           <div class="form-group row">
             <%= form.label :description, "Descripción", :class => "col-sm-6 col-form-label" %>
             <div class="col-sm-6">
