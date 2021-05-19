@@ -22,7 +22,8 @@
   font-size: 12px;
   text-align: left;
 
-  button {
+  button, .link-btn {
+    margin-top: 5px;
     background-color: rgba(4, 49, 133, 0.8);
     color: white;
 
@@ -63,8 +64,22 @@
     border-color: rgba(4, 49, 133, 0.8) !important;
   }
 }
-/* Comment Section */
 
+/* Image Carousel */
+
+.carousel {
+  width: 100%;
+  background-color: rgb(242, 240, 240);
+}
+
+.carousel-item img {
+  width: auto !important;
+  height: 400px;
+  max-height: 400px;
+  margin: auto;
+}
+
+/* Comment Section */
 small {
   font-weight: 400;
   line-height: 1;
