@@ -41,7 +41,7 @@ module ApplicationHelper
 
     committee_evaluations.each do |committee_evaluation|
       project = committee_evaluation.project
-      if project.approved? && project.edition_id == current_edition_id
+      if (project.approved? || project.evaluated?) && project.edition_id == current_edition_id
         array.push(project)
       end
     end
