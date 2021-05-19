@@ -88,11 +88,6 @@
          <% end %>
       <% end %>
       </div>
-      <% if (current_user.committee_member? || current_user.administrator?)%>
-          <% if @project.status == "approved" && @project.status != "accepted" %>
-              <td><%= select_tag 'project_statuses[]', options_for_select(project_status_options_for_committee_member(@project.id)) %></td>
-        <% end %>
-      <% end %>
     </div>
   </div>
 

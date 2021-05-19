@@ -36,7 +36,7 @@ module ProjectsHelper
   end
 
   def project_status_options_for_committee_member(project_id)
-    [[''], ['Evaluado', "#{project_id}:evaluated"], ['Rechazar', "#{project_id}:rejected"]]
+    [['Aceptado', "#{project_id}:accepted"], ['Faltó', "#{project_id}:missed"]]
   end
 
 
@@ -145,4 +145,5 @@ module ProjectsHelper
     project_student_email = project_student_email(project)
     return "#{project_student} - #{project_student_email}"
   end
+ 
 end
