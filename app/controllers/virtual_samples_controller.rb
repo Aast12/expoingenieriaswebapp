@@ -50,6 +50,9 @@ class VirtualSamplesController < ApplicationController
   # PATCH/PUT /virtual_samples/1.json
   def update
     respond_to do |format|
+      if params[:virtual_sample][:images].present?
+        @virtual_sample.images.purge
+      end
       if @virtual_sample.update(virtual_sample_params)
         format.html { redirect_to project_virtual_sample_path, notice: 'Virtual sample was successfully updated.' }
         format.json { render :show, status: :ok, location: @virtual_sample }
@@ -78,7 +81,7 @@ class VirtualSamplesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def virtual_sample_params
-      params.require(:virtual_sample).permit(:project_id, :video_link, :icon_image, :about_file, :video_file)
+      params.require(:virtual_sample).permit(:project_id, :video_link, :icon_image, :about_file, :video_file, images: [])
     end
 
     def get_project
