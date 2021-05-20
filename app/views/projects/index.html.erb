@@ -24,7 +24,6 @@
     </div>
   </div>
   <div class="content-actions">
-    <%= get_current_phase_name() %>
     <% if get_current_phase_name() === "Registro" %>
       <%= link_to 'Nuevo proyecto', new_project_path, :class => "btn btn-light" %>
     <% end %>
