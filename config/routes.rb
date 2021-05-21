@@ -44,6 +44,9 @@ Rails.application.routes.draw do
   get "project_status", to: "projects#project_status", as: "project_status"
   post "update_project_status", to: "projects#update_project_status", as: "update_project_status"
 
+  get "mailing_center", to: "mailing#mailing_center", as: "mailing_center"
+  post "send_email", to: "mailing#send_email", as: "send_email"
+
   # Filters
   get "filter_projects", to: "projects#filter_projects", as: "filter_projects"
   get "filter_virtual_samples", to: "virtual_samples#filter_virtual_samples", as: "filter_virtual_samples"

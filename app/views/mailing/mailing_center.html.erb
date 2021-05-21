@@ -1,0 +1,71 @@
+<div class="content">
+  <h3>Centro de Comunicación</h3>
+  <div class="form-container">
+    <%= form_tag send_email_path do %>
+      <% if @project %>
+        <div class="form-row form-group">
+          <%= label_tag :to, "Para:", class: "col-form-label col-2 text-left" %>
+          <%= label_tag nil, @project.project_detail.name, class: "col-form-label col-5 text-left" %>
+          <%= hidden_field_tag :id, @project.id %>
+        </div>
+      <% else %>
+        <div class="form-row">
+          <div id="type_indv" style="display:none;" class="col-9 form-row form-group">
+            <%= label_tag :to_indv, "Para:", class: "col-form-label col-3 text-left" %>
+            <div class="col-9">
+              <%= text_field_tag :to_indv, '', class: 'form-control' %>
+            </div>
+          </div>
+
+          <div id="type_project" class="col-9 form-row form-group">
+            <%= label_tag :to, "Para proyectos:", class: "col-form-label col-3 text-left" %>
+            <div class="col-9">
+              <%= select_tag :to, options_for_select(project_status_options()), class: 'custom-select' %>
+            </div>
+          </div>
+
+          <div class="col-2 text-left mx-auto">
+            <div class="form-check">
+              <%= radio_button_tag :type, 'single', class: 'form-check-input' %>
+              <%= label_tag :indv, 'Individual', class: 'form-check-label' %>
+            </div>
+            <div class="form-check">
+              <%= radio_button_tag :type, 'massive', class: 'form-check-input' %>
+              <%= label_tag :indv, 'Masivo', class: 'form-check-label' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div id="receiver" class="form-row form-group">
+        <%= label_tag :receiver, "Destinatarios:", class: "col-form-label col-2 text-left" %>
+        <div class="col-7">
+          <%= select_tag :receiver, options_for_select([['Alumno', 's'], ['Alumno y Profesor', 'all']]), class: 'custom-select' %>
+        </div>
+      </div>
+
+      <div class="form-row form-group">
+        <%= label_tag :subject, "Subject:", class: "col-form-label col-2 text-left" %>
+        <div class="col-7">
+          <%= text_field_tag :subject, '', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group margin-top form-row">
+        <%= text_area_tag :text, '', class: 'form-control col-9', rows: '10' %>
+        <div id="nomenclature" class="col-2 mx-auto">
+          <h5>Nomenclatura Usada</h5>
+          <ul class="text-left">
+          <% nomenclature().each do |item| %>
+            <li><%= item %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+
+      <div class="my-auto">
+        <%= submit_tag "Mandar mail", name: 'Mail', class: "btn btn-light" %>
+      </div>
+    <% end %>
+  </div>
+</div>

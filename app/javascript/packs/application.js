@@ -10,6 +10,7 @@ require("channels")
 require("packs/registration")
 require("packs/project")
 require("packs/filter_options")
+require("packs/mailing_type")
 require("jquery")
 require("@nathanvda/cocoon")
 
