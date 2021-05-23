@@ -1,0 +1,24 @@
+<% if not @is_student %>
+    <p>
+        Por este medio te confirmamos que el proyecto <b><%= @project_name %></b>
+         , registrado por su alumno(a) <b><%= @student_name %></b>, ha
+        sido seleccionado para participar en la <b>Muestra Virtual</b> de <b>Conexión Tec</b>.
+        El detalle de la información que proporcionaron en el abstract y en
+        los datos del registro cumplieron satisfactoriamente con los criterios
+        solicitados en la convocatoria. <b>¡Felicidades!</b>
+    </p>
+<% else %>
+    <p>
+        Por este medio te confirmamos que tu proyecto <b><%= @project_name %></b> ha
+        sido seleccionado para participar en la <b>Muestra Virtual</b> de <b>Conexión Tec</b>.
+        El detalle de la información que proporcionaste en el abstract y en
+        los datos del registro cumplieron satisfactoriamente con los criterios
+        solicitados en la convocatoria. <b>¡Felicidades!</b>
+    </p>
+    <p>
+        Para poder continuar con el proceso te pedimos que con tu equipo
+        entres a la plataforma y subas los archivos requeridos para que tu
+        projecto pueda ser desplegado en la <b>Muestra Virtual</b> de <b>Conexión Tec</b>
+        y participar.
+    </p>
+<% end %>
