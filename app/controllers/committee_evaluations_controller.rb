@@ -68,6 +68,11 @@ class CommitteeEvaluationsController < ApplicationController
           project.update_attribute(:status, status)
         end
       end
+
+      if params[:project_evaluated]
+        @project.update_attribute(:status, 'evaluated')
+      end
+
       if @committee_evaluation.update(committee_evaluation_params)
         format.html { redirect_to projects_path, notice: 'Committee evaluation was successfully updated.' }
         format.json { render :show, status: :ok, location: @committee_evaluation }
