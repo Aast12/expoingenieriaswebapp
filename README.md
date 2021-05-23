@@ -70,7 +70,14 @@ $ rails db:create
 $ rails db:migrate
 $ rails db:seed
 ```
-6. Corre la aplicación de manera local:
+6. Para la configuración de correos con gmail, crea un archivo en `config` llamado `applicacion.yml` con la siguiente información:
+```bash
+gmail_username: 'tu_gmail@gmail.com'
+gmail_password: 'tu_password'
+```
+Y en la configuración de tu correo electronico tienes que permitir 'less secure app access' (https://www.google.com/settings/u/0/security/lesssecureapps)
+
+7. Corre la aplicación de manera local:
 ```bash
 $ rails server
 ```
