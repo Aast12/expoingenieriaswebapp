@@ -50,8 +50,6 @@ class Project < ApplicationRecord
   private
 
   def send_email
-    StatusNotifier.call([
-      self.status, 
-      [self.student.user.email, self.professor.user.email]])
+    StatusNotifier.call(self)
   end
 end
