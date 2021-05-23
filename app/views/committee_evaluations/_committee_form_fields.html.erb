@@ -1,0 +1,52 @@
+<div class="form-group row">
+<%= form.label :description, "Descripción", :class => "col-sm-6 col-form-label" %>
+<div class="col-sm-6">
+    <%= form.number_field :description, min:0, max: 2, :class => "form-control" %>
+</div>
+</div>
+
+<div class="form-group row">
+<%= form.label :problem, "Problema", :class => "col-sm-6 col-form-label" %>
+<div class="col-sm-6">
+    <%= form.number_field :problem,  min:0, max: 2, :class => "form-control" %>
+</div>
+</div>
+
+<div class="form-group row">
+<%= form.label :methodology, "Metodología", :class => "col-sm-6 col-form-label" %>
+<div class="col-sm-6">
+    <%= form.number_field :methodology,  min:0, max: 2, :class => "form-control" %>
+</div>
+</div>
+
+<div class="form-group row">
+<%= form.label :feasibility, "Factibilidad", :class => "col-sm-6 col-form-label" %>
+<div class="col-sm-6">
+    <%= form.number_field :feasibility, min:0, max: 2, :class => "form-control" %>
+</div>
+</div>
+
+<div class="form-group row">
+<%= form.label :results, "Resultados", :class => "col-sm-6 col-form-label" %>
+<div class="col-sm-6">
+    <%= form.number_field :results, min:0, max: 2, :class => "form-control" %>
+</div>
+</div>
+
+<div class="form-group row">
+<%= form.label :impact, "Impacto", :class => "col-sm-6 col-form-label" %>
+<div class="col-sm-6">
+    <%= form.number_field :impact, min:0, max: 2, :class => "form-control" %>
+</div>
+</div>
+
+<div class="form-group row">
+<%= form.label :score, "Ortografía", :class => "col-sm-6 col-form-label" %>
+<div class="col-sm-6">
+    <%= form.number_field :ortography, min:0, max: 2, :class => "form-control" %>
+</div>
+
+<div hidden>
+    <td><%= select_tag 'project_evaluated[]', options_for_select(project_status_options_for_committee_member(@project.id)) %></td>
+</div>
+</div>

@@ -61,7 +61,7 @@
       <% end %>
     <% end %>
 
-    <% if (current_user.committee_member? || current_user.administrator?) && get_current_phase_name() == 'Evaluación de proyectos' %>
+    <% if (current_user.committee_member? || current_user.administrator?) && get_current_phase_name() ==  'Evaluación de proyectos' %>
       <% if project.committee_evaluation.present? %>
         <td><%= link_to 'Editar evaluación', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
       <% else %>
