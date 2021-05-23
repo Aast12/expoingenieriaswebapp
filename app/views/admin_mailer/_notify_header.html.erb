@@ -1,3 +1,7 @@
 <p>
-    Header
+    <% if @is_student %>
+        Estimado alumno(a) <b><%= @student_name %></b>,
+    <% else %>
+        Estimado profesor(a) <b><%= @professor_name %></b>,
+    <% end %>
 </p>

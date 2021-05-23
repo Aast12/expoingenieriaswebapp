@@ -1,3 +1,7 @@
 <p>
-    Body
+    <% if @status == "registered" %>
+        <%= render "notify_body_registered" %>
+    <% elsif @status == "accepted" %>
+        <%= render "notify_body_accepted" %>
+    <% end %>
 </p>

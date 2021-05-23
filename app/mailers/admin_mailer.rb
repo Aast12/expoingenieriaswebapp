@@ -6,9 +6,14 @@ class AdminMailer < ApplicationMailer
   end
 
   def status_notify_email
-    # choose sepcific html depending on parameters
-    # (should emails be stored as html/views or strings in the service?)
+    @is_student = params[:is_student]
+    @subject = params[:subject]
+    @status = params[:status]
+    @recipient = params[:recipient]
+    @project_name = params[:project_name]
+    @professor_name = params[:professor_name]
+    @student_name = params[:student_name]
     
-    mail(to: "eduxx77@gmail.com", subject: "test")
+    mail(to: @recipient, subject: @subject)
   end
 end
