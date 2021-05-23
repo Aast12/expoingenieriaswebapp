@@ -4,7 +4,7 @@ class MailingController < ApplicationController
   end
 
   def send_email
-    if (mailer_params[:to_indv])
+    if (mailer_params[:to_indv] != '')
       AdminMailer.with(mailer_params).custom_email.deliver
     else
       projects = params[:to] ? Project.filter_by_status(params[:to]) : Project.where(id: params[:id])
