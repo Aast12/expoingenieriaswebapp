@@ -49,6 +49,7 @@ class Project < ApplicationRecord
 
   private
 
+  # TODO: make this asynchronous
   def send_email
     StatusNotifier.call(self)
   end
