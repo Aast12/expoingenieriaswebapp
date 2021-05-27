@@ -1,29 +1,29 @@
 <div class="field">
-  <%= label_tag :company, "Company" %><br />
+  <%= label_tag :company, "Empresa" %><br />
   <%= text_field_tag :company, "", class: 'form-control' %>
 </div>
 
 <div class="row">
   <div class="col-md-6">
     <div class="field">
-      <%= label_tag :contact_name, "Contact Name" %><br />
+      <%= label_tag :contact_name, "Nombre" %><br />
       <%= text_field_tag :contact_name, "", class: 'form-control' %>
     </div>
 
     <div class="field">
-      <%= label_tag :contact_email, "Contact Email" %><br />
+      <%= label_tag :contact_email, "Correo electrónico " %><br />
       <%= text_field_tag :contact_email, "", class: 'form-control' %>
     </div>
   </div>
 
   <div class="col-md-6">
     <div class="field">
-      <%= label_tag :judge_department, "Department" %><br />
+      <%= label_tag :judge_department, "Departmento" %><br />
       <%= text_field_tag :judge_department, "", class: 'form-control' %>
     </div>
     
     <div class="field">
-      <%= label_tag :has_tablet, "Has Tablet" %>
+      <%= label_tag :has_tablet, "¿Tiene tableta electrónica" %>
       <%= select_tag :has_tablet, options_for_select(boolean_options()), class: 'form-control' %>
     </div>
   </div>

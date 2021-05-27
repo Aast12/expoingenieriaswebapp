@@ -3,38 +3,38 @@
     <div class="row">
       <div class="col-md-4 login-sec">
         <img class="login-sec-logo" src="<%= asset_path( 'logo.jpg' ) %>" >
-        <h2>Sign Up</h2>
+        <h2> Nueva cuenta</h2>
 
         <div class="field">
-          <%= f.label :first_name, "First name" %><br />
+          <%= f.label :first_name, "Nombre(s)" %><br />
           <%= f.text_field :first_name, :class => "form-control"  %>
         </div>
 
         <div class="field">
-          <%= f.label :last_name, "Last name" %><br />
+          <%= f.label :last_name, "Apellidos" %><br />
           <%= f.text_field :last_name, :class => "form-control"  %>
         </div>
 
         <div class="field">
-          <%= f.label :email %><br />
+          <%= f.label :email, "Correo electrónico" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control"  %>
         </div>
 
         <div class="field">
-          <%= f.label :password %>
+          <%= f.label :password, "Contraseña" %>
           <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <em>(Mínimo <%= @minimum_password_length %> caracteres)</em>
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password", :class => "form-control"  %>
         </div>
 
         <div class="field">
-          <%= f.label :password_confirmation %><br />
+          <%= f.label :password_confirmation, "Confirmación de contraseña" %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password", :class => "form-control"  %>
         </div>
 
         <div class="actions">
-          <%= f.submit "Sign up", :class => "btn btn-light"%>
+          <%= f.submit "Crear cuenta", :class => "btn btn-light"%>
         </div>
         <%= render "devise/shared/links" %>
       </div>
@@ -42,19 +42,19 @@
       <div class="col-md-8 login-sec-userable">
         <%= render "devise/shared/error_messages", resource: resource %>
         <div class="field">
-          <%= f.label :userable_type, "User Type" %><br />
+          <%= f.label :userable_type, "Tipo de usuario" %><br />
           <%= f.select :userable_type, userable_type_options(), {}, { :class => "form-control",
                                                                       :id => "userable-type-registration",
                                                                       :onchange => "manageUserableTypeRegistration()" }  %>
         </div>
 
         <div class="field">
-          <%= f.label :institution_id, "Institution" %><br />
+          <%= f.label :institution_id, "Institución" %><br />
           <%= f.select :institution_id, institution_options(), {}, :class => "form-control"  %>
         </div>
 
         <div class="field">
-          <%= f.label :edition_id, "Edition" %><br />
+          <%= f.label :edition_id, "Edición" %><br />
           <%= f.select :edition_id, edition_options(), {}, :class => "form-control"  %>
         </div>
 
