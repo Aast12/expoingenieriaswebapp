@@ -4,16 +4,16 @@
   </div>
 </div>
 <div class="phases-field">
-  <div class="field">
+  <div class="field col-12">
     <%= phase_form.label :start_date , "Fecha de inicio", :class => "form-label" %>
     </br>
-    <%= phase_form.datetime_select :start_date, :class => "form-control", :order => [:day, :month, :year], :default => { :hour => 23, :minute => 59 } %>
+    <%= phase_form.datetime_local_field :start_date, :class => "form-control", :order => [:day, :month, :year], :default => { :hour => 23, :minute => 59 } %>
   </div>
 </div>
 <div class="phases-field">
-  <div class="field">
+  <div class="field col-12">
       <%= phase_form.label :end_date, "Fecha de termino", :class => "form-label" %>
       </br>
-      <%= phase_form.datetime_select :end_date, :class => "form-control", :order => [:day, :month, :year], :default => { :hour => 23, :minute => 59 } %>
+      <%= phase_form.datetime_local_field :end_date, :class => "form-control", :order => [:day, :month, :year], :default => { :hour => 23, :minute => 59 } %>
   </div>
 </div>

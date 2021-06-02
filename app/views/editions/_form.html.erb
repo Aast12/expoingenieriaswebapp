@@ -15,19 +15,19 @@
 
 <div class="new-edition">
   <div class="edition">
-    <div class="edition-field">
+    <div class="edition-field col-4">
       <%= form.label :name ,"Nombre de la edición", :class => "form-label" %>
       <%= form.text_field :name, :class =>"form-control" %>
     </div>
-    <div class="edition-field">
+    <div class="edition-field col-4">
       <%= form.label :start_date , "Fecha de inicio", :class => "form-label" %>
       <br/>
-      <%= form.date_select :start_date %>
+      <%= form.date_field :start_date, :class => "form-control" %>
     </div>
-    <div class="edition-field">
+    <div class="edition-field col-4">
       <%= form.label :end_date , "Fecha de termino", :class => "form-label"  %>
       <br/>
-      <%= form.date_select :end_date %>
+      <%= form.date_field :end_date, :class => "form-control" %>
     </div>
   </div>
   <hr>
