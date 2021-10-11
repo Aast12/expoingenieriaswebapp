@@ -69,6 +69,7 @@ class CommitteeMembersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def committee_member_params
-      params.fetch(:committee_member, {})
+      params.require(:committee_member).permit(:user_id)
     end
 end
+

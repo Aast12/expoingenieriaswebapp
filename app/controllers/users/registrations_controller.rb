@@ -11,11 +11,31 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super do
-      userable_type = resource.userable_type
-      userable = create_userable(userable_type)
-      resource.userable_id = userable.id
-      resource.save
+   super do
+
+    resource.save
+
+    if resource.is_student
+      create_userable("Student")
+    end
+
+    if resource.is_professor
+      create_userable("Professor")
+    end
+
+    if resource.is_judge
+      create_userable("Judge")
+    end
+    
+    if resource.is_committee_member 
+      create_userable("CommitteeMember")
+    end 
+
+    if resource.is_admin
+      create_userable("Administrator")
+    end
+
+
     end
   end
 
@@ -47,7 +67,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: user_keys())
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :institution_id, :is_student, :is_professor, :is_judge, :is_committee_member, :is_admin])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -66,39 +86,41 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def create_userable(userable_type)
+    user_id = resource.id
     case userable_type
-    when "Student"
-      major = params[:major]
+    when "Student" 
+      major = params[:major] 
       student_code = params[:student_code]
-      student = Student.new(major: major, student_code: student_code)
+      student = Student.new(major: major, student_code: student_code, user_id: user_id)
       student.save
       return student
     when "Professor"
       department = params[:department]
-      professor = Professor.new(department: department)
+      professor = Professor.new(department: department, user_id: user_id)
       professor.save
       return professor
     when "CommitteeMember"
-      committee_member = CommitteeMember.new
+      committee_member = CommitteeMember.new(user_id: user_id)
       committee_member.save
       return committee_member
-    when "Operative"
-      operative = Operative.new
-      operative.save
-      return operative
     when "Judge"
       company = params[:company]
       department = params[:judge_department]
       contact_name = params[:contact_name]
       contact_email = params[:contact_email]
       has_tablet = params[:has_tablet]
-      judge = Judge.new(company: company, department: department, contact_name: contact_name, contact_email: contact_email, has_tablet: has_tablet)
+      judge = Judge.new(company: company, department: department, contact_name: contact_name, contact_email: contact_email, has_tablet: has_tablet, user_id: user_id)
       judge.save
       return judge
     when "Administrator"
-      administrator = Administrator.new
+      administrator = Administrator.new(user_id: user_id)
       administrator.save
       return administrator
+    when "Visitor"
+      visitor = Visitor.new(user_id: user_id)
+      visitor.save
+      return visitor
     end
+  
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_13_191901) do
+ActiveRecord::Schema.define(version: 2021_10_11_044556) do
 
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 2021_05_13_191901) do
   create_table "administrators", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_administrators_on_user_id"
   end
 
   create_table "collaborators", force: :cascade do |t|
@@ -90,6 +92,8 @@ ActiveRecord::Schema.define(version: 2021_05_13_191901) do
   create_table "committee_members", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_committee_members_on_user_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -138,6 +142,8 @@ ActiveRecord::Schema.define(version: 2021_05_13_191901) do
     t.boolean "has_tablet"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_judges_on_user_id"
   end
 
   create_table "operatives", force: :cascade do |t|
@@ -157,6 +163,8 @@ ActiveRecord::Schema.define(version: 2021_05_13_191901) do
     t.string "department"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_professors_on_user_id"
   end
 
   create_table "project_areas", force: :cascade do |t|
@@ -239,6 +247,8 @@ ActiveRecord::Schema.define(version: 2021_05_13_191901) do
     t.string "student_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_students_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -249,13 +259,14 @@ ActiveRecord::Schema.define(version: 2021_05_13_191901) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "status"
     t.string "first_name"
     t.string "last_name"
-    t.integer "userable_id"
-    t.string "userable_type"
-    t.integer "edition_id", null: false
     t.integer "institution_id", null: false
+    t.boolean "is_student"
+    t.boolean "is_professor"
+    t.boolean "is_judge"
+    t.boolean "is_committee_member"
+    t.boolean "is_admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -268,15 +279,26 @@ ActiveRecord::Schema.define(version: 2021_05_13_191901) do
     t.index ["project_id"], name: "index_virtual_samples_on_project_id"
   end
 
+  create_table "visitors", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_visitors_on_user_id"
+  end
+
   add_foreign_key "abstracts", "projects"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "administrators", "users"
   add_foreign_key "collaborators", "projects"
   add_foreign_key "comments", "users"
   add_foreign_key "comments", "virtual_samples"
   add_foreign_key "committee_evaluations", "projects"
+  add_foreign_key "committee_members", "users"
   add_foreign_key "judge_evaluations", "judges"
   add_foreign_key "judge_evaluations", "projects"
+  add_foreign_key "judges", "users"
   add_foreign_key "phases", "editions"
+  add_foreign_key "professors", "users"
   add_foreign_key "project_details", "projects"
   add_foreign_key "project_event_details", "projects"
   add_foreign_key "projects", "editions"
@@ -285,5 +307,7 @@ ActiveRecord::Schema.define(version: 2021_05_13_191901) do
   add_foreign_key "projects", "students"
   add_foreign_key "questions", "editions"
   add_foreign_key "social_impacts", "projects"
+  add_foreign_key "students", "users"
   add_foreign_key "virtual_samples", "projects"
+  add_foreign_key "visitors", "users"
 end

@@ -4,36 +4,33 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :userable, polymorphic: true
+  #belongs_to :userable, polymorphic: true
   belongs_to :institution
-  belongs_to :edition
   has_many :comments
+  has_many :students
 
   def full_name
     self.first_name + " " + self.last_name
   end
 
   def student?
-    self.userable_type == "Student"
+    self.is_student
   end
 
   def professor?
-    self.userable_type == "Professor"
+    self.is_professor
   end
 
   def committee_member?
-    self.userable_type == "CommitteeMember"
-  end
-
-  def operative?
-    self.userable_type == "Operative"
+    self.is_committee_member
   end
 
   def judge?
-    self.userable_type == "Judge"
+    self.is_judge
   end
 
   def administrator?
-    self.userable_type == "Administrator"
+    self.is_admin
   end
+
 end

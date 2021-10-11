@@ -5,5 +5,6 @@ class AddInformationToUsers < ActiveRecord::Migration[6.0]
     add_column :users, :last_name, :string
     add_column :users, :userable_id, :bigint
     add_column :users, :userable_type, :string
+
   end
 end

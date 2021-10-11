@@ -6,14 +6,15 @@ Rails.application.routes.draw do
   resources :project_categories
   # Root
   root "projects#index"
-
+  
   # Devise
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: "users/sessions"
   }
-
+  
   # Resources
+  resources :visitors
   resources :users
   resources :judge_evaluations
   resources :project_event_details

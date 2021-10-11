@@ -5,6 +5,11 @@
 
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
+      
+      <% if current_user.professor? || current_user.student? || current_user.committee_member? || current_user.judge? || current_user.administrator?  %>
+        <a class="nav-item nav-link" href="/virtual_samples">Muestra Virtual <span class="sr-only">(current)</span></a>
+      <% end %>
+
       <% if current_user.professor? || current_user.student? || current_user.committee_member? || current_user.judge? || current_user.administrator?%>
         <a class="nav-item nav-link" href="/projects">Proyectos <span class="sr-only">(current)</span></a>
       <% end %>
@@ -25,7 +30,7 @@
           <a class="nav-item nav-link" href="/judge_evaluations">Evaluaciones</a>
       <% end %>
 
-      <% if current_user.professor? || current_user.committee_member? || current_user.administrator? || current_user.operative?  %>
+      <% if current_user.professor? || current_user.committee_member? || current_user.administrator?  %>
           <a class="nav-item nav-link" href="/project_status">Estatus de proyectos</a>
       <% end %>
 

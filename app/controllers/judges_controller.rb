@@ -69,6 +69,6 @@ class JudgesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def judge_params
-      params.require(:judge).permit(:company, :department, :contact_name, :contact_email, :has_tablet)
+      params.require(:judge).permit(:company, :department, :contact_name, :contact_email, :has_tablet, :user_id)
     end
 end
