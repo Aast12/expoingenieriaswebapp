@@ -2,10 +2,12 @@
 disableOptions = function(){
   document.getElementById('isProfessor').disabled = true;
   document.getElementById('isJudge').disabled = true;
+  document.getElementById('isStaff').disabled = true;
   document.getElementById('isCommitteeMember').disabled = true;
   document.getElementById('isAdmin').disabled = true;
   document.getElementById('isProfessor').checked = false;
   document.getElementById('isJudge').checked = false;
+  document.getElementById('isStaff').checked = false;
   document.getElementById('isCommitteeMember').checked = false;
   document.getElementById('isAdmin').checked = false;
 }
@@ -13,6 +15,7 @@ disableOptions = function(){
 enableOptions = function(){
   document.getElementById('isProfessor').disabled = false;
   document.getElementById('isJudge').disabled = false;
+  document.getElementById('isStaff').disabled = false;
   document.getElementById('isCommitteeMember').disabled = false;
   document.getElementById('isAdmin').disabled = false;
 }

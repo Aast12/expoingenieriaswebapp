@@ -38,6 +38,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       create_userable("Visitor")
     end
 
+    if resource.is_staff_member
+      create_userable("Staff")
+    end
+
     resource.save
 
     end
@@ -71,7 +75,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :institution_id, :is_student, :is_professor, :is_judge, :is_committee_member, :is_admin, :is_visitor])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :institution_id, :is_student, :is_professor, :is_judge, :is_committee_member, :is_admin, :is_visitor, :is_staff_member])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -127,6 +131,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       visitor = Visitor.new(city: city, user_id: user_id)
       visitor.save
       return visitor
+    when "Staff"
+      staff_member = StaffMember.new(user_id: user_id)
+      staff_member.save
+      return staff_member
     end
   
   end

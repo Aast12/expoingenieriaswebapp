@@ -69,6 +69,8 @@ class StaffMembersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def staff_member_params
-      params.fetch(:staff_member, {})
+      params.require(:staff_member).permit(:user_id)
     end
+   
 end
+

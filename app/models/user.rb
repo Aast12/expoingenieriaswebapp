@@ -37,4 +37,8 @@ class User < ApplicationRecord
     self.is_visitor
   end
 
+  def staff?
+    self.is_staff_member
+  end
+
 end

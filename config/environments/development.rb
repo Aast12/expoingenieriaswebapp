@@ -71,7 +71,7 @@ Rails.application.configure do
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: "@gmail.com",
-    password: "", 
+    password: "!", 
     domain: "smtp-relay.gmail.com",
     openssl_verify_mode: "none",
   }

@@ -66,6 +66,8 @@
           <%= f.label :is_professor, "Profesor" %> <br>
           <%= f.check_box :is_judge, {:id => "isJudge", :onchange => "manageUserableTypeRegistration()"}, true %>
           <%= f.label :is_judge, "Evaluador" %> <br>
+          <%= f.check_box :is_staff_member, {:id => "isStaff", :onchange => "manageUserableTypeRegistration()"}, true %>
+          <%= f.label :is_staff_member, "Miembro de Staff" %>  <br>
           <%= f.check_box :is_committee_member, {:id => "isCommitteeMember", :onchange => "manageUserableTypeRegistration()"}, true %>
           <%= f.label :is_committee_member, "Miembro de Comité" %> <br>
           <%= f.check_box :is_admin, {:id => "isAdmin", :onchange => "manageUserableTypeRegistration()"}, true %>
