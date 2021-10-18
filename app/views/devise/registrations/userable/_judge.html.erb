@@ -1,30 +1,124 @@
+
+
 <div class="field">
-  <%= label_tag :company, "Empresa" %><br />
-  <%= text_field_tag :company, "", class: 'form-control' %>
-</div>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="field">
-      <%= label_tag :contact_name, "Nombre" %><br />
-      <%= text_field_tag :contact_name, "", class: 'form-control' %>
+  <div class="row m-0 p-0">
+    <div class="col-md-4 pl-0">
+      <div class="field">
+        <%= label_tag :external, "Procedencia" %>
+        <%= select_tag :external, options_for_select([[""],["Externo",1], ["Tec", 0]], selected:"", disabled:""), id: 'judgeType', class: 'form-control', onchange: "toggleJudgesRegistration()" %>
+      </div>
     </div>
-
-    <div class="field">
-      <%= label_tag :contact_email, "Correo electrónico " %><br />
-      <%= text_field_tag :contact_email, "", class: 'form-control' %>
+    <div class="col-md-8 p-0">
+      <div class="field">
+        <%= label_tag :has_tablet, "¿Tiene tableta electrónica para usar en el evento?" %>
+        <%= select_tag :has_tablet, options_for_select(boolean_options().unshift(""), selected:"", disabled:""), class: 'form-control' %>
+      </div>
     </div>
   </div>
 
-  <div class="col-md-6">
-    <div class="field">
-      <%= label_tag :judge_department, "Departmento" %><br />
-      <%= text_field_tag :judge_department, "", class: 'form-control' %>
+  <hr>
+  <div id="isExternal">
+    <div class="row  m-0 p-0">
+      <div class="col-md-6 pl-0">
+        <div class="field">
+          <%= label_tag :company, "Empresa" %><br />
+          <%= text_field_tag :company, "", class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6 p-0">
+        <div class="field" >
+          <%= label_tag :institution_id, "Campus con el que colabora" %><br />
+          <%= select_tag :institution_id, options_for_select(institution_options().unshift(""), selected:"", disabled:""),  class: "form-control" %>
+        </div>
+      </div>
     </div>
+
+
+    <div class="row m-0 p-0">
+      <div class="col-md-6 pl-0">
+        <div class="field">
+          <%= label_tag :contact_name, "Nombre del contacto en el Tec" %><br />
+          <%= text_field_tag :contact_name, "", class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6 p-0">
+        <div class="field">
+          <%= label_tag :contact_email, "Correo del contacto en el Tec" %><br />
+          <%= text_field_tag :contact_email, "", class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row m-0 p-0">
+      <div class="col-md-12 p-0">
+        <%= label_tag :contact_phone, "Teléfono del contacto en el Tec" %><br />
+        <%= text_field_tag :contact_phone, "", placeholder:'xx-xxxx-xxxx', pattern:'[0-9]{2}-[0-9]{4}-[0-9]{4}', class: 'form-control' %>
+      </div>
+    </div>
+
+
     
-    <div class="field">
-      <%= label_tag :has_tablet, "¿Tiene tableta electrónica" %>
-      <%= select_tag :has_tablet, options_for_select(boolean_options()), class: 'form-control' %>
+   
+  </div>
+
+
+  <div class="row m-0 p-0" id="isTec" >
+    <div class="col-md-12 pl-0">
+      <div class="field">
+        <%= label_tag :professor_department, "Departmento" %><br />
+        <%= select_tag 'department', options_for_select(departments_options().unshift(""), selected: "", disabled: ""), require: true, class: 'custom-select' %>
+      </div>
     </div>
   </div>
+
+
+
+  <div class="row mt-3 mx-0 p-0">
+    <div class="col-md-12 pl-0">
+      <%= label "", "Seleccione sus áreas de expertise (las que apliquen)" %><br />
+      <div class="field" style="OVERFLOW-Y:scroll; WIDTH:600px; HEIGHT:300px" >
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Agriobiotecnología" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Automatización de Proceso" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Bionegocios" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Diseño Industrial" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Electronica-Hardware" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Ingenieria Civil" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Ingenieria de Alimentos" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Ingenieria Industrial" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Ingenieria Mecanica" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Ingenieria Quimica" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Modelo Arquitectonico" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Modelo de Negocio" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Nanotecnología"%> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Proceso de Producción" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Quimica-Bioquimica" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Sistemas Embebidos" %> <br>
+        <%= check_box :user, :is_judge, {}, true %>
+        <%= label :area1, "Software" %> <br>
+       
+   
+      </div>
+    </div>
+  </div>
+
+
+
+
 </div>

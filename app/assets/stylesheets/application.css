@@ -166,5 +166,21 @@ table, tr, td, th, tbody, thead, tfoot {
   display: none;
 }
 #student-registration {
-  display: block;
+  display: none;
+}
+
+#visitor-registration {
+  display: none;
+}
+
+#institution{
+  display: none;
+}
+
+#isExternal {
+  display: none;
+}
+
+#isTec {
+  display: none;
 }

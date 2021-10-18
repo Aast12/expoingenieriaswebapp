@@ -1,6 +1,6 @@
 <div class="field">
   <%= label_tag :major, "Carrera" %>
-  <%= select_tag :major, options_for_select(major_options()), class: 'form-control' %>
+  <%= select_tag :major, options_for_select(major_options().unshift(""), selected: "", disabled: ""), class: 'form-control'%>
 </div>
 
 <div class="field">

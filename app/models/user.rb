@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   #belongs_to :userable, polymorphic: true
-  belongs_to :institution
+  belongs_to :institution, optional: true
   has_many :comments
   has_many :students
 
@@ -31,6 +31,10 @@ class User < ApplicationRecord
 
   def administrator?
     self.is_admin
+  end
+
+  def visitor?
+    self.is_visitor
   end
 
 end

@@ -56,6 +56,8 @@
       <div class="col-md-4">
         <%= f.label "Seleccione el rol o roles que tendrá: " %><br />
         <div class="field">
+          <%= f.check_box :is_visitor, {:id => "isVisitor", :onchange => "manageUserableTypeRegistration()"}, true %>
+          <%= f.label :is_visitor, "Visitante" %> <br>
           <%= f.check_box :is_student, {:id => "isStudent", :onchange => "manageUserableTypeRegistration()"}, true %>
           <%= f.label :is_student, "Estudiante" %> <br>
           <%= f.check_box :is_professor, {:id => "isProfessor", :onchange => "manageUserableTypeRegistration()"}, true  %>
@@ -65,7 +67,7 @@
           <%= f.check_box :is_committee_member, {:id => "isCommitteeMember", :onchange => "manageUserableTypeRegistration()"}, true %>
           <%= f.label :is_committee_member, "Miembro de Comité" %> <br>
           <%= f.check_box :is_admin, {:id => "isAdmin", :onchange => "manageUserableTypeRegistration()"}, true %>
-          <%= f.label :is_admin, "Administrador" %> 
+          <%= f.label :is_admin, "Administrador" %>  <br>
         </div>
 
       </div>
@@ -82,18 +84,28 @@
           <%= render "devise/registrations/userable/judge" %>
         </div>
 
-        <div class="field" id="institution">
-          <%= f.label :institution_id, "Institución" %><br />
-          <%= f.select :institution_id, institution_options(), {}, :class => "form-control"  %>
+        <div id='visitor-registration'>
+          <%= render "devise/registrations/userable/visitor" %>
         </div>
-        <div class="text-center m-3">
+        
+
+        <div class="field" id="institution">
+          <%= f.label :institution_id, "Campus" %><br />
+          <%= f.select :institution_id, institution_options().unshift(""), {:selected=>"", :disabled=>""}, :class => "form-control"  %>
+        </div>
+
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 text-center mb-5">
           <%= render "devise/shared/error_messages", resource: resource %>
           <div class="actions">
-            <%= f.submit "Crear cuenta", :class => "btn btn-light"%>
+            <%= f.submit "Crear cuenta", :class => "btn btn-outline-primary"%>
           </div>
-        </div>
       </div>
-      </div>
+    </div>
     
       
   <% end %>

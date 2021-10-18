@@ -24,11 +24,15 @@ Phase.create(name:"Evaluación  de proyectos", start_date: Date.new(2021, 5, 2),
 # Timelimit
 
 # Institution
-Institution.create(name: "Tecnológico de Monterrey Campus Monterrey", city: "Monterrey")
-Institution.create(name: "Tecnológico de Monterrey Campus Saltillo", city: "Monterrey")
-Institution.create(name: "Tecnológico de Monterrey Campus Laguna", city: "Monterrey")
-Institution.create(name: "Tecnológico de Monterrey Campus Tampico", city: "Centro-Sur")
-Institution.create(name: "Prepa Tec Monterrey", city: "Monterrey")
+Institution.create(name: "Monterrey", city: "Monterrey")
+Institution.create(name: "Saltillo", city: "Saltillo")
+Institution.create(name: "Laguna", city: "Torreón")
+Institution.create(name: "Tampico", city: "Tampico")
+Institution.create(name: "Cumbres", city: "Monterrey")
+Institution.create(name: "Garza Sada", city: "Monterrey")
+Institution.create(name: "Santa Catarina", city: "Monterrey")
+Institution.create(name: "Garza Lagüera", city: "Monterrey")
+Institution.create(name: "Valle Alto", city: "Monterrey")
 
 # Departments
 Department.create(name: "Bioingeniería")
@@ -66,43 +70,39 @@ ProjectCategory.create(name: "Investigacion y Desarrollo de Propuestas de Mejora
 ProjectCategory.create(name: "Productos o Servicios para Emprendimiento de Base Tecnológica")
 
 # Users
-userable = Administrator.create()
-User.create(
-    email: "juan@tec.mx",
-    password: "123123",
-    first_name: "Juan",
-    last_name: "Hinojosa",
-    userable_id: userable.id,
-    userable_type: "Administrator",
-    edition_id: 1,
-    institution_id: 1
-)
+# userable = Administrator.create()
+# User.create(
+#     email: "juan@tec.mx",
+#     password: "123123",
+#     first_name: "Juan",
+#     last_name: "Hinojosa",
+#     edition_id: 1,
+#     institution_id: 1
+# )
 
-userable = Professor.create(
-    department: "ITC"
-)
-User.create(
-    email: "luis@tec.mx", 
-    password: "123123",
-    first_name: "Luis",
-    last_name: "Gonzalez",
-    userable_id: userable.id,
-    userable_type: "Professor",
-    edition_id: 1,
-    institution_id: 1,
-)
+# userable = Professor.create(
+#     department: "ITC"
+# )
+# User.create(
+#     email: "luis@tec.mx", 
+#     password: "123123",
+#     first_name: "Luis",
+#     last_name: "Gonzalez",
+#     edition_id: 1,
+#     institution_id: 1,
+# )
 
-userable = Student.create(
-    major: "ITC",
-    student_code: "A01234567"
-)
-User.create(
-    email: "pepe@tec.mx", 
-    password: "123123",
-    first_name: "Pepe",
-    last_name: "Garza",
-    userable_id: userable.id,
-    userable_type: "Student",
-    edition_id: 1,
-    institution_id: 1,
-)
+# userable = Student.create(
+#     major: "ITC",
+#     student_code: "A01234567"
+# )
+# User.create(
+#     email: "pepe@tec.mx", 
+#     password: "123123",
+#     first_name: "Pepe",
+#     last_name: "Garza",
+#     userable_id: userable.id,
+#     userable_type: "Student",
+#     edition_id: 1,
+#     institution_id: 1,
+# )

@@ -69,6 +69,7 @@ class VisitorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def visitor_params
-      params.fetch(:visitor, {})
+      params.require(:visitor).permit(:city, :user_id)
     end
 end
+

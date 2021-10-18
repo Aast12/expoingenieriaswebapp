@@ -13,8 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
    super do
 
-    resource.save
-
+    
     if resource.is_student
       create_userable("Student")
     end
@@ -35,6 +34,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       create_userable("Administrator")
     end
 
+    if resource.is_visitor
+      create_userable("Visitor")
+    end
+
+    resource.save
 
     end
   end
@@ -67,7 +71,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :institution_id, :is_student, :is_professor, :is_judge, :is_committee_member, :is_admin])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :institution_id, :is_student, :is_professor, :is_judge, :is_committee_member, :is_admin, :is_visitor])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -104,12 +108,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
       committee_member.save
       return committee_member
     when "Judge"
+      external = params[:external]
       company = params[:company]
       department = params[:judge_department]
       contact_name = params[:contact_name]
       contact_email = params[:contact_email]
+      contact_phone = params[:contact_phone]
       has_tablet = params[:has_tablet]
-      judge = Judge.new(company: company, department: department, contact_name: contact_name, contact_email: contact_email, has_tablet: has_tablet, user_id: user_id)
+      judge = Judge.new(external: external, contact_phone: contact_phone, company: company, department: department, contact_name: contact_name, contact_email: contact_email, has_tablet: has_tablet, user_id: user_id)
       judge.save
       return judge
     when "Administrator"
@@ -117,7 +123,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       administrator.save
       return administrator
     when "Visitor"
-      visitor = Visitor.new(user_id: user_id)
+      city = params[:city]
+      visitor = Visitor.new(city: city, user_id: user_id)
       visitor.save
       return visitor
     end
