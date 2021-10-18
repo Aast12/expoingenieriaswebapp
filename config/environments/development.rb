@@ -70,8 +70,8 @@ Rails.application.configure do
     port: 587,
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "mafaszra1999@gmail.com",
-    password: "KCMassiveAttack!", 
+    user_name: "@gmail.com",
+    password: "", 
     domain: "smtp-relay.gmail.com",
     openssl_verify_mode: "none",
   }
