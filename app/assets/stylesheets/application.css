@@ -184,3 +184,11 @@ table, tr, td, th, tbody, thead, tfoot {
 #isTec {
   display: none;
 }
+
+#alertnotice{ 
+  display: block;
+  font-size: medium;
+  font-weight: 200;
+  color: #2f7dfa;
+  
+}      

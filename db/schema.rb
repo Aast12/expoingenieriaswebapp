@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_044322) do
+ActiveRecord::Schema.define(version: 2021_10_18_231240) do
 
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
@@ -231,6 +231,8 @@ ActiveRecord::Schema.define(version: 2021_10_18_044322) do
   create_table "staff_members", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_staff_members_on_user_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -259,6 +261,11 @@ ActiveRecord::Schema.define(version: 2021_10_18_044322) do
     t.boolean "is_committee_member"
     t.boolean "is_admin"
     t.boolean "is_visitor"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.boolean "is_staff_member"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -300,6 +307,7 @@ ActiveRecord::Schema.define(version: 2021_10_18_044322) do
   add_foreign_key "projects", "students"
   add_foreign_key "questions", "editions"
   add_foreign_key "social_impacts", "projects"
+  add_foreign_key "staff_members", "users"
   add_foreign_key "students", "users"
   add_foreign_key "virtual_samples", "projects"
   add_foreign_key "visitors", "users"

@@ -1,5 +1,5 @@
-<p>Welcome <%= @email %>!</p>
+<p>¡ Bienvenid@ a Conexión Tec <%= @resource.first_name %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Por favor complete su proceso de registro haciendo click en la siguiente liga para confirmar su correo electrónico:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to 'Confirmar mi correo', confirmation_url(@resource, confirmation_token: @token) %></p>

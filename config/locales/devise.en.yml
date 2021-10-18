@@ -3,7 +3,7 @@
 en:
   devise:
     confirmations:
-      confirmed: "Your email address has been successfully confirmed."
+      confirmed: "Su cuenta de correo electrónico fue confirmada exitosamente."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
     failure:
@@ -14,13 +14,13 @@ en:
       last_attempt: "You have one more attempt before your account is locked."
       not_found_in_database: "Invalid %{authentication_keys} or password."
       timeout: "Your session expired. Please sign in again to continue."
-      unauthenticated: "You need to sign in or sign up before continuing."
-      unconfirmed: "You have to confirm your email address before continuing."
+      unauthenticated: ""
+      unconfirmed: "Siga las instrucciones enviadas a su correo electrónico para activar su cuenta con Conexión Tec."
     mailer:
       confirmation_instructions:
-        subject: "Confirmation instructions"
+        subject: "Activa tu cuenta para Conexión Tec"
       reset_password_instructions:
-        subject: "Reset password instructions"
+        subject: "Instrucciones para cambio de contraseña."
       unlock_instructions:
         subject: "Unlock instructions"
       email_changed:
