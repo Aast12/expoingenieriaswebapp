@@ -4,16 +4,16 @@
     <%= render "project_details/show_shared", project_detail: @project.project_detail %>
 
     <% if @project.social_impact.present? %>
-      <h1>Impacto Social</h1>
+      <h3>Impacto Social</h3>
       <%= render "social_impacts/show_shared", social_impact: @project.social_impact %>
     <% end %>
 
     <% if @project.abstract.present? %>
-      <h1>Abstract</h1>
+      <h3>Abstract</h3>
       <%= render "abstracts/show_shared", abstract: @project.abstract %>
     <% end %>
 
-    <h1>Datos del estudiante responsable</h1>
+    <h3>Datos del estudiante responsable</h3>
     <p>
       <strong>Nombre:</strong>
       <%= project_student(@project) %>
@@ -22,6 +22,17 @@
     <p>
       <strong>Correo electrónico:</strong>
       <%= project_student_email(@project) %>
+    </p>
+
+    <h3>Datos del profesor tutor</h3>
+    <p>
+      <strong>Nombre:</strong>
+      <%= project_professor(@project) %>
+    </p>
+
+    <p>
+      <strong>Correo electrónico:</strong>
+      <%= project_professor_email(@project) %>
     </p>
   </div><br />
   <% if current_user.committee_member? || current_user.administrator? %>
