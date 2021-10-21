@@ -40,6 +40,9 @@ class Project < ApplicationRecord
   def project_category
     self.project_detail.category
   end
+  def academic_level
+    self.project_detail.academic_level
+  end
   def project_area
     self.project_detail.area
   end

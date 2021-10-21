@@ -1,6 +1,5 @@
 <div class="content">
-  <h3>Proyectos</h3>
-  <div class="row">
+  <h1>Proyectos</h1>
     <div class="col-sm-12 filters-container">
       <%= form_tag filter_projects_path, method: :get, class: 'row', remote: true do %>
         <div class="col-sm-3">
@@ -14,18 +13,18 @@
         <div class="col-sm-3">
           <%= select_tag :status, options_for_select(project_status_options()), id: "filter-status", class: 'custom-select' %>
         </div>
-        <div class="col-sm-3 my-auto">
+        <div class="col-sm-1">
           <%= submit_tag "Filter", name: nil, class: "btn btn-light" %>
+        </div>
+        <div class="col-sm-2 newProject">
+          <% if get_current_phase_name() === "Registro" %>
+            <%= link_to 'Nuevo proyecto', new_project_path, :class => "btn btn-light text-body" %>
+          <% end %>
         </div>
       <% end %>
     </div>
-    <div class="row" id="filtered-projects-container">
+    <div class="row projects-container" id="filtered-projects-container">
       <%= render 'projects/filtered-projects' %>
     </div>
-  </div>
-  <div class="content-actions">
-    <% if get_current_phase_name() === "Registro" %>
-      <%= link_to 'Nuevo proyecto', new_project_path, :class => "btn btn-light" %>
-    <% end %>
   </div>
 </div>

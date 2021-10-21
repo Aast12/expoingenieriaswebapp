@@ -11,19 +11,25 @@
     </div>
   <% end %>
 
-  <h1>Detalles del proyecto</h1>
+  <h1>Alta de proyecto</h1>
+  <div class="form-group row text-left">
+
+    <div class="col-sm-4">
+      <%= form.label :institution_id, "Campus", :class => "form-label important" %>
+      <%= form.select :institution_id, institution_options(), { prompt: 'Seleccionar campus' }, :class => "form-control" %>
+    </div>
   <%= form.fields_for :project_detail do |project_detail| %>
     <%= render "project_details/form_shared", form: project_detail %>
   <% end %>
 
-  <div id='social-impact-form'>
-    <h1>Impacto Social</h1>
+  <div id='social-impact-form' class="hidden">
+    <h3>Impacto Social</h3>
     <%= form.fields_for :social_impact do |social_impact| %>
       <%= render "social_impacts/form_shared", form: social_impact %>
     <% end %>
   </div>
 
-  <h1>Abstract</h1>
+  <h3>Abstract</h3>
   <%= form.fields_for :abstract do |abstract| %>
     <%= render "abstracts/form_shared", form: abstract %>
   <% end %>
