@@ -4,7 +4,17 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   # GET /projects.json
- 
+  def index
+    if current_user.professor?
+      professor_id = current_user.userable.id
+      @projects = Project.all.where(professor_id: professor_id)
+    elsif current_user.student?
+      student_id = current_user.userable.id
+      @projects = Project.all.where(student_id: student_id)
+    else
+      @projects = Project.all
+    end
+  end
 
   def filter_projects
     if current_user.professor?
