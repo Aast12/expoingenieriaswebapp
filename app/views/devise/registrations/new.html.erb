@@ -48,12 +48,25 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password", :class => "form-control"  %>
         </div>
       </div>
-
-      <h6 class="mt-3 pl-3" >* Se le enviará un correo a la dirección proporcionada arriba para confirmar su cuenta con Conexión Tec.</h6>
+      <%= f.check_box :is_visitor, {:checked => true, :id => "isVisitor", :onchange => "manageUserableTypeRegistration()"} , true %>
+      
 
     </div>
-    <hr>
 
+    <div class="row mb-0 pb-0">
+      <div class="col-md-8">
+        <div id='visitor-registration'>
+          <%= render "devise/registrations/userable/visitor" %>
+        </div>
+      </div>
+            <h6 class="mt-3 pl-3" >* Se le enviará un correo a la dirección proporcionada arriba para confirmar su cuenta con Conexión Tec.</h6>
+
+    </div>
+    
+
+
+    <% if false %>
+    <hr>
     <div class="row">
       <div class="col-md-4">
         <%= f.label "Seleccione el rol o roles que tendrá: " %><br />
@@ -88,9 +101,7 @@
           <%= render "devise/registrations/userable/judge" %>
         </div>
 
-        <div id='visitor-registration'>
-          <%= render "devise/registrations/userable/visitor" %>
-        </div>
+        
         
 
         <div class="field" id="institution">
@@ -101,6 +112,7 @@
         
       </div>
     </div>
+    <% end %>
 
     <div class="row">
       <div class="col-md-12 text-center mb-5">
