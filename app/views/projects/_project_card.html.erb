@@ -3,7 +3,7 @@
     <div class="col-sm-4 project-name">
       <strong><%= project_name(project) %></strong>
     </div>
-    <div class="col-sm-4" style="text-align:center">
+    <div class="col-sm-4" style="text-align:center; color: rgba(227, 24, 124, 0.8)">
       Status: <strong> <%= display_project_status(project) %></strong>
     </div>
     <div class="col-sm-4" style="text-align:right">
@@ -17,10 +17,6 @@
     </div>
   </div>
   <div class="project-card-body">
-    <div class="card-info project-description">
-      <strong>Descripción:</strong>
-      <%= project_description(project) %> 
-    </div>
     <div class="card-info row">
       <div class="col-sm-6">
         <div class="card-text">
@@ -44,38 +40,49 @@
         <div class="card-text">
           <strong>Estudiante:</strong>
           <%= display_project_student_info(project) %>
-        </div>
+        
       </div>
     </div>
+    <div class="col-sm-12 description-section">
+        <div class="card-text">
+          <div class="card-info project-description">
+          <strong>Descripción:</strong><br>
+            <%= project_description(project) %> 
+          </div>
+        </div>
+      </div>
     <hr>
-    <% if current_user.administrator? || (current_user.student? && project.status != "accepted") %>
-      <td><%= link_to 'Editar', edit_project_path(project), :class => "btn btn-light" %></td>
-    <% end %>
-    <td><%= link_to 'Ver', project_path(project), :class => "btn btn-light" %></td>
-
-    <% if current_user.professor? && get_current_phase_name() == 'Aprobación de proyectos' %>
-      <% if project.committee_evaluation.present? %>
-        <td><%= link_to 'Editar calificación', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
-      <% else %>
-        <td><%= link_to 'Calificar', new_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
+    <div class="col-sm-12 card-actions">
+      <% if current_user.administrator? || (current_user.student? && project.status != "accepted") %>
+        <td><%= link_to 'Editar', edit_project_path(project), :class => "btn btn-light" %></td>
       <% end %>
-    <% end %>
+      <td><%= link_to 'Ver', project_path(project), :class => "btn btn-light" %></td>
 
-    <% if (current_user.committee_member? || current_user.administrator?) && get_current_phase_name() ==  'Evaluación de proyectos' %>
-      <% if project.committee_evaluation.present? %>
-        <td><%= link_to 'Editar evaluación', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
-      <% else %>
-        <td><%= link_to 'Evaluar', new_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
+      <% if current_user.professor? && get_current_phase_name() == 'Aprobación de proyectos' %>
+        <% if project.committee_evaluation.present? %>
+          <td><%= link_to 'Editar calificación', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
+        <% else %>
+          <td><%= link_to 'Calificar', new_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
+        <% end %>
       <% end %>
-      
-    <% end %>
 
-    <% if ((project.accepted? && get_current_phase_name() == "Crear / Editar muestra") && (current_user.administrator? || current_user.student?)) %>
-      <% if project.virtual_sample.present? %>
-        <td><%= link_to 'Editar Muestra Virtual', edit_project_virtual_sample_path(project), :class => "btn btn-light" %></td>
-      <% else %>
-        <td><%= link_to 'Crear Muestra Virtual', new_project_virtual_sample_path(project), :class => "btn btn-light" %></td>
+      <% if (current_user.committee_member? || current_user.administrator?) && get_current_phase_name() ==  'Evaluación de proyectos' %>
+        <% if project.committee_evaluation.present? %>
+          <td><%= link_to 'Editar evaluación', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
+        <% else %>
+          <td><%= link_to 'Evaluar', new_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
+        <% end %>
+        
       <% end %>
-    <% end %>
+
+      <% if ((project.accepted? && get_current_phase_name() == "Crear / Editar muestra") && (current_user.administrator? || current_user.student?)) %>
+        <% if project.virtual_sample.present? %>
+          <td><%= link_to 'Editar Muestra Virtual', edit_project_virtual_sample_path(project), :class => "btn btn-light" %></td>
+        <% else %>
+          <td><%= link_to 'Crear Muestra Virtual', new_project_virtual_sample_path(project), :class => "btn btn-light" %></td>
+        <% end %>
+      <% end %>
+    </div>
   </div>
+</div>
 </div>
