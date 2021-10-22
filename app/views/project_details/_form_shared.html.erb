@@ -42,8 +42,8 @@
     <%= form.select :semestre_i, boolean_options(), {}, :class => "form-control" %>
   </div>
   <div class="col-sm-4">
-    <%= form.label :nivel_max, "Nivel Académico Máximo de los integrantes del equipo", :class => "form-label important" %>
-    <%= form.select :academic_level, academic_level_options, { prompt: 'Seleccionar nivel' }, :class => "form-control" %>
+  <%= form.label :academic_level, "Nivel Académico Máximo de los integrantes del equipo", :class => "form-label important" %>
+    <%= form.select :academic_level, academic_level_options(), { prompt: 'Seleccionar nivel' }, :class => "form-control" %>
   </div>
   <div class="col-sm-2">
     <%= form.label :social_impact, "Impacto social", :class => "form-label" %>

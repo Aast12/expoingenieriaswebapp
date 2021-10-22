@@ -27,7 +27,7 @@ class Project < ApplicationRecord
   accepts_nested_attributes_for :abstract, allow_destroy: true
   has_one :project_detail, dependent: :destroy
   accepts_nested_attributes_for :project_detail, allow_destroy: true
-  has_one :social_impact, dependent: :destroy
+  has_one :social_impact, dependent: :destroy, required: false
   accepts_nested_attributes_for :social_impact, allow_destroy: true
 
   def set_default_status

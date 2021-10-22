@@ -43,4 +43,9 @@ module ProjectDetailsHelper
     client_type = project_detail.client_type
     project_detail_client_type_options().find { |key, value| value == client_type }.first
   end
+
+  def display_project_detail_academic_level(project_detail)
+    academic_level = project_detail.academic_level
+    project_detail_client_type_options().find { |key, value| value == academic_level }.first
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_21_205539) do
+ActiveRecord::Schema.define(version: 2021_10_22_181445) do
 
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(version: 2021_10_21_205539) do
     t.string "category"
     t.string "area"
     t.string "type_of"
+    t.string "academic_level"
     t.index ["project_id"], name: "index_project_details_on_project_id"
   end
 
