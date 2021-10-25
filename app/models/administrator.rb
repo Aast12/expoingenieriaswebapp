@@ -1,3 +1,3 @@
 class Administrator < ApplicationRecord
-    has_one :user, as: :userable
+    belongs_to :user
 end

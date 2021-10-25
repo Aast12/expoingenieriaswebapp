@@ -6,10 +6,10 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     if current_user.professor?
-      professor_id = current_user.userable.id
+      professor_id = Professor.all.where(user_id: current_user.id)
       @projects = Project.all.where(professor_id: professor_id)
     elsif current_user.student?
-      student_id = current_user.userable.id
+      student_id = Student.all.where(user_id: current_user.id)
       @projects = Project.all.where(student_id: student_id)
     else
       @projects = Project.all
@@ -53,12 +53,14 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-    @project.edition_id = current_user.edition_id
+    @project.edition_id = get_current_edition_id()
     @project.institution_id = current_user.institution_id
     if current_user.professor?
-      @project.professor_id = current_user.userable.id
+      @project.professor_id = Professor.all.where(user_id: current_user.id).select(:id)
     elsif current_user.student?
-      @project.student_id = current_user.userable.id
+     # @project.student_id = Student.all.where(user_id: current_user.id).select(:id)
+     # @project.student_id = current_user.userable.id
+     
     end
     respond_to do |format|
       if @project.save

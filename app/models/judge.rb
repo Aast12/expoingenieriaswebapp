@@ -1,4 +1,4 @@
 class Judge < ApplicationRecord
-    has_one :user, as: :userable
+    belongs_to :user
     has_many :judge_evaluations
 end

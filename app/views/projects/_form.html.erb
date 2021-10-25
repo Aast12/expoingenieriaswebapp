@@ -44,6 +44,11 @@
     </div>
   <% end %>
 
+  <div class="form-group col-sm-13 text-left">
+      <%= form.label :student_id, "Nombre", :class => "form-label" %>
+      <%= form.select :student_id, student_options(), { :include_blank => true }, :class => "form-control" %>
+  </div>
+
   <div class="actions">
     <%= link_to 'Cancelar', projects_path, class: 'btn btn-light' %>
     <%= form.submit :Guardar, class: 'btn btn-primary' %>

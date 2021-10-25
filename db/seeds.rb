@@ -69,7 +69,62 @@ ProjectCategory.create(name: "Desarrollo de Prototipo de Software")
 ProjectCategory.create(name: "Investigacion y Desarrollo de Propuestas de Mejora")
 ProjectCategory.create(name: "Productos o Servicios para Emprendimiento de Base Tecnológica")
 
-# Users
+
+
+
+
+
+
+#Users
+userProf = User.new(
+    email: "profe@tec.com", 
+    password: "123123", 
+    first_name: "Luis", 
+    last_name: "Gonzalez", 
+    is_professor: 1
+)
+userProf.skip_confirmation!
+userProf.save
+prof = Professor.new(
+    department: "Ciencias",
+    user_id: userProf.id
+)
+prof.save
+
+userAdmin = User.new(
+    email: "admin@tec.com",
+    password: "123123",
+    first_name: "Juan",
+    last_name: "Hinojosa",
+    is_admin: 1
+)
+userAdmin.skip_confirmation!
+userAdmin.save
+admin = Administrator.new(
+    user_id: userAdmin.id
+)
+admin.save
+
+userStudent = User.new(
+    email: "student@tec.com",
+    password: "123123",
+    first_name: "Fernanda",
+    last_name: "Sánchez",
+    is_student: 1
+)
+userStudent.skip_confirmation!
+userStudent.save
+student = Student.new(
+    user_id: userStudent.id,
+    major: "ITC",
+    student_code: "A01570306"
+)
+student.save
+
+
+
+
+# Users Previous DB
 # userable = Administrator.create()
 # User.create(
 #     email: "juan@tec.mx",

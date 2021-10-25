@@ -24,13 +24,13 @@ module ApplicationHelper
 
   def get_current_edition_id
     current_date = Date.today
-    Edition.all.each do |edition|
-      if edition.start_date <= current_date && edition.end_date >= current_date
-          puts "EDITION ID: " + "#{edition.id}"
-          return edition.id
-      end
-    end
-    return Edition.last.id
+    currentEdition = nil
+    Edition.all.each do |ed| 
+      if current_date > ed.start_date && current_date < ed.end_date
+        currentEdition = ed
+      end 
+    end 
+    return currentEdition.id
   end
 
   def get_current_edition_projects
@@ -49,9 +49,16 @@ module ApplicationHelper
   end
 
   def get_current_phase_name
+
     current_date = Date.today
-    edition = current_user.edition
-    edition.phases.each do |phase|
+    currentEdition = nil
+    Edition.all.each do |ed| 
+      if current_date > ed.start_date && current_date < ed.end_date
+        currentEdition = ed
+      end 
+    end 
+
+    currentEdition.phases.each do |phase|
       if phase.start_date <= current_date && phase.end_date >= current_date
         return phase.name
       end

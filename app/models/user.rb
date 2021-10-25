@@ -8,6 +8,14 @@ class User < ApplicationRecord
   belongs_to :institution, optional: true
   has_many :comments
   has_many :students
+  has_many :professors
+  has_many :committee_members
+  has_many :judges
+  has_many :administrators
+  has_many :visitors
+  has_many :staff_members
+
+
 
   def full_name
     self.first_name + " " + self.last_name
