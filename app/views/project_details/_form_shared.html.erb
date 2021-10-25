@@ -4,23 +4,23 @@
   </div>
   <div class="col-sm-4">
     <%= form.label :category, "Categoría del proyecto", :class => "form-label important" %>
-    <%= form.select :category, project_detail_category_options(), { prompt: 'Seleccionar categoría' }, :class => "form-control" %>
+    <%= form.select :category, project_detail_category_options(), { prompt: 'Seleccionar categoría' }, :required => true, :class => "form-control" %>
   </div>
 </div>
 
 <div class="form-group row text-left">
   <div class="col-sm-4">
     <%= form.label :video_url, "Liga del video", :class => "form-label important" %>
-    <%= form.text_field :video_url, :class => "form-control" %>
+    <%= form.text_field :video_url, :required => true, :class => "form-control" %>
   </div>
   <div class="col-sm-4">
     <%= form.label :area, "Área temática", :class => "form-label important" %>
-    <%= form.select :area, project_detail_area_options(), { prompt: 'Seleccionar área' }, :class => "form-control" %>
+    <%= form.select :area, project_detail_area_options(), { prompt: 'Seleccionar área' }, :required => true, :class => "form-control" %>
   </div>
   
   <div class="col-sm-4">
     <%= form.label :client_type, "Cliente del proyecto", :class => "form-label important" %>
-    <%= form.select :client_type, project_detail_client_type_options(), { prompt: 'Seleccionar tipo de cliente' }, :class => "form-control" %>
+    <%= form.select :client_type, project_detail_client_type_options(), { prompt: 'Seleccionar tipo de cliente' }, :required => true, :class => "form-control" %>
   </div>
 </div>
 
@@ -28,7 +28,7 @@
 <div class="form-group row text-left">
   <div class="col-sm-12">
     <%= form.label :description, "Descripción", :class => "form-label important" %>
-    <%= form.text_area :description, size: "10x6", :class => "form-control" %>
+    <%= form.text_area :description, size: "10x6", :required => true, :class => "form-control" %>
   </div>
 </div>
 
@@ -43,7 +43,7 @@
   </div>
   <div class="col-sm-4">
   <%= form.label :academic_level, "Nivel Académico Máximo de los integrantes del equipo", :class => "form-label important" %>
-    <%= form.select :academic_level, academic_level_options(), { prompt: 'Seleccionar nivel' }, :class => "form-control" %>
+    <%#= form.select :academic_level, academic_level_options(), { prompt: 'Seleccionar nivel' }, :required => true, :class => "form-control" %>
   </div>
   <div class="col-sm-2">
     <%= form.label :social_impact, "Impacto social", :class => "form-label" %>
