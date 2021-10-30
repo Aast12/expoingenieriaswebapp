@@ -28,12 +28,14 @@
     <%= render "abstracts/form_shared", form: abstract %>
   <% end %>
 
-  <% if !current_user.student? %>
-    <h1>Datos del estudiante responsable</h1>
-    <div class="form-group col-sm-13 text-left">
-      <%= form.label :student_id, "Nombre", :class => "form-label" %>
-      <%= form.select :student_id, student_options(), { :include_blank => true }, :class => "form-control" %>
-    </div>
+  <% if false %>
+    <% if !current_user.student? %>
+      <h1>Datos del estudiante responsable</h1>
+      <div class="form-group col-sm-13 text-left">
+        <%= form.label :student_id, "Nombre", :class => "form-label" %>
+        <%= form.select :student_id, student_options(), { :include_blank => true }, :class => "form-control" %>
+      </div>
+    <% end %>
   <% end %>
 
   <% if !current_user.professor? %>

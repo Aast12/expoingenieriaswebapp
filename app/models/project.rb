@@ -3,7 +3,7 @@ class Project < ApplicationRecord
 
   enum status: [:registered, :approved, :disapproved, :evaluated, :accepted, :rejected, :declined, :missed]
   after_initialize :set_default_status, :if => :new_record?
-  after_commit :send_email, if: :saved_change_to_status?
+ # after_commit :send_email, if: :saved_change_to_status?
 
   scope :filter_by_name, -> (name) { joins(:project_detail).where("project_details.name LIKE ?", "%#{name}%") }
   scope :filter_by_category, -> (category) { includes(:project_detail).where(project_details: { category: category }) }
@@ -50,7 +50,7 @@ class Project < ApplicationRecord
   private
 
   # TODO: make this asynchronous
-  def send_email
-    StatusNotifier.call(self)
-  end
+  #def send_email
+  #  StatusNotifier.call(self)
+  #end
 end

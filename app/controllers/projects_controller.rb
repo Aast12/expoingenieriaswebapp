@@ -60,7 +60,6 @@ class ProjectsController < ApplicationController
     elsif current_user.student?
      # @project.student_id = Student.all.where(user_id: current_user.id).select(:id)
      # @project.student_id = current_user.userable.id
-     
     end
     respond_to do |format|
       if @project.save

@@ -46,6 +46,10 @@ class VirtualSamplesController < ApplicationController
     end
   end
 
+  def show_video
+    
+  end
+
   # PATCH/PUT /virtual_samples/1
   # PATCH/PUT /virtual_samples/1.json
   def update
