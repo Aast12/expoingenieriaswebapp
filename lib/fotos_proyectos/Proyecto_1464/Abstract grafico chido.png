@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="270px" height="270px" enable-background="new 0 0 270 270" xml:space="preserve">
+	<g class="st0">
+		<rect y="0.7" fill="#E9E9E9" width="269" height="269.3"/>
+		<polygon fill="#CBCBCA" points="277.9,187.1 245,143.4 188.6,202.8 75,80.5 -4.1,165.3 -4.1,272 277.9,272"/>
+		<ellipse fill="#CBCBCA" cx="202.4" cy="84.1" rx="24.4" ry="24.3"/>
+	</g>
+</svg>

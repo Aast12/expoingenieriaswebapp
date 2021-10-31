@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_231947) do
+ActiveRecord::Schema.define(version: 2021_10_30_173441) do
 
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
@@ -197,16 +197,14 @@ ActiveRecord::Schema.define(version: 2021_10_18_231947) do
 
   create_table "projects", force: :cascade do |t|
     t.integer "status"
-    t.integer "student_id", null: false
-    t.integer "professor_id", null: false
     t.integer "institution_id", null: false
     t.integer "edition_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "main_student"
+    t.string "professor"
     t.index ["edition_id"], name: "index_projects_on_edition_id"
     t.index ["institution_id"], name: "index_projects_on_institution_id"
-    t.index ["professor_id"], name: "index_projects_on_professor_id"
-    t.index ["student_id"], name: "index_projects_on_student_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -303,8 +301,6 @@ ActiveRecord::Schema.define(version: 2021_10_18_231947) do
   add_foreign_key "project_event_details", "projects"
   add_foreign_key "projects", "editions"
   add_foreign_key "projects", "institutions"
-  add_foreign_key "projects", "professors"
-  add_foreign_key "projects", "students"
   add_foreign_key "questions", "editions"
   add_foreign_key "social_impacts", "projects"
   add_foreign_key "staff_members", "users"

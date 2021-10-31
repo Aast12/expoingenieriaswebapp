@@ -14,8 +14,8 @@ class Project < ApplicationRecord
   scope :filter_by_social_service, -> (bool) { includes(:project_detail).where(project_details: { social_impact: bool }) }
   scope :filter_by_status, -> (status) { where(status: status) }
 
-  belongs_to :student
-  belongs_to :professor
+  #belongs_to :student
+  #belongs_to :professor
   belongs_to :institution, required: false
   belongs_to :edition
   has_one :project_event_detail
