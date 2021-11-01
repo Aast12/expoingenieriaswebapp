@@ -1,6 +1,7 @@
 namespace :import do
   desc "Task imports data from an excel sheet"
   task data: :environment do
+
     puts "Importing data ..."
     data = Roo::Spreadsheet.open('lib/proyectos final 9-6-2021.xlsx') # open spreadsheet
     #headers = data.row(1) # get header row
@@ -14,6 +15,10 @@ namespace :import do
 
       dataImages = Hash[[headersImages, rowS].transpose]
       projectID = dataImages['Título']
+
+      if dataImages['VIDEOURL'] == nil
+        next
+      end
 
       puts "Loading virtual sample with project id: " + projectID
 
@@ -46,7 +51,9 @@ namespace :import do
       end
 
       ## LOAD PROJECT IMAGES
-      virtualSample = VirtualSample.new(project_id: projectID)
+      video_id = dataImages['VIDEOURL'].split('=')[-1]
+      correct_video_url = "https://drive.google.com/file/d/" + video_id + "/preview"
+      virtualSample = VirtualSample.new(project_id: projectID, video_link: correct_video_url)
       pathToFolder = '/Users/fernandasanchez/Desktop/conexion_tec/lib/fotos_proyectos/Proyecto_' << projectID << "/"
       # LOAD logo
       if dataImages['PIC1NOM'] != nil && File.extname(dataImages['PIC1NOM']) != ".mp4"
@@ -54,7 +61,6 @@ namespace :import do
         #puts pathToLogo
         virtualSample.icon_image.attach(io: File.open(pathToLogo), filename: dataImages['PIC1NOM'], content_type: 'image/jpeg')
       end
-
 
       ## LOAD IMAGES FOR CARROUSEL
      
@@ -72,7 +78,7 @@ namespace :import do
 
 
       virtualSample.save!
-      sleep(2)
+      sleep(3)
 
     end
 
@@ -80,6 +86,8 @@ namespace :import do
 
 
     puts "Done importing data"
+
+
   end
 
 end
