@@ -20,7 +20,6 @@ class ProjectDetailsTest < ApplicationSystemTestCase
     fill_in "Project", with: @project_detail.project_id
     check "Semestre i" if @project_detail.semestre_i
     check "Social impact" if @project_detail.social_impact
-    fill_in "Video url", with: @project_detail.video_url
     click_on "Create Project detail"
 
     assert_text "Project detail was successfully created"
@@ -37,7 +36,6 @@ class ProjectDetailsTest < ApplicationSystemTestCase
     fill_in "Project", with: @project_detail.project_id
     check "Semestre i" if @project_detail.semestre_i
     check "Social impact" if @project_detail.social_impact
-    fill_in "Video url", with: @project_detail.video_url
     click_on "Update Project detail"
 
     assert_text "Project detail was successfully updated"

@@ -211,6 +211,12 @@ h3 {
   border-radius: 5px;
 }
 
+.div-center {
+  align-items: center;
+  align-self: center;
+  text-align: center;
+}
+
 .newProject a:hover {
   font-weight: bold;
 }
@@ -221,6 +227,13 @@ h3 {
 }
 .hidden {
   display: none;
+}
+
+.word-counter {
+  display: flex;
+  text-align: right;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 /* Table */

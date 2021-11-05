@@ -85,6 +85,6 @@ class EditionsController < ApplicationController
 
     def phases_names
       ['Registro', 'Edición de datos / Retroalimentación', 'Aprobación de proyectos', 'Evaluación de proyectos',
-      'Selección de proeyctos', 'Crear / Editar muestra', 'Asignación de proyectos a evaluadores', 'Evaluación  de proyectos']
+      'Selección de proyectos', 'Crear / Editar muestra', 'Asignación de proyectos a evaluadores', 'Evaluación  de proyectos']
     end
 end

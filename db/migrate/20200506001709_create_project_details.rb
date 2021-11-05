@@ -3,7 +3,6 @@ class CreateProjectDetails < ActiveRecord::Migration[6.0]
     create_table :project_details do |t|
       t.string :name
       t.text :description
-      t.text :video_url
       t.boolean :semestre_i
       t.boolean :social_impact
       t.string :client_type

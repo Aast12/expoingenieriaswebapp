@@ -3,9 +3,6 @@ class ProjectDetail < ApplicationRecord
   validates :name, presence: true, uniqueness: true, format: {with: /[
     a-zA-Z0-9_-]{2}/,message: "must contain name"}
 
-  validates :video_url, presence: true, uniqueness: true, format: {with: /[
-    a-zA-Z0-9_-]{2}/,message: "must contain video url"}
-
   validates :category, presence: true, uniqueness: false, format: {with: /[
     a-zA-Z0-9_-]{2}/,message: "must contain category field"}
 
