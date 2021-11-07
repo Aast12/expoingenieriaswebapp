@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   get "virtual_samples", action: :index, controller: "virtual_samples"
-  get "video", action: :show_video, controller: "virtual_samples"
+  get "show_video", action: :show_video, controller: "virtual_samples"
 
   # Change status
   get "project_status", to: "projects#project_status", as: "project_status"

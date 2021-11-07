@@ -1,5 +1,5 @@
 class VirtualSamplesController < ApplicationController
-  before_action :get_project, except: [:index, :filter_virtual_samples] #[:show, :edit, :update, :destroy, :new, :create]
+  before_action :get_project, except: [:index, :filter_virtual_samples, :show_video] #[:show, :edit, :update, :destroy, :new, :create]
   before_action :set_virtual_sample, only: [:show, :edit, :update, :destroy]
   before_action :get_comments, only: [:show]
 
@@ -47,7 +47,9 @@ class VirtualSamplesController < ApplicationController
   end
 
   def show_video
-    
+    @link = params[:link]
+
+    render :layout => false
   end
 
   # PATCH/PUT /virtual_samples/1

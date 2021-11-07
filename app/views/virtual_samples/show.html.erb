@@ -10,15 +10,16 @@
     </div>
     <div class='col-10'>
       <div class='sample-buttons'>
-        <h6> <b>Categoría: </b><%= @project.project_detail.category %> </h6>
-        <h6> <b>Área de Desarrollo:</b> <%= @project.project_detail.type_of %> </h6>
+        <h6> <b>Categoría: </b> <%= @project.project_detail.category %> </h6> 
+        <h6> <b>Área de Desarrollo:</b> <%= @project.project_detail.area %> </h6>
       </div>
-      <div class= "description pt-3" style="height: 180px;"> <p style="font-size: large;"> <%= @project.project_detail.description %> </p> </div>
+      <div class= "description pt-3"> <p style="font-size: large;"> <%= @project.project_detail.description %> </p> </div>
     </div>
   </div>
 
 <div class='sample-description row'>
-  <div id="carouselControls" class="carousel slide col-6" data-ride="carousel">
+  <div class="col-md-2"></div>
+  <div id="carouselControls" class="carousel slide col-8" data-ride="carousel">
     <div class="carousel-inner">
       <% @virtual_sample.images.each_with_index do |image, i| %>
         <div class="carousel-item <%= 'active' if i == 0 %>">
@@ -35,15 +36,16 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+  <div class="col-md-2"></div>
 </div>
 
-<div class="row">
+<div class="row text-center">
   <div class="col-md-12">
-    <% if @virtual_sample.video_file.attached? %>
-      <a class="btn btn-light" href="/video" role="button">Ver video</a>
-    <% end %>
+      <%= link_to 'Ver video', show_video_path(link: @virtual_sample.video_link), :class => "btn btn-primary", target: :_blank %>
   </div>
 </div>
+
+
   <!-- TODO remover esta "form" local y utilizar la propia del directorio "comments" -->
   <div class='sample-description row'>
     <div class='col'>
