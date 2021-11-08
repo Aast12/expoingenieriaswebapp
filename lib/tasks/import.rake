@@ -69,7 +69,7 @@ namespace :import do
             video_id = dataImages['VIDEOURL'].split('=')[-1]
             correct_video_url = "https://drive.google.com/file/d/" + video_id + "/preview"
             virtualSample = VirtualSample.new(project_id: projectID, video_link: correct_video_url)
-            pathToFolder = '/Users/fernandasanchez/Desktop/conexion_tec/lib/fotos_proyectos/Proyecto_' << projectID << "/"
+            pathToFolder = 'lib/fotos_proyectos/Proyecto_' << projectID << "/"
            
             ## LOAD LOGO
             if dataImages['PIC1NOM'] != nil && File.extname(dataImages['PIC1NOM']) != ".mp4"
