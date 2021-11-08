@@ -6,12 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-=begin
+
 # Edition
 name = "Feb-Dec 2020"
 start_date_edition = Date.new(2021, 2, 1)
 end_date_edition = Date.new(2021, 12, 31)
 Edition.create(name: name, start_date: start_date_edition, end_date: end_date_edition)
+
+name = "Feb-Jun 2021"
+start_date_edition = Date.new(2021, 2, 1)
+end_date_edition = Date.new(2021, 06, 13)
+Edition.create(name: name, start_date: start_date_edition, end_date: end_date_edition)
+
+
 
 # Phase
 Phase.create(name:"Registro", start_date: Date.new(2021, 2, 1), end_date: Date.new(2021, 3, 1), edition_id: 1)
@@ -44,7 +51,9 @@ Department.create(name: "Mecánica y Materiales Avanzados")
 Department.create(name: "Mecatronica y Electrónica")
 Department.create(name: "Tecnologías Sostenibles y Civil")
 Department.create(name: "Otro")
-=end 
+
+
+
 
 
 # Areas
@@ -74,10 +83,6 @@ ProjectCategory.create(name: "Productos o Servicios para Emprendimiento de Base 
 
 
 
-
-
-
-=begin
 #Users
 userProf = User.new(
     email: "profe@tec.com", 
@@ -123,7 +128,7 @@ student = Student.new(
     student_code: "A01570306"
 )
 student.save
-=end
+
 
 
 
