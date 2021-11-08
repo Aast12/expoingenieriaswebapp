@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2021_10_30_173441) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
     t.text "methodology"
     t.text "feasibility"
     t.text "results"
     t.text "impact"
-    t.integer "project_id", null: false
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_abstracts_on_project_id"
@@ -27,8 +30,8 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -48,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
   create_table "administrators", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_administrators_on_user_id"
   end
 
@@ -58,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
     t.string "email"
     t.string "major"
     t.string "student_code"
-    t.integer "project_id", null: false
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_collaborators_on_project_id"
@@ -66,8 +69,8 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
-    t.integer "virtual_sample_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "virtual_sample_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_comments_on_user_id"
@@ -82,7 +85,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
     t.integer "results"
     t.integer "impact"
     t.integer "score"
-    t.integer "project_id", null: false
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "ortography"
@@ -92,7 +95,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
   create_table "committee_members", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_committee_members_on_user_id"
   end
 
@@ -125,8 +128,8 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
   end
 
   create_table "judge_evaluations", force: :cascade do |t|
-    t.integer "judge_id", null: false
-    t.integer "project_id", null: false
+    t.bigint "judge_id", null: false
+    t.bigint "project_id", null: false
     t.integer "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -134,8 +137,19 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
     t.index ["project_id"], name: "index_judge_evaluations_on_project_id"
   end
 
-# Could not dump table "judges" because of following StandardError
-#   Unknown type 'bool' for column 'external'
+  create_table "judges", force: :cascade do |t|
+    t.string "company"
+    t.string "department"
+    t.string "contact_name"
+    t.string "contact_email"
+    t.boolean "has_tablet"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.boolean "external"
+    t.string "contact_phone"
+    t.index ["user_id"], name: "index_judges_on_user_id"
+  end
 
   create_table "operatives", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -146,7 +160,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
     t.text "name"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer "edition_id", null: false
+    t.bigint "edition_id", null: false
     t.index ["edition_id"], name: "index_phases_on_edition_id"
   end
 
@@ -154,7 +168,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
     t.string "department", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_professors_on_user_id"
   end
 
@@ -177,7 +191,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
     t.boolean "semestre_i"
     t.boolean "social_impact"
     t.string "client_type"
-    t.integer "project_id", null: false
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "category"
@@ -189,7 +203,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
   create_table "project_event_details", force: :cascade do |t|
     t.integer "stand"
     t.integer "final_score"
-    t.integer "project_id", null: false
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_project_event_details_on_project_id"
@@ -197,8 +211,8 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
 
   create_table "projects", force: :cascade do |t|
     t.integer "status"
-    t.integer "institution_id", null: false
-    t.integer "edition_id", null: false
+    t.bigint "institution_id", null: false
+    t.bigint "edition_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "main_student"
@@ -210,7 +224,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "edition_id", null: false
+    t.bigint "edition_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["edition_id"], name: "index_questions_on_edition_id"
@@ -220,7 +234,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
     t.text "problem"
     t.text "empathy"
     t.text "responsibility"
-    t.integer "project_id", null: false
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_social_impacts_on_project_id"
@@ -229,7 +243,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
   create_table "staff_members", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_staff_members_on_user_id"
   end
 
@@ -238,7 +252,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
     t.string "student_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
@@ -270,7 +284,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
 
   create_table "virtual_samples", force: :cascade do |t|
     t.text "video_link"
-    t.integer "project_id", null: false
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_virtual_samples_on_project_id"
@@ -279,7 +293,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
   create_table "visitors", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "city"
     t.index ["user_id"], name: "index_visitors_on_user_id"
   end

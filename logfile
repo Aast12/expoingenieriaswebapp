@@ -1,0 +1,32 @@
+2021-11-07 20:27:45.573 CST [12981] LOG:  starting PostgreSQL 14.0 on x86_64-apple-darwin20.6.0, compiled by Apple clang version 13.0.0 (clang-1300.0.29.3), 64-bit
+2021-11-07 20:27:45.574 CST [12981] LOG:  listening on IPv6 address "::1", port 5432
+2021-11-07 20:27:45.574 CST [12981] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-11-07 20:27:45.574 CST [12981] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-11-07 20:27:45.578 CST [12982] LOG:  database system was shut down at 2021-11-07 20:27:38 CST
+2021-11-07 20:27:45.586 CST [12981] LOG:  database system is ready to accept connections
+2021-11-07 20:27:50.019 CST [13005] FATAL:  database "fernandasanchez" does not exist
+2021-11-07 20:28:37.884 CST [13068] ERROR:  database "db/conexiontec_development" already exists
+2021-11-07 20:28:37.884 CST [13068] STATEMENT:  CREATE DATABASE "db/conexiontec_development" ENCODING = 'utf8'
+2021-11-07 20:28:55.080 CST [13095] ERROR:  foreign key constraint "fk_rails_cebda6ec92" cannot be implemented
+2021-11-07 20:28:55.080 CST [13095] DETAIL:  Key columns "main_student" and "id" are of incompatible types: character varying and bigint.
+2021-11-07 20:28:55.080 CST [13095] STATEMENT:  ALTER TABLE "projects" ALTER COLUMN "main_student" TYPE character varying, ALTER COLUMN "main_student" SET NOT NULL
+2021-11-07 20:33:43.916 CST [13180] ERROR:  database "db/conexiontec_development" already exists
+2021-11-07 20:33:43.916 CST [13180] STATEMENT:  CREATE DATABASE "db/conexiontec_development" ENCODING = 'utf8'
+2021-11-07 20:34:36.951 CST [13206] FATAL:  database "fernandasanchez" does not exist
+2021-11-07 20:36:02.702 CST [13241] ERROR:  foreign key constraint "fk_rails_cebda6ec92" cannot be implemented
+2021-11-07 20:36:02.702 CST [13241] DETAIL:  Key columns "main_student" and "id" are of incompatible types: character varying and bigint.
+2021-11-07 20:36:02.702 CST [13241] STATEMENT:  ALTER TABLE "projects" ALTER COLUMN "main_student" TYPE varchar, ALTER COLUMN "main_student" SET NOT NULL
+2021-11-07 20:38:57.532 CST [13298] ERROR:  column "main_student_id" of relation "projects" does not exist
+2021-11-07 20:38:57.532 CST [13298] STATEMENT:  ALTER TABLE "projects" DROP COLUMN "main_student_id"
+2021-11-07 20:39:04.106 CST [13324] ERROR:  database "db/conexiontec_development" already exists
+2021-11-07 20:39:04.106 CST [13324] STATEMENT:  CREATE DATABASE "db/conexiontec_development" ENCODING = 'utf8'
+2021-11-07 20:39:04.116 CST [13325] ERROR:  database "db/conexiontec_test" already exists
+2021-11-07 20:39:04.116 CST [13325] STATEMENT:  CREATE DATABASE "db/conexiontec_test" ENCODING = 'utf8'
+2021-11-07 20:39:12.207 CST [13351] ERROR:  column "main_student_id" of relation "projects" does not exist
+2021-11-07 20:39:12.207 CST [13351] STATEMENT:  ALTER TABLE "projects" DROP COLUMN "main_student_id"
+2021-11-07 20:40:15.939 CST [12981] LOG:  server process (PID 13561) was terminated by signal 9: Killed: 9
+2021-11-07 20:40:15.939 CST [12981] LOG:  terminating any other active server processes
+2021-11-07 20:40:15.950 CST [12981] LOG:  all server processes terminated; reinitializing
+2021-11-07 20:40:15.971 CST [12981] LOG:  startup process (PID 13562) was terminated by signal 9: Killed: 9
+2021-11-07 20:40:15.971 CST [12981] LOG:  aborting startup due to startup process failure
+2021-11-07 20:40:15.972 CST [12981] LOG:  database system is shut down
