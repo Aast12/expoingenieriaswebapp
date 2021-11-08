@@ -21,11 +21,13 @@ class FilterOptions
   end
 
   def area_options
-    ProjectArea.all.collect { |area| [ area.name, area.name ] }
+    ProjectArea.all.collect { |area| [ area.name , area.name ] }
   end
 
   def professor_options
-    Professor.all.collect { |professor| [ professor.user.full_name, professor.id ] }
+    #Project.all.distict.collect { |project| [project.professor] }
+     Project.distinct.pluck(:professor, :professor)
+    #Professor.all.collect { |professor| [ professor.user.full_name, professor.id ] }
   end
 
   def institution_options
@@ -42,3 +44,6 @@ class FilterOptions
      ['Declinado', 'declined'], ['Faltó', 'missed']]
   end
 end
+
+#Productos O Servicios Para Emprendimiento De Base Tecnologica
+#Productos O Servicios Para Emprendimiento De Base Tecnológica

@@ -1,5 +1,6 @@
 window.filterOptions = function() {
   var option = $('#filter-by').val()
+  console.log(option)
   var url = '/filter_options?filter_type=' + option
   var select = $('#filter-select');
   var search = $('#filter-search');
@@ -14,6 +15,7 @@ window.filterOptions = function() {
       select.attr('name', option)
       select.empty()
       $.each(data, function(_, key) {
+        console.log(data)
         select.append( $('<option></option>').val(key[1]).html(key[0]) );
       });
     });

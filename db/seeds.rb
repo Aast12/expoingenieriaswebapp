@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+=begin
 # Edition
 name = "Feb-Dec 2020"
 start_date_edition = Date.new(2021, 2, 1)
@@ -43,30 +44,32 @@ Department.create(name: "Mecánica y Materiales Avanzados")
 Department.create(name: "Mecatronica y Electrónica")
 Department.create(name: "Tecnologías Sostenibles y Civil")
 Department.create(name: "Otro")
+=end 
+
 
 # Areas
-ProjectArea.create(name: "Agriobiotecnología")
+ProjectArea.create(name: "Agrobiotecnología")
 ProjectArea.create(name: "Automatización de Proceso")
 ProjectArea.create(name: "Bionegocios")
 ProjectArea.create(name: "Diseño Industrial")
-ProjectArea.create(name: "Electronica-Hardware")
-ProjectArea.create(name: "Ingenieria Civil")
-ProjectArea.create(name: "Ingenieria de Alimentos")
-ProjectArea.create(name: "Ingenieria Industrial")
-ProjectArea.create(name: "Ingenieria Mecanica")
-ProjectArea.create(name: "Ingenieria Quimica")
-ProjectArea.create(name: "Modelo Arquitectonico")
+ProjectArea.create(name: "Electrónica-Hardware")
+ProjectArea.create(name: "Ingeniería Civil")
+ProjectArea.create(name: "Ingeniería de Alimentos")
+ProjectArea.create(name: "Ingeniería Industrial")
+ProjectArea.create(name: "Ingeniería Mecánica")
+ProjectArea.create(name: "Ingeniería Química")
+ProjectArea.create(name: "Modelo Arquitectónico")
 ProjectArea.create(name: "Modelo de Negocio")
 ProjectArea.create(name: "Nanotecnología")
 ProjectArea.create(name: "Proceso de Producción")
-ProjectArea.create(name: "Quimica-Bioquimica")
+ProjectArea.create(name: "Química-Bioquímica")
 ProjectArea.create(name: "Sistemas Embebidos")
 ProjectArea.create(name: "Software")
 
 #Base Categories:
 ProjectCategory.create(name: "Desarrollo de Prototipo Físico")
 ProjectCategory.create(name: "Desarrollo de Prototipo de Software")
-ProjectCategory.create(name: "Investigacion y Desarrollo de Propuestas de Mejora")
+ProjectCategory.create(name: "Investigación y Desarrollo de Propuestas de Mejora")
 ProjectCategory.create(name: "Productos o Servicios para Emprendimiento de Base Tecnológica")
 
 
@@ -74,7 +77,7 @@ ProjectCategory.create(name: "Productos o Servicios para Emprendimiento de Base 
 
 
 
-
+=begin
 #Users
 userProf = User.new(
     email: "profe@tec.com", 
@@ -120,7 +123,7 @@ student = Student.new(
     student_code: "A01570306"
 )
 student.save
-
+=end
 
 
 
