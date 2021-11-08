@@ -12,7 +12,6 @@ require("packs/project")
 require("packs/filter_options")
 require("packs/mailing_type")
 require("jquery")
-require("jquery_ujs")
 require("@nathanvda/cocoon")
 
 import "bootstrap";
