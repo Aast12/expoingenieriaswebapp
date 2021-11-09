@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_181445) do
+ActiveRecord::Schema.define(version: 2021_11_08_224431) do
 
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
@@ -95,6 +95,13 @@ ActiveRecord::Schema.define(version: 2021_10_22_181445) do
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.string "code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "daysgroups", force: :cascade do |t|
+    t.string "group"
+    t.date "day"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -231,6 +238,12 @@ ActiveRecord::Schema.define(version: 2021_10_22_181445) do
   end
 
   create_table "staff_members", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "stands", force: :cascade do |t|
+    t.integer "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

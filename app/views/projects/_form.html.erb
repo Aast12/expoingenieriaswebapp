@@ -23,16 +23,16 @@
     <% unless current_page?('/projects/new') %>
       <% if (current_user.committee_member? || current_user.administrator?)%>
           <div class="col-sm-1">
-            <%= form.label :project_id, "ID", :class => "form-label" %>
-            <%= form.text_field :project_id, :class => "form-control", :disabled => true %>
+            <%= form.label :id, "ID", :class => "form-label" %>
+            <%= form.text_field :id, :class => "form-control", :disabled => true %>
           </div>
-          <div class="col-sm-2">
-            <%= form.label :day_group, "Días-Grupo", :class => "form-label" %>
-            <%= form.text_field :day_group, :class => "form-control"%>
+          <div class="col-sm-3">
+            <%= form.label :daysgroup, "Días-Grupo", :class => "form-label" %>
+            <%= form.select :daysgroups, daysgroups_options(), {prompt: 'Dia-Grupo'}, :class => "form-control"%>
           </div>
           <div class="col-sm-2">
             <%= form.label :stand, "Stand", :class => "form-label" %>
-            <%= form.text_field :stand, :class => "form-control"%>
+            <%= form.select :stands, stand_options(), {prompt: 'Stand'}, :class => "form-control" %>
           </div>
         
       <% end %>

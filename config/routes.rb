@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :stands
+  resources :daysgroups
   resources :academic_levels
   resources :phases
   resources :courses

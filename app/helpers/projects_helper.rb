@@ -33,7 +33,7 @@ module ProjectsHelper
     [['Aceptado', "#{project_id}:accepted"], ['Faltó', "#{project_id}:missed"]]
   end
 
-
+  
   def project_area(project)
     project_detail = project.project_detail
     project_detail.area
