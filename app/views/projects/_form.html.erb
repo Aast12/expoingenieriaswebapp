@@ -21,6 +21,7 @@
   <%= form.fields_for :project_detail do |project_detail| %>
     <%= render "project_details/form_shared", form: project_detail %>
   <% end %>
+  
 
   <div id='social-impact-form' class="hidden">
     <h3>Impacto Social</h3>
@@ -36,10 +37,25 @@
 
   <% if !current_user.student? %>
     <h3>Datos del estudiante responsable</h3>
-    <div class="form-group col-sm-13 text-left">
-      <%= form.label :student_id, "Nombre", :class => "form-label" %>
-      <%= form.select :student_id, student_options(), { :include_blank => true }, :class => "form-control" %>
+    <div class="form-group col-sm-10 text-left">
+
+      <%= form.label :selected_student_id, "Nombre", :class => "form-label" %>
+      <%= form.select :selected_student_id, student_options(), { :include_blank => true }, :class => "form-control",:id => "student_option", :onchange => "set_info('selected-email','selected-major','selected-student_code','select_id','"+student_options().to_s+"')", :id => "select_id"%>
+      <br>
+      <div class="form-group col-sm-10 text-left">
+        <%= form.label :email,"Email",:class => "form-label"%>
+        <%= form.text_area :email, :class => "form-control", :id => "selected-email",:disabled => true, size: "1x1"%>
+      </div>
+      <div class="form-group col-sm-10 text-left">
+        <%= form.label :major,"Carrera",:class => "form-label"%>
+        <%= form.text_area :major, :class => "form-control", :id => "selected-major",:disabled => true, size: "1x1"%>
+      </div>
+      <div class="form-group col-sm-10 text-left">
+        <%= form.label :student_code,"Matricula",:class => "form-label"%>
+        <%= form.text_area :student_code, :class => "form-control", :id => "selected-student_code",:disabled => true, size: "1x1"%>
+      </div>
     </div>
+    
   <% end %>
 
   <% if !current_user.professor? %>

@@ -15,6 +15,20 @@ window.manageWordCount = function(textId, wordCountId) {
   wordCount.value = countWords(textValue);
 }
 
+window.set_info = function(email_id,major_id,code_id,select_id,value) {
+  email = document.getElementById(email_id);
+  major = document.getElementById(major_id);
+  code = document.getElementById(code_id);
+  select = document.getElementById(select_id);
+  id = select.value
+
+  values_arr = JSON.parse(value)
+
+  email.value = values_arr[parseInt(id)-1][1];
+  major.value = values_arr[parseInt(id)-1][3];;
+  code.value = values_arr[parseInt(id)-1][2];;
+}
+
 // https://www.tutorialspoint.com/how-to-count-a-number-of-words-in-given-string-in-javascript
 function countWords(str) {
    str = str.replace(/(^\s*)|(\s*$)/gi,"");

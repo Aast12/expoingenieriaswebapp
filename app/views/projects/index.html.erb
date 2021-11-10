@@ -17,9 +17,7 @@
           <%= submit_tag "Filter", name: nil, class: "btn btn-light" %>
         </div>
         <div class="col-sm-2 newProject">
-          <% if get_current_phase_name() === "Registro" %>
-            <%= link_to 'Nuevo proyecto', new_project_path, :class => "btn btn-light text-body" %>
-          <% end %>
+          <%= link_to 'Nuevo proyecto', new_project_path, :class => "btn btn-light text-body" %>
         </div>
       <% end %>
     </div>
