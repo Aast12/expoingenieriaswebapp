@@ -16,7 +16,7 @@ namespace :import do
       data = Hash[[headers, row].transpose]
 
       projectID = data['ID']
-      puts "Loading virtual sample with project id: " + projectID
+      puts "Loading project with project id: " + projectID
 
       case data['ACCEPTADO']
       when "RG"
@@ -37,12 +37,9 @@ namespace :import do
         status = 7
       end
 
-      category = correct_names_categories(data['TIPO DE PROYECTO'])
-      area = correct_names_area(data['TIPO DE DESARROLLO'])
-
-
 
       project = Project.new(id: data['ID'] ,status: status, main_student: data['NOMBRE ALUMNO RESPONSABLE1'], professor: data['PROFESOR COORDINADOR'], institution_id: 1, edition_id: 2)
+      print(data['TIPO DE DESARROLLO'])
       project.save!
 
       if data['MATERIA'] == "SEMESTRE i"
@@ -51,7 +48,7 @@ namespace :import do
           is_semestre_i = 0
       end
 
-      project_detail = ProjectDetail.new(name: data['NOMBRE DEL PROYECTO'], description: data['DESCRIPCION'], category: category, semestre_i: is_semestre_i, social_impact: 0, client_type: data['TIPO DE CLIENTE'], area: area , project_id: project.id)
+      project_detail = ProjectDetail.new(name: data['NOMBRE DEL PROYECTO'], description: data['DESCRIPCION'], category: data['TIPO DE PROYECTO'], semestre_i: is_semestre_i, social_impact: 0, client_type: data['TIPO DE CLIENTE'], area: data['TIPO DE DESARROLLO'] , project_id: project.id)
       project_detail.save!
 
 
@@ -111,53 +108,6 @@ end
 
 
 
-def correct_names_area(area)
-  
-
-  case area
-    when "AGROBIOTECNOLOGIA"
-      return "Agrobiotecnología"
-    when "AUTOMATIZACION DE PROCESO"
-      return "Automatización de Proceso"
-    when "ELECTRONICA-HARDWARE"
-      return "Electrónica-Hardware"
-    when "INGENIERIA DE ALIMENTOS"
-      return "Ingeniería de Alimentos"
-    when "INGENIERIA INDUSTRIAL"
-      return "Ingeniería Industrial"
-    when "INGENIERIA MECANICA"
-      return "Ingeniería Mecánica"
-    when "INGENIERIA QUIMICA"
-      return "Ingeniería Química"
-    when "MODELO ARQUITECTONICO"
-      return "Modelo Arquitectónico"
-    when "NANOTECNOLOGIA"
-      return "Nanotecnología"
-    when "PROCESO DE PRODUCCION"
-      return "Proceso de Producción"
-    when "QUIMICA-BIOQUIMCA"
-      return "Química-Bioquímica"
-    else
-      return area.titleize
-  end
-
-end
-
-
-def correct_names_categories(category)
-
-  case category
-    when "DESARROLLO DE PROTOTIPO FISICO"
-      return "Desarrollo de Prototipo Físico"
-    when "DESARROLLO DE PROTOTIPO DE SOFTWARE"
-      return "Desarrollo de Prototipo de Software"
-    when "INVESTIGACION Y DESARROLLO DE PROPUESTAS DE MEJORA"
-      return "Investigación y Desarrollo de Propuestas de Mejora"
-    when "PRODUCTOS O SERVICIOS PARA EMPRENDIMIENTO DE BASE TECNOLOGICA"
-      return "Productos o Servicios para Emprendimiento de Base Tecnológica"
-  end
-
-end
 
 
 

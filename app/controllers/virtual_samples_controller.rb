@@ -2,11 +2,14 @@ class VirtualSamplesController < ApplicationController
   before_action :get_project, except: [:index, :filter_virtual_samples, :show_video] #[:show, :edit, :update, :destroy, :new, :create]
   before_action :set_virtual_sample, only: [:show, :edit, :update, :destroy]
   before_action :get_comments, only: [:show]
+  #before_action :filter_virtual_samples, only: [:index]
 
   # GET /virtual_samples
   # GET /virtual_samples.json
   def index
-    @virtual_samples = VirtualSample.page(params[:page]).per(9)
+  
+    @virtual_samples =  VirtualSample.all.page(params[:page]).per(500)
+      
   end
 
   def filter_virtual_samples

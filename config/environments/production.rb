@@ -60,9 +60,22 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "conexion_tec_production"
 
-  config.action_mailer.perform_caching = false
-  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.office365.com",
+    domain: 'smtp.office365.com',
+    port: 587,
+    enable_starttls_auto: true,
+    authentication: 'login',
+    user_name: "conexion_tec@outlook.com",
+    password: "conexiontec2021!", 
+    openssl_verify_mode: "none",
+  }
+
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

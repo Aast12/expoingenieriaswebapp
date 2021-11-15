@@ -1,5 +1,5 @@
-<div class='content'>
-  <div class='sample-header'>
+<div class='content' style="background-image:  url(<%= rails_blob_url(@virtual_sample.background_image) %> );background-color: rgba(0,0,0,0.6);background-blend-mode: darken;">
+  <div class='sample-header' style="color: white">
     <h3><%= @project.project_detail.name %></h3>
     <%= link_to 'Back', virtual_samples_path, :class => 'btn btn-light float-left'%>
   </div>
@@ -8,7 +8,7 @@
     <div class='col-2'>
       <%= image_tag(@virtual_sample.icon_image, width: '100%') rescue show_image %>
     </div>
-    <div class='col-10'>
+    <div class='col-10' style="color: white">
       <div class='sample-buttons'>
         <h6> <b>Categoría: </b> <%= @project.project_detail.category %> </h6> 
         <h6> <b>Área de Desarrollo:</b> <%= @project.project_detail.area %> </h6>

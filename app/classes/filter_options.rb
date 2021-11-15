@@ -17,17 +17,15 @@ class FilterOptions
 
   private
   def category_options
-    ProjectCategory.all.collect { |category| [ category.name, category.name ] }
+    ProjectDetail.all.collect { |project_details| [ project_details.category, project_details.category ] }.uniq
   end
 
   def area_options
-    ProjectArea.all.collect { |area| [ area.name , area.name ] }
+    ProjectDetail.all.collect { |project_details| [ project_details.area , project_details.area  ] }.uniq
   end
 
   def professor_options
-    #Project.all.distict.collect { |project| [project.professor] }
-     Project.distinct.pluck(:professor, :professor)
-    #Professor.all.collect { |professor| [ professor.user.full_name, professor.id ] }
+    Project.joins("INNER JOIN virtual_samples ON virtual_samples.project_id = projects.id").all.collect  { |project| [project.professor, project.professor] }.uniq
   end
 
   def institution_options
@@ -45,5 +43,3 @@ class FilterOptions
   end
 end
 
-#Productos O Servicios Para Emprendimiento De Base Tecnologica
-#Productos O Servicios Para Emprendimiento De Base Tecnológica
