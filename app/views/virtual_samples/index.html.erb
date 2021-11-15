@@ -3,7 +3,7 @@
   <div>
     <%= form_tag filter_virtual_samples_path, method: :get, id: "virtual_sample_search", class: 'row', remote: true do %>
       <div class="col-5">
-        <% filter_types = virtual_sample_filter_options().prepend(['Filtrar por', 'no_filter']) %>
+        <% filter_types = virtual_sample_filter_options().prepend(['Mostrar todos', 'no_filter']) %>
         <%= select_tag :filter_type, options_for_select(filter_types), id: "filter-by", class: 'custom-select', onchange: 'filterOptions()' %>
       </div>
       <div class="col-5">
