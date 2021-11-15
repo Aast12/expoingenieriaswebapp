@@ -29,7 +29,7 @@ class FilterOptions
   end
 
   def institution_options
-    Institution.all.collect { |institution| [ institution.name, institution.id ] }
+    Project.all.collect { |project| [ project.campus, project.campus ] }.uniq
   end
 
   def department_options

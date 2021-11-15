@@ -154,7 +154,7 @@ class ProjectsController < ApplicationController
       params.require(:project).permit(:status, :main_student, :professor, :institution_id, :edition_id,
                                       project_detail_attributes: project_detail_attributes,
                                       social_impact_attributes: social_impact_attributes,
-                                      abstract_attributes: abstract_attributes)
+                                      abstract_attributes: abstract_attributes, :campus),
     end
 
     def project_detail_attributes

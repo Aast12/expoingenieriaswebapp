@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_30_173441) do
+ActiveRecord::Schema.define(version: 2021_11_15_172609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,6 +217,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "main_student"
     t.string "professor"
+    t.string "campus"
     t.index ["edition_id"], name: "index_projects_on_edition_id"
     t.index ["institution_id"], name: "index_projects_on_institution_id"
   end
@@ -287,6 +288,11 @@ ActiveRecord::Schema.define(version: 2021_10_30_173441) do
     t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "pic1"
+    t.string "pic2"
+    t.string "pic3"
+    t.string "pic4"
+    t.string "pic5"
     t.index ["project_id"], name: "index_virtual_samples_on_project_id"
   end
 

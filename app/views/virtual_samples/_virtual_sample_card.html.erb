@@ -6,7 +6,13 @@
       </div>
     </div>
     <div class="img-card">
-      <%= image_tag(virtual_sample.icon_image, width: '100%', height: '300px') rescue index_image %>
+      <% if virtual_sample.pic4 == nil %>
+        <img src="/assets/NoPicture.png" width = "100%", height = "300px" > 
+      <% else %>
+        <img src="<%= virtual_sample.pic4 %>" width = "100%", height = "300px" >
+      <% end %>
+
+
     </div>
     <div class="project-card-body">
       <div class="description-card"><%= project_description(project) %> </div> 

@@ -6,7 +6,7 @@ class VirtualSample < ApplicationRecord
   scope :filter_by_area, -> (area) { includes(:project).merge(Project.filter_by_area(area)) }
   scope :filter_by_professor, -> (prof_name) { includes(:project).where(projects: { professor: prof_name } ) }
   scope :filter_by_department, -> (id) { includes(:project).where(projects: { department_id: id } ) }
-  scope :filter_by_institution, -> (id) { includes(:project).where(projects: { institution_id: id } ) }
+  scope :filter_by_institution, -> (campus) { includes(:project).where(projects: { campus: campus } ) }
   scope :filter_by_social_service, -> (bool) { includes(:project).merge(Project.filter_by_social_service(bool)) }
   
   belongs_to :project

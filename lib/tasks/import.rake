@@ -38,8 +38,7 @@ namespace :import do
       end
 
 
-      project = Project.new(id: data['ID'] ,status: status, main_student: data['NOMBRE ALUMNO RESPONSABLE1'], professor: data['PROFESOR COORDINADOR'], institution_id: 1, edition_id: 2)
-      print(data['TIPO DE DESARROLLO'])
+      project = Project.new(id: data['ID'] ,status: status, main_student: data['NOMBRE ALUMNO RESPONSABLE1'], professor: data['PROFESOR COORDINADOR'], institution_id: 1, edition_id: 2, campus: data['CAMPUS'])
       project.save!
 
       if data['MATERIA'] == "SEMESTRE i"
@@ -61,35 +60,39 @@ namespace :import do
           next if idxS == 0
           dataImages = Hash[[headersImages, rowS].transpose]
 
+          #src="assets/fotos_proyectos/Proyecto_1421/foto 1.jpg"
           if dataImages['Título'] == projectID
             ## LOAD PROJECT VIDEO
             video_id = dataImages['VIDEOURL'].split('=')[-1]
             correct_video_url = "https://drive.google.com/file/d/" + video_id + "/preview"
-            virtualSample = VirtualSample.new(project_id: projectID, video_link: correct_video_url)
-            pathToFolder = 'lib/fotos_proyectos/Proyecto_' << projectID << "/"
+            pathToFolder = '/assets/fotos_proyectos/Proyecto_' << projectID << "/"
            
             ## LOAD LOGO
             if dataImages['PIC1NOM'] != nil && File.extname(dataImages['PIC1NOM']) != ".mp4"
               pathToLogo = pathToFolder + dataImages['PIC1NOM']
               #puts pathToLogo
-              virtualSample.icon_image.attach(io: File.open(pathToLogo), filename: dataImages['PIC1NOM'], content_type: 'image/jpeg')
+              #virtualSample.icon_image.attach(io: File.open(pathToLogo), filename: dataImages['PIC1NOM'], content_type: 'image/jpeg')
             end
 
             ## LOAD BACKGROUND IMAGE
             if dataImages['PIC4NOM'] != nil && File.extname(dataImages['PIC4NOM']) != ".mp4"
               pathToBGImage = pathToFolder + dataImages['PIC4NOM']
-              virtualSample.background_image.attach(io: File.open(pathToBGImage), filename: dataImages['PIC4NOM'], content_type: 'image/jpeg')
+              #virtualSample.background_image.attach(io: File.open(pathToBGImage), filename: dataImages['PIC4NOM'], content_type: 'image/jpeg')
             end
 
             ## LOAD IMAGES FOR CARROUSEL
+            pics = Array.new(4)
             for i in 2..5
               picName = 'PIC' + i.to_s + 'NOM'
               
               if dataImages[picName] != nil && File.extname(dataImages[picName]) != ".mp4"
                 pathToPic = pathToFolder + dataImages[picName]
-                virtualSample.images.attach(io: File.open(pathToPic), filename: dataImages[picName], content_type: 'image/jpeg')
+                pics[i] = pathToPic
+               # virtualSample.images.attach(io: File.open(pathToPic), filename: dataImages[picName], content_type: 'image/jpeg')
               end
-              
+
+            virtualSample = VirtualSample.new(project_id: projectID, video_link: correct_video_url, pic1: pathToLogo, pic2: pics[2], pic3: pics[3], pic4: pics[4], pic5: pics[5])
+
             end
             virtualSample.save!
             
