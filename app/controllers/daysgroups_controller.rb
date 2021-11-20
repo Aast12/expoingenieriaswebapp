@@ -69,6 +69,6 @@ class DaysgroupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def daysgroup_params
-      params.require(:daysgroup).permit(:group, :day)
+      params.require(:daysgroup).permit(:group)
     end
 end
