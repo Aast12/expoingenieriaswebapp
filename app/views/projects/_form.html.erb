@@ -61,8 +61,14 @@
   <% if !current_user.professor? %>
     <h3>Datos del profesor coordinador</h3>
     <div class="form-group col-sm-13 text-left">
+      <%= puts "Adios", professor_options(), "HOla" %>
       <%= form.label :professor_id, "Nombre", :class => "form-label" %>
-      <%= form.select :professor_id, professor_options(), { :include_blank => true }, :class => "form-control" %>
+      <%= form.select :professor_id, professor_options(), { :include_blank => true }, :class => "form-control",:id => "professor_option", :onchange => "set_info_professor('selected-email-professor','select_id_professor','"+professor_options().to_s+"')", :id => "select_id_professor"%>
+      <br>
+      <div class="form-group col-sm-10 text-left">
+        <%= form.label :email_professor,"Email",:class => "form-label"%>
+        <%= form.text_area :email_professor, :class => "form-control", :id => "selected-email-professor",:disabled => true, size: "1x1"%>
+      </div>
     </div>
   <% end %>
 

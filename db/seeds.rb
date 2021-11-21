@@ -78,13 +78,13 @@ User.create(
     institution_id: 1
 )
 
-
+userable_p = Professor.create()
 User.create(
     email: "luis@tec.mx", 
     password: "123123",
     first_name: "Luis",
     last_name: "Gonzalez",
-    userable_id: userable.id,
+    userable_id: userable_p.id,
     userable_type: "Professor",
     edition_id: 1,
     institution_id: 1,
@@ -118,6 +118,49 @@ User.create(
     first_name: "Frnacisco",
     last_name: "Sa",
     userable_id: userable.id,
+    userable_type: "Student",
+    edition_id: 1,
+    institution_id: 1,
+)
+
+userable_0 = Student.create(
+    major: "ITC",
+    student_code: "A03445634"
+)
+User.create(
+    email: "franPaco@tec.mx", 
+    password: "123123",
+    first_name: "Franco",
+    last_name: "Fa",
+    userable_id: userable_0.id,
+    userable_type: "Student",
+    edition_id: 1,
+    institution_id: 1,
+)
+userable_1 = Student.create(
+    major: "ITC",
+    student_code: "A00823658"
+)
+User.create(
+    email: "paco_gg@tec.mx", 
+    password: "123123",
+    first_name: "Pepo",
+    last_name: "Su",
+    userable_id: userable_1.id,
+    userable_type: "Student",
+    edition_id: 1,
+    institution_id: 1,
+)
+userable_2 = Student.create(
+    major: "ITC",
+    student_code: "A01232367"
+)
+User.create(
+    email: "alec@tec.mx", 
+    password: "123123",
+    first_name: "Alex",
+    last_name: "Sa",
+    userable_id: userable_2.id,
     userable_type: "Student",
     edition_id: 1,
     institution_id: 1,
