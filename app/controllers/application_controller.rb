@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   end
 
   def project_detail_keys()
-    return [:name, :description, :video_url, :semestre_i, :social_impact, :client_type, :project_id, :category, :area, :academic_level]
+
+    return [:name, :description, :semestre_i, :social_impact, :client_type, :project_id, :category, :area, :academic_level]
   end
 
   def social_impact_keys()

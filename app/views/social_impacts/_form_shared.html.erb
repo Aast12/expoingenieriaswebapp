@@ -1,20 +1,29 @@
 <div class="form-group row text-left">
   <div class="col-sm-12">
     <%= form.label :problem, "Problema", :class => "form-label" %>
-    <%= form.text_area :problem, :class => "form-control" %>
+    <%= form.text_area :problem, size: "12x4", :class => "form-control", :id => "social-problem-text", :onchange => "manageGlobalWordCount(['social-problem-text', 'empathy-text', 'responsibility-text'], 'social-impact-word-count')" %>
   </div>
 </div>
 
 <div class="form-group row text-left">
   <div class="col-sm-12">
     <%= form.label :empathy, "Empatía", :class => "form-label" %>
-    <%= form.text_area :empathy, :class => "form-control" %>
+
+    <%= form.text_area :empathy, size: "12x4", :class => "form-control", :id => "empathy-text", :onchange => "manageGlobalWordCount(['social-problem-text', 'empathy-text', 'responsibility-text'], 'social-impact-word-count')" %>
   </div>
 </div>
 
 <div class="form-group row text-left">
   <div class="col-sm-12">
     <%= form.label :responsibility, "Responsabilidad", :class => "form-label" %>
-    <%= form.text_area :responsibility, :class => "form-control" %>
+    <%= form.text_area :responsibility, size: "12x4", :class => "form-control", :id=> "responsibility-text", :onchange => "manageGlobalWordCount(['social-problem-text', 'empathy-text', 'responsibility-text'], 'social-impact-word-count')" %>
+  </div>
+</div>
+<div class="row word-counter">
+  <div class="col-sm-3">
+    <%= form.label :social_impact_word_count, "Contador de palabras:", :class => "form-label" %>
+  </div>
+  <div class="col-sm-2">
+    <%= text_field_tag :social_impact_word_count, "", class: 'form-control', :id => "social-impact-word-count", :disabled => true%>
   </div>
 </div>

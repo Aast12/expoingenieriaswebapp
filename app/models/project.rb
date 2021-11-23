@@ -22,6 +22,8 @@ class Project < ApplicationRecord
   has_one :committee_evaluation
   has_one :virtual_sample
   has_many :judge_evaluations
+  has_one :daysgroup, required: false
+  has_one :stand, required: false
 
   has_one :abstract, dependent: :destroy
   accepts_nested_attributes_for :abstract, allow_destroy: true

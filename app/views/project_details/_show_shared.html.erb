@@ -1,4 +1,20 @@
 <div class="show-project-details">
+
+  <div class="aside">
+    <h5>PRESENTACIÓN</h5>
+    <div>
+      ID:
+      <%= @project.id %>
+    </div>
+    <div>
+      Stand:
+      <%= display_project_stand(@project) %>
+    </div>
+    <div>
+      Dia-Grupo:
+      Monterrey - Lunes
+    </div>
+  </div>
   <div>
     <strong>Nombre:</strong>
     <%= project_detail.name %>
@@ -10,11 +26,7 @@
   </div>
 
   <div>
-    <strong>Liga del video:</strong>
-    <%= project_detail.video_url %>
-  </div>
 
-  <div>
     <strong>Categoría:</strong>
     <%= project_detail.category %>
   </div>

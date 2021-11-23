@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_181445) do
+
+ActiveRecord::Schema.define(version: 2021_11_20_180917) do
 
   create_table "abstracts", force: :cascade do |t|
     t.text "problem"
@@ -99,6 +100,12 @@ ActiveRecord::Schema.define(version: 2021_10_22_181445) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "daysgroups", force: :cascade do |t|
+    t.string "group"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "departments", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -174,7 +181,6 @@ ActiveRecord::Schema.define(version: 2021_10_22_181445) do
   create_table "project_details", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.text "video_url"
     t.boolean "semestre_i"
     t.boolean "social_impact"
     t.string "client_type"
@@ -231,6 +237,12 @@ ActiveRecord::Schema.define(version: 2021_10_22_181445) do
   end
 
   create_table "staff_members", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "stands", force: :cascade do |t|
+    t.string "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
