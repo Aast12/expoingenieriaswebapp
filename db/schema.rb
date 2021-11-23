@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2021_11_20_180917) do
 
   create_table "abstracts", force: :cascade do |t|

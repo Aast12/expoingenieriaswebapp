@@ -139,7 +139,11 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: 'Status was successfully updated.' }
       format.json { head :no_content }
     end
+
+
   end
+
+
   
 
   private
@@ -176,6 +180,7 @@ class ProjectsController < ApplicationController
       params << :_destroy
       return params
     end
+
 
     def filterable_params
       params.permit(:name, :category, :area, :professor, :institution, :department, :social_service, :status)

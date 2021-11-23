@@ -2,6 +2,7 @@
   <div class="content-show">
     <h1>Detalles del proyecto</h1>
     <%= render "project_details/show_shared", project_detail: @project.project_detail %>
+
     <br />
     <div class="div-center">
     <%= link_to 'Proyectos', projects_path, :class => "btn btn-light" %>
@@ -27,6 +28,7 @@
         <strong>Nombre:</strong>
         <%= project_student(@project) %>
       </div>
+
 
       <div>
         <strong>Correo electrónico: </strong>

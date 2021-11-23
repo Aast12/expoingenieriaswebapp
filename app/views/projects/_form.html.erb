@@ -13,10 +13,12 @@
 
   <h1>Alta de proyecto</h1>
   <div class="form-group row text-left">
+
     <div class="col-sm-4">
       <%= form.label :institution_id, "Campus", :class => "form-label important" %>
       <%= form.select :institution_id, institution_options(), { prompt: 'Seleccionar campus' }, :class => "form-control" %>
     </div>
+
     <%= form.fields_for :project_detail do |project_detail| %>
       <%= render "project_details/form_shared", form: project_detail %>
     <% end %>
@@ -50,6 +52,7 @@
     <%= form.fields_for :abstract do |abstract| %>
       <%= render "abstracts/form_shared", form: abstract %>
     <% end %>
+
 
     <% if !current_user.student? %>
       <h3>Datos del estudiante responsable</h3>
