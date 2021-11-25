@@ -8,8 +8,9 @@ class VirtualSamplesController < ApplicationController
   # GET /virtual_samples.json
   def index
   
-    @virtual_samples =  VirtualSample.all.page(params[:page]).per(500)
-      
+    @virtual_samples = VirtualSample.page(params[:page]).per(9)
+
+    
   end
 
   def filter_virtual_samples
@@ -97,7 +98,7 @@ class VirtualSamplesController < ApplicationController
     end
 
     def filterable_params
-      params.permit(:name, :category, :area, :professor, :institution, :department, :social_service)
+      params.slice(:name, :category, :area, :professor, :institution, :department, :social_service)
     end
 
     def get_comments

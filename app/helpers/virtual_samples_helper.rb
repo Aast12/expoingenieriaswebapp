@@ -1,10 +1,10 @@
 module VirtualSamplesHelper
   def virtual_sample_filter_options
     [
-      ['Nombre', :name],
+      ['Nombre del Proyecto', :name],
       ['Categoria', :category],
       ['Area Temática', :area],
-      ['Profesor', :professor],
+      ['Nombre del Profesor', :professor],
       ['Campus', :institution],
       ['Sevicio Social', :social_service],
     ]

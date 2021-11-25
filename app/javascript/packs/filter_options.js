@@ -6,10 +6,12 @@ window.filterOptions = function() {
   var search = $('#filter-search');
   if (option == 'name') {
     select.hide();
+    select.val([]);
     search.show();
     search.attr('name', option);
   } else {
     search.hide();
+    search.attr('name', '');
     select.show();
     $.get(url, function(data) {
       select.attr('name', option)

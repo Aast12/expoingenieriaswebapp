@@ -1,6 +1,6 @@
 class VirtualSample < ApplicationRecord
   include Filterable
-
+  
   scope :filter_by_name, -> (name) { joins(:project).merge(Project.filter_by_name(name)) }
   scope :filter_by_category, -> (category) { includes(:project).merge(Project.filter_by_category(category)) }
   scope :filter_by_area, -> (area) { includes(:project).merge(Project.filter_by_area(area)) }

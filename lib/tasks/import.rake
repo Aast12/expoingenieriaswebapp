@@ -47,7 +47,14 @@ namespace :import do
           is_semestre_i = 0
       end
 
-      project_detail = ProjectDetail.new(name: data['NOMBRE DEL PROYECTO'], description: data['DESCRIPCION'], category: data['TIPO DE PROYECTO'], semestre_i: is_semestre_i, social_impact: 0, client_type: data['TIPO DE CLIENTE'], area: data['TIPO DE DESARROLLO'] , project_id: project.id)
+      if data['ENFOQUE_SOCIAL'] == 'SI'
+          has_social_impact = 1
+        else
+          has_social_impact = 0
+      end
+
+
+      project_detail = ProjectDetail.new(name: data['NOMBRE DEL PROYECTO'], description: data['DESCRIPCION'], category: data['TIPO DE PROYECTO'], semestre_i: is_semestre_i, social_impact: has_social_impact, client_type: data['TIPO DE CLIENTE'], area: data['TIPO DE DESARROLLO'] , project_id: project.id)
       project_detail.save!
 
 
@@ -91,7 +98,7 @@ namespace :import do
                # virtualSample.images.attach(io: File.open(pathToPic), filename: dataImages[picName], content_type: 'image/jpeg')
               end
 
-            virtualSample = VirtualSample.new(project_id: projectID, video_link: correct_video_url, pic1: pathToLogo, pic2: pics[2], pic3: pics[3], pic4: pics[4], pic5: pics[5])
+            virtualSample = VirtualSample.new(project_id: projectID, video_link: correct_video_url, pic1: pathToLogo, pic2: pics[2], pic3: pics[3], pic4: pics[4], pic5: pics[5], name: data['NOMBRE DEL PROYECTO'])
 
             end
             virtualSample.save!
