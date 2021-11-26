@@ -1,0 +1,3 @@
+.nested-fields
+  = f.select :student_code, Student.all.collect{|m| [m.student_code, m.id]}
+  = link_to_remove_association "remove student", f

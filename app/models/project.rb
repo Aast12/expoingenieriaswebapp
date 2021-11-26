@@ -24,6 +24,9 @@ class Project < ApplicationRecord
   has_many :judge_evaluations
   has_one :daysgroup, required: false
   has_one :stand, required: false
+  has_many :project_participants
+  has_many :students, through: :project_participants
+  accepts_nested_attributes_for :students, reject_if: :all_blank, allow_destroy: true
 
   has_one :abstract, dependent: :destroy
   accepts_nested_attributes_for :abstract, allow_destroy: true
@@ -31,6 +34,7 @@ class Project < ApplicationRecord
   accepts_nested_attributes_for :project_detail, allow_destroy: true
   has_one :social_impact, dependent: :destroy, required: false
   accepts_nested_attributes_for :social_impact, allow_destroy: true
+
 
   def set_default_status
     self.status ||= :registered
