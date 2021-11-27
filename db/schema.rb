@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2021_11_20_180917) do
 
   create_table "abstracts", force: :cascade do |t|
@@ -23,20 +22,6 @@ ActiveRecord::Schema.define(version: 2021_11_20_180917) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_abstracts_on_project_id"
-  end
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string "namespace"
-    t.text "body"
-    t.string "resource_type"
-    t.integer "resource_id"
-    t.string "author_type"
-    t.integer "author_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -63,18 +48,6 @@ ActiveRecord::Schema.define(version: 2021_11_20_180917) do
   create_table "administrators", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "admins", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_admins_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
   create_table "collaborators", force: :cascade do |t|
@@ -128,11 +101,8 @@ ActiveRecord::Schema.define(version: 2021_11_20_180917) do
 
   create_table "daysgroups", force: :cascade do |t|
     t.string "group"
-    t.date "day"
-    t.integer "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_daysgroups_on_project_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -278,11 +248,9 @@ ActiveRecord::Schema.define(version: 2021_11_20_180917) do
   end
 
   create_table "stands", force: :cascade do |t|
-    t.integer "number"
-    t.integer "project_id", null: false
+    t.string "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_stands_on_project_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -325,7 +293,6 @@ ActiveRecord::Schema.define(version: 2021_11_20_180917) do
   add_foreign_key "comments", "users"
   add_foreign_key "comments", "virtual_samples"
   add_foreign_key "committee_evaluations", "projects"
-  add_foreign_key "daysgroups", "projects"
   add_foreign_key "judge_evaluations", "judges"
   add_foreign_key "judge_evaluations", "projects"
   add_foreign_key "phases", "editions"
@@ -337,6 +304,5 @@ ActiveRecord::Schema.define(version: 2021_11_20_180917) do
   add_foreign_key "projects", "students"
   add_foreign_key "questions", "editions"
   add_foreign_key "social_impacts", "projects"
-  add_foreign_key "stands", "projects"
   add_foreign_key "virtual_samples", "projects"
 end

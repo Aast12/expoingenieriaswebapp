@@ -32,9 +32,6 @@
   %h3 Abstract
   = form.fields_for :abstract do |abstract|
     = render "abstracts/form_shared", form: abstract
-  %h3 Abstract
-  = form.fields_for :abstract do |abstract|
-    = render "abstracts/form_shared", form: abstract
   - if !current_user.student?
     %h3 Datos del estudiante responsable
     .form-group.col-sm-13.text-left
