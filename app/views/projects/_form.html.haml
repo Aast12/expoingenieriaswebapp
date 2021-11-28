@@ -36,28 +36,43 @@
     %h3 Datos del estudiante responsable
     .form-group.col-sm-13.text-left
       = form.label :student_id, "Nombre", :class => "form-label"
-      = form.select :student_id, student_options(), { :include_blank => true }, :class => "form-control"
+      = form.select :student_id, student_options(), { :include_blank => true }, :class => "form-control", :id => "student_option", :onchange => "set_info('selected-email', 'selected-major', 'selected-student_code', 'select_id', '"+student_options().to_s+"')", :id => "select_id"
+      %br
+      .form-group.col-sm-10.text-left
+        = form.label :email, "Email", :class => "form-label"
+        = form.text_area :email, :id => "selected-email", :class => "form-control", :disabled => true, size: "1x1"
+      .form-group.col-sm-10.text-lefts
+        = form.label :major, "Carrera", :class => "form-label"
+        = form.text_area :major, :id => "selected-major", :class => "form-control", :disabled => true, size: "1x1"
+      .form-group.col-sm-10.text-left
+        = form.label :student_code, "Matricula", :class => "form-label"
+        = form.text_area :student_code, :id => "selected-student_code", :class => "form-control", :disabled => true, size: "1x1"
+    %h3 Agregar integrantes del equipo
+    -# - Student.each do |a_value|
+    -#   = form.check_box(:a, { :multiple => true }, a_value)
+    -# = form.select :category, options_for_select(Student.all.collect {|x| [x.student_code, x.id]}), {:include_blank => true}, {:multiple => true}
+    -# = form.select :category, options_for_select(Student.all), :include_blank => true, :multiple => true
+    -# - Student.each do |question|
+    -#   = check_box_tag "student_ids[]", question.id, false, class: 'selectable'
+    = form.select :student_ids, Student.all.collect {|x| [x.student_code, x.id]}, {}, :multiple => "multiple", id: 'lstStates'
+    -# #students
+    -#   = form.fields_for :students do |student|
+    -#     = render 'student_fields', f: student
+    -#   .links
+    -#     = link_to_add_association 'add student', form, :students
   - if !current_user.professor?
     %h3 Datos del profesor coordinador
     .form-group.col-sm-13.text-left
       = form.label :professor_id, "Nombre", :class => "form-label"
-      = form.select :professor_id, professor_options(), { :include_blank => true }, :class => "form-control"
-  %h3 Estudiantes
-  -# - Student.each do |a_value|
-  -#   = form.check_box(:a, { :multiple => true }, a_value)
-  -# = form.select :category, options_for_select(Student.all.collect {|x| [x.student_code, x.id]}), {:include_blank => true}, {:multiple => true}
-  -# = form.select :category, options_for_select(Student.all), :include_blank => true, :multiple => true
-  -# - Student.each do |question|
-  -#   = check_box_tag "student_ids[]", question.id, false, class: 'selectable'
-  = form.select :student_ids, Student.all.collect {|x| [x.student_code, x.id]}, {}, :multiple => "multiple", id: 'lstStates'
-  -# #students
-  -#   = form.fields_for :students do |student|
-  -#     = render 'student_fields', f: student
-  -#   .links
-  -#     = link_to_add_association 'add student', form, :students
+      = form.select :professor_id, professor_options(), { :include_blank => true }, :class => "form-control", :id => "professor_option", :onchange => "set_info_professor('selected-email-professor', 'selected_id_professor', '"+professor_options().to_s+"')", :id => "selected_id_professor"
+      %br
+      .form-group.col-sm-10.text-left
+        = form.label :email_professor, "Email", :class => "form-label"
+        = form.text_area :email_professor, :class => "form-control", :id => "selected-email-professor", :disabled => true, size: "1x1"
+  %br
   .actions
     = link_to 'Cancelar', projects_path, class: 'btn btn-light'
-    = form.submit :Guardar, class: 'btn btn-primary'
+    = form.submit :Guardar, class: 'btn btn-primary' 
 :javascript
 
   $(function () { 
