@@ -1,4 +1,4 @@
-<div class='content ' style="background-image:  url(<%= @virtual_sample.pic4 %> );background-color: rgba(0,0,0,0.6);background-blend-mode: darken;">
+<div class='content mb-5 ' style="background-image:  url(<%= @virtual_sample.pic4 %> );background-color: rgba(0,0,0,0.7);background-blend-mode: darken;">
   <div class='sample-header' style="color: white">
     <h3><%= @project.project_detail.name %></h3>
     <%= link_to 'Back', virtual_samples_path, :class => 'btn btn-light float-left'%>
@@ -6,7 +6,9 @@
 
   <div class='sample-description row'>
     <div class='col-2'>
-      <img src="<%= @virtual_sample.pic1  %>" width = '100%'>
+      <% if @virtual_sample.pic1 != nil %>
+        <img src="<%= @virtual_sample.pic1  %>" width = '100%'>
+      <% end %>
     </div>
     <div class='col-10' style="color: white">
       <div class='sample-buttons'>
@@ -71,17 +73,17 @@
   </div>
   
   <!-- TODO remover esta lista de comentarios local y utlizarar el propio "index" del directorio "comments" -->
-  <div class="sample-description row" style="color: white;">
+  <div class="sample-description row" style="color: white;background-color: #302e2e;border-radius: 15px;">
     <div class="col  align-self-center">
       <div class="page-header">
         <h2><small class="float-right"><%= @comments.count %> comentarios</small> Comentarios </h2>
       </div>
 
-      <div class="comments-list">
+      <div class="comments-list" style="max-height: 300px; overflow: scroll;">
         <% @comments.each do |comment| %>
           <div class="media">
                <div class="media-body">
-                 <h4 class="media-heading user_name"><%= comment.user.first_name %> <%= comment.user.last_name %></h4>
+                 <h4 class="media-heading user_name"><%= comment.user_name %> <span class="badge badge-secondary"> <%= comment.user_type.titleize %> </span> </h4>
                  <%= comment.body %>
                </div>
                <p class="float-right"><small><%= comment.created_at.strftime("%d/%m/%Y") %></small></p>

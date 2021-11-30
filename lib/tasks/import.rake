@@ -1,12 +1,12 @@
 #bundle exec rails import:data
 
+
 namespace :import do
   desc "Task imports data from an excel sheet"
   task data: :environment do
 
     puts "Importing data ..."
-    data = Roo::Spreadsheet.open('lib/proyectos final 9-6-2021.xlsx') # open spreadsheet
-    #headers = data.row(1) # get header row
+    
 
     data = Roo::Spreadsheet.open('lib/proyectos final 9-6-2021.xlsx') # open spreadsheet
     headers = data.row(1) # get header row
@@ -95,19 +95,38 @@ namespace :import do
               if dataImages[picName] != nil && File.extname(dataImages[picName]) != ".mp4"
                 pathToPic = pathToFolder + dataImages[picName]
                 pics[i] = pathToPic
-               # virtualSample.images.attach(io: File.open(pathToPic), filename: dataImages[picName], content_type: 'image/jpeg')
+                #virtualSample.images.attach(io: File.open(pathToPic), filename: dataImages[picName], content_type: 'image/jpeg')
               end
-
-            virtualSample = VirtualSample.new(project_id: projectID, video_link: correct_video_url, pic1: pathToLogo, pic2: pics[2], pic3: pics[3], pic4: pics[4], pic5: pics[5], name: data['NOMBRE DEL PROYECTO'])
-
+              
+              virtualSample = VirtualSample.new(project_id: projectID, video_link: correct_video_url, pic1: pathToLogo, pic2: pics[2], pic3: pics[3], pic4: pics[4], pic5: pics[5])
+              
             end
             virtualSample.save!
             
 
+            #LOAD COMMENTS 
+            comments = Roo::Spreadsheet.open('lib/comentarios final 19-09-2021.xlsx') # open spreadsheet
+            headersComments= comments.row(1) # get header row
+
+            comments.each_with_index do |rowC, idxC|
+              next if idxC == 0
+              dataComments = Hash[[headersComments, rowC].transpose]
+
+              if dataComments['PARENTID'] == virtualSample.project_id && dataComments['COMENTARIO'] != nil
+                newComment = Comment.new(virtual_sample_id: virtualSample.id, user_name: dataComments['AUTOR'], user_type: dataComments['TIPO'], body: dataComments['COMENTARIO'])
+                newComment.save!
+              end
+
+
+            end
+            
+
           end
+
         end
       end
     end
+
 
     puts "Done importing data"
 
@@ -116,9 +135,9 @@ namespace :import do
 
 end
 
-
-
-
-
+#/assets/fotos_proyecto/Proyecto_1427/Animación del llenado.gif
+#/app/assets/images/fotos_proyecto/Proyecto_1427
+#/assets/fotos_proyecto/Proyecto_1433/Jubileo.jpg
+#../assets/fotos_proyecto/Proyecto_1427/WhatsApp Image 2021-05-27 at 22.54.54.jpeg
 
 

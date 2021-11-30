@@ -12,7 +12,8 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = @virtual_sample.comments.new(comment_params)
-    @comment.user = current_user
+    @comment.user_name = current_user.first_name + " " +current_user.last_name
+    @comment.user_type = "VISITANTE"
     respond_to do |format|
       if @comment.save
         format.html { redirect_to project_virtual_sample_path, notice: 'Comment was succesfully posted' }
@@ -51,6 +52,6 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.require(:comment).permit(:body)
+      params.require(:comment).permit(:body, :user_name, :user_type)
     end
 end

@@ -10,7 +10,7 @@ module ConexionTec
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-
+   
     # SMTP settings for gmail
     config.action_mailer.smtp_settings = {
       :address              => "smtp.gmail.com",

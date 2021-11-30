@@ -76,5 +76,6 @@ Rails.application.configure do
     openssl_verify_mode: "none",
   }
 
+
        
 end
