@@ -1,10 +1,18 @@
 window.filterOptions = function() {
   var option = $('#filter-by').val()
-  console.log(option)
+  
+  
+
   var url = '/filter_options?filter_type=' + option
   var select = $('#filter-select');
   var search = $('#filter-search');
-  if (option == 'name') {
+   if (option == 'no_filter'){
+    search.hide();
+    select.hide();
+    search.attr('name', '');
+    select.val([]);
+    $('#submit-btn').click();
+  }else if (option == 'name') {
     select.hide();
     select.val([]);
     search.show();

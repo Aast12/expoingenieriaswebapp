@@ -6,7 +6,7 @@ class FilterOptions
       'professor' => professor_options(),
       'institution' => institution_options(),
       'department' => department_options(),
-      'social_service' => [['Si', true], ['No', false]],
+      'social_service' => [["",""],['Si', true], ['No', false]],
       'status' => status_options()
     }
   end
@@ -17,15 +17,15 @@ class FilterOptions
 
   private
   def category_options
-    ProjectDetail.all.collect { |project_details| [ project_details.category, project_details.category ] }.uniq
+    ProjectDetail.all.collect { |project_details| [ project_details.category, project_details.category ] }.uniq.unshift('')
   end
 
   def area_options
-    ProjectDetail.all.collect { |project_details| [ project_details.area , project_details.area  ] }.uniq
+    ProjectDetail.all.collect { |project_details| [ project_details.area , project_details.area  ] }.uniq.unshift('')
   end
 
   def professor_options
-    Project.joins("INNER JOIN virtual_samples ON virtual_samples.project_id = projects.id").all.collect  { |project| [project.professor, project.professor] }.uniq
+    Project.joins("INNER JOIN virtual_samples ON virtual_samples.project_id = projects.id").all.collect  { |project| [project.professor, project.professor] }.uniq.unshift('')
   end
 
   def institution_options

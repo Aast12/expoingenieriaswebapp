@@ -69,37 +69,44 @@ namespace :import do
 
           #src="assets/fotos_proyectos/Proyecto_1421/foto 1.jpg"
           if dataImages['Título'] == projectID
+
             ## LOAD PROJECT VIDEO
             video_id = dataImages['VIDEOURL'].split('=')[-1]
             correct_video_url = "https://drive.google.com/file/d/" + video_id + "/preview"
-            pathToFolder = '/assets/fotos_proyecto/Proyecto_' << projectID << "/"
-           
+            pathToFolder = '/Users/fernandasanchez/Desktop/conexion_tec/lib/fotos_proyecto/Proyecto_' << projectID << "/"
+
+            virtualSample = VirtualSample.new(project_id: projectID, video_link: correct_video_url)
+
+
             ## LOAD LOGO
             if dataImages['PIC1NOM'] != nil && File.extname(dataImages['PIC1NOM']) != ".mp4"
               pathToLogo = pathToFolder + dataImages['PIC1NOM']
               #puts pathToLogo
-              #virtualSample.icon_image.attach(io: File.open(pathToLogo), filename: dataImages['PIC1NOM'], content_type: 'image/jpeg')
+              virtualSample.icon_image.attach(io: File.open(pathToLogo), filename: dataImages['PIC1NOM'], content_type: 'image/jpeg')
             end
 
             ## LOAD BACKGROUND IMAGE
             if dataImages['PIC4NOM'] != nil && File.extname(dataImages['PIC4NOM']) != ".mp4"
               pathToBGImage = pathToFolder + dataImages['PIC4NOM']
-              #virtualSample.background_image.attach(io: File.open(pathToBGImage), filename: dataImages['PIC4NOM'], content_type: 'image/jpeg')
+              virtualSample.background_image.attach(io: File.open(pathToBGImage), filename: dataImages['PIC4NOM'], content_type: 'image/jpeg')
+            end
+
+            ## LOAD CARD IMAGE
+            if dataImages['PIC2NOM'] != nil && File.extname(dataImages['PIC2NOM']) != ".mp4"
+              pathToBGImage = pathToFolder + dataImages['PIC2NOM']
+              virtualSample.card_image.attach(io: File.open(pathToBGImage), filename: dataImages['PIC2NOM'], content_type: 'image/jpeg')
             end
 
             ## LOAD IMAGES FOR CARROUSEL
-            pics = Array.new(4)
+            pics = Array.new(5)
             for i in 2..5
               picName = 'PIC' + i.to_s + 'NOM'
-              
-              if dataImages[picName] != nil && File.extname(dataImages[picName]) != ".mp4"
+
+              if dataImages[picName] != nil && File.extname(dataImages[picName]) != ".mp4" && picName != 'PIC4NOM'
                 pathToPic = pathToFolder + dataImages[picName]
                 pics[i] = pathToPic
-                #virtualSample.images.attach(io: File.open(pathToPic), filename: dataImages[picName], content_type: 'image/jpeg')
+                virtualSample.images.attach(io: File.open(pathToPic), filename: dataImages[picName], content_type: 'image/jpeg')
               end
-              
-              virtualSample = VirtualSample.new(project_id: projectID, video_link: correct_video_url, pic1: pathToLogo, pic2: pics[2], pic3: pics[3], pic4: pics[4], pic5: pics[5])
-              
             end
             virtualSample.save!
             
@@ -139,5 +146,6 @@ end
 #/app/assets/images/fotos_proyecto/Proyecto_1427
 #/assets/fotos_proyecto/Proyecto_1433/Jubileo.jpg
 #../assets/fotos_proyecto/Proyecto_1427/WhatsApp Image 2021-05-27 at 22.54.54.jpeg
-
+#/assets/fotos_proyecto/Proyecto_1487/654a3ef9-8328-4022-bad3-d4f0d0b057d7.JPG
+#/assets/fotos_proyecto/Proyecto_1487/654a3ef9-8328-4022-bad3-d4f0d0b057d7.JPG
 
