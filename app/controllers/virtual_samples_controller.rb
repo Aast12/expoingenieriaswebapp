@@ -9,7 +9,7 @@ class VirtualSamplesController < ApplicationController
   def index
   
     @virtual_samples = VirtualSample.page(params[:page]).per(9)
-
+    
     
   end
 

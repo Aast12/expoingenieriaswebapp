@@ -3,7 +3,7 @@
     <% if virtual_sample.background_image.attached? %>
       <div class="card" style="background-image:  url(<%= rails_blob_url(virtual_sample.background_image) %>); background-color: rgba(0,0,0,0.6); background-blend-mode: darken;" >
     <% else %>
-      <div class="card" style=" background-image: none; background-color: rgba(0,0,0,1s); background-blend-mode: darken;" >
+      <div class="card" style=" background-image: none; background-color: rgba(0,0,0,1); background-blend-mode: darken;" >
     <% end %>
     
     <div class="project-card-header card-header" style="height: 90px;min-height: 90px; overflow: auto;">
@@ -12,9 +12,8 @@
       </div>
     </div>
     <div class="img-card" >
-      <% if virtual_sample.card_image != nil %>
+      <% if virtual_sample.card_image.attached? %>
         <%= image_tag(virtual_sample.card_image, width: '100%', height: '300px') rescue index_image %>
-        
       <% end %>
 
 
