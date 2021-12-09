@@ -10,7 +10,6 @@ class VirtualSamplesController < ApplicationController
   
     @virtual_samples = VirtualSample.page(params[:page]).per(9)
     
-    
   end
 
   def filter_virtual_samples
