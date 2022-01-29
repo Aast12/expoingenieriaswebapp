@@ -193,6 +193,7 @@ ActiveRecord::Schema.define(version: 2021_12_06_011303) do
   create_table "project_details", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.text "video_url"
     t.boolean "semestre_i"
     t.boolean "social_impact"
     t.string "client_type"
