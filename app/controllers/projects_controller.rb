@@ -40,6 +40,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @students = @project.students.build
     @project.build_project_detail
     @project.build_social_impact
     @project.build_abstract
@@ -140,7 +141,11 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: 'Status was successfully updated.' }
       format.json { head :no_content }
     end
+
+
   end
+
+
   
 
   private
@@ -154,7 +159,9 @@ class ProjectsController < ApplicationController
       params.require(:project).permit(:status, :main_student, :professor, :institution_id, :edition_id,
                                       project_detail_attributes: project_detail_attributes,
                                       social_impact_attributes: social_impact_attributes,
-                                      abstract_attributes: abstract_attributes, :campus),
+                                      abstract_attributes: abstract_attributes,
+                                      students_attributes: [:id, :_destroy, :student_code],
+                                      student_ids: [])
     end
 
     def project_detail_attributes
@@ -177,6 +184,7 @@ class ProjectsController < ApplicationController
       params << :_destroy
       return params
     end
+
 
     def filterable_params
       params.permit(:name, :category, :area, :professor, :institution, :department, :social_service, :status)

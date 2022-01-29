@@ -1,6 +1,6 @@
 module ApplicationHelper
   def boolean_options
-    [['Sí', true], ['No', false]]
+    [['No', false], ['Sí', true]]
   end
 
   def major_options

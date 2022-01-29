@@ -106,6 +106,12 @@ ActiveRecord::Schema.define(version: 2021_12_06_011303) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "daysgroups", force: :cascade do |t|
+    t.string "group"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "departments", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -187,7 +193,6 @@ ActiveRecord::Schema.define(version: 2021_12_06_011303) do
   create_table "project_details", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.text "video_url"
     t.boolean "semestre_i"
     t.boolean "social_impact"
     t.string "client_type"
@@ -197,6 +202,7 @@ ActiveRecord::Schema.define(version: 2021_12_06_011303) do
     t.string "category"
     t.string "area"
     t.string "type_of"
+    t.string "academic_level"
     t.index ["project_id"], name: "index_project_details_on_project_id"
   end
 
@@ -207,6 +213,13 @@ ActiveRecord::Schema.define(version: 2021_12_06_011303) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_project_event_details_on_project_id"
+  end
+
+  create_table "project_participants", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "student_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "projects", force: :cascade do |t|
@@ -246,6 +259,12 @@ ActiveRecord::Schema.define(version: 2021_12_06_011303) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_staff_members_on_user_id"
+  end
+
+  create_table "stands", force: :cascade do |t|
+    t.string "number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "students", force: :cascade do |t|

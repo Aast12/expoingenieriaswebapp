@@ -1,0 +1,2 @@
+class AcademicLevel < ApplicationRecord
+end

@@ -19,10 +19,10 @@ module ProjectsHelper
   end
 
   def project_status_options_for_admin(project_id)
-    [['Registrado', "#{project_id}:registered"], ['Aprobado', "#{project_id}:approved"], 
-    ['No aprobado', "#{project_id}:disapproved"], ['Evaluado', "#{project_id}:evaluated"], 
-    ['Aceptado', "#{project_id}:accepted"], ['Rechazado', "#{project_id}:rejected"], 
-    ['Declinado', "#{project_id}:declined"], ['Faltó', "#{project_id}:missed"]]
+    [['REGISTRADO', "#{project_id}:registered"], ['APROBADO', "#{project_id}:approved"], 
+    ['NO APROBADO', "#{project_id}:disapproved"], ['EVALUADO', "#{project_id}:evaluated"], 
+    ['ACEPTADO', "#{project_id}:accepted"], ['RECHAZADO', "#{project_id}:rejected"], 
+    ['DECLINADO', "#{project_id}:declined"], ['FALTÓ', "#{project_id}:missed"]]
   end
 
   def project_status_options_for_operative(project_id)
@@ -33,7 +33,7 @@ module ProjectsHelper
     [['Aceptado', "#{project_id}:accepted"], ['Faltó', "#{project_id}:missed"]]
   end
 
-
+  
   def project_area(project)
     project_detail = project.project_detail
     project_detail.area
@@ -59,6 +59,12 @@ module ProjectsHelper
     professor = project.professor
     user = professor.user
     user.email
+  end
+
+  def project_professor_department(project)
+    professor = project.professor
+    department = professor.department
+    department
   end
 
   def project_score(project)
@@ -107,6 +113,18 @@ module ProjectsHelper
     user.email
   end
 
+  def project_student_code(project)
+    student = project.student
+    matricula = student.student_code
+    matricula
+  end
+
+  def project_student_major(project)
+    student = project.student
+    carrera = student.major
+    carrera
+  end
+
   def display_project_area(project)
     project_detail = project.project_detail
     display_project_detail_area(project_detail)
@@ -122,6 +140,11 @@ module ProjectsHelper
   def display_project_score(project)
     project_score = project_score(project)
     project_score.present? ? project_score : "N/A"
+  end
+
+  def project_social_impact(project)
+    impact = project.social_impact
+    impact.problem.present? || impact.empathy.present?
   end
 
   def display_project_stand(project)

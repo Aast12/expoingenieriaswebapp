@@ -17,7 +17,7 @@ class StatusNotifier < ApplicationService
 
             vals[:recipient] = @project.professor.user.email
             vals[:is_student] = false
-            AdminMailer.with(vals).status_notify_email.deliver
+            #AdminMailer.with(vals).status_notify_email.deliver
         elsif @project.accepted?
             vals[:subject] = "Tu proyecto ha sido Aceptado en Conexión Tec"
             # Send "accepted" email to both professor and student

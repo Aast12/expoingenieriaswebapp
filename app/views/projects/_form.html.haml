@@ -1,0 +1,103 @@
+= form_with(model: project, local: true) do |form|
+  - if project.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(project.errors.count, "error")
+        prohibited this project from being saved:
+      %ul
+        - project.errors.full_messages.each do |message|
+          %li= message
+  %h1 Alta de proyecto
+  .form-group.row.text-left
+    .col-sm-4
+      = form.label :institution_id, "Campus", :class => "form-label important"
+      = form.select :institution_id, institution_options(), { prompt: 'Seleccionar campus' }, :class => "form-control"
+    = form.fields_for :project_detail do |project_detail|
+      = render "project_details/form_shared", form: project_detail
+    - unless current_page?('/projects/new')
+      - if (current_user.committee_member? || current_user.administrator?)
+        .col-sm-1
+          = form.label :id, "ID", :class => "form-label"
+          = form.text_field :id, :class => "form-control", :disabled => true
+        .col-sm-3
+          = form.label :daysgroup, "Días-Grupo", :class => "form-label"
+          = form.select :daysgroups, daysgroups_options(), {prompt: 'Dia-Grupo'}, :class => "form-control"
+        .col-sm-2
+          = form.label :stand, "Stand", :class => "form-label"
+          = form.select :stands, stand_options(), {prompt: 'Stand'}, :class => "form-control"
+  #social-impact-form.hidden
+    %h3 Impacto Social
+    = form.fields_for :social_impact do |social_impact|
+      = render "social_impacts/form_shared", form: social_impact
+  %h3 Abstract
+  = form.fields_for :abstract do |abstract|
+    = render "abstracts/form_shared", form: abstract
+  - if !current_user.student?
+    %h3 Datos del estudiante responsable
+    .form-group.col-sm-13.text-left
+      = form.label :student_id, "Nombre", :class => "form-label"
+      = form.select :student_id, student_options(), { :include_blank => true }, :class => "form-control", :id => "student_option", :onchange => "set_info('selected-email', 'selected-major', 'selected-student_code', 'select_id', '"+student_options().to_s+"')", :id => "select_id"
+      %br
+      .form-group.col-sm-10.text-left
+        = form.label :email, "Email", :class => "form-label"
+        = form.text_area :email, :id => "selected-email", :class => "form-control", :disabled => true, size: "1x1"
+      .form-group.col-sm-10.text-lefts
+        = form.label :major, "Carrera", :class => "form-label"
+        = form.text_area :major, :id => "selected-major", :class => "form-control", :disabled => true, size: "1x1"
+      .form-group.col-sm-10.text-left
+        = form.label :student_code, "Matricula", :class => "form-label"
+        = form.text_area :student_code, :id => "selected-student_code", :class => "form-control", :disabled => true, size: "1x1"
+    %h3 Agregar integrantes del equipo
+    -# - Student.each do |a_value|
+    -#   = form.check_box(:a, { :multiple => true }, a_value)
+    -# = form.select :category, options_for_select(Student.all.collect {|x| [x.student_code, x.id]}), {:include_blank => true}, {:multiple => true}
+    -# = form.select :category, options_for_select(Student.all), :include_blank => true, :multiple => true
+    -# - Student.each do |question|
+    -#   = check_box_tag "student_ids[]", question.id, false, class: 'selectable'
+    = form.select :student_ids, Student.all.collect {|x| [x.student_code, x.id]}, {}, :multiple => "multiple", id: 'lstStates'
+    -# #students
+    -#   = form.fields_for :students do |student|
+    -#     = render 'student_fields', f: student
+    -#   .links
+    -#     = link_to_add_association 'add student', form, :students
+  - if !current_user.professor?
+    %h3 Datos del profesor coordinador
+    .form-group.col-sm-13.text-left
+      = form.label :professor_id, "Nombre", :class => "form-label"
+      = form.select :professor_id, professor_options(), { :include_blank => true }, :class => "form-control", :id => "professor_option", :onchange => "set_info_professor('selected-email-professor', 'selected_id_professor', '"+professor_options().to_s+"')", :id => "selected_id_professor"
+      %br
+      .form-group.col-sm-10.text-left
+        = form.label :email_professor, "Email", :class => "form-label"
+        = form.text_area :email_professor, :class => "form-control", :id => "selected-email-professor", :disabled => true, size: "1x1"
+  %br
+  .actions
+    = link_to 'Cancelar', projects_path, class: 'btn btn-light'
+    = form.submit :Guardar, class: 'btn btn-primary' 
+:javascript
+
+  $(function () { 
+    $('#lstStates').multiselect({ 
+        buttonText: function(options, select) {
+            console.log(select[0].length);
+            if (options.length === 0) {
+                return 'Sin Seleccion';
+            }
+            if (options.length === select[0].length) {
+                return 'Todos ('+select[0].length+')';
+            }
+            else if (options.length >= 4) {
+                return options.length + ' Seleccionados';
+            }
+            else {
+                var labels = [];
+                console.log(options);
+                options.each(function() {
+                    labels.push($(this).val());
+                });
+                return labels.join(', ') + '';
+            }
+        }
+    
+    });
+  });
+

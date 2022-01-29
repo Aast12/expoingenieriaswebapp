@@ -1,44 +1,62 @@
-<p>
-  <strong>Nombre:</strong>
-  <%= project_detail.name %>
-</p>
+<div class="show-project-details">
 
-<p>
-  <strong>Liga del video:</strong>
-  <%= project_detail.video_url %>
-</p>
+  <div class="aside">
+    <h5>PRESENTACIÓN</h5>
+    <div>
+      ID:
+      <%= @project.id %>
+    </div>
+    <div>
+      Stand:
+      <%= display_project_stand(@project) %>
+    </div>
+    <div>
+      Dia-Grupo:
+      Monterrey - Lunes
+    </div>
+  </div>
+  <div>
+    <strong>Nombre:</strong>
+    <%= project_detail.name %>
+  </div>
 
-<p>
-  <strong>Categoría:</strong>
-  <%= project_detail.category %>
-</p>
+  <div>
+    <strong>Campus:</strong>
+    <%= @project.institution.name %>
+  </div>
 
-<p>
-  <strong>Área temática:</strong>
-  <%= project_detail.area %>
-</p>
+  <div>
 
-<p>
-  <strong>Tipo de proyecto:</strong>
-  <%= display_project_detail_type_of(project_detail) %>
-</p>
+    <strong>Categoría:</strong>
+    <%= project_detail.category %>
+  </div>
 
-<p>
-  <strong>Tipo de cliente:</strong>
-  <%= display_project_detail_client_type(project_detail) %>
-</p>
+  <div>
+    <strong>Área temática:</strong>
+    <%= project_detail.area %>
+  </div>
 
-<p>
-  <strong>Semestre i:</strong>
-  <%= display_boolean_value(project_detail.semestre_i) %>
-</p>
+  <div>
+    <strong>Tipo de cliente:</strong>
+    <%= display_project_detail_client_type(project_detail) %>
+  </div>
 
-<p>
-  <strong>Impacto social:</strong>
-  <%= display_boolean_value(project_detail.social_impact) %>
-</p>
+  <div>
+    <strong>Semestre i:</strong>
+    <%= display_boolean_value(project_detail.semestre_i) %>
+  </div>
 
-<p>
-  <strong>Descripción:</strong>
-  <%= project_detail.description %>
-</p>
+  <div>
+    <strong>Impacto social:</strong>
+    <%= display_boolean_value(project_detail.social_impact) %>
+  </div>
+</div>
+
+<div class="col-sm-12 description-section">
+  <div class="card-text">
+    <div class="card-info project-description">
+    <strong>Descripción:</strong><br>
+    <%= project_detail.description %> 
+    </div>
+  </div>
+</div>

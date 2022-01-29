@@ -3,31 +3,71 @@
     <h1>Detalles del proyecto</h1>
     <%= render "project_details/show_shared", project_detail: @project.project_detail %>
 
-    <% if @project.social_impact.present? %>
-      <h1>Impacto Social</h1>
+    <br />
+    <div class="div-center">
+    <%= link_to 'Proyectos', projects_path, :class => "btn btn-light" %>
+    <% if current_user.committee_member? || current_user.administrator? %>
+      <%= link_to 'Estatus', project_status_path, :class => "btn btn-light" %>
+      <%= link_to 'Mandar correo', mailing_center_path(id: @project.id), :class => "btn btn-light" %>
+    <% end %>
+  </div>
+    <% if project_social_impact(@project) %>
+      <h3>Impacto Social</h3>
       <%= render "social_impacts/show_shared", social_impact: @project.social_impact %>
     <% end %>
 
     <% if @project.abstract.present? %>
-      <h1>Abstract</h1>
+      <h3>Abstract</h3>
       <%= render "abstracts/show_shared", abstract: @project.abstract %>
     <% end %>
 
-    <h1>Datos del estudiante responsable</h1>
-    <p>
-      <strong>Nombre:</strong>
-      <%= project_student(@project) %>
-    </p>
+    <h3>Integrantes del equipo</h3>
+    <div class="show-project-details">
+    <br><h6 style="color: darkgray"><i>Alumno responsable</i></h6>
+      <div>
+        <strong>Nombre:</strong>
+        <%= project_student(@project) %>
+      </div>
 
-    <p>
-      <strong>Correo electrónico:</strong>
-      <%= project_student_email(@project) %>
-    </p>
-  </div><br />
-  <% if current_user.committee_member? || current_user.administrator? %>
-    <%= link_to 'Estatus', project_status_path, :class => "btn btn-light" %>
-    <%= link_to 'Mandar correo', mailing_center_path(id: @project.id), :class => "btn btn-light" %>
-  <% else %>
-    <%= link_to 'Proyectos', projects_path, :class => "btn btn-light" %>
-  <% end %>
+
+      <div>
+        <strong>Correo electrónico: </strong>
+        <%= project_student_email(@project) %>
+      </div>
+      <div>
+        <strong>Matricula:</strong>
+        <%= project_student_code(@project) %>
+      </div>
+      <div>
+        <strong>Carrera:</strong>
+        <%= project_student_major(@project) %>
+      </div>
+    <br><h6 style="color: darkgray"><i>Equipo</i></h6>
+      <div>
+        Número de integrantes del equipo:
+        <strong>3</strong>
+        <br>
+      </div>
+    </div>
+    
+    
+    <h3>Profesor tutor</h3>
+    <div class="show-project-details">
+      <div>
+        <strong>Nombre:</strong>
+        <%= project_professor(@project) %>
+      </div>
+
+      <div>
+        <strong>Correo electrónico:</strong>
+        <%= project_professor_email(@project) %>
+      </div>
+
+      <div>
+        <strong>Departamento:</strong>
+        <%= project_professor_department(@project) %>
+      </div>
+
+    </div>
+  </div>
 </div>

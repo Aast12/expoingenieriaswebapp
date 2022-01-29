@@ -17,7 +17,7 @@ class ProjectDetailsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create project_detail" do
     assert_difference('ProjectDetail.count') do
-      post project_details_url, params: { project_detail: { client_type: @project_detail.client_type, description: @project_detail.description, name: @project_detail.name, project_id: @project_detail.project_id, semestre_i: @project_detail.semestre_i, social_impact: @project_detail.social_impact, video_url: @project_detail.video_url } }
+      post project_details_url, params: { project_detail: { client_type: @project_detail.client_type, description: @project_detail.description, name: @project_detail.name, project_id: @project_detail.project_id, semestre_i: @project_detail.semestre_i, social_impact: @project_detail.social_impact } }
     end
 
     assert_redirected_to project_detail_url(ProjectDetail.last)
@@ -34,7 +34,7 @@ class ProjectDetailsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update project_detail" do
-    patch project_detail_url(@project_detail), params: { project_detail: { client_type: @project_detail.client_type, description: @project_detail.description, name: @project_detail.name, project_id: @project_detail.project_id, semestre_i: @project_detail.semestre_i, social_impact: @project_detail.social_impact, video_url: @project_detail.video_url } }
+    patch project_detail_url(@project_detail), params: { project_detail: { client_type: @project_detail.client_type, description: @project_detail.description, name: @project_detail.name, project_id: @project_detail.project_id, semestre_i: @project_detail.semestre_i, social_impact: @project_detail.social_impact } }
     assert_redirected_to project_detail_url(@project_detail)
   end
 
