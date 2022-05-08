@@ -2,22 +2,14 @@
 disableOptions = function(){
   document.getElementById('isProfessor').disabled = true;
   document.getElementById('isJudge').disabled = true;
-  document.getElementById('isStaff').disabled = true;
-  document.getElementById('isCommitteeMember').disabled = true;
-  document.getElementById('isAdmin').disabled = true;
   document.getElementById('isProfessor').checked = false;
   document.getElementById('isJudge').checked = false;
-  document.getElementById('isStaff').checked = false;
-  document.getElementById('isCommitteeMember').checked = false;
-  document.getElementById('isAdmin').checked = false;
+
 }
 
 enableOptions = function(){
   document.getElementById('isProfessor').disabled = false;
   document.getElementById('isJudge').disabled = false;
-  document.getElementById('isStaff').disabled = false;
-  document.getElementById('isCommitteeMember').disabled = false;
-  document.getElementById('isAdmin').disabled = false;
 }
 
 
@@ -30,12 +22,11 @@ manageUserableTypeRegistration = function() {
   institutionSelect = document.getElementById('institution');
 
 
+  isVisitor = document.getElementById('isVisitor').checked;
   isStudent = document.getElementById('isStudent').checked
   isProfessor = document.getElementById('isProfessor').checked;
   isJudge = document.getElementById('isJudge').checked;
-  isCommitteeMember = document.getElementById('isCommitteeMember').checked;
-  isAdmin = document.getElementById('isAdmin').checked;
-  isVisitor = document.getElementById('isVisitor').checked;
+  
 
   if(isStudent || isProfessor){
     institutionSelect.style.display = "block";
@@ -62,8 +53,6 @@ manageUserableTypeRegistration = function() {
     judgeRegistration.style.display = "none";
   }
 
-
-
   if(isStudent){
     studentRegistration.style.display = "block";
     professorRegistration.style.display = "none";
@@ -83,6 +72,7 @@ manageUserableTypeRegistration = function() {
     judgeRegistration.style.display = "none";
     document.getElementById('isStudent').disabled = true;
     document.getElementById('isStudent').checked = false;
+    institutionSelect.style.display = "none";
   }else{
     visitorRegistration.style.display = "none";
     document.getElementById('isStudent').disabled = false;    
