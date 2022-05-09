@@ -73,7 +73,7 @@ namespace :import do
             ## LOAD PROJECT VIDEO
             video_id = dataImages['VIDEOURL'].split('=')[-1]
             correct_video_url = "https://drive.google.com/file/d/" + video_id + "/preview"
-            pathToFolder = '/Users/fernandasanchez/Desktop/OnCampus/conexion_tec_2/lib/fotos_proyecto/Proyecto_' << projectID << "/"
+            pathToFolder = '/Users/fernandasanchez/Desktop/OnCampus/expoingenieriaswebapp/lib/fotos_proyecto/Proyecto_' << projectID << "/"
 
             virtualSample = VirtualSample.new(project_id: projectID, video_link: correct_video_url)
 

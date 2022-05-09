@@ -8,29 +8,30 @@
 
 
 # Edition
-name = "Feb-Dec 2020"
-start_date_edition = Date.new(2021, 2, 1)
-end_date_edition = Date.new(2021, 12, 31)
+name = "Feb-Jun 2022"
+start_date_edition = Date.new(2022, 2, 14)
+end_date_edition = Date.new(2022, 6, 30)
 Edition.create(name: name, start_date: start_date_edition, end_date: end_date_edition)
-
-name = "Feb-Jun 2021"
-start_date_edition = Date.new(2021, 2, 1)
-end_date_edition = Date.new(2021, 06, 13)
-Edition.create(name: name, start_date: start_date_edition, end_date: end_date_edition)
-
-
 
 # Phase
-Phase.create(name:"Registro", start_date: Date.new(2021, 2, 1), end_date: Date.new(2021, 3, 1), edition_id: 1)
-Phase.create(name:"Edición de datos / Retroalimentación", start_date: Date.new(2021, 3, 2), end_date: Date.new(2021, 4, 1), edition_id: 1)
-Phase.create(name:"Aprobación de proyectos", start_date: Date.new(2021, 4, 2), end_date: Date.new(2021, 5, 1), edition_id: 1)
-Phase.create(name:"Evaluación de proyectos", start_date: Date.new(2021, 5, 2), end_date: Date.new(2021, 6, 1), edition_id: 1)
-Phase.create(name:"Selección de proyectos", start_date: Date.new(2021, 5, 2), end_date: Date.new(2021, 6, 1), edition_id: 1)
-Phase.create(name:"Crear / Editar muestra", start_date: Date.new(2021, 5, 2), end_date: Date.new(2021, 6, 1), edition_id: 1)
-Phase.create(name:"Asignación de proyectos a evaluadores", start_date: Date.new(2021, 5, 2), end_date: Date.new(2021, 6, 1), edition_id: 1)
-Phase.create(name:"Evaluación  de proyectos", start_date: Date.new(2021, 5, 2), end_date: Date.new(2021, 6, 1), edition_id: 1)
+Phase.create(name:"Registro de proyectos", start_date: Date.new(2022, 2, 14), end_date: Date.new(2022, 2, 26), edition_id: 14)
+Phase.create(name:"Edición de datos / Retroalimentación", start_date: Date.new(2022, 2, 14), end_date: Date.new(2022, 2, 26), edition_id: 14)
+Phase.create(name:"Aprobación de proyectos", start_date: Date.new(2022, 4, 2), end_date: Date.new(2022, 5, 14), edition_id: 14)
+Phase.create(name:"Crear/editar muestra", start_date: Date.new(2022, 5, 2), end_date: Date.new(2022, 6, 14), edition_id: 14)
+Phase.create(name:"Selección de proyectos", start_date: Date.new(2022, 5, 2), end_date: Date.new(2022, 6, 14), edition_id: 14)
+Phase.create(name:"Asignación de proyectos a evaluadores", start_date: Date.new(2022, 5, 2), end_date: Date.new(2022, 6, 14), edition_id: 14)
+Phase.create(name:"Evaluación  de proyectos en el evento virtual", start_date: Date.new(2022, 5, 2), end_date: Date.new(2022, 6, 14), edition_id: 14)
+Phase.create(name:"Evaluación  de proyectos en el evento presencial", start_date: Date.new(2022, 5, 2), end_date: Date.new(2022, 6, 14), edition_id: 14)
+Phase.create(name:"Ver proyectos evaluados", start_date: Date.new(2022, 5, 2), end_date: Date.new(2022, 6, 14), edition_id: 14)
+Phase.create(name:"Muestra virtual", start_date: Date.new(2022, 5, 2), end_date: Date.new(2022, 6, 14), edition_id: 14)
+Phase.create(name:"Ver comentarios dejados en el proyectos", start_date: Date.new(2022, 5, 2), end_date: Date.new(2022, 6, 14), edition_id: 14)
+Phase.create(name:"Selección de proyectos ganadores", start_date: Date.new(2022, 5, 2), end_date: Date.new(2022, 6, 14), edition_id: 14)
+Phase.create(name:"Ceremonia de premiación", start_date: Date.new(2022, 5, 2), end_date: Date.new(2022, 6, 14), edition_id: 14)
+Phase.create(name:"Ver calificación de proyectos evaluados", start_date: Date.new(2022, 5, 2), end_date: Date.new(2022, 6, 14), edition_id: 14)
+Phase.create(name:"Obtención de constacias de participación", start_date: Date.new(2022, 5, 2), end_date: Date.new(2022, 6, 14), edition_id: 14)
 # Timelimit
 
+=begin
 # Institution
 Institution.create(name: "Monterrey", city: "Monterrey")
 Institution.create(name: "Saltillo", city: "Saltillo")
@@ -86,10 +87,10 @@ ProjectCategory.create(name: "Productos o Servicios para Emprendimiento de Base 
 #Users
 userProf = User.new(
     email: "profe@tec.com", 
-    password: "123123", 
+    password: "143143", 
     first_name: "Luis", 
     last_name: "Gonzalez", 
-    is_professor: 1
+    is_professor: 14
 )
 userProf.skip_confirmation!
 userProf.save
@@ -101,10 +102,10 @@ prof.save
 
 userAdmin = User.new(
     email: "admin@tec.com",
-    password: "123123",
+    password: "143143",
     first_name: "Juan",
     last_name: "Hinojosa",
-    is_admin: 1
+    is_admin: 14
 )
 userAdmin.skip_confirmation!
 userAdmin.save
@@ -115,10 +116,10 @@ admin.save
 
 userStudent = User.new(
     email: "student@tec.com",
-    password: "123123",
+    password: "143143",
     first_name: "Fernanda",
     last_name: "Sánchez",
-    is_student: 1
+    is_student: 14
 )
 userStudent.skip_confirmation!
 userStudent.save
@@ -136,11 +137,11 @@ student.save
 # userable = Administrator.create()
 # User.create(
 #     email: "juan@tec.mx",
-#     password: "123123",
+#     password: "143143",
 #     first_name: "Juan",
 #     last_name: "Hinojosa",
-#     edition_id: 1,
-#     institution_id: 1
+#     edition_id: 14,
+#     institution_id: 14
 # )
 
 # userable = Professor.create(
@@ -148,24 +149,25 @@ student.save
 # )
 # User.create(
 #     email: "luis@tec.mx", 
-#     password: "123123",
+#     password: "143143",
 #     first_name: "Luis",
 #     last_name: "Gonzalez",
-#     edition_id: 1,
-#     institution_id: 1,
+#     edition_id: 14,
+#     institution_id: 14,
 # )
 
 # userable = Student.create(
 #     major: "ITC",
-#     student_code: "A01234567"
+#     student_code: "A01434567"
 # )
 # User.create(
 #     email: "pepe@tec.mx", 
-#     password: "123123",
+#     password: "143143",
 #     first_name: "Pepe",
 #     last_name: "Garza",
 #     userable_id: userable.id,
 #     userable_type: "Student",
-#     edition_id: 1,
-#     institution_id: 1,
+#     edition_id: 14,
+#     institution_id: 14,
 # )
+=end
