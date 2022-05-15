@@ -66,13 +66,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.office365.com",
-    domain: 'smtp.office365.com',
+    address: "smtp.gmail.com",
     port: 587,
+    authentication: "plain",
     enable_starttls_auto: true,
-    authentication: 'login',
-    user_name: "conexion_tec@outlook.com",
-    password: "conexiontec2021!", 
+    user_name: "expoingenierias.mty@gmail.com",
+    password: "expoingenieriasmty123", 
+    domain: "smtp-relay.gmail.com",
     openssl_verify_mode: "none",
   }
 
