@@ -84,7 +84,18 @@ class EditionsController < ApplicationController
     end
 
     def phases_names
-      ['Registro de proyectos', 'Edición de datos / Retroalimentación', 'Aprobación de proyectos', 'Crear/editar muestra','Asignación de proyectos a evaluadores','Evaluación  de proyectos en el evento virtual','Evaluación  de proyectos en el evento presencial', 'Ver proyectos evaluados', 'Muestra virtual', 'Ver comentarios dejados en el proyectos', 
-        'Selección de proyectos ganadores', 'Ceremonia de premiación', 'Ver calificación de proyectos evaluados', 'Obtención de constacias de participación']
+      [
+        'Registro de proyectos', 
+        'Edición de datos de proyectos / Retroalimentación', 
+        'Calificación y aprobación de proyectos', 
+        'Subir y editar información para muestra virtual',
+        'Evaluación  de proyectos en el evento virtual',
+        'Evaluación  de proyectos en el evento presencial', 
+        'Ver proyectos evaluados', 
+        'Muestra virtual', 
+        'Ver comentarios dejados al proyecto', 
+        'Ver calificación de proyectos evaluados', 
+        'Obtención de constacias de participación'
+      ]
     end
 end

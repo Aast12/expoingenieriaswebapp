@@ -2,7 +2,7 @@
     <h1>Editar Edicion</h1>
     <h4>Fases actuales: <h4>
     <ul class="no-bullets">
-        <% phases = get_current_phase(@edition) %>
+        <% phases = get_current_phases(@edition) %>
         <% for phase in phases%>
         <li> <%= phase.name %> </li>
         <%end%>
