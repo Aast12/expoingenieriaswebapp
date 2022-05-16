@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 login-sec">
-      <img class="login-sec-logo" src="<%= asset_path( 'logo.jpg' ) %>" >
+      
+      
+      <img class="text-center login-sec-logo ml-5" src="<%= asset_path( 'logoExpoDark.png' ) %>" >
+    
        
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
@@ -23,7 +26,7 @@
       <p  id="alertnotice" > <%= alert %> </p>
       <p  id="alertnotice"> <%= notice %> </p>
     </div>
-    <div class="col-md-8 banner-sec">
+    <div class="col-md-8">
       <%= render 'devise/shared/carousel' %>
     </div>
   </div>

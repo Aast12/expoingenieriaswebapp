@@ -24,10 +24,15 @@
   border-radius: 0 10px 10px 0;
   padding: 0;
 }
+.logopage{
+  width: 400px;
+  height: 60px;
+}
 .banner-text {
-  width: 70%;
+  background-color: rgba(1,1,1,0.5);
+  width: 100%;
   position: absolute;
-  bottom: 40px;
+  bottom: 0px;
   padding-left: 20px;
 }
 .banner-text h2 {
@@ -162,10 +167,14 @@ h3 {
   font-size: 14px;
   border-bottom: solid 2px rgba(0, 0, 0, 0.06);
   padding: 7px;
-  margin-top: 40px !important;
+  margin-top: 10px !important;
 }
 .carousel-inner {
-  border-radius: 0 10px 10px 0;
+  border-radius: 10px;
+}
+.carousel img {
+    min-height: 500px;
+    margin: 0 auto;
 }
 .evaluation {
   margin-top: 40px;
@@ -182,24 +191,21 @@ h3 {
   display: flex;
   flex-direction: column;
 }
-.login-sec {
-  margin-top: 20px;
-}
+
 .login-sec-userable {
-  margin-top: 145px;
   padding-bottom: 20px;
 }
-.login-sec h2 {
-  margin-bottom: 30px;
+.signup-title h3 {
   font-weight: 800;
+  padding: 40px;
   font-size: 30px;
   color: rgba(227, 24, 124, 0.8);
 }
 .login-sec-logo {
+  margin-top: 20px;
   width: 200px;
-  height: 40px;
-  margin-bottom: 20px;
-  margin-left: 75px;
+  padding: 0;
+  margin-bottom: 30px;
 }
 .navbar-nav {
   /* margin-top: 20px;
