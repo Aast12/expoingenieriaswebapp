@@ -7,6 +7,10 @@ module ProjectDetailsHelper
     end
     categories_map
   end
+
+  def strategicarea_options()
+    return [["Bio", "Bio"], ["Cyber", "Cyber"], ["Nano", "Nano"], ["Nexus", "Nexus"]]
+  end
        
   def project_detail_area_options()
     areas = ProjectArea.all

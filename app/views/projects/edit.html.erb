@@ -1,3 +1,7 @@
 <div class="content">
-  <%= render 'form', project: @project %>
+  <% if get_current_phases_names(Edition.find(get_current_edition_id)).include?("Edición de datos / Retroalimentación") %>
+    <%= render 'form', project: @project %>
+  <% else %>
+    <h1> Edición de datos de proyecto deshabilitado </h1>
+  <% end %>
 </div>

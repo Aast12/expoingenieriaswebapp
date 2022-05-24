@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_06_011303) do
+ActiveRecord::Schema.define(version: 2022_05_22_180937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -193,7 +193,6 @@ ActiveRecord::Schema.define(version: 2021_12_06_011303) do
   create_table "project_details", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.text "video_url"
     t.boolean "semestre_i"
     t.boolean "social_impact"
     t.string "client_type"
@@ -204,6 +203,7 @@ ActiveRecord::Schema.define(version: 2021_12_06_011303) do
     t.string "area"
     t.string "type_of"
     t.string "academic_level"
+    t.string "strategicarea"
     t.index ["project_id"], name: "index_project_details_on_project_id"
   end
 
@@ -225,15 +225,16 @@ ActiveRecord::Schema.define(version: 2021_12_06_011303) do
 
   create_table "projects", force: :cascade do |t|
     t.integer "status"
+    t.bigint "student_id", null: false
+    t.bigint "professor_id", null: false
     t.bigint "institution_id", null: false
     t.bigint "edition_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "main_student"
-    t.string "professor"
-    t.string "campus"
     t.index ["edition_id"], name: "index_projects_on_edition_id"
     t.index ["institution_id"], name: "index_projects_on_institution_id"
+    t.index ["professor_id"], name: "index_projects_on_professor_id"
+    t.index ["student_id"], name: "index_projects_on_student_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -335,6 +336,8 @@ ActiveRecord::Schema.define(version: 2021_12_06_011303) do
   add_foreign_key "project_event_details", "projects"
   add_foreign_key "projects", "editions"
   add_foreign_key "projects", "institutions"
+  add_foreign_key "projects", "professors"
+  add_foreign_key "projects", "students"
   add_foreign_key "questions", "editions"
   add_foreign_key "social_impacts", "projects"
   add_foreign_key "staff_members", "users"

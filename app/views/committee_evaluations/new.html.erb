@@ -1,7 +1,11 @@
 <div class="content">
-  <h1>Calificar proyecto</h1>
 
-  <%= render 'form', committee_evaluation: @committee_evaluation %>
-
+  <% if get_current_phases_names(Edition.find(get_current_edition_id)).include?("Aprobación de proyectos") %>
+    <h1>Calificar proyecto</h1>
+    <%= render 'form', committee_evaluation: @committee_evaluation %>
+  <% else %>
+    <h1>Aprobación de proyectos deshabilitado</h1>
+  <% end %>
+  <br>
   <%= link_to 'Regresar', projects_path, :class => "btn btn-light" %>
 </div>

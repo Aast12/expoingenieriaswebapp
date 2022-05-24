@@ -53,10 +53,8 @@ class CommitteeEvaluationsController < ApplicationController
   def update
     respond_to do |format|
       if params[:prueba].eql?('1')
-        # update the project status if the checkbox is clicked
        @project.update(status: 'approved')
-        # puts @project.status
-      elsif params[:prueba].eql?('0')
+      elsif 
         @project.update(status: 'disapproved')
       end
       if params[:project_statuses]

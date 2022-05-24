@@ -61,20 +61,26 @@
       </div>
     <hr>
     <div class="col-sm-12 card-actions">
-      <% if current_user.administrator? || (current_user.student? && project.status != "accepted") %>
+      <% if (current_user.student? || current_user.professor?) && get_current_phases_names(Edition.find(get_current_edition_id)).include?("Edición de datos / Retroalimentación")%>
+        <td><%= link_to 'Editar', edit_project_path(project), :class => "btn btn-light" %></td>
+      <% end %>
+
+
+      <% if current_user.administrator? %>
         <td><%= link_to 'Editar', edit_project_path(project), :class => "btn btn-light" %></td>
       <% end %>
       <td><%= link_to 'Ver', project_path(project), :class => "btn btn-light" %></td>
 
-      <% if current_user.professor? && get_current_phase_name() == 'Aprobación de proyectos' %>
+      <% if current_user.professor? && get_current_phases_names(Edition.find(get_current_edition_id)).include?("Aprobación de proyectos")%>
         <% if project.committee_evaluation.present? %>
           <td><%= link_to 'Editar calificación', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
         <% else %>
           <td><%= link_to 'Calificar', new_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
         <% end %>
       <% end %>
+      
 
-      <% if (current_user.committee_member? || current_user.administrator?) && get_current_phase_name() ==  'Evaluación de proyectos' %>
+      <% if (current_user.committee_member? || current_user.administrator?) && get_current_phases_names(Edition.find(get_current_edition_id)).include?("Evaluación de proyectos") %>
         <% if project.committee_evaluation.present? %>
           <td><%= link_to 'Editar evaluación', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
         <% else %>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :project_areas
   resources :project_categories
   # Root
-  root "virtual_samples#index"
+  root "projects#index"
   
   # Devise
   devise_for :users, controllers: {

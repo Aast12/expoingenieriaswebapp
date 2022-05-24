@@ -11,7 +11,7 @@
   .form-group.row.text-left
     .col-sm-4
       = form.label :institution_id, "Campus", :class => "form-label important"
-      = form.select :institution_id, institution_options(), { prompt: 'Seleccionar campus' }, :class => "form-control"
+      = form.select :institution_id, institution_options(), { prompt: 'Seleccionar campus' }, :class => "form-control", disabled: current_user.is_professor?
     = form.fields_for :project_detail do |project_detail|
       = render "project_details/form_shared", form: project_detail
     - unless current_page?('/projects/new')
@@ -36,7 +36,7 @@
     %h3 Datos del estudiante responsable
     .form-group.col-sm-13.text-left
       = form.label :student_id, "Nombre", :class => "form-label"
-      = form.select :student_id, student_options(), { :include_blank => true }, :class => "form-control", :id => "student_option", :onchange => "set_info('selected-email', 'selected-major', 'selected-student_code', 'select_id', '"+student_options().to_s+"')", :id => "select_id"
+      = form.select :student_id, student_options(), { :include_blank => true }, :class => "form-control", disabled: current_user.is_professor?,  :id => "student_option", :onchange => "set_info('selected-email', 'selected-major', 'selected-student_code', 'select_id', '"+student_options().to_s+"')", :id => "select_id"
       %br
       .form-group.col-sm-10.text-left
         = form.label :email, "Email", :class => "form-label"

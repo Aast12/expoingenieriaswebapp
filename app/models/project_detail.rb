@@ -15,6 +15,9 @@ class ProjectDetail < ApplicationRecord
   validates :description, presence: true, uniqueness: false, format: {with: /[
     a-zA-Z0-9_-]{2}/,message: "must contain description"}
 
+  validates :strategicarea, presence: true, uniqueness: false, format: {with: /[
+    a-zA-Z0-9_-]{2}/,message: "must contain strategic area field"}
+
   belongs_to :project
   has_one :project_category
   accepts_nested_attributes_for :project_category

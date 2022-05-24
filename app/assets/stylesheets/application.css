@@ -71,7 +71,7 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-attachment: fixed;
   background-color: rgba(4, 49, 133, 0.8);
-  height: 100vh;
+  /* height: 100vh; */
 }
 .border-right {
   border-right: 1px solid black;
@@ -79,7 +79,7 @@
 .card {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   text-align: left;
-  height: 700px;
+  height: auto;
   position: relative; 
   margin-bottom: 26px;
 }
@@ -215,8 +215,8 @@ h3 {
   align-items: center;
 }
 .navbar-current-user {
-  text-align: center;
-  width: 200px;
+  text-align: right;
+  width: 250px;
 }
 .navbar-expand-lg {
   background-color: rgba(255, 255, 255, 0.4);

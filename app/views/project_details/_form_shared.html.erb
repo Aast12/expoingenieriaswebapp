@@ -1,6 +1,6 @@
   <div class="col-sm-4">
     <%= form.label :name, "Nombre del proyecto", :class => "form-label important" %>
-    <%= form.text_field :name, :required => true, :class => "form-control" %>
+    <%= form.text_field :name, :required => true, :class => "form-control", disabled: current_user.is_professor? %>
   </div>
   <div class="col-sm-4">
     <%= form.label :category, "Categoría del proyecto", :class => "form-label important" %>
@@ -13,7 +13,7 @@
   <div class="col-sm-4">
 
     <%= form.label :area, "Área temática", :class => "form-label important" %>
-    <%= form.select :area, project_detail_area_options(), { prompt: 'Seleccionar área' }, :required => true, :class => "form-control" %>
+    <%= form.select :area, project_detail_area_options(), { prompt: 'Seleccionar área temática' }, :required => true, :class => "form-control" %>
   </div>
   <div class="col-sm-4">
     <%= form.label :client_type, "Cliente del proyecto", :class => "form-label important" %>
@@ -22,8 +22,8 @@
   
   
   <div class="col-sm-4">
-    <%#= form.label :academic_level, "Nivel Académico Máximo de los integrantes del equipo", :class => "form-label important" %>
-    <%#= form.select :academic_level, academic_level_options(), { prompt: 'Seleccionar nivel' }, :required => true, :class => "form-control" %>
+    <%= form.label :strategicarea, "Área Estratégica", :class => "form-label important" %>
+    <%= form.select :strategicarea, strategicarea_options(), { prompt: 'Seleccionar área estratégica' }, :required => true, :class => "form-control" %>
   </div>
 </div>
 
@@ -33,7 +33,7 @@
 <div class="form-group row text-left">
   <div class="col-sm-12">
     <%= form.label :description, "Descripción", :class => "form-label important" %>
-    <%= form.text_area :description, size: "10x6", :required => true, :class => "form-control" %>
+    <%= form.text_area :description, size: "10x6", :required => true, :class => "form-control", disabled: current_user.is_professor? %>
   </div>
 </div>
 

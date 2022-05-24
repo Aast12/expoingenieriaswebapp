@@ -20,10 +20,10 @@
               <% status_options = options_for_select(project_status_options_for_professor(project.id), "#{project.id}:#{project.status}") %>
             
             <% else %>
-              <% status_options = options_for_select(project_status_options_for_admin(project.id), "#{project.id}:#{project.status}") %>
+              <% status_options = options_for_select(project_status_options_for_professor(project.id), "#{project.id}:#{project.status}") %>
             <% end %>
 
-            <td><%= select_tag 'project_statuses[]', status_options, class: 'form-control' %></td>
+            <td><%= select_tag 'project_statuses[]', status_options, class: 'form-control', disabled: current_user.is_professor? %></td>
             
             <% if current_user.committee_member? || current_user.administrator? || current_user.professor? %>
               <td><%= link_to 'Ver', project, class: 'btn btn-light' %></td>

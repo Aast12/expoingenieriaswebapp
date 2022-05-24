@@ -67,6 +67,21 @@ module ApplicationHelper
 
   end
 
+  def get_current_phases_names(edition)
+    array = []
+    current_date = Date.today
+    currentEdition = nil
+
+    edition.phases.each do |phase|
+      if phase.start_date <= current_date && phase.end_date >= current_date
+        array.push(phase.name) 
+      end
+    end
+   
+    return array
+
+  end
+
   def project_status_options
     [['Registrado', 'registered'], ['Aprobado', 'approved'], ['No aprobado', 'disapproved'],
      ['Evaluado', 'evaluated'], ['Aceptado', 'accepted'], ['Rechazado', 'rejected'],
