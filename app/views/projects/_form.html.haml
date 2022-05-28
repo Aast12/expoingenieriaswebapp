@@ -9,9 +9,6 @@
           %li= message
   %h1 Alta de proyecto
   .form-group.row.text-left
-    .col-sm-4
-      = form.label :institution_id, "Campus", :class => "form-label important"
-      = form.select :institution_id, institution_options(), { prompt: 'Seleccionar campus' }, :class => "form-control", disabled: current_user.is_professor?
     = form.fields_for :project_detail do |project_detail|
       = render "project_details/form_shared", form: project_detail
     - unless current_page?('/projects/new')
@@ -48,7 +45,7 @@
         = form.label :student_code, "Matricula", :class => "form-label"
         = form.text_area :student_code, :id => "selected-student_code", :class => "form-control", :disabled => true, size: "1x1"
     %h3 Agregar integrantes del equipo
-    -# - Student.each do |a_value|
+        -Student.each do |a_value|
     -#   = form.check_box(:a, { :multiple => true }, a_value)
     -# = form.select :category, options_for_select(Student.all.collect {|x| [x.student_code, x.id]}), {:include_blank => true}, {:multiple => true}
     -# = form.select :category, options_for_select(Student.all), :include_blank => true, :multiple => true
@@ -68,7 +65,7 @@
       %br
       .form-group.col-sm-10.text-left
         = form.label :email_professor, "Email", :class => "form-label"
-        = form.text_area :email_professor, :class => "form-control", :id => "selected-email-professor", :disabled => true, size: "1x1"
+        = form.text_area :email_professor ,:class => "form-control", :id => "selected-email-professor", :disabled => true, size: "1x1"
   %br
   .actions
     = link_to 'Cancelar', projects_path, class: 'btn btn-light'
@@ -100,4 +97,4 @@
     
     });
   });
-
+  

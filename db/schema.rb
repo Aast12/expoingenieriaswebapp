@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_22_180937) do
+ActiveRecord::Schema.define(version: 2022_05_28_053517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -247,9 +247,9 @@ ActiveRecord::Schema.define(version: 2022_05_22_180937) do
   end
 
   create_table "social_impacts", force: :cascade do |t|
-    t.text "problem"
-    t.text "empathy"
-    t.text "responsibility"
+    t.text "social_cause"
+    t.text "social_commitment"
+    t.text "integrity"
     t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

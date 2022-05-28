@@ -393,6 +393,11 @@ div::-webkit-scrollbar-thumb:active{
 }
 
 
+#abstract-word-count {
+
+  width: 70%;
+}
+
 
 
 

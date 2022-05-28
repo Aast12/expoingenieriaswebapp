@@ -22,10 +22,13 @@ window.manageGlobalWordCount = function (params, wordCountId) {
   for (i = 0; i < params.length; i++) {
     console.log(params[i]);
     textValue = document.getElementById(params[i]).value;
-    acum += countWords(textValue);
+    if(textValue != ""){
+      acum += countWords(textValue);
+    }
+   
   }
   wordCount = document.getElementById(wordCountId);
-  wordCount.value = acum;
+  wordCount.value = acum + "/260";
 };
 
 window.set_info = function(email_id,major_id,code_id,select_id,value) {
@@ -49,6 +52,7 @@ window.set_info_professor = function(email_id,select_id,value) {
   values_arr = JSON.parse(value)
 
   email.value = values_arr[parseInt(id)-1][1];
+  //email.value = email_id
 }
 
 

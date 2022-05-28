@@ -26,7 +26,7 @@ module ProjectDetailsHelper
   end
 
   def project_detail_client_type_options()
-    [["Departamento del Tec", "itesm_department"]]
+    [["Desarrollo Propio", "personal_development"], ["Gobierno", "government"],["Industria Privada","private-industry"],["Organización Social","social_organization"],["Profesor de la Clase","class_professor"]]
   end
 
   def display_project_detail_category(project_detail)

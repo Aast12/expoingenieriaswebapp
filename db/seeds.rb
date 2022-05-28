@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+
 # Edition
 name = "Feb-Jun 2022"
 start_date_edition = Date.new(2022, 2, 14)
@@ -52,7 +53,6 @@ Department.create(name: "Otro")
 
 
 
-
 # Areas
 ProjectArea.create(name: "Agrobiotecnología")
 ProjectArea.create(name: "Automatización de Proceso")
@@ -63,6 +63,7 @@ ProjectArea.create(name: "Ingeniería Civil")
 ProjectArea.create(name: "Ingeniería de Alimentos")
 ProjectArea.create(name: "Ingeniería Industrial")
 ProjectArea.create(name: "Ingeniería Mecánica")
+ProjectArea.create(name: "Ingeniería Mecatrónica")
 ProjectArea.create(name: "Ingeniería Química")
 ProjectArea.create(name: "Modelo Arquitectónico")
 ProjectArea.create(name: "Modelo de Negocio")
@@ -71,6 +72,9 @@ ProjectArea.create(name: "Proceso de Producción")
 ProjectArea.create(name: "Química-Bioquímica")
 ProjectArea.create(name: "Sistemas Embebidos")
 ProjectArea.create(name: "Software")
+ProjectArea.create(name: "Emprendimiento en Base Tecnológica")
+
+
 
 #Base Categories:
 ProjectCategory.create(name: "Desarrollo de Prototipo Físico")

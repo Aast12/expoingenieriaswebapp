@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def social_impact_keys()
-    return [:problem, :empathy, :responsibility, :project_id]
+    return [:social_cause, :social_commitment, :integrity, :project_id]
   end
 
   def phase_keys()

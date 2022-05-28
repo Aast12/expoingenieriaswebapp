@@ -156,7 +156,7 @@ module ProjectsHelper
 
   def project_social_impact(project)
     impact = project.social_impact
-    impact.problem.present? || impact.empathy.present?
+    impact.social_cause.present? || impact.social_commitment.present?
   end
 
   def display_project_stand(project)

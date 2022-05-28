@@ -1,17 +1,16 @@
-  <div class="col-sm-4">
+  <div class="col-sm-12">
     <%= form.label :name, "Nombre del proyecto", :class => "form-label important" %>
     <%= form.text_field :name, :required => true, :class => "form-control", disabled: current_user.is_professor? %>
   </div>
+  
+</div>
+<div class="form-group row text-left">
   <div class="col-sm-4">
     <%= form.label :category, "Categoría del proyecto", :class => "form-label important" %>
 
     <%= form.select :category, project_detail_category_options(), { prompt: 'Seleccionar categoría' }, :required => true, :class => "form-control" %>
   </div>
-</div>
-
-<div class="form-group row text-left">
   <div class="col-sm-4">
-
     <%= form.label :area, "Área temática", :class => "form-label important" %>
     <%= form.select :area, project_detail_area_options(), { prompt: 'Seleccionar área temática' }, :required => true, :class => "form-control" %>
   </div>
@@ -20,14 +19,14 @@
     <%= form.select :client_type, project_detail_client_type_options(), { prompt: 'Seleccionar tipo de cliente' }, :required => true, :class => "form-control" %>
   </div>
   
-  
+</div>
+
+<div class="row text-left">
   <div class="col-sm-4">
     <%= form.label :strategicarea, "Área Estratégica", :class => "form-label important" %>
     <%= form.select :strategicarea, strategicarea_options(), { prompt: 'Seleccionar área estratégica' }, :required => true, :class => "form-control" %>
   </div>
 </div>
-
-
 
 
 <div class="form-group row text-left">
@@ -49,5 +48,5 @@
     <%= form.select :social_impact, boolean_options(), {}, { :class => "form-control",
                                                              :id => "social-impact-project-detail",
                                                              :onchange => "manageSocialImpactForm()" } %>
-  </div>
+</div>
 
