@@ -35,6 +35,7 @@ class Project < ApplicationRecord
   has_one :social_impact, dependent: :destroy, required: false
   accepts_nested_attributes_for :social_impact, allow_destroy: true
 
+  attr_accessor :participants
 
   def set_default_status
     self.status ||= :registered

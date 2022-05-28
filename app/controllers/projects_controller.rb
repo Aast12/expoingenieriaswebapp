@@ -56,13 +56,30 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.edition_id = get_current_edition_id()
     @project.institution_id = current_user.institution_id
-
     if current_user.student?
       stu = Student.all.where(user_id: current_user.id)
       @project.student_id = stu.ids.first
     end
+    project_id = @project.id
     respond_to do |format|
       if @project.save
+
+        students = params[:participants]
+        puts students
+        #add student participating in the project that aren't the main student
+        if students.length() > 0
+          students.each do |student|
+            puts student
+            ProjectParticipant.create(project_id:  @project.id, student_id: Student.all.where(student_code: student).ids[0])
+          end
+        end
+
+
+        
+
+
+
+
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -160,7 +177,7 @@ class ProjectsController < ApplicationController
                                       social_impact_attributes: social_impact_attributes,
                                       abstract_attributes: abstract_attributes,
                                       students_attributes: [:id, :_destroy, :student_code],
-                                      student_ids: [])
+                                      participants: [])
     end
 
     def project_detail_attributes

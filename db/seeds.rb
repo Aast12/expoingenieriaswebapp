@@ -134,6 +134,41 @@ student = Student.create(
 
 
 
+userStudent2 = User.new(
+    email: "student2@tec.com",
+    password: "143143",
+    institution_id: 1,
+    first_name: "Claudia",
+    last_name: "Rivera",
+    is_student: 1
+)
+userStudent2.skip_confirmation!
+userStudent2.save
+student2 = Student.create(
+    user_id: userStudent.id,
+    major: "ITC",
+    student_code: "A01570307"
+)
+
+
+userStudent3 = User.new(
+    email: "student3@tec.com",
+    password: "143143",
+    institution_id: 1,
+    first_name: "Blanca",
+    last_name: "Posada",
+    is_student: 1
+)
+userStudent3.skip_confirmation!
+userStudent3.save
+student3 = Student.create(
+    user_id: userStudent.id,
+    major: "ING",
+    student_code: "A01570308"
+)
+
+
+
 # Users Previous DB
 # userable = Administrator.create()
 # User.create(

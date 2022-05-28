@@ -73,7 +73,7 @@ module ProjectsHelper
     participants = []
     participantsEntries = ProjectParticipant.all.where(project_id: project.id)
     participantsEntries.each do |participant|
-      student = Students.find(participant.student_id)
+      student = Student.find(participant.student_id)
       userStudent = User.find(student.user_id)
       participants.append(userStudent.full_name)
     end

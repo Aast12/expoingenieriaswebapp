@@ -17,6 +17,10 @@ window.manageWordCount = function (textId, wordCountId) {
   wordCount.value = countWords(textValue);
 };
 
+window.addStudentParticipant = function(){
+  console.log("hola!")
+}
+
 window.manageGlobalWordCount = function (params, wordCountId) {
   var acum = 0;
   for (i = 0; i < params.length; i++) {

@@ -43,20 +43,7 @@
         = form.text_area :major, :id => "selected-major", :class => "form-control", :disabled => true, size: "1x1"
       .form-group.col-sm-10.text-left
         = form.label :student_code, "Matricula", :class => "form-label"
-        = form.text_area :student_code, :id => "selected-student_code", :class => "form-control", :disabled => true, size: "1x1"
-    %h3 Agregar integrantes del equipo
-        -Student.each do |a_value|
-    -#   = form.check_box(:a, { :multiple => true }, a_value)
-    -# = form.select :category, options_for_select(Student.all.collect {|x| [x.student_code, x.id]}), {:include_blank => true}, {:multiple => true}
-    -# = form.select :category, options_for_select(Student.all), :include_blank => true, :multiple => true
-    -# - Student.each do |question|
-    -#   = check_box_tag "student_ids[]", question.id, false, class: 'selectable'
-    = form.select :student_ids, Student.all.collect {|x| [x.student_code, x.id]}, {}, :multiple => "multiple", id: 'lstStates'
-    -# #students
-    -#   = form.fields_for :students do |student|
-    -#     = render 'student_fields', f: student
-    -#   .links
-    -#     = link_to_add_association 'add student', form, :students
+        = form.text_area :student_code, :id => "selected-student_code", :class => "form-control", :disabled => true, size: "1x1"   
   - if !current_user.professor?
     %h3 Datos del profesor coordinador
     .form-group.col-sm-13.text-left
@@ -67,6 +54,21 @@
         = form.label :email_professor, "Email", :class => "form-label"
         = form.text_area :email_professor ,:class => "form-control", :id => "selected-email-professor", :disabled => true, size: "1x1"
   %br
+  %hr
+  %h3 Añadir integrantes del equipo 
+  .form-group.row.text-left
+    .form-group.col-sm-6.text-left 
+      = form.label :participants, "Matrícula del estudiante", :class => "form-label"
+      = text_field_tag "participants[]", nil, :class => "form-control"
+      = form.label :participants, "Matrícula del estudiante", :class => "form-label"
+      = text_field_tag "participants[]", nil, :class => "form-control"
+      = form.label :participants, "Matrícula del estudiante", :class => "form-label"
+      = text_field_tag "participants[]", nil, :class => "form-control"
+    .form-group.col-sm-6.text-left
+      %br
+      %br
+      =link_to "+", "javascript:addStudentParticipant()", class: 'btn btn-default'
+
   .actions
     = link_to 'Cancelar', projects_path, class: 'btn btn-light'
     = form.submit :Guardar, class: 'btn btn-primary' 
