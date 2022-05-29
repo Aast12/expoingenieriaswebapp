@@ -23,6 +23,8 @@
 
     <h3>Integrantes del equipo</h3>
     <div class="show-project-details">
+    Número de integrantes del equipo:
+    <strong><%= project_participants(@project).length() + 1 %></strong> <br>
     <br><h6 style="color: darkgray"><i>Alumno responsable</i></h6>
       <div>
         <strong>Nombre:</strong>
@@ -44,12 +46,9 @@
       </div>
     <br><h6 style="color: darkgray"><i>Equipo</i></h6>
       <div>
-        Número de integrantes del equipo:
-        <strong><%= project_participants(@project).length() %></strong>
-        <br>
         <% if project_participants(@project).length()  > 0 %>
           <% project_participants(@project).each do |participant|%>
-          <h4><%= participant %></h4>
+          <strong>Nombre: </strong><%= participant %><br>
           <% end %>
         <% end %>
       </div>

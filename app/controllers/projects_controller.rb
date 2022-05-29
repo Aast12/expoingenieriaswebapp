@@ -39,6 +39,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
+    @students_codes =  Student.all.collect { |student| student.student_code }
     @project = Project.new
     @students = @project.students.build
     @project.build_project_detail

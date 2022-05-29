@@ -18,8 +18,65 @@ window.manageWordCount = function (textId, wordCountId) {
 };
 
 window.addStudentParticipant = function(){
-  console.log("hola!")
+  pane = document.getElementById("addStudentPane");
+  var br = document.createElement("br");
+  cantStudents = document.getElementById("cantStudents");
+
+  const label = document.createElement("label");
+  const input = document.createElement("input");
+  const inputName = document.createElement("p")
+
+
+  label.classList.add("form-label");
+  label.innerHTML = "Matrícula del estudiante";
+  label.htmlFor = "project_participants";
+  label.id = "label" + Number(cantStudents.innerHTML)
+
+  input.type = "text";
+  input.name = "participants[]";
+  input.id = Number(cantStudents.innerHTML);
+  input.classList.add("form-control");
+  input.pattern = "[aA][0-9]{8}";
+  input.setAttribute("onchange", "checkStudentCodeExists(this)");
+
+
+  inputName.disabled = "true"
+  inputName.id = "message" + Number(cantStudents.innerHTML);
+  
+
+
+  pane.appendChild(label);
+  pane.appendChild(input);
+  pane.appendChild(inputName)
+ 
+  cantStudents.innerHTML = Number(cantStudents.innerHTML)+1
 }
+
+window.deleteStudentParticipant = function() {
+  cantStudents = document.getElementById("cantStudents");
+  currentStudent = Number(cantStudents.innerHTML) - 1
+  if(currentStudent + 1 > 0){
+    document.getElementById(currentStudent).remove()
+    document.getElementById('message' + currentStudent).remove()
+    document.getElementById('label' + currentStudent).remove()
+    cantStudents.innerHTML = Number(cantStudents.innerHTML)-1
+  } 
+}
+
+
+window.checkStudentCodeExists = function(input){
+  
+  const student_codes = $('.students_info').data('students')
+  const message_id = 'message' + input.id
+  const message = document.getElementById(message_id)
+  if(!student_codes.includes(input.value) && input.value != ""){
+    console.log(message_id)
+    message.innerHTML = "Usuario no está registrado en la plataforma";
+  }else{
+    message.innerHTML = ""
+  }
+}
+
 
 window.manageGlobalWordCount = function (params, wordCountId) {
   var acum = 0;
@@ -67,3 +124,4 @@ function countWords(str) {
   str = str.replace(/\n /, "\n");
   return str.split(" ").length;
 }
+
