@@ -17,6 +17,63 @@ window.manageWordCount = function (textId, wordCountId) {
   wordCount.value = countWords(textValue);
 };
 
+window.addSecondaryProfessor = function(){
+  
+  pane = document.getElementById("addProfessorPane");
+  cantSecondaryProfessors = document.getElementById("cantSecondaryProfessors");
+
+  const label = document.createElement("label");
+  const input = document.createElement("input");
+  const warning = document.createElement("p")
+
+  label.classList.add("form-label");
+  label.innerHTML = "Correo del professor";
+  label.htmlFor = "secondary_professors";
+  label.id = "labelProfessor" + Number(cantSecondaryProfessors.innerHTML)
+
+  input.type = "text";
+  input.name = "secondary_professors[]";
+  input.id = "prof" + Number(cantSecondaryProfessors.innerHTML);
+  input.classList.add("form-control");
+  input.pattern = "[aA-zZ0-9._%+-]+@[itesm||tec]+\.(mx|com)";
+  input.setAttribute("onchange", "checkEmailFormat(this)");
+
+  warning.disabled = "true"
+  warning.id = "warningProfessor" + Number(cantSecondaryProfessors.innerHTML);
+  warning.style.color = "red"
+  
+  pane.appendChild(label);
+  pane.appendChild(input);
+  pane.appendChild(warning);
+
+  cantSecondaryProfessors.innerHTML = Number(cantSecondaryProfessors.innerHTML)+1
+};
+
+window.checkEmailFormat = function(input){
+
+  const validFormat = new RegExp("[aA-zZ0-9._%+-]+@[itesm||tec]+\.mx$");
+  const id = input.id.replace(/\D/g, "");
+  if(!validFormat.test(input.value) ){
+    document.getElementById("warningProfessor" + id).innerHTML = "Correo ingresado inválido";  
+  }else{
+    document.getElementById("warningProfessor" + id).innerHTML = "";
+  }
+}
+
+window.deleteSecondaryProfessor = function() {
+  
+  cantSecondaryProfessors = document.getElementById("cantSecondaryProfessors");
+  currentProfessor = Number(cantSecondaryProfessors.innerHTML) - 1;
+  if(currentProfessor + 1 > 0){
+    document.getElementById('labelProfessor'+currentProfessor).remove();
+    document.getElementById('prof' + currentProfessor).remove();
+    document.getElementById('warningProfessor' + currentProfessor).remove();
+    cantSecondaryProfessors.innerHTML = Number(cantSecondaryProfessors.innerHTML)-1;
+  } 
+}
+
+
+
 window.addStudentParticipant = function(){
   pane = document.getElementById("addStudentPane");
   var br = document.createElement("br");

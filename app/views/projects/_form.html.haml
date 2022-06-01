@@ -58,8 +58,34 @@
 
     
     %h3 Añadir profesores secundarios
-  %br
+
+    .alert-registration.mx-5
+      .alert.alert-info.text-center.mx-5 Los profesores secundarios deben tener una cuenta en la plataforma para poder ser registrados en el proyecto. Favor de registrarlos con el correo asociado a la plataforma.
+
+    .form-group.row.text-center
+    %div{:class => "form-group col-sm-12"}
+      %p.h5 
+        Cantidad de profesores secundarios: 
+        %span{id: 'cantSecondaryProfessors', class: "h5"} 0
+
+
+
+    .form-group.row.text-left
+      %div{:class => "form-group col-sm-6 text-left", :id => "addProfessorPane"}
+       
+        /= form.label :secondary_professors, "Correo del profesor", :class => "form-label"
+        /= text_field_tag "secondary_professors[]", nil, :class => "form-control"
+
+      %div{:class => "form-group col-sm-6"}
+
+   
   
+    .form-group.row.text.center 
+      .form-group.col-sm-12.text-center
+        
+        =link_to "Añadir profesor", "javascript:addSecondaryProfessor()", class: 'btn btn-light'
+        =link_to "Eliminar profesor", "javascript:deleteSecondaryProfessor()", class: 'btn btn-light'
+
 
   
 
@@ -67,15 +93,26 @@
   .students_info{data:{students: @students_codes.to_json}}
  
   %h3 Añadir integrantes del equipo 
+
+  .alert-registration.mx-5
+    .alert.alert-info.text-center.mx-5 Los estudiantes miembros del equipo deben tener una cuenta en la plataforma para poder ser registrados en el proyecto. Favor de registrarlos con el correo asociado a la plataforma.
+
+
+  .form-group.row.text-center
+    %div{:class => "form-group col-sm-12 text-center"}
+      %p.h5 
+        Cantidad de alumnos: 
+        %span{id: 'cantStudents', class: "h5"} 0
+
+      
+
   .form-group.row.text-left
     %div{:class => "form-group col-sm-6 text-left", :id => "addStudentPane"}
       /= form.label :participants, "Matrícula del estudiante", :class => "form-label"
       /= text_field_tag "participants[]", nil, :class => "form-control"
-    %div{:class => "form-group col-sm-6 text-left"}
-      %p 
-        Cantidad de alumnos: 
-        %span{id: 'cantStudents'} 0
-      
+
+   
+  
 
   .form-group.row.text.center 
     .form-group.col-sm-12.text-center

@@ -65,16 +65,27 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
 
-        students = params[:participants]
-        puts students
+
         #add student participating in the project that aren't the main student
-        if students.length() > 0
+        
+        if params[:participants].present?
+          students = params[:participants]
           students.each do |student|
-            puts student
+
             ProjectParticipant.create(project_id:  @project.id, student_id: Student.all.where(student_code: student).ids[0])
           end
         end
 
+        #add secodary proffesor that aren't the main proffesor
+        if params[:secondary_professors].present?
+          professors = params[:secondary_professors]
+          professors.each do |professor|
+            puts professor
+            userProfessor = User.all.where(email: professor)
+            realProfessor = Professor.all.where(user_id: userProfessor.ids[0])
+            SecondaryProfessor.create(project_id:  @project.id, professor_id: realProfessor.ids[0])
+          end
+        end
 
         
 
@@ -178,7 +189,7 @@ class ProjectsController < ApplicationController
                                       social_impact_attributes: social_impact_attributes,
                                       abstract_attributes: abstract_attributes,
                                       students_attributes: [:id, :_destroy, :student_code],
-                                      participants: [])
+                                      participants: [], secondary_professors: [])
     end
 
     def project_detail_attributes

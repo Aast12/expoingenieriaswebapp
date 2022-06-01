@@ -81,6 +81,8 @@ module ProjectsHelper
   end
 
 
+
+
   def project_score(project)
     committee_evaluation = project.committee_evaluation
     if committee_evaluation.problem == nil

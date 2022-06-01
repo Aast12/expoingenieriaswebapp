@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_28_053517) do
+ActiveRecord::Schema.define(version: 2022_05_29_072106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -246,6 +246,15 @@ ActiveRecord::Schema.define(version: 2022_05_28_053517) do
     t.index ["edition_id"], name: "index_questions_on_edition_id"
   end
 
+  create_table "secondary_professors", force: :cascade do |t|
+    t.bigint "professor_id", null: false
+    t.bigint "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["professor_id"], name: "index_secondary_professors_on_professor_id"
+    t.index ["project_id"], name: "index_secondary_professors_on_project_id"
+  end
+
   create_table "social_impacts", force: :cascade do |t|
     t.text "social_cause"
     t.text "social_commitment"
@@ -339,6 +348,8 @@ ActiveRecord::Schema.define(version: 2022_05_28_053517) do
   add_foreign_key "projects", "professors"
   add_foreign_key "projects", "students"
   add_foreign_key "questions", "editions"
+  add_foreign_key "secondary_professors", "professors"
+  add_foreign_key "secondary_professors", "projects"
   add_foreign_key "social_impacts", "projects"
   add_foreign_key "staff_members", "users"
   add_foreign_key "students", "users"

@@ -86,7 +86,7 @@ ProjectCategory.create(name: "Productos o Servicios para Emprendimiento de Base 
 
 #Users
 userProf = User.new(
-    email: "profe@tec.com", 
+    email: "juanh@tec.mx", 
     password: "143143", 
     first_name: "Luis", 
     last_name: "Gonzalez", 
@@ -145,7 +145,7 @@ userStudent2 = User.new(
 userStudent2.skip_confirmation!
 userStudent2.save
 student2 = Student.create(
-    user_id: userStudent.id,
+    user_id: userStudent2.id,
     major: "ITC",
     student_code: "A01570307"
 )
@@ -162,7 +162,7 @@ userStudent3 = User.new(
 userStudent3.skip_confirmation!
 userStudent3.save
 student3 = Student.create(
-    user_id: userStudent.id,
+    user_id: userStudent3.id,
     major: "ING",
     student_code: "A01570308"
 )

@@ -37,6 +37,8 @@ class Project < ApplicationRecord
 
   attr_accessor :participants
 
+  attr_accessor :secondary_professors
+
   def set_default_status
     self.status ||= :registered
   end
