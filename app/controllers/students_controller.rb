@@ -21,6 +21,20 @@ class StudentsController < ApplicationController
   def edit
   end
 
+
+  def is_valid_student
+    student = Student.all.where(student_code: params[:student_code])[0];
+    if student.present?
+      user = User.find(student.user_id);
+      if user.present?
+        if user.is_student
+          render json: {name: user.full_name}
+        end
+      end
+    end
+    
+  end 
+
   # POST /students
   # POST /students.json
   def create

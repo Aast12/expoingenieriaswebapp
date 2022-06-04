@@ -21,6 +21,18 @@ class ProfessorsController < ApplicationController
   def edit
   end
 
+  def is_valid_professor
+    professor = User.all.where(email: params[:professor_email])[0];
+
+    if professor.present?
+      if professor.is_professor
+        render json: {name: professor.full_name}
+      end
+    end
+  
+   
+  end
+
   # POST /professors
   # POST /professors.json
   def create

@@ -1,3 +1,7 @@
+
+var globalStudentCount = 0;
+var globalProfessorCount = 0;
+
 window.manageSocialImpactForm = function () {
   socialImpactProjectDetail = document.getElementById(
     "social-impact-project-detail"
@@ -18,120 +22,209 @@ window.manageWordCount = function (textId, wordCountId) {
 };
 
 window.addSecondaryProfessor = function(){
-  
-  pane = document.getElementById("addProfessorPane");
-  cantSecondaryProfessors = document.getElementById("cantSecondaryProfessors");
 
+  const parent = document.getElementById("professors-input");
+  const row = document.createElement("div");
+  const emailCol = document.createElement("div");
+  const namesCol = document.createElement("div");
+  const deleteCol = document.createElement("div");
+
+  emailCol.classList.add("form-group", "col-sm-5", "text-left");
+  namesCol.classList.add("form-group", "col-sm-5", "text-left");
+  deleteCol.classList.add("form-group", "col-sm-2", "text-left", "mt-4");
+
+  row.classList.add("form-group", "row", "text-left");
+  row.id = "rowforProfessor" + globalProfessorCount;
+
+  const deleteBtn = document.createElement("button");
+  const deleteIcon = document.createElement("i");
   const label = document.createElement("label");
   const input = document.createElement("input");
-  const warning = document.createElement("p")
+  const inputName = document.createElement("input");
+  const nameLabel = document.createElement("label");
+
 
   label.classList.add("form-label");
   label.innerHTML = "Correo del professor";
   label.htmlFor = "secondary_professors";
-  label.id = "labelProfessor" + Number(cantSecondaryProfessors.innerHTML)
+  label.id = "labelProfessor" + globalProfessorCount;
 
   input.type = "text";
   input.name = "secondary_professors[]";
-  input.id = "prof" + Number(cantSecondaryProfessors.innerHTML);
+  input.id = "prof" + globalProfessorCount;
   input.classList.add("form-control");
   input.pattern = "[aA-zZ0-9._%+-]+@[itesm||tec]+\.(mx|com)";
-  input.setAttribute("onchange", "checkEmailFormat(this)");
+  input.setAttribute("onchange", "checkValidProfessor(this)");
 
-  warning.disabled = "true"
-  warning.id = "warningProfessor" + Number(cantSecondaryProfessors.innerHTML);
-  warning.style.color = "red"
-  
-  pane.appendChild(label);
-  pane.appendChild(input);
-  pane.appendChild(warning);
+  inputName.id = "nameprof" +  globalProfessorCount;
+  inputName.disabled = true;
+  inputName.classList.add("form-control");
 
-  cantSecondaryProfessors.innerHTML = Number(cantSecondaryProfessors.innerHTML)+1
+  nameLabel.classList.add("form-label");
+  nameLabel.innerHTML = "Nombre del profesor";
+  nameLabel.id = "profNameLabel" +  globalProfessorCount;
+
+  deleteBtn.id = globalProfessorCount;
+  deleteBtn.classList.add("btn", "btn-light");
+  deleteBtn.setAttribute("onclick", "deleteProfessor(this)");
+  deleteBtn.type = "button";
+  deleteIcon.classList.add("fa");
+  deleteIcon.classList.add("fa-trash-o");                           
+  deleteBtn.appendChild(deleteIcon);
+
+  emailCol.appendChild(label);
+  emailCol.appendChild(input);
+
+  namesCol.appendChild(nameLabel);
+  namesCol.appendChild(inputName);
+
+  deleteCol.appendChild(deleteBtn);
+
+  row.appendChild(emailCol);
+  row.appendChild(namesCol);
+  row.appendChild(deleteCol);
+
+  parent.appendChild(row);
+
+
+  cantSecondaryProfessors.innerHTML = Number(cantSecondaryProfessors.innerHTML)+1;
+  globalProfessorCount+=1;
 };
 
-window.checkEmailFormat = function(input){
+window.deleteProfessor = function(input){
 
-  const validFormat = new RegExp("[aA-zZ0-9._%+-]+@[itesm||tec]+\.mx$");
-  const id = input.id.replace(/\D/g, "");
-  if(!validFormat.test(input.value) ){
-    document.getElementById("warningProfessor" + id).innerHTML = "Correo ingresado inválido";  
-  }else{
-    document.getElementById("warningProfessor" + id).innerHTML = "";
-  }
+  
+  document.getElementById("rowforProfessor" + input.id).remove();
+
+  cantSecondaryProfessors.innerHTML = Number(cantSecondaryProfessors.innerHTML)-1;
+  
 }
 
+window.checkValidProfessor = function(input){
+  $.ajax({
+    type:'GET',
+    url:'/professor/is_valid_professor',
+    data: {"professor_email": input.value},
+    success:function(response){
+      if(typeof response === "undefined"){
+        document.getElementById('name' + input.id).value = "Profesor no está registrado en la plataforma";
+        document.getElementById('name' + input.id).style.color = "red";
+      }else{ 
+        document.getElementById('name' + input.id).style.color = "black";
+        document.getElementById('name' + input.id).value = response.name;
+      }
+    }
+  });
+}
+/*
 window.deleteSecondaryProfessor = function() {
   
   cantSecondaryProfessors = document.getElementById("cantSecondaryProfessors");
-  currentProfessor = Number(cantSecondaryProfessors.innerHTML) - 1;
+  currentProfessor = globalProfessorCount - 1;
   if(currentProfessor + 1 > 0){
     document.getElementById('labelProfessor'+currentProfessor).remove();
     document.getElementById('prof' + currentProfessor).remove();
-    document.getElementById('warningProfessor' + currentProfessor).remove();
-    cantSecondaryProfessors.innerHTML = Number(cantSecondaryProfessors.innerHTML)-1;
+    //document.getElementById('warningProfessor' + currentProfessor).remove();
+    document.getElementById('profNameLabel' + currentProfessor).remove();
+    document.getElementById('nameprof' + currentProfessor).remove();
+   
+    cantSecondaryProfessors.innerHTML = globalProfessorCount-1;
   } 
 }
-
+*/
 
 
 window.addStudentParticipant = function(){
-  pane = document.getElementById("addStudentPane");
-  var br = document.createElement("br");
-  cantStudents = document.getElementById("cantStudents");
+  var cantStudents = document.getElementById("cantStudents");
+  const parent = document.getElementById("students-input");
+  const row = document.createElement("div");
+  const emailCol = document.createElement("div");
+  const namesCol = document.createElement("div");
+  const deleteCol = document.createElement("div");
 
+  emailCol.classList.add("form-group", "col-sm-5", "text-left");
+  namesCol.classList.add("form-group", "col-sm-5", "text-left");
+  deleteCol.classList.add("form-group", "col-sm-2", "text-left", "mt-4");
+
+  row.classList.add("form-group", "row", "text-left");
+  row.id = "rowforStudent" + globalStudentCount;
+
+  const deleteBtn = document.createElement("button");
+  const deleteIcon = document.createElement("i");
   const label = document.createElement("label");
   const input = document.createElement("input");
-  const inputName = document.createElement("p")
+  const inputName = document.createElement("input");
+  const nameLabel = document.createElement("label");
 
 
   label.classList.add("form-label");
-  label.innerHTML = "Matrícula del estudiante";
+  label.innerHTML = "Matrícula del alumno";
   label.htmlFor = "project_participants";
-  label.id = "label" + Number(cantStudents.innerHTML)
+  label.id = "labelStudentCode" + globalStudentCount;
 
   input.type = "text";
   input.name = "participants[]";
-  input.id = Number(cantStudents.innerHTML);
+  input.id = "student" + globalStudentCount;
   input.classList.add("form-control");
-  input.pattern = "[aA][0-9]{8}";
-  input.setAttribute("onchange", "checkStudentCodeExists(this)");
+  input.setAttribute("onchange", "checkValidStudent(this)");
+
+  inputName.id = "namestudent" +  globalStudentCount;
+  inputName.disabled = true;
+  inputName.classList.add("form-control");
+
+  nameLabel.classList.add("form-label");
+  nameLabel.innerHTML = "Nombre del alumno";
+  nameLabel.id = "studentNamelabel" +  globalStudentCount;
+
+  deleteBtn.id = globalStudentCount;
+  deleteBtn.classList.add("btn", "btn-light");
+  deleteBtn.setAttribute("onclick", "deleteStudentParticipant(this)");
+  deleteBtn.type = "button";
+  deleteIcon.classList.add("fa");
+  deleteIcon.classList.add("fa-trash-o");                           
+  deleteBtn.appendChild(deleteIcon);
+
+  emailCol.appendChild(label);
+  emailCol.appendChild(input);
+
+  namesCol.appendChild(nameLabel);
+  namesCol.appendChild(inputName);
+
+  deleteCol.appendChild(deleteBtn);
+
+  row.appendChild(emailCol);
+  row.appendChild(namesCol);
+  row.appendChild(deleteCol);
+
+  parent.appendChild(row);
 
 
-  inputName.disabled = "true"
-  inputName.id = "message" + Number(cantStudents.innerHTML);
-  
-
-
-  pane.appendChild(label);
-  pane.appendChild(input);
-  pane.appendChild(inputName)
- 
-  cantStudents.innerHTML = Number(cantStudents.innerHTML)+1
+  cantStudents.innerHTML = Number(cantStudents.innerHTML)+1;
+  globalStudentCount+=1;
 }
 
-window.deleteStudentParticipant = function() {
-  cantStudents = document.getElementById("cantStudents");
-  currentStudent = Number(cantStudents.innerHTML) - 1
-  if(currentStudent + 1 > 0){
-    document.getElementById(currentStudent).remove()
-    document.getElementById('message' + currentStudent).remove()
-    document.getElementById('label' + currentStudent).remove()
-    cantStudents.innerHTML = Number(cantStudents.innerHTML)-1
-  } 
+window.deleteStudentParticipant = function(input) {
+  document.getElementById("rowforStudent" + input.id).remove();
+  cantStudents.innerHTML = Number(cantStudents.innerHTML)-1;
 }
 
 
-window.checkStudentCodeExists = function(input){
-  
-  const student_codes = $('.students_info').data('students')
-  const message_id = 'message' + input.id
-  const message = document.getElementById(message_id)
-  if(!student_codes.includes(input.value) && input.value != ""){
-    console.log(message_id)
-    message.innerHTML = "Usuario no está registrado en la plataforma";
-  }else{
-    message.innerHTML = ""
-  }
+window.checkValidStudent = function(input){
+  $.ajax({
+    type:'GET',
+    url:'/student/is_valid_student',
+    data: {"student_code": input.value},
+    success:function(response){
+      if(typeof response === "undefined"){
+        document.getElementById('name' + input.id).value = "Alumno no está registrado en la plataforma";
+        document.getElementById('name' + input.id).style.color = "red";
+      }else{ 
+        console.log(input.id);
+        document.getElementById('name' + input.id).style.color = "black";
+        document.getElementById('name' + input.id).value = response.name;
+      }
+    }
+  });
 }
 
 

@@ -72,14 +72,24 @@ module ProjectsHelper
   def project_participants(project)
     participants = []
     participantsEntries = ProjectParticipant.all.where(project_id: project.id)
-    participantsEntries.each do |participant|
-      student = Student.find(participant.student_id)
+    participantsEntries.each do |entry|
+      student = Student.find(entry.student_id)
       userStudent = User.find(student.user_id)
       participants.append(userStudent.full_name)
     end
     participants
   end
 
+  def project_secondary_professors(project)
+    professors = []
+    profesorsEntries = SecondaryProfessor.all.where(project_id: project.id);
+    profesorsEntries.each do |entry|
+      prof = Professor.find(entry.professor_id);
+      userProfessor  = User.find(prof.user_id);
+      professors.append([userProfessor.full_name, userProfessor.email])
+    end
+    professors  
+  end
 
 
 

@@ -44,7 +44,7 @@
         <strong>Carrera:</strong>
         <%= project_student_major(@project) %>
       </div>
-    <br><h6 style="color: darkgray"><i>Equipo</i></h6>
+      <br><h6 style="color: darkgray"><i>Equipo</i></h6>
       <div>
         <% if project_participants(@project).length()  > 0 %>
           <% project_participants(@project).each do |participant|%>
@@ -74,9 +74,13 @@
 
     </div>
 
-    <h3>Profesores secundarios</h3>
-    <div class="">
-      
+    <h3>Profesores tutores adicionales</h3>
+    <div class="show-project-details">
+      <% if project_secondary_professors(@project).length()  > 0 %>
+        <% project_secondary_professors(@project).each do |professor|%>
+        <strong>Nombre: </strong><%= professor[0]%> <strong>Correo: </strong> <%= professor[1]%>  <br>
+        <% end %>
+      <% end %>
     </div>
 
 

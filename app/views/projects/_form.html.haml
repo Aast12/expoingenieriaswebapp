@@ -45,9 +45,9 @@
         = form.label :student_code, "Matricula", :class => "form-label"
         = form.text_area :student_code, :id => "selected-student_code", :class => "form-control", :disabled => true, size: "1x1"   
   - if !current_user.professor?
-    %h3 Datos del profesor coordinador
+    %h3 Datos del profesor tutor
     .form-group.row.text-left
-      .form-group.col-sm-12.text-left
+      .form-group.col-sm-6.text-left
         = form.label :professor_id, "Nombre", :class => "form-label"
         = form.select :professor_id, professor_options(), { :include_blank => true }, :class => "form-control", :id => "professor_option", :onchange => "set_info_professor('selected-email-professor', 'selected_id_professor', '"+professor_options().to_s+"')", :id => "selected_id_professor"
       %br
@@ -55,42 +55,25 @@
         = form.label :email_professor, "Email", :class => "form-label"
         = form.text_area :email_professor ,:class => "form-control", :id => "selected-email-professor", :disabled => true, size: "1x1"
 
-
-    
-    %h3 Añadir profesores secundarios
+    %h3 Añadir tutores adicionales
 
     .alert-registration.mx-5
       .alert.alert-info.text-center.mx-5 Los profesores secundarios deben tener una cuenta en la plataforma para poder ser registrados en el proyecto. Favor de registrarlos con el correo asociado a la plataforma.
 
-    .form-group.row.text-center
+ 
     %div{:class => "form-group col-sm-12"}
       %p.h5 
         Cantidad de profesores secundarios: 
         %span{id: 'cantSecondaryProfessors', class: "h5"} 0
 
+    %div{:id => "professors-input"}
 
 
-    .form-group.row.text-left
-      %div{:class => "form-group col-sm-6 text-left", :id => "addProfessorPane"}
-       
-        /= form.label :secondary_professors, "Correo del profesor", :class => "form-label"
-        /= text_field_tag "secondary_professors[]", nil, :class => "form-control"
-
-      %div{:class => "form-group col-sm-6"}
-
-   
-  
     .form-group.row.text.center 
       .form-group.col-sm-12.text-center
         
         =link_to "Añadir profesor", "javascript:addSecondaryProfessor()", class: 'btn btn-light'
-        =link_to "Eliminar profesor", "javascript:deleteSecondaryProfessor()", class: 'btn btn-light'
 
-
-  
-
-
-  .students_info{data:{students: @students_codes.to_json}}
  
   %h3 Añadir integrantes del equipo 
 
@@ -98,27 +81,23 @@
     .alert.alert-info.text-center.mx-5 Los estudiantes miembros del equipo deben tener una cuenta en la plataforma para poder ser registrados en el proyecto. Favor de registrarlos con el correo asociado a la plataforma.
 
 
-  .form-group.row.text-center
-    %div{:class => "form-group col-sm-12 text-center"}
-      %p.h5 
-        Cantidad de alumnos: 
-        %span{id: 'cantStudents', class: "h5"} 0
+
+  %div{:class => "form-group col-sm-12 text-center"}
+    %p.h5 
+      Cantidad de alumnos: 
+      %span{id: 'cantStudents', class: "h5"} 0
 
       
 
-  .form-group.row.text-left
-    %div{:class => "form-group col-sm-6 text-left", :id => "addStudentPane"}
-      /= form.label :participants, "Matrícula del estudiante", :class => "form-label"
-      /= text_field_tag "participants[]", nil, :class => "form-control"
+  %div{:id => "students-input"}
+   
 
    
-  
 
   .form-group.row.text.center 
     .form-group.col-sm-12.text-center
       
       =link_to "Añadir estudiante", "javascript:addStudentParticipant()", class: 'btn btn-light'
-      =link_to "Eliminar estudiante", "javascript:deleteStudentParticipant()", class: 'btn btn-light'
 
   .actions
     = link_to 'Cancelar', projects_path, class: 'btn btn-light'
