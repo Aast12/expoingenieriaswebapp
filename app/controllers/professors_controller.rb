@@ -22,11 +22,12 @@ class ProfessorsController < ApplicationController
   end
 
   def is_valid_professor
-    professor = User.all.where(email: params[:professor_email])[0];
-
-    if professor.present?
-      if professor.is_professor
-        render json: {name: professor.full_name}
+    professorUser = User.all.where(email: params[:professor_email])[0]
+    
+    if professorUser.present? 
+      if professorUser.is_professor 
+        professor = Professor.all.where(user_id: professorUser.id)[0]
+        render json: {name: professorUser.full_name, department: professor.department}
       end
     end
   

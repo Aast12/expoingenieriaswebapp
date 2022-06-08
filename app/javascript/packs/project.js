@@ -31,7 +31,7 @@ window.addSecondaryProfessor = function(){
 
   emailCol.classList.add("form-group", "col-sm-5", "text-left");
   namesCol.classList.add("form-group", "col-sm-5", "text-left");
-  deleteCol.classList.add("form-group", "col-sm-2", "text-left", "mt-4");
+  deleteCol.classList.add("form-group", "col-sm-2", "text-left");
 
   row.classList.add("form-group", "row", "text-left");
   row.id = "rowforProfessor" + globalProfessorCount;
@@ -68,6 +68,7 @@ window.addSecondaryProfessor = function(){
   deleteBtn.classList.add("btn", "btn-light");
   deleteBtn.setAttribute("onclick", "deleteProfessor(this)");
   deleteBtn.type = "button";
+  deleteBtn.style = "margin-top: 30px"
   deleteIcon.classList.add("fa");
   deleteIcon.classList.add("fa-trash-o");                           
   deleteBtn.appendChild(deleteIcon);
@@ -106,6 +107,7 @@ window.checkValidProfessor = function(input){
     url:'/professor/is_valid_professor',
     data: {"professor_email": input.value},
     success:function(response){
+      console.log(response);
       if(typeof response === "undefined"){
         document.getElementById('name' + input.id).value = "Profesor no está registrado en la plataforma";
         document.getElementById('name' + input.id).style.color = "red";
@@ -116,22 +118,27 @@ window.checkValidProfessor = function(input){
     }
   });
 }
-/*
-window.deleteSecondaryProfessor = function() {
-  
-  cantSecondaryProfessors = document.getElementById("cantSecondaryProfessors");
-  currentProfessor = globalProfessorCount - 1;
-  if(currentProfessor + 1 > 0){
-    document.getElementById('labelProfessor'+currentProfessor).remove();
-    document.getElementById('prof' + currentProfessor).remove();
-    //document.getElementById('warningProfessor' + currentProfessor).remove();
-    document.getElementById('profNameLabel' + currentProfessor).remove();
-    document.getElementById('nameprof' + currentProfessor).remove();
-   
-    cantSecondaryProfessors.innerHTML = globalProfessorCount-1;
-  } 
+
+window.validateMainProfessor = function(input){
+  $.ajax({
+    type:'GET',
+    url:'/professor/is_valid_professor',
+    data: {"professor_email": input.value},
+    success:function(response){
+      if(typeof response === "undefined"){
+        document.getElementById('selected-email-professor').value = "Profesor no está registrado en la plataforma";
+        document.getElementById('selected-email-professor').style.color = "red";
+        document.getElementById('selected-department-professor').value = ""
+      }else{ 
+        document.getElementById('selected-email-professor').style.color = "black";
+        document.getElementById('selected-email-professor').value = response.name;
+        document.getElementById('selected-department-professor').value = response.department;
+        document.getElementById('selected-department-professor').style.color = "black";
+
+      }
+    }
+  });
 }
-*/
 
 
 window.addStudentParticipant = function(){
@@ -144,7 +151,7 @@ window.addStudentParticipant = function(){
 
   emailCol.classList.add("form-group", "col-sm-5", "text-left");
   namesCol.classList.add("form-group", "col-sm-5", "text-left");
-  deleteCol.classList.add("form-group", "col-sm-2", "text-left", "mt-4");
+  deleteCol.classList.add("form-group", "col-sm-2", "text-left");
 
   row.classList.add("form-group", "row", "text-left");
   row.id = "rowforStudent" + globalStudentCount;
@@ -180,6 +187,7 @@ window.addStudentParticipant = function(){
   deleteBtn.classList.add("btn", "btn-light");
   deleteBtn.setAttribute("onclick", "deleteStudentParticipant(this)");
   deleteBtn.type = "button";
+  deleteBtn.style = "margin-top: 30px"
   deleteIcon.classList.add("fa");
   deleteIcon.classList.add("fa-trash-o");                           
   deleteBtn.appendChild(deleteIcon);

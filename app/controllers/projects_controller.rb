@@ -64,8 +64,9 @@ class ProjectsController < ApplicationController
     project_id = @project.id
     respond_to do |format|
       if @project.save
-
-
+      
+        #ProjectNotifierMailer.with(project: @project).new_project_student.deliver_now
+        #ProjectNotifierMailer.with(project: @project).new_project_professor.deliver_now
         #add student participating in the project that aren't the main student
         
         if params[:participants].present?
@@ -88,9 +89,6 @@ class ProjectsController < ApplicationController
         end
 
         
-
-
-
 
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
