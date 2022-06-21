@@ -127,19 +127,22 @@ class ProjectsController < ApplicationController
   # GET /select_projects
   def select_projects
     current_projects = get_current_edition_projects()
-    @projects = current_projects
+    if current_user.professor?
+      professor = Professor.where(user_id: current_user.id)
+      @projects = current_projects.where.not(professor_id: professor.ids)
+    else
+      @projects = current_projects
+    end
   end
 
   # POST /update_selected_projects
   def update_selected_projects
-    current_projects = get_current_edition_projects()
-    selected_ids = params[:selected_projects]
-    current_projects.each do |project|
-      if selected_ids.include?(project.id.to_s)
-        project.update_attribute(:status, 4)
-      else
-        project.update_attribute(:status, 5)
-      end
+    project_statuses = params[:selected_projects]
+    project_statuses.each do |project_status|
+      parts = project_status.split(':')
+      project = Project.find(parts[0])
+      status = parts[1]
+      project.update_attribute(:status, status)
     end
     respond_to do |format|
       format.html { redirect_to select_projects_path, notice: 'Status was successfully updated.' }
@@ -151,15 +154,6 @@ class ProjectsController < ApplicationController
     if current_user.professor?
       professor = Professor.where(user_id: current_user.id)
       @projects = Project.all.where(professor_id: professor.ids)
-    else
-      @projects = Project.all
-    end
-  end
-
-  def project_approval
-    if current_user.professor? #committee members can't approve projects where they are the tutor
-      professor = Professor.where(user_id: current_user.id)
-      @projects = Project.all.where.not(professor_id: professor.ids)
     else
       @projects = Project.all
     end

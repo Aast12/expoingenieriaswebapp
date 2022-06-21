@@ -21,6 +21,10 @@ module ProjectsHelper
     ['DECLINADO', "#{project_id}:declined"], ['FALTÓ', "#{project_id}:missed"]]
   end
 
+  def project_status_options_for_approval(project_id)
+    [['ACEPTADO', "#{project_id}:accepted"], ['RECHAZADO', "#{project_id}:rejected"]]
+  end
+
   def project_status_options_for_admin(project_id)
     [['REGISTRADO', "#{project_id}:registered"], ['APROBADO', "#{project_id}:approved"], 
     ['NO APROBADO', "#{project_id}:disapproved"], ['EVALUADO', "#{project_id}:evaluated"], 

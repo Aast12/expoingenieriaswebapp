@@ -46,6 +46,11 @@ class Project < ApplicationRecord
   def accepted?
     self.status == "accepted"
   end
+
+  def rejected?
+    self.status == "rejected"
+  end
+
   def project_category
     self.project_detail.category
   end
