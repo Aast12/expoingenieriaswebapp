@@ -57,6 +57,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.edition_id = get_current_edition_id()
     @project.institution_id = current_user.institution_id
+    @project.professor_id = 1
     if current_user.student?
       stu = Student.all.where(user_id: current_user.id)
       @project.student_id = stu.ids.first
@@ -65,8 +66,8 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
       
-        #ProjectNotifierMailer.with(project: @project).new_project_student.deliver_now
-        #ProjectNotifierMailer.with(project: @project).new_project_professor.deliver_now
+        ProjectNotifierMailer.with(project: @project).new_project_student.deliver_now
+        ProjectNotifierMailer.with(project: @project).new_project_professor.deliver_now
         #add student participating in the project that aren't the main student
         
         if params[:participants].present?
@@ -150,6 +151,15 @@ class ProjectsController < ApplicationController
     if current_user.professor?
       professor = Professor.where(user_id: current_user.id)
       @projects = Project.all.where(professor_id: professor.ids)
+    else
+      @projects = Project.all
+    end
+  end
+
+  def project_approval
+    if current_user.professor? #committee members can't approve projects where they are the tutor
+      professor = Professor.where(user_id: current_user.id)
+      @projects = Project.all.where.not(professor_id: professor.ids)
     else
       @projects = Project.all
     end

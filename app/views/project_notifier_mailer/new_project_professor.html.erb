@@ -2,17 +2,19 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,100&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body style="font-family: 'Montserrat', sans-serif;,sans-serif;font-size:26px;">
     <p>
-      ¡Felicidades! El proyecto que supervisa ha sido registrado exitosamente. <br>
+      ¡Felicidades! El proyecto que supervisa ha sido registrado exitosamente. <br><br>
 
       <b>Nombre del proyecto: </b> <%= @project_details.name %> <br>
       <b>Categoría: </b> <%= @project_details.category %>
-      <b>
 
       <br><br>
-      Para ver los proyectos de sus alumnos registrados accede con tu cuenta a la plataforma de ExpoIngenierías y haz clic en el apartado <i>Proyectos</i>.<br>
+      Para ver los proyectos de sus alumnos registrados acceda con tu cuenta a la plataforma de ExpoIngenierías y haz clic en el apartado <i>Proyectos</i>.<br>
       Muchas gracias por tu participación.
     </p>
   </body>

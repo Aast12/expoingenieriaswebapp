@@ -9,8 +9,15 @@
       </div>
     <% end %>
     <% if current_user.is_committee_member? || current_user.is_admin? %>
+      
       <div class="col-sm-4" style="text-align:right">
+        <% if !project.committee_evaluation.present?  %>
         Pre-Cal:<strong> 
+        <% elsif project.committee_evaluation.typeof == 'professor' %>
+        Pre-Cal:<strong> 
+        <% else  project.committee_evaluation.typeof == 'committee_member' %>
+        Calificación:<strong> 
+        <% end %>
         <% if project.committee_evaluation.present? %>
         <%= display_project_score(project) %>
         <% else %>
@@ -18,6 +25,7 @@
         <% end %>
         </strong> 
       </div>
+    
     <% end %>
   </div>
   <div class="project-card-body">
@@ -76,7 +84,7 @@
       <td><%= link_to 'Ver', project_path(project), :class => "btn btn-light" %></td>
 
       <% if current_user.professor? && get_current_phases_names(Edition.find(get_current_edition_id)).include?("Aprobación de proyectos")%>
-        <% if project.committee_evaluation.present? %>
+        <% if project.committee_evaluation.present?  && project.committee_evaluation.typeof == 'professor' %>
           <td><%= link_to 'Editar calificación', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
         <% else %>
           <td><%= link_to 'Calificar', new_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
@@ -84,8 +92,10 @@
       <% end %>
       
 
-      <% if (current_user.committee_member? || current_user.administrator?) && get_current_phases_names(Edition.find(get_current_edition_id)).include?("Evaluación de proyectos") %>
-        <% if project.committee_evaluation.present? %>
+      <% if (current_user.committee_member? || current_user.administrator?) && get_current_phases_names(Edition.find(get_current_edition_id)).include?("Aprobación de proyectos") %>
+        <% if project.committee_evaluation.present? && project.committee_evaluation.typeof == 'professor' %>
+          <td><%= link_to 'Evaluar', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
+        <% elsif  project.committee_evaluation.present? && project.committee_evaluation.typeof == 'committee_member'  %>
           <td><%= link_to 'Editar evaluación', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
         <% else %>
           <td><%= link_to 'Evaluar', new_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>

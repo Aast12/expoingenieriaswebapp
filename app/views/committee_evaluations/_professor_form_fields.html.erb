@@ -1,7 +1,7 @@
 <div class="form-group row">
         <%= form.label :score, "Calificación", :class => "col-sm-6 col-form-label" %>
         <div class="col-sm-6">
-          <%= form.number_field :score, min:0, max: 5, :class => "form-control", required: true, oninvalid: "this.setCustomValidity('Favor de llenar el atributo')", oninput: "setCustomValidity('')" , onKeyDown:"return false"%>
+          <%= form.number_field :score, min:0, max: 5, :class => "form-control", required: true, oninvalid: "this.setCustomValidity('Favor de llenar el atributo')", oninput: "setCustomValidity('')" , onKeyDown:"return false", :value => @project.committee_evaluation.professor_score%>
         </div>
         <% if @project.status != "registered" && @project.status != "disapproved" %>
           <h5>¿Desea aprobar el proyecto?

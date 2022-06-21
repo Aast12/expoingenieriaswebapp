@@ -116,7 +116,7 @@ module ProjectsHelper
     if committee_evaluation.description == nil
       committee_evaluation.description = 0
     end
-    committee_evaluation.score + committee_evaluation.problem + committee_evaluation.methodology + committee_evaluation.feasibility + committee_evaluation.results + committee_evaluation.impact + committee_evaluation.ortography + committee_evaluation.description
+    committee_evaluation.professor_score + committee_evaluation.problem + committee_evaluation.methodology + committee_evaluation.feasibility + committee_evaluation.results + committee_evaluation.impact + committee_evaluation.ortography + committee_evaluation.description
   end
 
   def project_stand(project)

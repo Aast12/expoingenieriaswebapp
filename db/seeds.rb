@@ -84,6 +84,11 @@ ProjectCategory.create(name: "Productos o Servicios para Emprendimiento de Base 
 
 
 
+
+
+
+
+
 #Users
 userProf = User.new(
     email: "juanh@tec.mx", 
@@ -166,6 +171,21 @@ student3 = Student.create(
     major: "ING",
     student_code: "A01570308"
 )
+
+userCommitteMember = User.new(
+    email: "committe@tec.com",
+    password: "123123",
+    institution_id: 1,
+    first_name: "Mario",
+    last_name: "Garza",
+    is_committee_member: 1
+)
+userCommitteMember.skip_confirmation!
+userCommitteMember.save
+committeMember = CommitteeMember.create(
+    user_id: userCommitteMember.id,
+)
+
 
 
 
