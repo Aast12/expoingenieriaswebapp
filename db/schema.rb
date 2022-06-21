@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_16_035237) do
+ActiveRecord::Schema.define(version: 2022_06_21_072424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2022_06_16_035237) do
     t.integer "ortography"
     t.string "typeof"
     t.integer "professor_score"
+    t.text "comments"
     t.index ["project_id"], name: "index_committee_evaluations_on_project_id"
   end
 

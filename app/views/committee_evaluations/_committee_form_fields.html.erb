@@ -76,6 +76,10 @@
 <% end %>
 <%= form.text_field :score, :id =>'evaluation_total', :class => "form-control",  disabled: true, :value => score_to_show %>
 </div>
-
-
+</div>
+<div class="form-group row pt-3 px-0">
+    <div class="col-md-12">
+        <%= form.label :comments, "Comentarios" %>
+        <%= form.text_area :comments, :id =>'evaluation-comment', :class => "form-control",  disabled: false %>
+    </div>
 </div>

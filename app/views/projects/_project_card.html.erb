@@ -86,13 +86,15 @@
       <% if current_user.professor? && get_current_phases_names(Edition.find(get_current_edition_id)).include?("Aprobación de proyectos")%>
         <% if project.committee_evaluation.present?  && project.committee_evaluation.typeof == 'professor' %>
           <td><%= link_to 'Editar calificación', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
+        <% elsif project.committee_evaluation.present?  && project.committee_evaluation.typeof == 'committee_member' %>
+          <td><%= link_to 'Calificar', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
         <% else %>
           <td><%= link_to 'Calificar', new_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
         <% end %>
       <% end %>
       
 
-      <% if (current_user.committee_member? || current_user.administrator?) && get_current_phases_names(Edition.find(get_current_edition_id)).include?("Aprobación de proyectos") %>
+      <% if (current_user.committee_member? || current_user.administrator?) %>
         <% if project.committee_evaluation.present? && project.committee_evaluation.typeof == 'professor' %>
           <td><%= link_to 'Evaluar', edit_project_committee_evaluation_path(project), :class => "btn btn-light" %></td>
         <% elsif  project.committee_evaluation.present? && project.committee_evaluation.typeof == 'committee_member'  %>
