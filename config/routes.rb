@@ -57,7 +57,8 @@ Rails.application.routes.draw do
   get "filter_projects", to: "projects#filter_projects", as: "filter_projects"
   get "filter_virtual_samples", to: "virtual_samples#filter_virtual_samples", as: "filter_virtual_samples"
   get "filter_options", to: "filter#filter_options", as: "filter_options"
-
+  get "filter_projects_status", to: "projects#filter_projects_status", as: "filter_projects_status"
+  
   # Select projects
   get "select_projects", to: "projects#select_projects", as: "select_projects"
   post "select_projects", to: "projects#update_selected_projects", as: "update_selected_projects"

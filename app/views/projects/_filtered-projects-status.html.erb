@@ -1,0 +1,35 @@
+<%= form_tag update_project_status_path, :method => 'post' do %>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Área</th>
+        <th>Estatus</th>
+        <th colspan="1"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @projects.each do |project| %>
+        <tr>
+        <td class="align-middle"><%= project_name(project) %></td>
+        <td class="align-middle"><%= display_project_area(project) %></td>
+
+        <% if current_user.professor? %>
+            <% status_options = options_for_select(project_status_options_for_professor(project.id), "#{project.id}:#{project.status}") %>
+        
+        <% else %>
+            <% status_options = options_for_select(project_status_options_for_professor(project.id), "#{project.id}:#{project.status}") %>
+        <% end %>
+
+        <td><%= select_tag 'project_statuses[]', status_options, class: 'form-control', disabled: current_user.is_professor? %></td>
+        
+        <% if current_user.committee_member? || current_user.administrator? || current_user.professor? %>
+            <td><%= link_to 'Ver', project, class: 'btn btn-light' %></td>
+        <% end %>
+
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<%= submit_tag "Guardar", class: 'btn btn-light' %>
+<% end %>

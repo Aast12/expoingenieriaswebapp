@@ -16,6 +16,14 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def filter_projects_status
+    @projects = Project.filter(filterable_params)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
   def filter_projects
     if current_user.professor?
       professor = Professor.where(user_id: current_user.id)

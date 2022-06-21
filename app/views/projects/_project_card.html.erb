@@ -103,7 +103,7 @@
         
       <% end %>
 
-      <% if ((project.accepted? && get_current_phase_name() == "Crear / Editar muestra") && (current_user.administrator? || current_user.student?)) %>
+      <% if ((project.accepted? && get_current_phases_names(Edition.find(get_current_edition_id)).include?("Crear/editar muestra")) && (current_user.administrator? || current_user.student?)) %>
         <% if project.virtual_sample.present? %>
           <td><%= link_to 'Editar Muestra Virtual', edit_project_virtual_sample_path(project), :class => "btn btn-light" %></td>
         <% else %>
