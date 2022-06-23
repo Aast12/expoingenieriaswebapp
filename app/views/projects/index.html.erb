@@ -1,4 +1,5 @@
 <div class="content">
+  <img src="<%= asset_path( 'logoExpoTec' ) %>" class="logopage"><br>
   <h1>Proyectos</h1>
     <div class="col-sm-12 filters-container">
       <%= form_tag filter_projects_path, method: :get, class: 'row', remote: true do %>
@@ -11,14 +12,14 @@
           <%= text_field_tag :filter_value, '', id: "filter-search", class: 'form-control', style: 'display: none;' %>
         </div>
         <div class="col-sm-3">
-          <%= select_tag :status, options_for_select(project_status_options()), id: "filter-status", class: 'custom-select' %>
+          <%= select_tag :status, options_for_select(project_status_options().unshift(["Cualquier estatus", ""])), id: "filter-status", class: 'custom-select' %>
         </div>
         <div class="col-sm-1">
           <%= submit_tag "Filter", name: nil, class: "btn btn-light" %>
         </div>
         <div class="col-sm-2 newProject">
 
-          <% if get_current_phase_name() === "Registro" %>
+          <% if get_current_phases_names(Edition.find(get_current_edition_id)).include?("Registro de proyectos") %>
             <%= link_to 'Nuevo proyecto', new_project_path, :class => "btn btn-light text-body" %>
           <% end %>
         </div>

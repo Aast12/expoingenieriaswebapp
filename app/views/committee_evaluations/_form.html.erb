@@ -17,6 +17,7 @@
     </div>
     <div class="col-sm-4">
       <% if (current_user.committee_member? || current_user.administrator?)%>
+            
             <% if (@project.status == "approved" || @project.status == "evaluated") && @project.status != "accepted" %>
               <%= render 'committee_evaluations/committee_form_fields', form: form %>
             <% end %>

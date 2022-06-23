@@ -11,6 +11,7 @@ require("jquery")
 require("packs/registration")
 require("packs/project")
 require("packs/filter_options")
+require("packs/evaluation")
 require("packs/mailing_type")
 import "bootstrap";
 import "../stylesheets/application"
@@ -21,7 +22,10 @@ xrequire("@nathanvda/cocoon")
 document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()
   $('[data-toggle="popover"]').popover()
-})
+});
+
+
+
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

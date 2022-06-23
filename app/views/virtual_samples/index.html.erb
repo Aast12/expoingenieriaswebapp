@@ -1,5 +1,6 @@
 <div class="content">
-  <h3>Catálogo de Muestras Virtuales</h3>
+  <img src="<%= asset_path( 'logoExpoTec' ) %>" class="logopage">
+  <h3 style="margin-top:0px">Catálogo de Muestras Virtuales</h3>
   <div>
     <%= form_tag filter_virtual_samples_path, method: :get, id: "virtual_sample_search", class: 'row', remote: true do %>
       <div class="col-5">

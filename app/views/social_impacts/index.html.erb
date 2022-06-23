@@ -3,9 +3,9 @@
 <table>
   <thead>
     <tr>
-      <th>Problem</th>
-      <th>Empathy</th>
-      <th>Responsibility</th>
+      <th>Social Cause</th>
+      <th>Social Commitment</th>
+      <th>Integrity</th>
       <th>Project</th>
       <th colspan="3"></th>
     </tr>
@@ -14,9 +14,9 @@
   <tbody>
     <% @social_impacts.each do |social_impact| %>
       <tr>
-        <td><%= social_impact.problem %></td>
-        <td><%= social_impact.empathy %></td>
-        <td><%= social_impact.responsibility %></td>
+        <td><%= social_impact.social_cause%></td>
+        <td><%= social_impact.social_commitment %></td>
+        <td><%= social_impact.integrity %></td>
         <td><%= social_impact.project_id %></td>
         <td><%= link_to 'Show', social_impact %></td>
         <td><%= link_to 'Edit', edit_social_impact_path(social_impact) %></td>

@@ -32,12 +32,16 @@
   </div>
   <hr>
 
+  <% phases = @edition.phases %>
+
   <h3> Fases del evento</h3>
-  <%= form.fields_for :phases do |phase_form| %>
+  <%= form.fields_for :phases, form.object.phases.sort_by(&:id) do |phase_form| %>
     <div class="phase">
         <%= render "phases/form_shared", phase_form: phase_form %>  
     </div>
+    <hr>
   <% end %>
+
 </div>
 
 <div class="save-button">

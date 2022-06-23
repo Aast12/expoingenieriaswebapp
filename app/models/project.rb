@@ -35,6 +35,9 @@ class Project < ApplicationRecord
   has_one :social_impact, dependent: :destroy, required: false
   accepts_nested_attributes_for :social_impact, allow_destroy: true
 
+  attr_accessor :participants
+
+  attr_accessor :secondary_professors
 
   def set_default_status
     self.status ||= :registered
@@ -43,6 +46,11 @@ class Project < ApplicationRecord
   def accepted?
     self.status == "accepted"
   end
+
+  def rejected?
+    self.status == "rejected"
+  end
+
   def project_category
     self.project_detail.category
   end

@@ -1,15 +1,15 @@
 <div class="form-group row">
         <%= form.label :score, "Calificación", :class => "col-sm-6 col-form-label" %>
         <div class="col-sm-6">
-          <%= form.number_field :score, min:0, max: 5, :class => "form-control", required: true, oninvalid: "this.setCustomValidity('Favor de llenar el atributo')", oninput: "setCustomValidity('')" %>
+          <%= form.number_field :score, min:0, max: 5, :class => "form-control", required: true, oninvalid: "this.setCustomValidity('Favor de llenar el atributo')", oninput: "setCustomValidity('')" , onKeyDown:"return false", :value => @project.committee_evaluation.professor_score%>
         </div>
         <% if @project.status != "registered" && @project.status != "disapproved" %>
           <h5>¿Desea aprobar el proyecto?
           <%= check_box_tag :prueba, 0, true %>
           </h5>
-         <% else %>
-            <h5>¿Desea aprobar el proyecto?
-            <%= check_box_tag :prueba, 1, false %>
-            </h5>
-         <% end %>
+        <% else %>
+          <h5>¿Desea aprobar el proyecto?
+          <%= check_box_tag :prueba, 1, false %>
+          </h5>
+        <% end %>
 </div>

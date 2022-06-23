@@ -1,38 +1,58 @@
 <div class="content">
   <h1>Estatus de proyectos</h1><br />
-  <%= form_tag update_project_status_path, :method => 'post' do %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Área</th>
-          <th>Estatus</th>
-          <th colspan="1"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @projects.each do |project| %>
-          <tr>
-            <td class="align-middle"><%= project_name(project) %></td>
-            <td class="align-middle"><%= display_project_area(project) %></td>
+  <div class="col-sm-12 filters-container">
+      <%= form_tag filter_projects_status_path, method: :get, class: 'row', remote: true do %>
+        <div class="col-sm-3">
+          <% filter_types = project_filter_options().prepend(['Filtrar por', 'no_filter']) %>
+          <%= select_tag :filter_type, options_for_select(filter_types), id: "filter-by", class: 'custom-select', onchange: 'filterOptions()' %>
+        </div>
+        <div class="col-sm-3">
+          <%= select_tag :filter_value, [], id: "filter-select", class: 'custom-select' %>
+          <%= text_field_tag :filter_value, '', id: "filter-search", class: 'form-control', style: 'display: none;' %>
+        </div>
+        <div class="col-sm-3">
+          <%= select_tag :status, options_for_select(project_status_options().unshift(["Cualquier estatus", ""])), id: "filter-status", class: 'custom-select' %>
+        </div>
+        <div class="col-sm-1">
+          <%= submit_tag "Filter", name: nil, class: "btn btn-light" %>
+        </div>
+      <% end %>
+    </div>
+    <div id="filtered-projects-container-status">
+      <%= form_tag update_project_status_path, :method => 'post' do %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Área</th>
+              <th>Estatus</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @projects.each do |project| %>
+              <tr>
+                <td class="align-middle"><%= project_name(project) %></td>
+                <td class="align-middle"><%= display_project_area(project) %></td>
 
-            <% if current_user.professor? %>
-              <% status_options = options_for_select(project_status_options_for_professor(project.id), "#{project.id}:#{project.status}") %>
-            
-            <% else %>
-              <% status_options = options_for_select(project_status_options_for_admin(project.id), "#{project.id}:#{project.status}") %>
+                <% if current_user.professor? %>
+                  <% status_options = options_for_select(project_status_options_for_professor(project.id), "#{project.id}:#{project.status}") %>
+                
+                <% else %>
+                  <% status_options = options_for_select(project_status_options_for_professor(project.id), "#{project.id}:#{project.status}") %>
+                <% end %>
+
+                <td><%= select_tag 'project_statuses[]', status_options, class: 'form-control', disabled: current_user.is_professor? %></td>
+                
+                <% if current_user.committee_member? || current_user.administrator? || current_user.professor? %>
+                  <td><%= link_to 'Ver', project, class: 'btn btn-light' %></td>
+                <% end %>
+
+              </tr>
             <% end %>
-
-            <td><%= select_tag 'project_statuses[]', status_options, class: 'form-control' %></td>
-            
-            <% if current_user.committee_member? || current_user.administrator? || current_user.professor? %>
-              <td><%= link_to 'Ver', project, class: 'btn btn-light' %></td>
-            <% end %>
-
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= submit_tag "Guardar", class: 'btn btn-light' %>
-  <% end %>
+          </tbody>
+        </table>
+        <%= submit_tag "Guardar", class: 'btn btn-light' %>
+      <% end %>
+    </div>
 </div>

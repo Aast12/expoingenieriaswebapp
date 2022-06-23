@@ -71,7 +71,7 @@ Rails.application.configure do
     port: 587,
     enable_starttls_auto: true,
     authentication: 'login',
-    user_name: "conexion_tec@outlook.com",
+    user_name: "noreply.expoingenierias@gmail.com",
     password: "conexiontec2021!", 
     openssl_verify_mode: "none",
   }

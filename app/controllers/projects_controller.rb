@@ -10,19 +10,27 @@ class ProjectsController < ApplicationController
       @projects = Project.all.where(professor_id: professor_id)
     elsif current_user.student?
       student_id = Student.all.where(user_id: current_user.id)
-      @projects = Project.all.where(student_id: student_id)
+      @projects = Project.all.where(student_id: student_id.ids)
     else
       @projects = Project.all
     end
   end
 
+  def filter_projects_status
+    @projects = Project.filter(filterable_params)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
   def filter_projects
     if current_user.professor?
-      professor_id = current_user.userable.id
-      @projects = Project.filter(filterable_params).where(professor_id: professor_id)
+      professor = Professor.where(user_id: current_user.id)
+      @projects = Project.filter(filterable_params).where(professor_id: professor.ids)
     elsif current_user.student?
-      student_id = current_user.userable.id
-      @projects = Project.filter(filterable_params).where(student_id: student_id)
+      student = Student.where(user_id: current_user.id)
+      @projects = Project.filter(filterable_params).where(student_id: student.ids)
     else
       @projects = Project.filter(filterable_params)
     end
@@ -39,6 +47,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
+    @students_codes =  Student.all.collect { |student| student.student_code }
     @project = Project.new
     @students = @project.students.build
     @project.build_project_detail
@@ -56,14 +65,40 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.edition_id = get_current_edition_id()
     @project.institution_id = current_user.institution_id
-    if current_user.professor?
-      @project.professor_id = Professor.all.where(user_id: current_user.id).select(:id)
-    elsif current_user.student?
-     # @project.student_id = Student.all.where(user_id: current_user.id).select(:id)
-     # @project.student_id = current_user.userable.id
+    @project.professor_id = 1
+    if current_user.student?
+      stu = Student.all.where(user_id: current_user.id)
+      @project.student_id = stu.ids.first
     end
+    project_id = @project.id
     respond_to do |format|
       if @project.save
+      
+        ProjectNotifierMailer.with(project: @project).new_project_student.deliver_now
+        ProjectNotifierMailer.with(project: @project).new_project_professor.deliver_now
+        #add student participating in the project that aren't the main student
+        
+        if params[:participants].present?
+          students = params[:participants]
+          students.each do |student|
+
+            ProjectParticipant.create(project_id:  @project.id, student_id: Student.all.where(student_code: student).ids[0])
+          end
+        end
+
+        #add secodary proffesor that aren't the main proffesor
+        if params[:secondary_professors].present?
+          professors = params[:secondary_professors]
+          professors.each do |professor|
+            puts professor
+            userProfessor = User.all.where(email: professor)
+            realProfessor = Professor.all.where(user_id: userProfessor.ids[0])
+            SecondaryProfessor.create(project_id:  @project.id, professor_id: realProfessor.ids[0])
+          end
+        end
+
+        
+
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -100,19 +135,22 @@ class ProjectsController < ApplicationController
   # GET /select_projects
   def select_projects
     current_projects = get_current_edition_projects()
-    @projects = current_projects
+    if current_user.professor?
+      professor = Professor.where(user_id: current_user.id)
+      @projects = current_projects.where.not(professor_id: professor.ids)
+    else
+      @projects = current_projects
+    end
   end
 
   # POST /update_selected_projects
   def update_selected_projects
-    current_projects = get_current_edition_projects()
-    selected_ids = params[:selected_projects]
-    current_projects.each do |project|
-      if selected_ids.include?(project.id.to_s)
-        project.update_attribute(:status, 4)
-      else
-        project.update_attribute(:status, 5)
-      end
+    project_statuses = params[:selected_projects]
+    project_statuses.each do |project_status|
+      parts = project_status.split(':')
+      project = Project.find(parts[0])
+      status = parts[1]
+      project.update_attribute(:status, status)
     end
     respond_to do |format|
       format.html { redirect_to select_projects_path, notice: 'Status was successfully updated.' }
@@ -122,8 +160,8 @@ class ProjectsController < ApplicationController
 
   def project_status
     if current_user.professor?
-      professor_id = current_user.userable.id
-      @projects = Project.all.where(professor_id: professor_id)
+      professor = Professor.where(user_id: current_user.id)
+      @projects = Project.all.where(professor_id: professor.ids)
     else
       @projects = Project.all
     end
@@ -156,12 +194,12 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.require(:project).permit(:status, :main_student, :professor, :institution_id, :edition_id,
+      params.require(:project).permit(:status, :student_id, :professor_id, :institution_id, :edition_id,
                                       project_detail_attributes: project_detail_attributes,
                                       social_impact_attributes: social_impact_attributes,
                                       abstract_attributes: abstract_attributes,
                                       students_attributes: [:id, :_destroy, :student_code],
-                                      student_ids: [])
+                                      participants: [], secondary_professors: [])
     end
 
     def project_detail_attributes

@@ -16,6 +16,7 @@
 
 /* Styles retrieved from: https://bootsnipp.com/snippets/GQ3Pl */
 
+
 .banner-sec {
   background: url(https://static.pexels.com/photos/33972/pexels-photo.jpg)
     no-repeat left bottom;
@@ -24,10 +25,15 @@
   border-radius: 0 10px 10px 0;
   padding: 0;
 }
+.logopage{
+  width: 400px;
+  height: 60px;
+}
 .banner-text {
-  width: 70%;
+  background-color: rgba(1,1,1,0.5);
+  width: 100%;
   position: absolute;
-  bottom: 40px;
+  bottom: 0px;
   padding-left: 20px;
 }
 .banner-text h2 {
@@ -66,7 +72,7 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-attachment: fixed;
   background-color: rgba(4, 49, 133, 0.8);
-  height: 100vh;
+  /* height: 100vh; */
 }
 .border-right {
   border-right: 1px solid black;
@@ -74,7 +80,7 @@
 .card {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   text-align: left;
-  height: 700px;
+  height: auto;
   position: relative; 
   margin-bottom: 26px;
 }
@@ -162,10 +168,14 @@ h3 {
   font-size: 14px;
   border-bottom: solid 2px rgba(0, 0, 0, 0.06);
   padding: 7px;
-  margin-top: 40px !important;
+  margin-top: 10px !important;
 }
 .carousel-inner {
-  border-radius: 0 10px 10px 0;
+  border-radius: 10px;
+}
+.carousel img {
+    min-height: 500px;
+    margin: 0 auto;
 }
 .evaluation {
   margin-top: 40px;
@@ -182,24 +192,21 @@ h3 {
   display: flex;
   flex-direction: column;
 }
-.login-sec {
-  margin-top: 20px;
-}
+
 .login-sec-userable {
-  margin-top: 145px;
   padding-bottom: 20px;
 }
-.login-sec h2 {
-  margin-bottom: 30px;
+.signup-title h3 {
   font-weight: 800;
+  padding: 40px;
   font-size: 30px;
   color: rgba(227, 24, 124, 0.8);
 }
 .login-sec-logo {
+  margin-top: 20px;
   width: 200px;
-  height: 40px;
-  margin-bottom: 20px;
-  margin-left: 75px;
+  padding: 0;
+  margin-bottom: 30px;
 }
 .navbar-nav {
   /* margin-top: 20px;
@@ -209,8 +216,8 @@ h3 {
   align-items: center;
 }
 .navbar-current-user {
-  text-align: center;
-  width: 200px;
+  text-align: right;
+  width: 250px;
 }
 .navbar-expand-lg {
   background-color: rgba(255, 255, 255, 0.4);
@@ -386,6 +393,11 @@ div::-webkit-scrollbar-thumb:active{
   border-radius: 15px;
 }
 
+
+#abstract-word-count {
+
+  width: 70%;
+}
 
 
 

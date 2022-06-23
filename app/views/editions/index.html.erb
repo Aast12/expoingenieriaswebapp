@@ -1,5 +1,12 @@
 <div class="content">
   <h1>Ediciones</h1>
+  <%  if !get_current_edition_id %>
+      <h6>Ninguna edición llevandose a cabo</h6>
+  <% else %>
+      <h6> Edición actual: <%= Edition.find(get_current_edition_id).name %></h6>
+  <% end %>
+   <br>
+
   <table class="table table-borderless" >
     <thead class="thead-light" >
       <tr>

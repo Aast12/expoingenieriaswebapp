@@ -1,22 +1,22 @@
 <div class="form-group row text-left">
   <div class="col-sm-12">
-    <%= form.label :problem, "Problema", :class => "form-label" %>
-    <%= form.text_area :problem, size: "12x4", :class => "form-control", :id => "social-problem-text", :onchange => "manageGlobalWordCount(['social-problem-text', 'empathy-text', 'responsibility-text'], 'social-impact-word-count')" %>
+    <%= form.label :social_cause, "Causa Social", :class => "form-label" %>
+    <%= form.text_area :social_cause, size: "12x4", :class => "form-control", disabled: current_user.is_professor?, :id => "social-cause-text", :onchange => "manageGlobalWordCount(['social-cause-text', 'social_commitment-text', 'integrity-text'], 'social-impact-word-count')" %>
   </div>
 </div>
 
 <div class="form-group row text-left">
   <div class="col-sm-12">
-    <%= form.label :empathy, "Empatía", :class => "form-label" %>
+    <%= form.label :social_commitment, "Compromiso Social", :class => "form-label" %>
 
-    <%= form.text_area :empathy, size: "12x4", :class => "form-control", :id => "empathy-text", :onchange => "manageGlobalWordCount(['social-problem-text', 'empathy-text', 'responsibility-text'], 'social-impact-word-count')" %>
+    <%= form.text_area :social_commitment, size: "12x4", :class => "form-control", disabled: current_user.is_professor?, :id => "social_commitment-text", :onchange => "manageGlobalWordCount(['social-cause-text', 'social_commitment-text', 'integrity-text'], 'social-impact-word-count')" %>
   </div>
 </div>
 
 <div class="form-group row text-left">
   <div class="col-sm-12">
-    <%= form.label :responsibility, "Responsabilidad", :class => "form-label" %>
-    <%= form.text_area :responsibility, size: "12x4", :class => "form-control", :id=> "responsibility-text", :onchange => "manageGlobalWordCount(['social-problem-text', 'empathy-text', 'responsibility-text'], 'social-impact-word-count')" %>
+    <%= form.label :integrity, "Integridad", :class => "form-label" %>
+    <%= form.text_area :integrity, size: "12x4", :class => "form-control", disabled: current_user.is_professor?, :id=> "integrity-text", :onchange => "manageGlobalWordCount(['social-cause-text', 'social_commitment-text', 'integrity-text'], 'social-impact-word-count')" %>
   </div>
 </div>
 <div class="row word-counter">
@@ -24,6 +24,6 @@
     <%= form.label :social_impact_word_count, "Contador de palabras:", :class => "form-label" %>
   </div>
   <div class="col-sm-2">
-    <%= text_field_tag :social_impact_word_count, "", class: 'form-control', :id => "social-impact-word-count", :disabled => true%>
+    <%= text_field_tag :social_impact_word_count, "", class: 'form-control', disabled: current_user.is_professor?,  :id => "social-impact-word-count", :disabled => true%>
   </div>
 </div>

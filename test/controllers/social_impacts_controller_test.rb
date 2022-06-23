@@ -17,7 +17,7 @@ class SocialImpactsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create social_impact" do
     assert_difference('SocialImpact.count') do
-      post social_impacts_url, params: { social_impact: { empathy: @social_impact.empathy, problem: @social_impact.problem, project_id: @social_impact.project_id, responsibility: @social_impact.responsibility } }
+      post social_impacts_url, params: { social_impact: { social_commitment: @social_impact.social_commitment, social_cause: @social_impact.social_cause, project_id: @social_impact.project_id, integrity: @social_impact.integrity } }
     end
 
     assert_redirected_to social_impact_url(SocialImpact.last)
@@ -34,7 +34,7 @@ class SocialImpactsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update social_impact" do
-    patch social_impact_url(@social_impact), params: { social_impact: { empathy: @social_impact.empathy, problem: @social_impact.problem, project_id: @social_impact.project_id, responsibility: @social_impact.responsibility } }
+    patch social_impact_url(@social_impact), params: { social_impact: { social_commitment: @social_impact.social_commitment, social_cause: @social_impact.social_cause, project_id: @social_impact.project_id, integrity: @social_impact.integrity } }
     assert_redirected_to social_impact_url(@social_impact)
   end
 

@@ -7,6 +7,10 @@ module ProjectDetailsHelper
     end
     categories_map
   end
+
+  def strategicarea_options()
+    return [["Bio", "Bio"], ["Cyber", "Cyber"], ["Nano", "Nano"], ["Nexus", "Nexus"]]
+  end
        
   def project_detail_area_options()
     areas = ProjectArea.all
@@ -22,7 +26,7 @@ module ProjectDetailsHelper
   end
 
   def project_detail_client_type_options()
-    [["Departamento del Tec", "itesm_department"]]
+    [["Desarrollo Propio", "personal_development"], ["Gobierno", "government"],["Industria Privada","private-industry"],["Organización Social","social_organization"],["Profesor de la Clase","class_professor"]]
   end
 
   def display_project_detail_category(project_detail)

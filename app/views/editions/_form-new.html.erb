@@ -1,0 +1,50 @@
+<%= form_with(model: edition, local: true) do |form| %>
+  <% if edition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(edition.errors.count, "error") %> prohibited this edition from being saved:</h2>
+
+      <ul>
+        <% edition.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <br />
+
+<div class="new-edition">
+  <div class="edition">
+    <div class="edition-field col-4">
+      <%= form.label :name ,"Nombre de la edición", :class => "form-label" %>
+      <%= form.text_field :name, :class =>"form-control" %>
+    </div>
+    <div class="edition-field col-4">
+      <%= form.label :start_date , "Fecha de inicio", :class => "form-label" %>
+      <br/>
+      <%= form.date_field :start_date, :class => "form-control" %>
+    </div>
+    <div class="edition-field col-4">
+      <%= form.label :end_date , "Fecha de termino", :class => "form-label"  %>
+      <br/>
+      <%= form.date_field :end_date, :class => "form-control" %>
+    </div>
+  </div>
+  <hr>
+
+  <% phases = @edition.phases %>
+
+  <h3> Fases del evento</h3>
+  <%= form.fields_for :phases do |phase_form| %>
+    <div class="phase">
+        <%= render "phases/form_shared", phase_form: phase_form %>  
+    </div>
+    <hr>
+  <% end %>
+
+</div>
+
+<div class="save-button">
+  <%= form.submit "Guardar edición" ,:class => "btn btn-light" %>
+</div>
+<% end %>

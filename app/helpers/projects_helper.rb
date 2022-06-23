@@ -12,10 +12,17 @@ module ProjectsHelper
     ]
   end
 
+
   # Escala de calificación de calidad 
   def project_status_options_for_professor(project_id)
-    [['0', "#{project_id}:registered"], ['1', "#{project_id}:disapproved"], ['2', "#{project_id}:disapproved"], ['3', "#{project_id}:disapproved"], ['4', "#{project_id}:approved"],
-    ['5', "#{project_id}:approved"]]
+    [['REGISTRADO', "#{project_id}:registered"], ['APROBADO', "#{project_id}:approved"], 
+    ['NO APROBADO', "#{project_id}:disapproved"], ['EVALUADO', "#{project_id}:evaluated"], 
+    ['ACEPTADO', "#{project_id}:accepted"], ['RECHAZADO', "#{project_id}:rejected"], 
+    ['DECLINADO', "#{project_id}:declined"], ['FALTÓ', "#{project_id}:missed"]]
+  end
+
+  def project_status_options_for_approval(project_id)
+    [['ACEPTADO', "#{project_id}:accepted"], ['RECHAZADO', "#{project_id}:rejected"]]
   end
 
   def project_status_options_for_admin(project_id)
@@ -50,22 +57,45 @@ module ProjectsHelper
   end
 
   def project_professor(project)
-    professor = project.professor
-    user = professor.user
-    user.full_name
+    professor = Professor.find(project.professor_id)
+    userProfessor = User.find(professor.user_id)
+    userProfessor.full_name
   end
 
   def project_professor_email(project)
-    professor = project.professor
-    user = professor.user
-    user.email
+    professor = Professor.find(project.professor_id)
+    userProfessor = User.find(professor.user_id)
+    userProfessor.email
   end
 
   def project_professor_department(project)
-    professor = project.professor
-    department = professor.department
-    department
+    professor = Professor.find(project.professor_id)
+    professor.department
   end
+
+  def project_participants(project)
+    participants = []
+    participantsEntries = ProjectParticipant.all.where(project_id: project.id)
+    participantsEntries.each do |entry|
+      student = Student.find(entry.student_id)
+      userStudent = User.find(student.user_id)
+      participants.append(userStudent.full_name)
+    end
+    participants
+  end
+
+  def project_secondary_professors(project)
+    professors = []
+    profesorsEntries = SecondaryProfessor.all.where(project_id: project.id);
+    profesorsEntries.each do |entry|
+      prof = Professor.find(entry.professor_id);
+      userProfessor  = User.find(prof.user_id);
+      professors.append([userProfessor.full_name, userProfessor.email])
+    end
+    professors  
+  end
+
+
 
   def project_score(project)
     committee_evaluation = project.committee_evaluation
@@ -90,7 +120,7 @@ module ProjectsHelper
     if committee_evaluation.description == nil
       committee_evaluation.description = 0
     end
-    committee_evaluation.score + committee_evaluation.problem + committee_evaluation.methodology + committee_evaluation.feasibility + committee_evaluation.results + committee_evaluation.impact + committee_evaluation.ortography + committee_evaluation.description
+    committee_evaluation.professor_score + committee_evaluation.problem + committee_evaluation.methodology + committee_evaluation.feasibility + committee_evaluation.results + committee_evaluation.impact + committee_evaluation.ortography + committee_evaluation.description
   end
 
   def project_stand(project)
@@ -102,27 +132,25 @@ module ProjectsHelper
   end
 
   def project_student(project)
-    student = project.student
-    user = student.user
-    user.full_name
+    student = Student.find(project.student_id)
+    userStudent = User.find(student.user_id)
+    userStudent.full_name
   end
 
   def project_student_email(project)
-    student = project.student
-    user = student.user
-    user.email
+    student = Student.find(project.student_id)
+    userStudent = User.find(student.user_id)
+    userStudent.email
   end
 
   def project_student_code(project)
-    student = project.student
-    matricula = student.student_code
-    matricula
+    student = Student.find(project.student_id)
+    student.student_code
   end
 
   def project_student_major(project)
-    student = project.student
-    carrera = student.major
-    carrera
+    student = Student.find(project.student_id)
+    student.major
   end
 
   def display_project_area(project)
@@ -144,7 +172,7 @@ module ProjectsHelper
 
   def project_social_impact(project)
     impact = project.social_impact
-    impact.problem.present? || impact.empathy.present?
+    impact.social_cause.present? || impact.social_commitment.present?
   end
 
   def display_project_stand(project)

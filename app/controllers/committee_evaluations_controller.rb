@@ -27,6 +27,16 @@ class CommitteeEvaluationsController < ApplicationController
   # POST /committee_evaluations.json
   def create
     @committee_evaluation = @project.build_committee_evaluation(committee_evaluation_params)
+
+
+    if current_user.is_professor?
+      @committee_evaluation.professor_score = @committee_evaluation.score
+      @committee_evaluation.typeof = "professor"
+    else
+      @committee_evaluation.typeof = "committee_member"
+      @committee_evaluation.score = params[:score]
+    end
+
     if params[:prueba].eql?('1')
       # update the project status if the checkbox is clicked
      @project.update(status: 'approved')
@@ -53,10 +63,8 @@ class CommitteeEvaluationsController < ApplicationController
   def update
     respond_to do |format|
       if params[:prueba].eql?('1')
-        # update the project status if the checkbox is clicked
        @project.update(status: 'approved')
-        # puts @project.status
-      elsif params[:prueba].eql?('0')
+      elsif 
         @project.update(status: 'disapproved')
       end
       if params[:project_statuses]
@@ -68,6 +76,15 @@ class CommitteeEvaluationsController < ApplicationController
           project.update_attribute(:status, status)
         end
       end
+
+      if current_user.is_professor?
+        @committee_evaluation.professor_score = @committee_evaluation.score
+        @committee_evaluation.typeof = "professor"
+      else
+        @committee_evaluation.typeof = "committee_member"
+        @committee_evaluation.score = params[:score]
+      end
+      
 
       if params[:project_evaluated]
         @project.update_attribute(:status, 'evaluated')
@@ -105,6 +122,6 @@ class CommitteeEvaluationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def committee_evaluation_params
-      params.require(:committee_evaluation).permit(:description, :problem, :methodology, :feasibility, :results, :impact, :ortography, :score, :project_id, :prueba, :checkAccepted)
+      params.require(:committee_evaluation).permit(:description, :problem, :methodology, :feasibility, :results, :impact, :ortography, :score, :project_id, :prueba, :checkAccepted, :comments)
     end
 end

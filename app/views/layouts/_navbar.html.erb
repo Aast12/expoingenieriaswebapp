@@ -4,9 +4,10 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    
     <div class="navbar-nav">
       
-      <% if current_user.professor? || current_user.student? || current_user.committee_member? || current_user.judge? || current_user.administrator? || current_user.is_visitor? %>
+      <% if (current_user.professor? || current_user.student? || current_user.committee_member? || current_user.judge? || current_user.administrator? || current_user.is_visitor?) && get_current_phases_names(Edition.find(get_current_edition_id)).include?("Muestra Virtual")  %>
         <a class="nav-item nav-link" href="/virtual_samples">Muestra Virtual <span class="sr-only">(current)</span></a>
       <% end %>
 
