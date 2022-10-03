@@ -1,4 +1,4 @@
-# SQLite. Versions 3.8.0 and up are supported.
+ # SQLite. Versions 3.8.0 and up are supported.
 #   gem install sqlite3
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
@@ -11,7 +11,12 @@ default: &default
 development:
   <<: *default
   adapter: postgresql
+  # url: postgresql://postgres:postgres@db:5432/db/conexiontec_development
+  # url: postgres://conexiontec:uYevAeKn4a5JFEOWabAC5TM0ofuld8SK@dpg-ccp3fekgqg47hamao410-a.oregon-postgres.render.com/conexiontec?timeout=5000&connect_timeout=5&pool=5
   database: db/conexiontec_development
+  host: db
+  user: postgres
+  password: postgres
   timeout: 1000
   encoding: utf8
 

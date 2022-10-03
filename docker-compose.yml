@@ -1,0 +1,35 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+  server:
+    container_name: webapp
+    # network_mode: host
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+      - 3035:3035
+      - 587:587
+    volumes:
+      - .:/usr/src/app/:cached
+      - bundle:/usr/local/bundle
+      - rails_cache:/usr/src/app/tmp/cache
+      - node_modules:/usr/src/app/node_modules
+volumes:
+  db:
+    driver: local
+  bundle:
+  db_data:
+  node_modules:
+  rails_cache:

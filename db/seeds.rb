@@ -14,6 +14,8 @@ start_date_edition = Date.new(2022, 2, 14)
 end_date_edition = Date.new(2022, 6, 30)
 Edition.create(name: name, start_date: start_date_edition, end_date: end_date_edition)
 
+Edition.create(name: "Ago-Dic 2022", start_date: Date.new(2022, 8, 1), end_date: Date.new(2022, 12, 31))
+
 # Phase
 Phase.create(name:"Registro de proyectos", start_date: Date.new(2022, 2, 14), end_date: Date.new(2022, 5, 26), edition_id: 1)
 Phase.create(name:"Edición de datos / Retroalimentación", start_date: Date.new(2022, 2, 14), end_date: Date.new(2022, 2, 26), edition_id: 1)

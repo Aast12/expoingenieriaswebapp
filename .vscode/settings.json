@@ -1,0 +1,47 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "108.179.194.74",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "CEI",
+            "database": "comiteec_aire",
+            "username": "comiteec_aireadm",
+            "password": "R3O@ql@]"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "ConexionTec",
+            "group": "Render DBs",
+            "connectString": "postgres://conexiontec:uYevAeKn4a5JFEOWabAC5TM0ofuld8SK@dpg-ccp3fekgqg47hamao410-a.oregon-postgres.render.com/conexiontec"
+        },
+        {
+            "previewLimit": 50,
+            "server": "0.0.0.0",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Local Conexicon Tec",
+            "database": "postgres",
+            "username": "postgres",
+            "password": "postgres"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "local",
+            "database": "postgres",
+            "username": "postgres",
+            "password": "postgres"
+        }
+    ]
+}
