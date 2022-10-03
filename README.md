@@ -81,3 +81,16 @@ Y en la configuración de tu correo electronico tienes que permitir 'less secure
 ```bash
 $ rails server
 ```
+
+### Configuración con Docker
+
+1. Inicia el contenedor de Docker
+```bash
+$ docker compose up
+```
+
+2. En la terminal del contenedor del servidor, ejecutar:
+```bash
+$ rails db:migrate
+$ rails db:seed
+```
