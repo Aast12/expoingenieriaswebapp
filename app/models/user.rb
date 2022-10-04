@@ -15,8 +15,6 @@ class User < ApplicationRecord
   has_many :visitors
   has_many :staff_members
 
-
-
   def full_name
     self.first_name + " " + self.last_name
   end
@@ -49,4 +47,21 @@ class User < ApplicationRecord
     self.is_staff_member
   end
 
+  def role
+    if student?
+      "Estudiante"
+    elsif professor?
+      "Professor"
+    elsif committee_member?
+      "Miembro del Comité"
+    elsif judge?
+      "Juez"
+    elsif administrator?
+      "Administrador"
+    elsif visitor?
+      "Visitante"
+    elsif staff?
+      "Staff"
+    end
+  end
 end
