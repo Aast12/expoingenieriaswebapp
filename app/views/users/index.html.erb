@@ -11,21 +11,17 @@
         <th></th>
       </tr>
     </thead>
-
     <tbody>
       <% @users.each do |user| %>
         <tr>
           <td><%= user.first_name %></td>
           <td><%= user.last_name %></td>
           <td><%= user.role %></td>
-          <td><%= link_to 'Show', user ,:class => "btn btn-light" %></td>
-          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?',:class => "btn btn-light" } %></td>
+          <td><%= link_to 'Ver usuario', user ,:class => "btn btn-light" %></td>
+          <td><%= link_to 'Eliminar', user,:class => "btn btn-light"  , method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-
-  <br>
-
-  <%= link_to 'New User', new_user_path %>
+  <%= link_to 'Crear usuario', new_user_path %>
 </div>
