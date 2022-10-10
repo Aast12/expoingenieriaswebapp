@@ -47,6 +47,10 @@
         <a class="nav-item nav-link" href="/mailing_center">Correos</a>
       <% end %>
 
+      <% if current_user.administrator? || current_user.committee_member? %>
+        <a class="nav-item nav-link" href="/users">Usuarios</a>
+      <% end %>
+
       <div class="navbar-current-user" style="position:absolute; right:0px;">
         <strong>
           <%= link_to current_user.first_name, edit_user_path(current_user), :class => 'navbar-link'%>
