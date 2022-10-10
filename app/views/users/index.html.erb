@@ -16,7 +16,17 @@
         <tr>
           <td><%= user.first_name %></td>
           <td><%= user.last_name %></td>
-          <td><%= user.role %></td>
+          <% if current_user.administrator? %>
+            <td>
+              <% if ["Profesor", "Juez"].include? user.role %>
+                <%= link_to user.role, user,:class => "btn btn-warning" , method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% else %>
+                <%= user.role %>
+              <% end %>
+            </td>
+          <% else %>
+            <td><%= user.role %></td>
+          <% end %>
           <td><%= link_to 'Ver usuario', user ,:class => "btn btn-light" %></td>
           <td><%= link_to 'Eliminar', user,:class => "btn btn-light"  , method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
