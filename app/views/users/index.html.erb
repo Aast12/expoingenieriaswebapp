@@ -18,8 +18,8 @@
           <td><%= user.first_name %></td>
           <td><%= user.last_name %></td>
           <td>
-            <% if current_user.administrator? and user.professor? or user.judge?%>
-              <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" title="Pendiente de asignar como miembro del comité"></span>
+            <% if current_user.administrator? and user.professor? or user.judge? %>
+              <span class="glyphicon glyphicon-info-sign text-warning" data-toggle="tooltip" data-placement="top" title="Pendiente de asignar como miembro del comité"></span>
             <% end %>
             <%= user.role %>
           </td>

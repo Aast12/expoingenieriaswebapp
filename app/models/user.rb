@@ -48,12 +48,12 @@ class User < ApplicationRecord
   end
 
   def role
-    if student?
+    if committee_member?
+      "Miembro del Comité"
+    elsif student?
       "Estudiante"
     elsif professor?
       "Professor"
-    elsif committee_member?
-      "Miembro del Comité"
     elsif judge?
       "Juez"
     elsif administrator?
@@ -62,6 +62,8 @@ class User < ApplicationRecord
       "Visitante"
     elsif staff?
       "Staff"
+    else
+      "Sin rol"
     end
   end
 end

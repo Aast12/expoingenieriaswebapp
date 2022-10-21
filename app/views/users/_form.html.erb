@@ -14,10 +14,10 @@
     <% end %>
 
     <h5 class="card-header">
-    <strong>Mi Cuenta</strong>
+      <strong>Mi Cuenta</strong>
     </h5>
 
-    <div>
+    <div class="mb-2">
       <%= form.label :first_name, "Nombre(s)", :class => "col-sm-3 col-form-label" %>
       <div class="col-sm-9">
         <%= form.text_field :first_name, :class => "form-control" %>
@@ -28,15 +28,15 @@
         <%= form.text_field :last_name, :class => "form-control" %>
       </div>
 
-      <%= form.label :institution_id, "Institucion", :class => "col-sm-3 col-form-label" %>
+      <%= form.label :role, "Institución", :class => "col-sm-3 col-form-label" %>
       <div class="col-sm-9">
-      <%= form.select :institution_id, institution_options(), {}, :class => "form-control"  %>
+        <%= form.select :role, institution_options(), {}, :class => "form-control" %>
       </div>
 
       <% if user.judge? %>
-        <%= form.label :company, "Compañia", :class => "col-sm-3 col-form-label" %>
+        <%= form.label :company, "Compañía", :class => "col-sm-3 col-form-label" %>
         <div class="col-sm-9">
-        <%= form.text_field :company, :class => "form-control"  %>
+          <%= form.text_field :company, :class => "form-control" %>
         </div>
       <% elsif user.professor? %>
         <%= form.label :department, "Departamento", :class => "col-sm-3 col-form-label" %>
@@ -46,22 +46,23 @@
       <% elsif user.student? %>
         <%= form.label :major, "Carrera", :class => "col-sm-3 col-form-label" %>
         <div class="col-sm-9">
-          <%= form.text_field :major, :class => "form-control"  %>
+          <%= form.text_field :major, :class => "form-control" %>
         </div>
         <%= form.label :student_code, "Matrícula", :class => "col-sm-3 col-form-label" %>
         <div class="col-sm-9">
-          <%= form.text_field :student_code, :class => "form-control"  %>
+          <%= form.text_field :student_code, :class => "form-control" %>
+        </div>
+      <% end %>
+      <% if current_user.administrator? and user.professor? or user.judge? %>
+        <div class="col-sm-3 col-form-label">
+          <%= form.label :role, "Miembro del comité" %>
+          <%= form.check_box :is_committee_member, :class => "form-check-input ml-2", :checked => "#{user.committee_member?}" %>
         </div>
       <% end %>
     </div>
 
-    <br />
-
-    <div class="col-sm-9">
+    <div class="col-sm-9 mb-2">
       <%= form.submit "Actualizar" ,:class => "btn btn-light" %>
     </div>
-    
-    <br />
-
   <% end %>
 </div>
