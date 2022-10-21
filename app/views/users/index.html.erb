@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <div class="content">
   <h1>Usuarios</h1>
 
@@ -16,18 +17,13 @@
         <tr>
           <td><%= user.first_name %></td>
           <td><%= user.last_name %></td>
-          <% if current_user.administrator? %>
-            <td>
-              <% if ["Profesor", "Juez"].include? user.role %>
-                <%= link_to user.role, user,:class => "btn btn-warning" , method: :delete, data: { confirm: 'Are you sure?' } %>
-              <% else %>
-                <%= user.role %>
-              <% end %>
-            </td>
-          <% else %>
-            <td><%= user.role %></td>
-          <% end %>
-          <td><%= link_to 'Ver usuario', user ,:class => "btn btn-light" %></td>
+          <td>
+            <% if current_user.administrator? and user.professor? or user.judge?%>
+              <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" title="Pendiente de asignar como miembro del comité"></span>
+            <% end %>
+            <%= user.role %>
+          </td>
+          <td><%= link_to 'Editar usuario', user ,:class => "btn btn-light" %></td>
           <td><%= link_to 'Eliminar', user,:class => "btn btn-light"  , method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
