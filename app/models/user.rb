@@ -48,22 +48,24 @@ class User < ApplicationRecord
   end
 
   def role
+    roles = []
+
     if committee_member?
-      "Miembro del Comité"
+      roles.append("Miembro del Comité")
     elsif student?
-      "Estudiante"
+      roles.append("Estudiante")
     elsif professor?
-      "Professor"
+      roles.append("Professor")
     elsif judge?
-      "Juez"
+      roles.append("Juez")
     elsif administrator?
-      "Administrador"
+      roles.append("Administrador")
     elsif visitor?
-      "Visitante"
+      roles.append("Visitante")
     elsif staff?
-      "Staff"
-    else
-      "Sin rol"
+      roles.append("Staff")
     end
+    
+    roles.join(', ')
   end
 end
