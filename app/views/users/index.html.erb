@@ -2,6 +2,23 @@
 <div class="content">
   <h1>Usuarios</h1>
 
+  <%= search_form_for @q do |f| %>
+    <div class="d-flex justify-content-around">
+      <div>
+        <%= f.check_box :is_student_not_null %>
+        <%= f.label :is_student_not_null, "Estudiante" %>
+      </div>
+      <div>
+        <%= f.check_box :is_committee_member_not_null  %>
+        <%= f.label :is_committee_member_not_null, "Miembro del comite" %>
+      </div>
+    </div>
+
+    <div class="m-3">
+      <%= f.submit "Buscar" %>      
+    </div>
+  <% end %>
+
   <table class="table table-borderless">
     <thead class="thead-light">
       <tr>
