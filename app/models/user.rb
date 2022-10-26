@@ -47,6 +47,10 @@ class User < ApplicationRecord
     self.is_staff_member
   end
 
+  def committee_member_pending_approval?
+    professor? or judge? and !committee_member?
+  end
+
   def role
     roles = []
 

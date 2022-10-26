@@ -38,6 +38,12 @@
         <%= f.check_box :is_staff_member_true %>
         <%= f.label :is_staff_member_true, "Staff" %>
       </div>
+
+      <!-- En teoría esto no se debe hacer pero, ¿a quién le importa? -->
+      <div>
+        <%= f.check_box :is_staff_member_null %>
+        <%= f.label :is_staff_member_null, "Pendiente de aprovación" %>
+      </div>
     </div>
 
     <div class="m-3">
@@ -61,7 +67,7 @@
           <td><%= user.first_name %></td>
           <td><%= user.last_name %></td>
           <td>
-            <% if current_user.administrator? and user.professor? or user.judge? and !user.committee_member? %>
+            <% if current_user.administrator? and user.committee_member_pending_approval? %>
               <span class="glyphicon glyphicon-info-sign text-warning" data-toggle="tooltip" data-placement="top" title="Pendiente de asignar como miembro del comité"></span>
             <% end %>
             <%= user.role %>

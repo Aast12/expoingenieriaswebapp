@@ -5,19 +5,10 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @params = params[:q]
-
-    if @params
-      @params.delete(:is_student_true) if @params[:is_student_true] == "0"
-      @params.delete(:is_professor_true) if @params[:is_professor_true] == "0"
-      @params.delete(:is_committee_member_true) if @params[:is_committee_member_true] == "0"
-      @params.delete(:is_judge_true) if @params[:is_judge_true] == "0"
-      @params.delete(:is_admin_true) if @params[:is_admin_true] == "0"
-      @params.delete(:is_visitor_true) if @params[:is_visitor_true] == "0"
-      @params.delete(:is_staff_member_true) if @params[:is_staff_member_true] == "0"
-    end
-
+    fix_filter_params
     @q = User.ransack(@params)
     @users = @q.result
+    @users = @users.reject { |user| !user.committee_member_pending_approval? } if @pending_approval
   end
 
   # GET /users/1
@@ -55,7 +46,6 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        # format.html { redirect_to @user, notice: 'User was successfully updated.' }      
         format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -75,17 +65,29 @@ class UsersController < ApplicationController
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(user_keys())
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params.require(:user).permit(user_keys())
+  end
+
+  def fix_filter_params
+    if @params
+      @pending_approval = @params[:is_staff_member_null] == "1"
+      @params.delete(:is_staff_member_null)
+      @params.delete(:is_student_true) if @params[:is_student_true] == "0"
+      @params.delete(:is_professor_true) if @params[:is_professor_true] == "0"
+      @params.delete(:is_committee_member_true) if @params[:is_committee_member_true] == "0"
+      @params.delete(:is_judge_true) if @params[:is_judge_true] == "0"
+      @params.delete(:is_admin_true) if @params[:is_admin_true] == "0"
+      @params.delete(:is_visitor_true) if @params[:is_visitor_true] == "0"
+      @params.delete(:is_staff_member_true) if @params[:is_staff_member_true] == "0"
+    end
+  end
 end
