@@ -4,7 +4,19 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @q = User.ransack(params[:q])
+    @params = params[:q]
+
+    if @params
+      @params.delete(:is_student_true) if @params[:is_student_true] == "0"
+      @params.delete(:is_professor_true) if @params[:is_professor_true] == "0"
+      @params.delete(:is_committee_member_true) if @params[:is_committee_member_true] == "0"
+      @params.delete(:is_judge_true) if @params[:is_judge_true] == "0"
+      @params.delete(:is_admin_true) if @params[:is_admin_true] == "0"
+      @params.delete(:is_visitor_true) if @params[:is_visitor_true] == "0"
+      @params.delete(:is_staff_member_true) if @params[:is_staff_member_true] == "0"
+    end
+
+    @q = User.ransack(@params)
     @users = @q.result
   end
 

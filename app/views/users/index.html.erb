@@ -5,39 +5,38 @@
   <%= search_form_for @q do |f| %>
     <div class="d-flex justify-content-around">
       <div>
-        <%= f.check_box :is_student_not_null %>
-        <%= f.label :is_student_not_null, "Estudiante" %>
-      </div>
-      
-
-      <div>
-        <%= f.check_box :is_professor_not_null %>
-        <%= f.label :is_professor_not_null, "Profesor" %>
+        <%= f.check_box :is_student_true %>
+        <%= f.label :is_student_true, "Estudiante" %>
       </div>
 
       <div>
-        <%= f.check_box :is_committee_member_not_null  %>
-        <%= f.label :is_committee_member_not_null, "Miembro del comite" %>
+        <%= f.check_box :is_professor_true %>
+        <%= f.label :is_professor_true, "Profesor" %>
       </div>
 
       <div>
-        <%= f.check_box :is_judge_not_null %>
-        <%= f.label :is_judge_not_null, "Juez" %>
+        <%= f.check_box :is_committee_member_true  %>
+        <%= f.label :is_committee_member_true, "Miembro del comite" %>
       </div>
 
       <div>
-        <%= f.check_box :is_admin_not_null %>
-        <%= f.label :is_admin_not_null, "Administrador" %>
+        <%= f.check_box :is_judge_true %>
+        <%= f.label :is_judge_true, "Juez" %>
       </div>
 
       <div>
-        <%= f.check_box :is_visitor_not_null %>
-        <%= f.label :is_visitor_not_null, "Visitante" %>
+        <%= f.check_box :is_admin_true %>
+        <%= f.label :is_admin_true, "Administrador" %>
       </div>
 
       <div>
-        <%= f.check_box :is_staff_member_not_null %>
-        <%= f.label :is_staff_member_not_null, "Staff" %>
+        <%= f.check_box :is_visitor_true %>
+        <%= f.label :is_visitor_true, "Visitante" %>
+      </div>
+
+      <div>
+        <%= f.check_box :is_staff_member_true %>
+        <%= f.label :is_staff_member_true, "Staff" %>
       </div>
     </div>
 
