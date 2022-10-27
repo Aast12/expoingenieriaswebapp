@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     fix_filter_params
     @q = User.ransack(@params)
     @users = @q.result
+    # TODO: Make pending_approval to be filter with ransack
     @users = @users.reject { |user| !user.committee_member_pending_approval? } if @pending_approval
   end
 
@@ -45,7 +46,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      @params = params.require(:user).permit(
+        :first_name, :last_name, :is_committee_member, :department
+      )
+      if @user.update(@params)
         format.html { redirect_to users_url, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -79,6 +83,7 @@ class UsersController < ApplicationController
 
   def fix_filter_params
     if @params
+      # TODO: Make pending_approval to be filter with ransack 
       @pending_approval = @params[:is_staff_member_null] == "1"
       @params.delete(:is_staff_member_null)
       @params.delete(:is_student_true) if @params[:is_student_true] == "0"
