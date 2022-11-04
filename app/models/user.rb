@@ -51,6 +51,21 @@ class User < ApplicationRecord
     professor? or judge? and !committee_member?
   end
 
+  def judge_or_professor_pending_approval?
+    if professor?
+      professor = self.professors.first
+      return (professor and not professor.approved)
+    elsif judge?
+      judge = self.judges.first
+      return (judge and not professor.approved)
+    end
+    false
+  end
+
+  def pending_approval?
+    return committee_member_pending_approval? or judge_or_professor_pending_approval?
+  end
+
   def role
     roles = []
 
