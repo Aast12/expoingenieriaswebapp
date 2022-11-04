@@ -63,7 +63,9 @@ class User < ApplicationRecord
   end
 
   def pending_approval?
-    return committee_member_pending_approval? or judge_or_professor_pending_approval?
+    return (
+      committee_member_pending_approval? or judge_or_professor_pending_approval?
+    )
   end
 
   def role
