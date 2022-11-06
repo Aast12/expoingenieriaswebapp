@@ -97,12 +97,12 @@ class UsersController < ApplicationController
   def get_approveed_param(params)
     return if not params[:user][:approved]
 
-    if not @user.judges.empty?
+    if @user.judges.any?
       @judge = @user.judges.first
-      @judge.accepted = true
+      @judge.approved = true
     end
 
-    if not @user.professors.empty?
+    if @user.professors.any?
       @professor = @user.professors.first
       @professor.approved = true
     end
