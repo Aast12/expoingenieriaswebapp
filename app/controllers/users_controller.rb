@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       @params = params.require(:user).permit(
-        :first_name, :last_name, :is_committee_member, :department
+        :first_name, :last_name, :is_committee_member, :department, :institution_id
       )
       if @user.update(@params)
         format.html { redirect_to users_url, notice: 'User was successfully updated.' }
