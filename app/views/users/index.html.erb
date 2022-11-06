@@ -1,6 +1,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <div class="content">
-  <h1>Usuarios</h1>
+<div class="user-header text-primary">
+  <h1 class="h1-users">Usuarios</h1>
+  <%= link_to 'Crear usuario', new_user_path, :class => "btn btn-primary btn-create-user" %>
+</div>
 
   <%= search_form_for @q do |f| %>
     <div class="d-flex justify-content-around">
@@ -72,11 +75,11 @@
             <% end %>
             <%= user.role %>
           </td>
-          <td><%= link_to 'Editar usuario', user ,:class => "btn btn-light" %></td>
-          <td><%= link_to 'Eliminar', user,:class => "btn btn-light"  , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="td-see-user"><%= link_to 'Ver usuario', user ,:class => "btn btn-info" %></td>
+          <td><%= link_to '', user,:class => "btn btn-danger bi bi-trash", method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to 'Crear usuario', new_user_path %>
+  
 </div>
