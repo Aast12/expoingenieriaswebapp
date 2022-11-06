@@ -68,6 +68,10 @@ class User < ApplicationRecord
     )
   end
 
+  def can_update_users?
+    return (administrator? or committee_member?)
+  end
+
   def role
     roles = []
 
