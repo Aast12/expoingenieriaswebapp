@@ -1,17 +1,33 @@
-<%= form_with(model: committee_member, local: true) do |form| %>
-  <% if committee_member.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(committee_member.errors.count, "error") %> prohibited this committee_member from being saved:</h2>
+<div class="card mx-auto" style="width: 68rem;">
 
-      <ul>
-        <% committee_member.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%= form_with(model: committee_member, local: true) do |form| %>
+    <% if committee_member.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(committee_member.errors.count, "error") %> prohibited this committee_member from being saved:</h2>
+
+        <ul>
+          <% committee_member.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <h5 class="card-header">
+      <strong>Miembro de comité</strong>
+    </h5>
+
+    <div class="mb-2">
+      <% if current_user.can_update_users? and committee_member.user.professor? or committee_member.user.judge? or committee_member.user.committee_member? %>
+        <div class="col-sm-3 col-form-label mt-2">
+          <%= form.label :can_approve_committee_members, "Puede aprobar" %>
+          <%= form.check_box :can_approve_committee_members %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-sm-9 mb-2">
+      <%= form.submit "Actualizar" ,:class => "btn btn-light" %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

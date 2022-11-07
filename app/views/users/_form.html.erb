@@ -14,7 +14,7 @@
     <% end %>
 
     <h5 class="card-header">
-      <strong>Mi Cuenta</strong>
+      <strong>Usuario</strong>
     </h5>
 
     <div class="mb-2">
@@ -59,7 +59,7 @@
           <%= form.check_box :is_committee_member %>
         </div>
       <% end %>
-      <% if current_user.can_update_users? and user.judge_or_professor_pending_approval? %>
+      <% if current_user.can_update_users? and user.judge_or_professor_pending_approval? and user.committee_member.can_approve_committee_members %>
         <div class="col-sm-3 ">
           <%= form.label :approved, "Aprovar" %>
           <%= form.check_box :approved %>
