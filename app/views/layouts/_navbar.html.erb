@@ -45,6 +45,7 @@
 
       <% if current_user.administrator?  %>
         <a class="nav-item nav-link" href="/mailing_center">Correos</a>
+        <a class="nav-item nav-link" href="/committee_members">Comité</a>
       <% end %>
 
       <% if current_user.administrator? || current_user.committee_member? %>
