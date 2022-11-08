@@ -53,6 +53,12 @@
           <%= form.text_field :student_code, :class => "form-control" %>
         </div>
       <% end %>
+      <% if current_user.can_update_users? and user.committee_member? %>
+        <%= form.label :edition, "Edición", :class => "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+          <%= form.select :institution_id, edition_options(), {}, :class => "form-control"  %>
+        </div>
+      <% end %>
       <% if current_user.can_update_users? and user.professor? or user.judge? or user.committee_member? %>
         <div class="col-sm-3 col-form-label mt-2">
           <%= form.label :is_committee_member, "Miembro del comité" %>

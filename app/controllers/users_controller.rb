@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       @params = params.require(:user).permit(
-        :first_name, :last_name, :is_committee_member, :department, :institution_id
+        :first_name, :last_name, :is_committee_member, :department, :institution_id, :edition_id
       )
       get_approveed_param(params)
       if save_user
@@ -105,6 +105,15 @@ class UsersController < ApplicationController
     if @user.professors.any?
       @professor = @user.professors.first
       @professor.approved = true
+    end
+  end
+
+  def get_committee_member_param
+    if @params[:is_committee_member] != @user.is_committee_member
+      @committee_member = @user.is_committee_members.first
+      if @committee_member
+        # TODO: Lol
+      end
     end
   end
 
