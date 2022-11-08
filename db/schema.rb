@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2022_11_06_211710) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.boolean "can_approve_committee_members", default: false
-    t.boolean "active", default: false
+    t.boolean "active", default: true
     t.bigint "edition_id"
     t.index ["edition_id"], name: "index_committee_members_on_edition_id"
     t.index ["user_id"], name: "index_committee_members_on_user_id"
