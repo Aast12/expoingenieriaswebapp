@@ -16,7 +16,7 @@
 
   <tbody>
     <% @committee_members.each do |committee_member| %>
-      <% if !committee_member.active %>
+      <% if committee_member.active %>
         <tr>
           <td><%= committee_member.user.full_name %></td>
           <td><%= committee_member.user.email %></td>
