@@ -108,15 +108,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def get_committee_member_param
-    if @params[:is_committee_member] != @user.is_committee_member
-      @committee_member = @user.is_committee_members.first
-      if @committee_member
-        # TODO: Lol
-      end
-    end
-  end
-
   def fix_filter_params
     if @params
       # TODO: Make pending_approval to be filter with ransack 
