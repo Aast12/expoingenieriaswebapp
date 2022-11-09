@@ -57,7 +57,7 @@ class User < ApplicationRecord
       return (professor and not professor.approved)
     elsif judge?
       judge = self.judges.first
-      return (judge and not professor.approved)
+      return (judge and not judge.approved)
     end
     false
   end
