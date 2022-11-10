@@ -49,8 +49,7 @@ class UsersController < ApplicationController
       @params = params.require(:user).permit(
         :first_name, :last_name, :is_committee_member, :department, :institution_id, :edition_id
       )
-      get_approveed_param(params)
-      update_committee_member
+      get_roles(params)
       if save_user
         format.html { redirect_to users_url, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
@@ -96,7 +95,7 @@ class UsersController < ApplicationController
       return false
   end
 
-  def update_committee_member
+  def get_committee_member
     @committee_member = @user.committee_members.first
 
     if @params[:is_committee_member] == "1"
@@ -105,23 +104,26 @@ class UsersController < ApplicationController
       else
         @committee_member = CommitteeMember.new(user_id: @user.id)
       end
+
+      return
     end
 
     @committee_member.active = false if @committee_member.present?
   end
 
   def get_approveed_param(params)
-    return if not params[:user][:approved]
+    return if params[:user][:approved] != "1"
 
-    if @user.judges.any?
-      @judge = @user.judges.first
-      @judge.approved = true
-    end
+    @judge = @user.judges.first
+    @judge.approved = true if @judge.present?
 
-    if @user.professors.any?
-      @professor = @user.professors.first
-      @professor.approved = true
-    end
+    @professor = @user.professors.first
+    @professor.approved = true if @professor.present?
+  end
+
+  def get_roles(params)
+    get_approveed_param(params)
+    get_committee_member
   end
 
   def fix_filter_params
