@@ -16,14 +16,12 @@
 
   <tbody>
     <% @committee_members.each do |committee_member| %>
-      <% if committee_member.active %>
         <tr>
           <td><%= committee_member.user.full_name %></td>
           <td><%= committee_member.user.email %></td>
           <td class="td-see-user"><%= link_to 'Ver miembro de comité', committee_member, :class => "btn btn-info" %></td>
           <td><%= link_to '', committee_member, :class => "btn btn-danger bi bi-trash", method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
-      <% end %>
     <% end %>
   </tbody>
 </table>
