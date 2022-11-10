@@ -50,6 +50,7 @@ class UsersController < ApplicationController
         :first_name, :last_name, :is_committee_member, :department, :institution_id, :edition_id
       )
       get_approveed_param(params)
+      update_committee_member
       if save_user
         format.html { redirect_to users_url, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
@@ -87,11 +88,26 @@ class UsersController < ApplicationController
       @user.update(@params)
       @professor.save if @professor
       @judge.save if @judge
+      @committee_member.save if @committee_member
 
       return true
     end
     rescue ActiveRecord::RecordInvalid
       return false
+  end
+
+  def update_committee_member
+    @committee_member = @user.committee_members.first
+
+    if @params[:is_committee_member] == "1"
+      if @committee_member.present?
+        @committee_member.active = true
+      else
+        @committee_member = CommitteeMember.new(user_id: @user.id)
+      end
+    end
+
+    @committee_member.active = false if @committee_member.present?
   end
 
   def get_approveed_param(params)
