@@ -95,6 +95,16 @@ class UsersController < ApplicationController
       return false
   end
 
+  def get_approveed_param(params)
+    return if params[:user][:approved] != "1"
+
+    @judge = @user.judges.first
+    @judge.approved = true if @judge.present?
+
+    @professor = @user.professors.first
+    @professor.approved = true if @professor.present?
+  end
+
   def get_committee_member
     @committee_member = @user.committee_members.first
 
@@ -109,16 +119,6 @@ class UsersController < ApplicationController
     end
 
     @committee_member.active = false if @committee_member.present?
-  end
-
-  def get_approveed_param(params)
-    return if params[:user][:approved] != "1"
-
-    @judge = @user.judges.first
-    @judge.approved = true if @judge.present?
-
-    @professor = @user.professors.first
-    @professor.approved = true if @professor.present?
   end
 
   def get_roles(params)
