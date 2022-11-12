@@ -7,48 +7,50 @@
     
     <div class="navbar-nav">
       
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Proyectos
+        </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <% if current_user.professor? || current_user.student? || current_user.committee_member? || current_user.judge? || current_user.administrator?%>
+              <li><a class="dropdown-item" href="/projects">Todos los Proyectos <span class="sr-only">(current)</span></a></li>
+            <% end %> 
+            <% if current_user.professor? || current_user.committee_member? || current_user.administrator?  %>
+              <li><a class="dropdown-item" href="/project_status">Estatus de proyectos</a></li>
+            <% end %>
+            <% if current_user.committee_member? || current_user.administrator?  %>
+              <li><a class="dropdown-item" href="/select_projects">Seleccionar Proyectos</a></li>
+            <% end %>
+            <% if current_user.committee_member? || current_user.administrator?  %>
+              <li><a class="dropdown-item" href="/judge_evaluations">Evaluaciones</a></li>
+            <% end %>
+          </ul>
+      </li>
+
+      <% if current_user.administrator? || current_user.committee_member? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Usuarios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="/users">Todos los Usuarios</a></li>
+              <li><a class="dropdown-item" href="/students">Alumnos</a></li>
+              <li><a class="dropdown-item" href="/judges">Jueces</a></li>
+              <li><a class="dropdown-item" href="/professors">Profesores</a></li>
+          </ul>
+        </li>
+      <% end %>
+
       <% if (current_user.professor? || current_user.student? || current_user.committee_member? || current_user.judge? || current_user.administrator? || current_user.is_visitor?) && get_current_phases_names(Edition.find(get_current_edition_id)).include?("Muestra Virtual")  %>
         <a class="nav-item nav-link" href="/virtual_samples">Muestra Virtual <span class="sr-only">(current)</span></a>
-      <% end %>
-
-      <% if current_user.professor? || current_user.student? || current_user.committee_member? || current_user.judge? || current_user.administrator?%>
-        <a class="nav-item nav-link" href="/projects">Proyectos <span class="sr-only">(current)</span></a>
-      <% end %>
-
-      <% if current_user.committee_member? || current_user.administrator?  %>
-          <a class="nav-item nav-link" href="/judges">Jueces</a>
-      <% end %>
-
-      <% if current_user.committee_member? || current_user.administrator?  %>
-          <a class="nav-item nav-link" href="/professors">Profesores</a>
       <% end %>
 
       <% if current_user.committee_member? || current_user.administrator?  %>
           <a class="nav-item nav-link" href="/editions">Edicion</a>
       <% end %>
 
-      <% if current_user.committee_member? || current_user.administrator?  %>
-          <a class="nav-item nav-link" href="/judge_evaluations">Evaluaciones</a>
-      <% end %>
-
-      <% if current_user.professor? || current_user.committee_member? || current_user.administrator?  %>
-          <a class="nav-item nav-link" href="/project_status">Estatus de proyectos</a>
-      <% end %>
-
-      <% if current_user.committee_member? || current_user.administrator?  %>
-          <a class="nav-item nav-link" href="/select_projects">Seleccionar Proyectos</a>
-      <% end %>
-      
-      <% if current_user.committee_member? || current_user.administrator?  %>
-          <a class="nav-item nav-link" href="/students">Alumnos</a>
-      <% end %>
-
       <% if current_user.administrator?  %>
         <a class="nav-item nav-link" href="/mailing_center">Correos</a>
-      <% end %>
-
-      <% if current_user.administrator? || current_user.committee_member? %>
-        <a class="nav-item nav-link" href="/users">Usuarios</a>
       <% end %>
 
       <div class="navbar-current-user" style="position:absolute; right:0px;">
