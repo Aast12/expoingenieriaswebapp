@@ -1,5 +1,8 @@
 <div class="content">
-  <h1>Usuarios</h1>
+<div class="align-items-baseline d-flex text-primary">
+  <h1 class="border-bottom-0">Usuarios</h1>
+  <%= link_to 'Crear usuario', new_user_path, :class => "btn btn-primary ml-3" %>
+</div>
 
   <table class="table table-borderless">
     <thead class="thead-light">
@@ -17,11 +20,14 @@
           <td><%= user.first_name %></td>
           <td><%= user.last_name %></td>
           <td><%= user.role %></td>
-          <td><%= link_to 'Ver usuario', user ,:class => "btn btn-light" %></td>
-          <td><%= link_to 'Eliminar', user,:class => "btn btn-light"  , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="text-right w-50"><%= link_to 'Ver usuario', user ,:class => "btn btn-info" %></td>
+          <td><%= link_to '', user,:class => "btn btn-danger bi bi-trash", method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+          
+          
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to 'Crear usuario', new_user_path %>
+  
 </div>
