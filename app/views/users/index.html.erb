@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <div class="content">
-<div class="user-header text-primary">
-  <h1 class="h1-users">Usuarios</h1>
-  <%= link_to 'Crear usuario', new_user_path, :class => "btn btn-primary btn-create-user" %>
+<div class="align-items-baseline d-flex text-primary">
+  <h1 class="border-bottom-0">Usuarios</h1>
+  <%= link_to 'Crear usuario', new_user_path, :class => "btn btn-primary ml-3" %>
 </div>
 
   <table class="table table-borderless">
@@ -26,7 +26,7 @@
             <% end %>
             <%= user.role %>
           </td>
-          <td class="td-see-user"><%= link_to 'Ver usuario', user ,:class => "btn btn-info" %></td>
+          <td class="text-right w-50"><%= link_to 'Ver usuario', user ,:class => "btn btn-info" %></td>
           <td><%= link_to '', user,:class => "btn btn-danger bi bi-trash", method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
