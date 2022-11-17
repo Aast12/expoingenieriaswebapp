@@ -5,6 +5,55 @@
   <%= link_to 'Crear usuario', new_user_path, :class => "btn btn-primary ml-3" %>
 </div>
 
+  <%= search_form_for @q do |f| %>
+    <div class="d-flex justify-content-around">
+      <div>
+        <%= f.check_box :is_student_true %>
+        <%= f.label :is_student_true, "Estudiante" %>
+      </div>
+
+      <div>
+        <%= f.check_box :is_professor_true %>
+        <%= f.label :is_professor_true, "Profesor" %>
+      </div>
+
+      <div>
+        <%= f.check_box :is_committee_member_true  %>
+        <%= f.label :is_committee_member_true, "Miembro del comite" %>
+      </div>
+
+      <div>
+        <%= f.check_box :is_judge_true %>
+        <%= f.label :is_judge_true, "Juez" %>
+      </div>
+
+      <div>
+        <%= f.check_box :is_admin_true %>
+        <%= f.label :is_admin_true, "Administrador" %>
+      </div>
+
+      <div>
+        <%= f.check_box :is_visitor_true %>
+        <%= f.label :is_visitor_true, "Visitante" %>
+      </div>
+
+      <div>
+        <%= f.check_box :is_staff_member_true %>
+        <%= f.label :is_staff_member_true, "Staff" %>
+      </div>
+
+      <!-- En teoría esto no se debe hacer pero, ¿a quién le importa? -->
+      <div>
+        <%= f.check_box :is_staff_member_null %>
+        <%= f.label :is_staff_member_null, "Pendiente de aprovación" %>
+      </div>
+    </div>
+
+    <div class="m-3">
+      <%= f.submit "Buscar", class: "btn btn-primary" %>      
+    </div>
+  <% end %>
+
   <table class="table table-borderless">
     <thead class="thead-light">
       <tr>
@@ -21,7 +70,7 @@
           <td><%= user.first_name %></td>
           <td><%= user.last_name %></td>
           <td>
-            <% if current_user.administrator? and user.professor? or user.judge? and !user.committee_member? %>
+            <% if current_user.administrator? and user.committee_member_pending_approval? %>
               <span class="glyphicon glyphicon-info-sign text-warning" data-toggle="tooltip" data-placement="top" title="Pendiente de asignar como miembro del comité"></span>
             <% end %>
             <%= user.role %>
