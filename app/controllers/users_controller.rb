@@ -49,7 +49,8 @@ class UsersController < ApplicationController
       @params = params.require(:user).permit(
         :first_name, :last_name, :is_committee_member, :department, :institution_id
       )
-      if @user.update(@params)
+      get_approveed_param(params)
+      if save_user
         format.html { redirect_to users_url, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -79,6 +80,32 @@ class UsersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(user_keys())
+  end
+
+  def save_user
+    ActiveRecord::Base.transaction do
+      @user.update(@params)
+      @professor.save if @professor
+      @judge.save if @judge
+
+      return true
+    end
+    rescue ActiveRecord::RecordInvalid
+      return false
+  end
+
+  def get_approveed_param(params)
+    return if not params[:user][:approved]
+
+    if @user.judges.any?
+      @judge = @user.judges.first
+      @judge.approved = true
+    end
+
+    if @user.professors.any?
+      @professor = @user.professors.first
+      @professor.approved = true
+    end
   end
 
   def fix_filter_params

@@ -52,9 +52,6 @@ Department.create(name: "Mecatronica y Electrónica")
 Department.create(name: "Tecnologías Sostenibles y Civil")
 Department.create(name: "Otro")
 
-
-
-
 # Areas
 ProjectArea.create(name: "Agrobiotecnología")
 ProjectArea.create(name: "Automatización de Proceso")
@@ -77,19 +74,11 @@ ProjectArea.create(name: "Software")
 ProjectArea.create(name: "Emprendimiento en Base Tecnológica")
 
 
-
 #Base Categories:
 ProjectCategory.create(name: "Desarrollo de Prototipo Físico")
 ProjectCategory.create(name: "Desarrollo de Prototipo de Software")
 ProjectCategory.create(name: "Investigación y Desarrollo de Propuestas de Mejora")
 ProjectCategory.create(name: "Productos o Servicios para Emprendimiento de Base Tecnológica")
-
-
-
-
-
-
-
 
 #Users
 userProf = User.new(
@@ -188,7 +177,41 @@ committeMember = CommitteeMember.create(
     user_id: userCommitteMember.id,
 )
 
+userJudge = User.new(
+    email: "judge@tec.com",
+    password: "123123",
+    institution_id: 1,
+    first_name: "Luke",
+    last_name: "Skywalker",
+    is_judge: 1
+)
+userJudge.skip_confirmation!
+userJudge.save
+judge = Judge.new(
+    user_id: userJudge.id,
+    department: "ITC",
+    contact_name: "Luke",
+    contact_email: "judge@tec.com",
+    has_tablet: 1,
+    external: 1,
+    contact_phone: "8121111111"
+)
+judge.save
 
+userProfessor = User.new(
+    email: "professor@tec.com",
+    password: "123123",
+    first_name: "Obi-Wan",
+    last_name: "Kenobi",
+    is_professor: 1
+)
+userProfessor.skip_confirmation!
+userProfessor.save
+professor = Professor.new(
+    department: "Ciencias",
+    user_id: userProfessor.id
+)
+professor.save
 
 
 # Users Previous DB

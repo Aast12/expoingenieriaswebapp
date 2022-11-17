@@ -39,8 +39,6 @@ Instala las siguientes herramientas de desarrollo:
 - Rails 6.0.2
 - Sqlite 1.4
 
-
-
 ### Corre la aplicación en Ruby on Rails
 1. Abre tu terminal
 2. Clona el proyecto utilizando cualquiera de los siguientes comandos:
@@ -89,8 +87,18 @@ $ rails server
 $ docker compose up
 ```
 
-2. En la terminal del contenedor del servidor, ejecutar:
+2. Para abrir una terminal del contenedor de docker 
+```bash
+$ docker exec -it webapp bash
+```
+
+3. En la terminal del contenedor del servidor, ejecutar:
 ```bash
 $ rails db:migrate
 $ rails db:seed
+```
+
+4. (Opcional) abrir una terminal de rails (es necesario hacer esto dentro del contenedor de docker)
+```bash
+$ rails c
 ```

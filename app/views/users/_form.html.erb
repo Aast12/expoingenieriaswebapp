@@ -53,10 +53,16 @@
           <%= form.text_field :student_code, :class => "form-control" %>
         </div>
       <% end %>
-      <% if current_user.administrator? and user.professor? or user.judge? or user.committee_member? %>
-        <div class="col-sm-3 col-form-label">
+      <% if current_user.can_update_users? and user.professor? or user.judge? or user.committee_member? %>
+        <div class="col-sm-3 col-form-label mt-2">
           <%= form.label :is_committee_member, "Miembro del comité" %>
           <%= form.check_box :is_committee_member %>
+        </div>
+      <% end %>
+      <% if current_user.can_update_users? and user.judge_or_professor_pending_approval? %>
+        <div class="col-sm-3 ">
+          <%= form.label :approved, "Aprovar" %>
+          <%= form.check_box :approved %>
         </div>
       <% end %>
     </div>
