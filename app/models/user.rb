@@ -27,6 +27,10 @@ class User < ApplicationRecord
     self.is_professor
   end
 
+  def can_committee_member_approve_committee_members?
+    CommitteeMember.first.can_approve_committee_members
+  end
+
   def committee_member?
     self.is_committee_member
   end
