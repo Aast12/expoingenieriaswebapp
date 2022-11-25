@@ -68,7 +68,6 @@
       <% if current_user.can_update_users? and user.judge_or_professor_pending_approval? and user.can_committee_member_approve_committee_members? %>
         <div class="col-sm-3 ">
           <%= form.label :approved, "Aprobar" %>
-          <%= form.label :approved, "Aprobar" %>
           <%= form.check_box :approved %>
         </div>
       <% end %>
