@@ -38,7 +38,7 @@
           </div>
         <% end %>
       <% end %>
-      <% if current_user.can_update_users? and committee_member.get_user.professor? or committee_member.get_user.judge? or committee_member.get_user.committee_member? %>
+      <% if current_user.can_update_users? and committee_member.professor_or_judge_or_committee_member? %>
         <div class="col-sm-3 col-form-label mt-2">
           <%= form.label :can_approve_committee_members, "Puede aprobar" %>
           <%= form.check_box :can_approve_committee_members %>
