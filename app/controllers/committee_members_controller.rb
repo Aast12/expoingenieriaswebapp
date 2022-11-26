@@ -5,6 +5,7 @@ class CommitteeMembersController < ApplicationController
   # GET /committee_members.json
   def index
     @committee_members = CommitteeMember.all
+    @users = User.all
   end
 
   # GET /committee_members/1
@@ -69,7 +70,7 @@ class CommitteeMembersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def committee_member_params
-      params.require(:committee_member).permit(:user_id)
+      params.require(:committee_member).permit(:user_id, :can_approve_committee_members, :edition, :active)
     end
 end
 

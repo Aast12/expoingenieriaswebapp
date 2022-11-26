@@ -1,23 +1,28 @@
-<h1>Committee Members</h1>
-
-<table>
-  <thead>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<div class="content">
+<div class="user-header text-primary">
+  <h1 class="border-bottom-0">Miembros de comité</h1>
+  <%= link_to 'Crear miembro de comité', new_committee_member_path, :class => "btn btn-primary btn-create-user" %>
+</div>
+<table class="table table-borderless">
+  <thead class="thead-light">
     <tr>
+      <th>Nombre</th>
+      <th>Correo Electronico</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @committee_members.each do |committee_member| %>
-      <tr>
-        <td><%= link_to 'Show', committee_member %></td>
-        <td><%= link_to 'Edit', edit_committee_member_path(committee_member) %></td>
-        <td><%= link_to 'Destroy', committee_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% if committee_member.active and committee_member.has_user? %>
+        <tr>
+          <td><%= committee_member.get_user.full_name %></td>
+          <td><%= committee_member.get_user.email %></td>
+          <td class="td-see-user"><%= link_to 'Ver miembro de comité', committee_member, :class => "btn btn-info" %></td>
+          <td><%= link_to '', committee_member, :class => "btn btn-danger bi bi-trash", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Committee Member', new_committee_member_path %>
