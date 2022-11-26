@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       @params = params.require(:user).permit(
-        :first_name, :last_name, :is_committee_member, :department, :institution_id
+        :first_name, :last_name, :is_committee_member, :department, :institution_id, :edition_id
       )
       get_approveed_param(params)
       if save_user
