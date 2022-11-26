@@ -2,7 +2,6 @@
 <div class="content">
 <div class="user-header text-primary">
   <h1 class="border-bottom-0">Miembros de comité</h1>
-  <%= link_to 'Crear miembro de comité', new_committee_member_path, :class => "btn btn-primary btn-create-user" %>
 </div>
 <table class="table table-borderless">
   <thead class="thead-light">
@@ -20,7 +19,6 @@
           <td><%= committee_member.get_user.full_name %></td>
           <td><%= committee_member.get_user.email %></td>
           <td class="td-see-user"><%= link_to 'Ver miembro de comité', committee_member, :class => "btn btn-info" %></td>
-          <td><%= link_to '', committee_member, :class => "btn btn-danger bi bi-trash", method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     <% end %>
