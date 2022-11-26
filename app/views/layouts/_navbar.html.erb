@@ -37,6 +37,7 @@
               <li><a class="dropdown-item" href="/students">Alumnos</a></li>
               <li><a class="dropdown-item" href="/judges">Jueces</a></li>
               <li><a class="dropdown-item" href="/professors">Profesores</a></li>
+              <li><a class="dropdown-item" href="/committee_members">Comité</a></li>
           </ul>
         </li>
       <% end %>
@@ -51,7 +52,6 @@
 
       <% if current_user.administrator?  %>
         <a class="nav-item nav-link" href="/mailing_center">Correos</a>
-        <a class="nav-item nav-link" href="/committee_members">Comité</a>
       <% end %>
 
       <div class="navbar-current-user" style="position:absolute; right:0px;">
